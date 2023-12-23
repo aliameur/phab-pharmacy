@@ -6,6 +6,7 @@ import './global.css';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const merriweather = Merriweather({
   weight: ['400'],
+  subsets: ['latin'],
   variable: '--font-merriweather',
 });
 

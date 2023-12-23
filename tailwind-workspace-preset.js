@@ -4,7 +4,7 @@ module.exports = {
     extend: {
       fontFamily: {
         inter: ['var(--font-inter)'],
-        montserrat: ['var(--font-montserrat)'],
+        merriweather: ['var(--font-merriweather)'],
       },
       colors: {
         'mineral-green': {
