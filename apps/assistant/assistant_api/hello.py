@@ -2,5 +2,5 @@
 
 
 def hello():
-    """Return a friendly greeting. test easdfdit test edit 2"""
+    """Return a friendly greeting."""
     return "Hello assistant-api"
