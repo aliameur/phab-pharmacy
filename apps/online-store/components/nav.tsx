@@ -4,8 +4,8 @@ import { Logo } from './logo';
 
 export const Nav = () => {
   return (
-    <nav className="h-24 px-16 w-full flex justify-between items-center">
-      <div className="items-center gap-8 flex">
+    <nav className="flex h-24 w-full items-center justify-between px-16">
+      <div className="flex items-center gap-8">
         <Logo />
         <NavLink>Cold and Flu</NavLink>
         <NavLink>Skin Care</NavLink>
@@ -22,9 +22,9 @@ type TNavLink = {
 };
 const NavLink = ({ children }: TNavLink) => {
   return (
-    <div className="relative px-4 py-2 group text-mineral-green-600">
+    <div className="text-mineral-green-600 group relative px-4 py-2">
       {children}
-      <div className="transition-all duration-300 origin-center scale-x-0 group-hover:scale-x-100 absolute left-4 right-4 h-0.5 bottom-2 translate-y-full bg-mineral-green-600" />
+      <div className="bg-mineral-green-600 absolute bottom-2 left-4 right-4 h-0.5 origin-center translate-y-full scale-x-0 transition-all duration-300 group-hover:scale-x-100" />
     </div>
   );
 };
