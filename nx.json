@@ -89,5 +89,8 @@
     },
     ".eslintrc.json": "*",
     ".prettierrc.json": "*"
+  },
+  "affected": {
+    "defaultBase": "main"
   }
 }
