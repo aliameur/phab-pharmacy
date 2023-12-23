@@ -1,3 +1,3 @@
-# proj1
+# assistant-api
 
 Project description here.

@@ -81,5 +81,13 @@
   },
   "plugins": [
     "@nxlv/python"
-  ]
+  ],
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*",
+    ".prettierrc.json": "*"
+  }
 }
