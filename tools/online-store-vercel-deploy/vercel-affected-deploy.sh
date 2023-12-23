@@ -8,8 +8,8 @@ NX_VERSION=$(node -e "console.log(require('./package.json').devDependencies['@nx
 TS_VERSION=$(node -e "console.log(require('./package.json').devDependencies['typescript'])")
 
 # Install @nrwl/workspace in order to run the affected command
-pnpm i -D @nx/workspace@$NX_VERSION --prefer-offline
-pnpm i -D typescript@$TS_VERSION --prefer-offline
+pnpm i -D @nx/workspace@$NX_VERSION typescript@$TS_VERSION --prefer-offline
+#pnpm i -D typescript@$TS_VERSION --prefer-offline
 
 # Run the affected command, comparing latest commit to the one before that
 pnpm dlx nx affected:apps --plain --base HEAD~1 --head HEAD | grep $APP -q
