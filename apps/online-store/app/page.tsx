@@ -1,3 +1,5 @@
+import { Search } from '../components/search';
+
 export default async function Index() {
   return (
     <main>
@@ -10,6 +12,7 @@ export default async function Index() {
             Find all your healthcare needs with ease. Just type and search
             below.
           </p>
+          <Search />
         </div>
         <div className="w-1/2"></div>
       </header>
