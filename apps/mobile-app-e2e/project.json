@@ -7,12 +7,9 @@
     "build-ios": {
       "executor": "@nx/detox:build",
       "options": {
-        "detoxConfiguration": "ios.sim.local"
+        "detoxConfiguration": "ios.sim.debug"
       },
       "configurations": {
-        "bare": {
-          "detoxConfiguration": "ios.sim.debug"
-        },
         "production": {
           "detoxConfiguration": "ios.sim.release"
         }
@@ -21,14 +18,10 @@
     "test-ios": {
       "executor": "@nx/detox:test",
       "options": {
-        "detoxConfiguration": "ios.sim.local",
+        "detoxConfiguration": "ios.sim.debug",
         "buildTarget": "mobile-app-e2e:build-ios"
       },
       "configurations": {
-        "bare": {
-          "detoxConfiguration": "ios.sim.debug",
-          "buildTarget": "mobile-app-e2e:build-ios:bare"
-        },
         "production": {
           "detoxConfiguration": "ios.sim.release",
           "buildTarget": "mobile-app-e2e:build-ios:production"
@@ -38,12 +31,9 @@
     "build-android": {
       "executor": "@nx/detox:build",
       "options": {
-        "detoxConfiguration": "android.emu.local"
+        "detoxConfiguration": "android.emu.debug"
       },
       "configurations": {
-        "bare": {
-          "detoxConfiguration": "android.emu.debug"
-        },
         "production": {
           "detoxConfiguration": "android.emu.release"
         }
@@ -52,14 +42,10 @@
     "test-android": {
       "executor": "@nx/detox:test",
       "options": {
-        "detoxConfiguration": "android.emu.local",
+        "detoxConfiguration": "android.emu.debug",
         "buildTarget": "mobile-app-e2e:build-android"
       },
       "configurations": {
-        "bare": {
-          "detoxConfiguration": "android.emu.debug",
-          "buildTarget": "mobile-app-e2e:build-android:bare"
-        },
         "production": {
           "detoxConfiguration": "android.emu.release",
           "buildTarget": "mobile-app-e2e:build-android:production"
