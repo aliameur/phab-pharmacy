@@ -1,0 +1,36 @@
+[tool.coverage.run]
+branch = true
+source = [ "pymonorepo_proj1" ]
+
+[tool.coverage.report]
+exclude_lines = ['if TYPE_CHECKING:']
+show_missing = true
+
+[tool.pytest.ini_options]
+addopts = "--cov --cov-report html:'../coverage/proj1/html' --cov-report xml:'../coverage/proj1/coverage.xml' --html='../reports/proj1/unittests/html/index.html' --junitxml='../reports/proj1/unittests/junit.xml'"
+
+[tool.poetry]
+name = "pymonorepo-proj1"
+version = "1.0.0"
+description = "My Project 1"
+authors = [ ]
+license = 'Proprietary'
+readme = 'README.md'
+
+  [[tool.poetry.packages]]
+  include = "pymonorepo_proj1"
+
+  [tool.poetry.dependencies]
+  python = ">=3.9"
+
+  [tool.poetry.group.dev.dependencies]
+  autopep8 = "2.0.2"
+  flake8 = "6.0.0"
+  pytest-sugar = "0.9.7"
+  pytest-cov = "4.1.0"
+  pytest-html = "3.2.0"
+  pytest = "^7.4.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

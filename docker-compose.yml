@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  db:
+    image: postgres
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=medusa_db
+      - POSTGRES_USER=yourusername
+      - POSTGRES_PASSWORD=yourpassword
+    ports:
+      - 5432:5432
+volumes:
+  postgres-db:
