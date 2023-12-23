@@ -6,16 +6,19 @@
   "private": true,
   "dependencies": {
     "@expo/metro-config": "~0.10.7",
+    "autoprefixer": "^10.4.16",
     "expo": "49.0.16",
     "expo-splash-screen": "~0.20.5",
     "expo-status-bar": "~1.6.0",
     "next": "14.0.4",
+    "postcss": "^8.4.32",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.72.6",
     "react-native-svg": "13.9.0",
     "react-native-svg-transformer": "1.0.0",
     "react-native-web": "~0.19.9",
+    "tailwindcss": "^3.4.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
