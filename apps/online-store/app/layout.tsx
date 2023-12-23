@@ -1,4 +1,14 @@
+import { Inter } from 'next/font/google';
+import { Montserrat } from 'next/font/google';
+
+import { Nav } from '../components/nav';
 import './global.css';
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+});
 
 export const metadata = {
   title: 'Welcome to online-store',
@@ -12,8 +22,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-
-      <body>{children}</body>
+      <body className={`bg-pampas-100 ${inter.variable} ${montserrat.variable}`}>
+        <Nav />
+        {children}
+      </body>
     </html>
   );
 }
