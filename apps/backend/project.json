@@ -1,0 +1,29 @@
+{
+  "name": "backend",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/backend/src",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "development",
+      "configurations": {
+        "development": {
+          "commands": [
+            "nx run backend:build:server",
+            "cd apps/backend && medusa develop"
+          ],
+          "parallel": false
+        },
+        "production": {
+          "commands": [
+            "nx run backend:buildT",
+            "cd apps/backend && medusa start"
+          ],
+          "parallel": false
+        }
+      }
+    },
+  },
+  "tags": []
+}

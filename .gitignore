@@ -57,3 +57,6 @@ cache/
 
 
 apps/mobile-app-e2e/artifacts
+
+# Next.js
+.next
