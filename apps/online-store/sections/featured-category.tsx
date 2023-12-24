@@ -3,6 +3,7 @@
 import { MoveRight } from 'lucide-react';
 import Image from 'next/image';
 
+import { Button } from '../components/button';
 import { cn } from '../lib/utils';
 
 type TFeaturedCategory = {
@@ -43,9 +44,7 @@ export const FeaturedCategory = ({ side, title }: TFeaturedCategory) => {
         <h2 className="text-mineral-green-600 font-merriweather text-[40px]">
           {title}
         </h2>
-        <button className="text-pampas-100 bg-mineral-green-600 rounded-2xl px-8 py-4">
-          Shop {title}
-        </button>
+        <Button>Shop {title}</Button>
       </div>
     </div>
   );
