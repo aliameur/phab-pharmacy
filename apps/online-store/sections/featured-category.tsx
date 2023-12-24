@@ -2,6 +2,10 @@
 
 import { MoveRight } from 'lucide-react';
 import Image from 'next/image';
+import { useState } from 'react';
+import 'swiper/css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import type { Swiper as TSwiper } from 'swiper/types';
 
 import { Button } from '../components/button';
 import { cn } from '../lib/utils';
@@ -11,6 +15,18 @@ type TFeaturedCategory = {
   title: string;
 };
 export const FeaturedCategory = ({ side, title }: TFeaturedCategory) => {
+  const [swiper, setSwiper] = useState<TSwiper | null>(null);
+
+  const handleClick = (direction: string) => () => {
+    if (!swiper) return;
+
+    // handles direction change due to using rtl mode in swiper
+    if (direction === 'left') {
+      return side === 'left' ? swiper.slideNext() : swiper.slidePrev();
+    } else {
+      return side === 'left' ? swiper.slidePrev() : swiper.slideNext();
+    }
+  };
   return (
     <div
       className={cn('flex items-center justify-between py-16', {
@@ -24,21 +40,31 @@ export const FeaturedCategory = ({ side, title }: TFeaturedCategory) => {
             'left-20': side === 'right',
           })}
         />
-        <div className="flex w-full gap-4 overflow-scroll">
-          <FeaturedProductCard />
-          <FeaturedProductCard />
-          <FeaturedProductCard />
-          <FeaturedProductCard />
-        </div>
         <div
-          className={cn('absolute top-20 flex flex-col gap-4', {
+          className={cn('absolute top-20 z-50 flex flex-col gap-4', {
             'right-0 translate-x-1/2': side === 'left',
             'left-0 -translate-x-1/2': side === 'right',
           })}
         >
-          <SliderButton direction="right" />
-          <SliderButton direction="left" />
+          <SliderButton onClick={handleClick('right')} direction="right" />
+          <SliderButton onClick={handleClick('left')} direction="left" />
         </div>
+
+        {/* using rtl mode here to align product card correctly*/}
+        <Swiper
+          onSwiper={setSwiper}
+          slidesPerView={'auto'}
+          spaceBetween={16}
+          dir={side === 'left' ? 'rtl' : undefined}
+          grabCursor
+          loop
+        >
+          {Array.from({ length: 3 }).map((_, idx) => (
+            <SwiperSlide className="max-w-min" key={idx}>
+              <FeaturedProductCard />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
       <div className="flex w-1/2 flex-col items-center gap-12">
         <h2 className="text-mineral-green-600 font-merriweather text-[40px]">
@@ -52,10 +78,14 @@ export const FeaturedCategory = ({ side, title }: TFeaturedCategory) => {
 
 type TSliderButton = {
   direction: 'left' | 'right';
+  onClick: () => void;
 };
-const SliderButton = ({ direction }: TSliderButton) => {
+const SliderButton = ({ direction, onClick }: TSliderButton) => {
   return (
-    <button className="border-mineral-green-600 flex w-16 items-center justify-center rounded-2xl border-2 p-3">
+    <button
+      onClick={onClick}
+      className="border-mineral-green-600 flex w-16 items-center justify-center rounded-2xl border-2 p-3"
+    >
       <MoveRight
         className={cn('text-mineral-green-600 h-6 w-6', {
           'rotate-180': direction === 'left',
@@ -68,7 +98,7 @@ const SliderButton = ({ direction }: TSliderButton) => {
 const FeaturedProductCard = () => {
   return (
     <div className="group relative flex flex-col items-center gap-2 pb-2">
-      <div className="bg-norway-200 relative aspect-[1.26] w-[400px] overflow-hidden">
+      <div className="bg-norway-200 relative aspect-[1.26] h-[400px] overflow-hidden">
         <Image
           alt="product"
           src="/placeholder-product.png"
