@@ -1,13 +1,13 @@
-import { Hero } from '../sections/hero';
 import { FeaturedCategory } from '../sections/featured-category';
+import { Hero } from '../sections/hero';
 
 export default async function Index() {
   return (
     <main>
       <Hero />
-      <FeaturedCategory side="left"/>
-      <FeaturedCategory side="right"/>
-      <FeaturedCategory side="left"/>
+      <FeaturedCategory title="Category" side="left" />
+      <FeaturedCategory title="Category" side="right" />
+      <FeaturedCategory title="Category" side="left" />
     </main>
   );
 }

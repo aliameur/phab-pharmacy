@@ -1,7 +1,7 @@
+import Link from 'next/link';
 import { ComponentProps, ReactNode } from 'react';
 
 import { Logo } from './logo';
-import Link from 'next/link';
 
 export const Nav = () => {
   return (
@@ -23,10 +23,12 @@ type TNavLink = ComponentProps<typeof Link> & {
 };
 const NavLink = ({ children, ...props }: TNavLink) => {
   return (
-    <Link {...props} className="text-mineral-green-600 group relative px-4 py-2">
+    <Link
+      {...props}
+      className="text-mineral-green-600 group relative px-4 py-2"
+    >
       {children}
-      <div
-        className="bg-mineral-green-600 absolute bottom-2 left-4 right-4 h-0.5 origin-center translate-y-full scale-x-0 transition-all duration-300 group-hover:scale-x-100" />
+      <div className="bg-mineral-green-600 absolute bottom-2 left-4 right-4 h-0.5 origin-center translate-y-full scale-x-0 transition-all duration-300 group-hover:scale-x-100" />
     </Link>
   );
 };
