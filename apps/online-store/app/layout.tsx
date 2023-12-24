@@ -6,7 +6,7 @@ import './global.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const merriweather = Merriweather({
-  weight: ['400'],
+  weight: ['400', '700'],
   subsets: ['latin'],
   variable: '--font-merriweather',
 });
@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`bg-pampas-100 ${inter.variable} ${merriweather.variable}`}
+        className={`${inter.variable} ${merriweather.variable} bg-pampas-100 font-inter`}
       >
         <Nav />
         {children}
