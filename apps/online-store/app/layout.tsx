@@ -1,5 +1,6 @@
 import { Inter, Merriweather } from 'next/font/google';
 
+import { Footer } from '../components/footer';
 import { Nav } from '../components/nav';
 import './global.css';
 
@@ -27,6 +28,7 @@ export default function RootLayout({
       >
         <Nav />
         {children}
+        <Footer />
       </body>
     </html>
   );
