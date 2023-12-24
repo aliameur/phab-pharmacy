@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React, { useRef, useState } from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-  TouchableOpacity,
   Linking,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import Svg, { G, Path } from 'react-native-svg';
 
@@ -78,7 +78,7 @@ export const App = () => {
                 style={[styles.listItem, styles.learning]}
                 onPress={() =>
                   Linking.openURL(
-                    'https://nx.dev/getting-started/intro?utm_source=nx-project'
+                    'https://nx.dev/getting-started/intro?utm_source=nx-project',
                   )
                 }
               >
@@ -162,7 +162,7 @@ export const App = () => {
                 style={[styles.listItem, styles.learning]}
                 onPress={() =>
                   Linking.openURL(
-                    'https://www.youtube.com/@NxDevtools/videos?utm_source=nx-project'
+                    'https://www.youtube.com/@NxDevtools/videos?utm_source=nx-project',
                   )
                 }
               >
@@ -194,7 +194,7 @@ export const App = () => {
                 style={[styles.listItem, styles.learning]}
                 onPress={() =>
                   Linking.openURL(
-                    'https://nx.dev/react-tutorial/1-code-generation?utm_source=nx-project'
+                    'https://nx.dev/react-tutorial/1-code-generation?utm_source=nx-project',
                   )
                 }
               >
@@ -237,7 +237,7 @@ export const App = () => {
                 style={[styles.listItem, styles.learning]}
                 onPress={() =>
                   Linking.openURL(
-                    'https://nxplaybook.com/?utm_source=nx-project'
+                    'https://nxplaybook.com/?utm_source=nx-project',
                   )
                 }
               >
@@ -284,7 +284,7 @@ export const App = () => {
             <TouchableOpacity
               onPress={() =>
                 Linking.openURL(
-                  'https://marketplace.visualstudio.com/items?itemName=nrwl.angular-console&utm_source=nx-project'
+                  'https://marketplace.visualstudio.com/items?itemName=nrwl.angular-console&utm_source=nx-project',
                 )
               }
             >
@@ -319,7 +319,7 @@ export const App = () => {
             <TouchableOpacity
               onPress={() =>
                 Linking.openURL(
-                  'https://plugins.jetbrains.com/plugin/21060-nx-console'
+                  'https://plugins.jetbrains.com/plugin/21060-nx-console',
                 )
               }
             >
@@ -367,7 +367,7 @@ export const App = () => {
                   <Svg
                     width={48}
                     height={48}
-                    viewBox="0 0 24 24"
+                    viewBox="0 0 120 120"
                     stroke="currentColor"
                     fill="transparent"
                   >
@@ -474,14 +474,14 @@ export const App = () => {
                     styles.marginBottomMd,
                   ]}
                 >
-                  nx g @nx/expo:lib ui
+                  nx g @nx/react-native:lib ui
                 </Text>
                 <Text style={[styles.textXS, styles.monospace, styles.comment]}>
                   # Add a component
                 </Text>
                 <Text style={[styles.textXS, styles.monospace]}>nx g \</Text>
                 <Text style={[styles.textXS, styles.monospace]}>
-                  @nx/expo:component \
+                  @nx/react-native:component \
                 </Text>
                 <Text style={[styles.textXS, styles.monospace]}>
                   ui/src/lib/button
