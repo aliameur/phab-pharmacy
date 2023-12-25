@@ -4,12 +4,21 @@
   "private": true,
   "dependencies": {
     "@react-native/metro-config": "*",
+    "@react-navigation/native": "*",
+    "@react-navigation/stack": "*",
+    "@react-native-clipboard/clipboard": "*",
+    "@react-native-voice/voice": "*",
     "@testing-library/jest-native": "*",
     "@testing-library/react-native": "*",
-    "react": "*",
-    "react-native": "*",
-    "react-native-svg": "*",
     "metro-config": "*",
+    "react": "*",
+    "react-native-gesture-handler": "*",
+    "react-native": "*",
+    "react-native-safe-area-context": "*",
+    "react-native-tts": "*",
+    "react-native-vector-icons": "*",
+    "react-native-screens": "*",
+    "react-native-svg": "*",
     "react-native-svg-transformer": "*"
   }
 }
