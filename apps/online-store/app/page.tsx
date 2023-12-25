@@ -55,7 +55,43 @@ export default async function Index() {
           },
         ]}
       />
-      <Team />
+      <Team
+        members={[
+          {
+            name: 'John Doe',
+            title: 'CEO',
+            description:
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
+            links: {
+              linkedin: '#',
+              twitter: '#',
+              dribbble: '#',
+            },
+          },
+          {
+            name: 'John Smith',
+            title: 'CTO',
+            description:
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
+            links: {
+              linkedin: '#',
+              twitter: '#',
+              dribbble: '#',
+            },
+          },
+          {
+            name: 'John Appleseed',
+            title: 'CFO',
+            description:
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
+            links: {
+              linkedin: '#',
+              twitter: '#',
+              dribbble: '#',
+            },
+          },
+        ]}
+      />
     </main>
   );
 }
