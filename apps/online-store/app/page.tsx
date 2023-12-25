@@ -1,8 +1,4 @@
-import { FAQs } from '../sections/faqs';
-import { FeaturedCategory } from '../sections/featured-category';
-import { Hero } from '../sections/hero';
-import { Team } from '../sections/team';
-import { Testimonials } from '../sections/testimonials';
+import { FAQs, FeaturedCategory, Hero, Team, Testimonials } from '../sections';
 
 export default async function Index() {
   return (

@@ -7,8 +7,8 @@ import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as TSwiper } from 'swiper/types';
 
-import { Button } from '../components/button';
-import { cn } from '../lib/utils';
+import { Button } from '../../components/button';
+import { cn } from '../../lib/utils';
 
 type TFeaturedCategory = {
   side: 'left' | 'right';

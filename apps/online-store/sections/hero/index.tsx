@@ -1,5 +1,5 @@
-import { Search } from '../components/search';
-import { Carousel } from '../components/carousel';
+import { Search } from '../../components/search';
+import { Carousel } from '../../components/carousel';
 
 export const Hero = () => {
   return (

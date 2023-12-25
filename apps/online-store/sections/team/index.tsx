@@ -60,13 +60,13 @@ const TeamMember = ({ name, title, children }: TTeamMember) => {
         <p className="mt-4 w-[304px] text-center">{children}</p>
       </div>
       <div className="flex gap-3.5">
-        <Link aria-label="LinkedIn" href="/" target="_blank">
+        <Link aria-label="LinkedIn" href="/apps/online-store/public" target="_blank">
           <FaLinkedin className="h-6 w-6" />
         </Link>
-        <Link aria-label="X" href="/" target="_blank">
+        <Link aria-label="X" href="/apps/online-store/public" target="_blank">
           <FaXTwitter className="h-6 w-6" />
         </Link>
-        <Link aria-label="Dribbble" href="/" target="_blank">
+        <Link aria-label="Dribbble" href="/apps/online-store/public" target="_blank">
           <FaDribbble className="h-6 w-6" />
         </Link>
       </div>

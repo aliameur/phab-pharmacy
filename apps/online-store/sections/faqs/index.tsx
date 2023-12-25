@@ -4,8 +4,8 @@ import * as Accordion from '@radix-ui/react-accordion';
 import { ChevronDown } from 'lucide-react';
 import * as React from 'react';
 
-import { Button } from '../components/button';
-import { SectionHeading } from './common';
+import { Button } from '../../components/button';
+import { SectionHeading } from '../common';
 
 export const FAQs = () => {
   return (
