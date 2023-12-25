@@ -80,6 +80,7 @@
     "metro-react-native-babel-transformer": "0.76.8",
     "metro-resolver": "0.76.8",
     "nx": "17.2.7",
+    "nx-ignore": "^17.2.2",
     "prettier": "^3.1.1",
     "prettier-plugin-tailwindcss": "^0.5.9",
     "react-native-svg": "13.9.0",
