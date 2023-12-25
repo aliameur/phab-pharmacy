@@ -115,7 +115,7 @@ function ChatScreen() {
     return (
         <KeyboardAvoidingView 
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 80 : 80}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 80 : -200}
         style={styles.container}>
             <View style={messageStyles(messages).view}>
                 <FlatList
