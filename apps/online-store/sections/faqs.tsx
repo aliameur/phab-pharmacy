@@ -5,31 +5,29 @@ import { ChevronDown } from 'lucide-react';
 import * as React from 'react';
 
 import { Button } from '../components/button';
+import { SectionHeading } from './common';
 
 export const FAQs = () => {
   return (
-    <div className="text-mineral-green-600 flex flex-col items-center gap-16 p-16">
-      <div className="flex flex-col items-center gap-6">
-        <h2 className="font-merriweather text-5xl">FAQs</h2>
-        <p className="text-lg">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          varius enim in eros elementum tristique.
-        </p>
-      </div>
+    <div className="flex flex-col items-center gap-16 p-16 text-mineral-green-600">
+      <SectionHeading title="FAQs">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+        varius enim in eros elementum tristique.
+      </SectionHeading>
       <Accordion.Root
         type="single"
         defaultValue="item-1"
-        className="border-mineral-green-600 w-[768px] border-t"
+        className="w-[768px] border-t border-mineral-green-600"
         collapsible
       >
         {Array.from({ length: 5 }, (_, i) => (
           <Accordion.Item
             key={i}
             value={`item-${i + 1}`}
-            className="border-mineral-green-600 border-b"
+            className="border-b border-mineral-green-600"
           >
             <Accordion.Header className="flex">
-              <Accordion.Trigger className="font-merriweather flex flex-1 items-center justify-between py-5 text-lg font-bold transition-all hover:underline [&[data-state=open]>svg]:rotate-180">
+              <Accordion.Trigger className="flex flex-1 items-center justify-between py-5 font-merriweather text-lg font-bold transition-all hover:underline [&[data-state=open]>svg]:rotate-180">
                 Item {i + 1}
                 <ChevronDown className="h-6 w-6 shrink-0 transition-transform duration-300" />
               </Accordion.Trigger>
