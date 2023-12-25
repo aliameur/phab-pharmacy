@@ -7,7 +7,14 @@ import * as React from 'react';
 import { Button } from '../../components/button';
 import { SectionHeading } from '../common';
 
-export const FAQs = () => {
+type TFAQs = {
+  questions: {
+    question: string;
+    answer: string;
+  }[];
+};
+
+export const FAQs = ({ questions }: TFAQs) => {
   return (
     <div className="flex flex-col items-center gap-16 p-16 text-mineral-green-600">
       <SectionHeading title="FAQs">
@@ -20,20 +27,20 @@ export const FAQs = () => {
         className="w-[768px] border-t border-mineral-green-600"
         collapsible
       >
-        {Array.from({ length: 5 }, (_, i) => (
+        {questions.map((question) => (
           <Accordion.Item
-            key={i}
-            value={`item-${i + 1}`}
+            key={question.question}
+            value={question.question}
             className="border-b border-mineral-green-600"
           >
             <Accordion.Header className="flex">
               <Accordion.Trigger className="flex flex-1 items-center justify-between py-5 font-merriweather text-lg font-bold transition-all hover:underline [&[data-state=open]>svg]:rotate-180">
-                Item {i + 1}
+                {question.question}
                 <ChevronDown className="h-6 w-6 shrink-0 transition-transform duration-300" />
               </Accordion.Trigger>
             </Accordion.Header>
             <Accordion.Content className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm transition-all">
-              <div className="pb-4 pt-0">Item {i + 1} text</div>
+              <div className="pb-4 pt-0">{question.answer}</div>
             </Accordion.Content>
           </Accordion.Item>
         ))}
