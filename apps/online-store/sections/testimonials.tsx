@@ -6,7 +6,7 @@ export const Testimonials = () => {
     <div className="text-mineral-green-600 flex flex-col items-center gap-16 py-16">
       <div className="flex flex-col items-center gap-6">
         <h2 className="font-merriweather text-5xl">Customer Testimonials</h2>
-        <p className="text-xl">
+        <p className="text-lg">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </p>
       </div>
