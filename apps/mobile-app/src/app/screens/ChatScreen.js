@@ -4,8 +4,9 @@ import colours from '../colours';
 import Voice from '@react-native-voice/voice';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import ActionSheet from '../components/ActionSheet';
+import UserMenuSheet from '../components/UserMenuSheet';
 
-function ChatScreen() {
+function ChatScreen({ navigation }) {
     const [messages, setMessages] = useState([]);
     const [currentMessage, setCurrentMessage] = useState('');
     const flatListRef = useRef();
@@ -18,6 +19,12 @@ function ChatScreen() {
             flatListRef.current.scrollToEnd({ animated: true });
         }
     };
+    const [isMenuModalVisible, setMenuModalVisible] = useState(false);
+
+    useEffect(() => {
+        navigation.setParams({ showModal: () => setMenuModalVisible(true) });
+    }, [navigation]);
+
     useEffect(() => {
         const keyboardDidShowListener = Keyboard.addListener(
           'keyboardDidShow',
@@ -94,6 +101,10 @@ function ChatScreen() {
         setIsActionSheetNum(0);
     };
 
+    const hideUserSheet = () => {
+        setMenuModalVisible(false);
+    }
+
     async function startRecording() {
         Voice.start('en-US');
         setRecording(true);
@@ -112,12 +123,14 @@ function ChatScreen() {
         setRecording(false);
     };
 
+
     return (
         <KeyboardAvoidingView 
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 80 : -200}
         style={styles.container}>
             <View style={messageStyles(messages).view}>
+                {isMenuModalVisible ? (<UserMenuSheet onClose={hideUserSheet} visible={isMenuModalVisible} navigation={navigation}/>) : null}
                 <FlatList
                     ref={flatListRef}
                     data={messages}

@@ -8,7 +8,7 @@ function LoginScreen ({navigation}) {
         <KeyboardAvoidingView
         style={styles.mainView}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? -150 : 0}>
+        keyboardVerticalOffset={Platform.OS === 'ios' ? -150 : -100}>
              <View style={{alignItems: 'center', marginBottom: Dimensions.get('window').height * 0.2}}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={{alignItems: 'center', width: Dimensions.get('window').width}}>
