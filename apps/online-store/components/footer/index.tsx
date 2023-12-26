@@ -2,8 +2,9 @@ import Link from 'next/link';
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 
-import { Logo } from './logo';
+import { Logo } from '../logo';
 import { NewsletterForm } from './newsletter-form';
+import { FooterColumn } from './column';
 
 const links = [
   {
@@ -60,29 +61,33 @@ const links = [
 
 export const Footer = () => {
   return (
-    <footer className="text-mineral-green-600 flex flex-col gap-16 p-16">
-      <div className="flex justify-between">
-        <div className="flex shrink-0 flex-col">
+    <footer className="flex flex-col gap-8 px-4 py-8 text-mineral-green-600 md:gap-16 md:px-16 md:py-16">
+      <div className="flex flex-col items-center justify-between gap-6 lg:flex-row">
+        <div className="flex shrink-0 flex-col items-center text-center lg:items-start">
           <h4 className="font-merriweather text-lg font-bold">
             Join our newsletter
           </h4>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
         <div className="flex flex-col gap-4">
-          <NewsletterForm />
-          <p className="text-mineral-green-600 text-xs">
+          <NewsletterForm className="w-full" />
+          <p className="text-xs text-mineral-green-600">
             By subscribing you agree to with our{' '}
-            <Link className="underline" href="/" target="_blank">
+            <Link
+              className="underline"
+              href="/apps/online-store/public"
+              target="_blank"
+            >
               Privacy Policy
             </Link>
           </p>
         </div>
       </div>
-      <div className="flex gap-10">
-        <div className="grow">
+      <div className="grid grid-cols-1 justify-items-start gap-8 min-[468px]:grid-cols-2 min-[468px]:justify-items-center md:grid-cols-3 md:gap-10 lg:flex [&>:nth-child(n+4)]:hidden min-[468px]:[&>:nth-child(n+4)]:flex">
+        <div className="order-last grow lg:order-none">
           <Logo className="w-16" />
         </div>
-        {links.map((column, idx) => (
+        {links.map((column) => (
           <FooterColumn
             key={column.title}
             title={column.title}
@@ -91,21 +96,33 @@ export const Footer = () => {
         ))}
       </div>
       <div className="flex flex-col gap-8">
-        <div className="bg-mineral-green-600 h-px" />
-        <div className="flex justify-between">
-          <div className="text-mineral-green-600 flex gap-6 text-sm">
+        <div className="h-px bg-mineral-green-600" />
+        <div className="flex flex-col items-center gap-4 md:flex-row md:justify-between">
+          <div className="flex gap-6 text-center text-sm text-mineral-green-600">
             <span>© 2023 Phab Pharmacy. All rights reserved.</span>
-            <Link href="/" target="_blank" className="underline">
+            <Link
+              href="/"
+              target="_blank"
+              className="hidden underline lg:block"
+            >
               Privacy Policy
             </Link>
-            <Link href="/" target="_blank" className="underline">
+            <Link
+              href="/"
+              target="_blank"
+              className="hidden underline lg:block"
+            >
               Terms of Service
             </Link>
-            <Link href="/" target="_blank" className="underline">
+            <Link
+              href="/"
+              target="_blank"
+              className="hidden underline lg:block"
+            >
               Cookies Settings
             </Link>
           </div>
-          <div className="text-mineral-green-600 flex gap-3">
+          <div className="flex gap-3 text-mineral-green-600">
             <Link href="/" target="_blank">
               <FaFacebook className="h-6 w-6" />
             </Link>
@@ -125,26 +142,5 @@ export const Footer = () => {
         </div>
       </div>
     </footer>
-  );
-};
-
-const FooterColumn = ({
-  title,
-  links,
-}: {
-  title: string;
-  links: { title: string; href: string }[];
-}) => {
-  return (
-    <div className="text-mineral-green-600 flex grow flex-col gap-4">
-      <h6 className="font-merriweather font-bold">{title}</h6>
-      <div className="flex flex-col text-sm">
-        {links.map((link) => (
-          <Link key={link.title} className="shrink-0 py-2" href={link.href}>
-            {link.title}
-          </Link>
-        ))}
-      </div>
-    </div>
   );
 };
