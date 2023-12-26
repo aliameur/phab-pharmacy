@@ -25,25 +25,25 @@ export default async function Index() {
       <FeaturedCategory title="Category" side="left" products={products} />
       <FeaturedCategory title="Category" side="right" products={products} />
       <FeaturedCategory title="Category" side="left" products={products} />
-      {/*<Testimonials*/}
-      {/*  testimonials={[*/}
-      {/*    {*/}
-      {/*      handle: 'ali_ameur',*/}
-      {/*      content:*/}
-      {/*        'Lorem ipsum dolor sit amet consectetur. Sodales sed est fames aliquam sed iaculis. Ultrices elit eu amet donec aliquam quam duis aenean.',*/}
-      {/*    },*/}
-      {/*    {*/}
-      {/*      handle: 'ali_ameur',*/}
-      {/*      content:*/}
-      {/*        'Lorem ipsum dolor sit amet consectetur. Sodales sed est fames aliquam sed iaculis. Ultrices elit eu amet donec aliquam quam duis aenean.',*/}
-      {/*    },*/}
-      {/*    {*/}
-      {/*      handle: 'ali_ameur',*/}
-      {/*      content:*/}
-      {/*        'Lorem ipsum dolor sit amet consectetur. Sodales sed est fames aliquam sed iaculis. Ultrices elit eu amet donec aliquam quam duis aenean.',*/}
-      {/*    },*/}
-      {/*  ]}*/}
-      {/*/>*/}
+      <Testimonials
+        testimonials={[
+          {
+            handle: 'ali_ameur',
+            content:
+              'Lorem ipsum dolor sit amet consectetur. Sodales sed est fames aliquam sed iaculis. Ultrices elit eu amet donec aliquam quam duis aenean.',
+          },
+          {
+            handle: 'ali_ameur',
+            content:
+              'Lorem ipsum dolor sit amet consectetur. Sodales sed est fames aliquam sed iaculis. Ultrices elit eu amet donec aliquam quam duis aenean.',
+          },
+          {
+            handle: 'ali_ameur',
+            content:
+              'Lorem ipsum dolor sit amet consectetur. Sodales sed est fames aliquam sed iaculis. Ultrices elit eu amet donec aliquam quam duis aenean.',
+          },
+        ]}
+      />
       {/*<FAQs*/}
       {/*  questions={[*/}
       {/*    {*/}

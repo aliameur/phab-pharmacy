@@ -35,7 +35,7 @@ export const FeaturedCategory = ({
   return (
     <div
       className={cn(
-        'flex flex-col-reverse items-center justify-between gap-16 py-16 lg:flex-row lg:gap-0',
+        'flex flex-col-reverse items-center justify-between gap-8 py-8 md:gap-16 md:py-16 lg:flex-row lg:gap-0',
         {
           'lg:flex-row-reverse': side === 'right',
         },
@@ -83,7 +83,7 @@ export const FeaturedCategory = ({
           ))}
         </Swiper>
       </div>
-      <div className="flex w-1/2 flex-col items-center gap-12">
+      <div className="flex w-1/2 flex-col items-center gap-6 md:gap-12">
         <h2 className="font-merriweather text-[40px] text-mineral-green-600">
           {title}
         </h2>
