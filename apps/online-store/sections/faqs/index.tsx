@@ -16,7 +16,7 @@ type TFAQs = {
 
 export const FAQs = ({ questions }: TFAQs) => {
   return (
-    <div className="flex flex-col items-center gap-16 p-16 text-mineral-green-600">
+    <div className="flex flex-col items-center gap-8 px-4 py-8 text-mineral-green-600 md:gap-16 md:px-16 md:py-16">
       <SectionHeading title="FAQs">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
         varius enim in eros elementum tristique.
@@ -24,7 +24,7 @@ export const FAQs = ({ questions }: TFAQs) => {
       <Accordion.Root
         type="single"
         defaultValue="item-1"
-        className="w-[768px] border-t border-mineral-green-600"
+        className="w-full max-w-[768px] border-t border-mineral-green-600"
         collapsible
       >
         {questions.map((question) => (
@@ -46,8 +46,8 @@ export const FAQs = ({ questions }: TFAQs) => {
         ))}
       </Accordion.Root>
       <div className="flex flex-col items-center gap-6">
-        <div className="flex flex-col items-center gap-4">
-          <h3 className="font-merriweather text-[32px] font-bold">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <h3 className="font-merriweather text-[28px] md:text-3xl md:font-bold">
             Still have a question?
           </h3>
           <p className="text-lg">
