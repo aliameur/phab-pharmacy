@@ -12,8 +12,10 @@ function UserCheckScreen({ navigation }) {
             const output = await checkKeychain();
             console.log(output)
             if (output[0] === 'good') {
+                console.log('Remembered user')
                 navigation.replace('Chat');
             } else {
+                console.log('User forgotten')
                 navigation.replace('Login');
             }
         };

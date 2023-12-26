@@ -2,9 +2,36 @@ import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, Text, StyleSheet,  KeyboardAvoidingView, Keyboard, ActivityIndicator, Image, Dimensions, ScrollView, TouchableWithoutFeedback} from 'react-native';
 import colours from '../colours';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { createUser, login } from '../scripts/AuthScript';
 
 
-function SignUpScreen({navigation}){
+export default function SignUpScreen({navigation}){
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const signUpUser = async () => {
+        try {
+            const signUpResult = await createUser(firstName, lastName, email, password);
+            if (signUpResult[0] === 'good') {
+                const loginResult = await login(email, password);
+                if (loginResult[0] === 'good') {
+                    navigation.reset({
+                        index: 0,
+                        routes: [{ name: 'Chat' }],
+                    });
+                } else {
+                    console.log('Login failed:', loginResult[1]);
+                }
+            } else {
+                console.log('Signup failed:', signUpResult[1]);
+            }
+        } catch (error) {
+            console.error('Signup error:', error);
+        }
+    };
+     
 
     return(
         <KeyboardAvoidingView style={{flex: 1, justifyContent: 'flex-end'}}
@@ -32,43 +59,46 @@ function SignUpScreen({navigation}){
                 <View style={styles.TextInputStyleView}>
                     <FontAwesome name="user" size={25} color={colours.cream} style={styles.TextInputIcon}/>
                         <TextInput
+                        value={firstName}
                         style={styles.TextInputStyle}
                         placeholder="First Name"
-                        placeholderTextColor={colours.cream}>
+                        placeholderTextColor={colours.cream}
+                        onChangeText={setFirstName}>
                     </TextInput>
                 </View>
                 <View style={styles.TextInputStyleView}>
                     <FontAwesome name="user" size={25} color={colours.cream} style={styles.TextInputIcon}/>
                         <TextInput
+                        value={lastName}
                         style={styles.TextInputStyle}
                         placeholder="Last Name"
-                        placeholderTextColor={colours.cream}>
+                        placeholderTextColor={colours.cream}
+                        onChangeText={setLastName}>
                     </TextInput>
                 </View>
                 <View style={styles.TextInputStyleView}>
                     <FontAwesome name="envelope" size={25} color={colours.cream} style={styles.TextInputIcon}/>
                         <TextInput
+                        value={email}
                         style={styles.TextInputStyle}
                         placeholder="Email"
-                        placeholderTextColor={colours.cream}>
+                        placeholderTextColor={colours.cream}
+                        onChangeText={setEmail}>
                     </TextInput>
                 </View>
                 <View style={styles.TextInputStyleView}>
                     <FontAwesome name="lock" size={25} color={colours.cream} style={styles.TextInputIcon}/>
                         <TextInput
+                        value={password}
                         style={styles.TextInputStyle}
                         placeholder="Password"
-                        placeholderTextColor={colours.cream}>
+                        placeholderTextColor={colours.cream}
+                        onChangeText={setPassword}>
                     </TextInput>
                 </View>
                 <TouchableOpacity 
-                style={styles.loginButton}
-                onPress={() => {
-                    navigation.reset({
-                      index: 0,
-                      routes: [{ name: 'Chat' }],
-                    });
-                  }}
+                    style={styles.loginButton}
+                    onPress={() => {signUpUser()}}
                 >
                     <Text style={{fontSize: 20, fontWeight: '800', color: colours.green}}>Sign Up</Text>
                 </TouchableOpacity>
@@ -131,7 +161,3 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height * 0.13,
     }
 })
-
-
-
-export default SignUpScreen
