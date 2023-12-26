@@ -14,7 +14,7 @@ export const Hero = () => {
         <Search />
       </div>
       <div className="hidden flex-col sm:flex lg:h-full lg:w-1/2">
-        <div className="flex grow gap-4 bg-red-500 lg:h-[calc(100%-72px)]">
+        <div className="flex grow gap-4 lg:h-[calc(100%-72px)]">
           <Carousel direction="up" offset={-50} className="hidden lg:flex" />
           <Carousel direction="down" className="hidden lg:flex" />
           <Carousel direction="left" className="lg:hidden" />

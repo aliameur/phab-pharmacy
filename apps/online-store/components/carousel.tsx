@@ -40,7 +40,7 @@ export const Carousel = ({ direction, offset = 0, className }: TCarousel) => {
         >
           <div
             style={{ transform: `translateY(${offset}px)` }}
-            className={cn('aspect-[10/11] bg-blue-400', {
+            className={cn('aspect-[10/11] bg-norway-300', {
               'h-64': direction === 'left',
             })}
           ></div>
