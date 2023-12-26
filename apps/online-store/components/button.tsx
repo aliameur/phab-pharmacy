@@ -16,7 +16,7 @@ export const Button = ({
       {...props}
     >
       <div className="relative overflow-hidden">
-        <span className="flex transition-all duration-300 group-hover:-translate-y-full">
+        <span className="flex transition-all duration-300 group-hover:-translate-y-full min-w-max">
           {children}
         </span>
         <span className="absolute inset-0 flex translate-y-full transition-all duration-300 group-hover:translate-y-0">
