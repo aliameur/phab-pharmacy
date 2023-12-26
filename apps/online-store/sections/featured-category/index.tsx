@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { ComponentProps, useState } from 'react';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as TSwiper } from 'swiper/types';
@@ -13,8 +13,13 @@ import { SliderButton } from './slider-button';
 type TFeaturedCategory = {
   side: 'left' | 'right';
   title: string;
+  products: ComponentProps<typeof FeaturedProductCard>[];
 };
-export const FeaturedCategory = ({ side, title }: TFeaturedCategory) => {
+export const FeaturedCategory = ({
+  side,
+  title,
+  products,
+}: TFeaturedCategory) => {
   const [swiper, setSwiper] = useState<TSwiper | null>(null);
 
   const handleClick = (direction: string) => () => {
@@ -67,9 +72,13 @@ export const FeaturedCategory = ({ side, title }: TFeaturedCategory) => {
           grabCursor
           loop
         >
-          {Array.from({ length: 3 }).map((_, idx) => (
-            <SwiperSlide className="max-w-min" key={idx}>
-              <FeaturedProductCard />
+          {products.map((product) => (
+            <SwiperSlide className="max-w-min" key={product.title}>
+              <FeaturedProductCard
+                title={product.title}
+                tags={product.tags}
+                price={product.price}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

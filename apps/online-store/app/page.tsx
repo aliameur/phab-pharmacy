@@ -1,12 +1,30 @@
 import { FAQs, FeaturedCategory, Hero, Team, Testimonials } from '../sections';
 
+const products = [
+  {
+    title: 'Product Title',
+    tags: ['Tag 1', 'Tag 2'],
+    price: '£23.99',
+  },
+  {
+    title: 'Product Title',
+    tags: ['Tag 1', 'Tag 2'],
+    price: '£23.99',
+  },
+  {
+    title: 'Product Title',
+    tags: ['Tag 1', 'Tag 2'],
+    price: '£23.99',
+  },
+];
+
 export default async function Index() {
   return (
     <main>
       <Hero />
-      <FeaturedCategory title="Category" side="left" />
-      <FeaturedCategory title="Category" side="right" />
-      <FeaturedCategory title="Category" side="left" />
+      <FeaturedCategory title="Category" side="left" products={products} />
+      <FeaturedCategory title="Category" side="right" products={products} />
+      <FeaturedCategory title="Category" side="left" products={products} />
       {/*<Testimonials*/}
       {/*  testimonials={[*/}
       {/*    {*/}
