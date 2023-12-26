@@ -1,12 +1,16 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Modal, StyleSheet} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { useState } from 'react';
 import colours from '../colours';
+import * as Keychain from 'react-native-keychain';
+import { logout } from '../scripts/AuthScript';
 
 function UserMenuSheet({ navigation, visible, onClose }) {
-    const logOut = () => {
-        navigation.replace('Login')
+    const logOut = async () => {
+        service = 'JWToken'
+        await logout();
+        navigation.replace('Login', {
+        });
+        onClose(); 
     };
     const handleCancelPress = () => {
         onClose(); 
@@ -28,14 +32,14 @@ function UserMenuSheet({ navigation, visible, onClose }) {
                     <TouchableOpacity style={styles.button}>
                     <Text style={styles.text}>Profile</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.replace('Login')}>
+                    <TouchableOpacity style={styles.button} onPress={() => logOut()}>
                     <Text style={styles.text}>Log Out</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                     style={[styles.button, styles.cancelButton]}
                     onPress={handleCancelPress}
                     >
-                    <Text style={{color: colours.logo_dark_green}}>Cancel</Text>
+                      <Text style={{color: colours.cream, fontSize: 20, fontWeight: '600'}}>Cancel</Text>
                     </TouchableOpacity>
                 </View>
                 </View>

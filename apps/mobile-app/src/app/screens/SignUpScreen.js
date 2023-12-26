@@ -9,8 +9,9 @@ function SignUpScreen({navigation}){
     return(
         <KeyboardAvoidingView style={{flex: 1, justifyContent: 'flex-end'}}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 20}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
         >
+        <ScrollView>
             <View style={{alignItems: 'center', marginBottom: Dimensions.get('window').height * 0.07}}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={{alignItems: 'center', width: Dimensions.get('window').width}}>
@@ -72,6 +73,7 @@ function SignUpScreen({navigation}){
                     <Text style={{fontSize: 20, fontWeight: '800', color: colours.green}}>Sign Up</Text>
                 </TouchableOpacity>
             </View>
+        </ScrollView>
         </KeyboardAvoidingView>
     );
 }
@@ -80,7 +82,8 @@ const styles = StyleSheet.create({
     loginText: {
         marginTop: 10,
         marginBottom: 3,
-        fontSize: 25,
+        fontSize: 15,
+        alignContent: 'center',
         color: colours.green,
         fontWeight: '800',
     },
@@ -93,8 +96,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         margin: 5,
-        marginTop: 50,
-        backgroundColor: colours.logo_ligh_green
+        marginTop: 20,
+        backgroundColor: colours.logo_light_green
     },
     welcomeText: {
         marginBottom: 3,

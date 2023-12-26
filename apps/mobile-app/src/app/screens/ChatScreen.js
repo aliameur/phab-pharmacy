@@ -13,14 +13,17 @@ function ChatScreen({ navigation }) {
     const textInputref = useRef();
     const [isActionSheetNum, setIsActionSheetNum] = useState(0);
     const [recording, setRecording] = useState();
+    const [isMenuModalVisible, setMenuModalVisible] = useState(false);
+
+    
 
     const scrollToBottom = () => {
         if (flatListRef.current) {
             flatListRef.current.scrollToEnd({ animated: true });
         }
     };
-    const [isMenuModalVisible, setMenuModalVisible] = useState(false);
-
+    
+    const showModal = () => setMenuModalVisible(true);
     useEffect(() => {
         navigation.setParams({ showModal: () => setMenuModalVisible(true) });
     }, [navigation]);

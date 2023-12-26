@@ -2,14 +2,37 @@ import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, Text, StyleSheet,  KeyboardAvoidingView, Keyboard, ActivityIndicator, Image, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import colours from '../colours';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { login } from '../scripts/AuthScript';
+import * as Keychain from 'react-native-keychain';
 
 function LoginScreen ({navigation}) {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [seePassword, setSeePassword] = useState(true);
+
+    const loginAccount = async () => {
+        try {
+            const output = await login(email, password); 
+            if (output[0] === 'good') {
+                service = 'JWToken'
+                creds = await Keychain.getGenericPassword( { service } );
+                console.log(creds.password);
+                navigation.replace('Chat'); 
+            } else {
+                console.log('Login Error:', output[1]); 
+            }
+        } catch (error) {
+            console.log('Login Exception:', error); 
+        }
+    };
+    
     return(
         <KeyboardAvoidingView
         style={styles.mainView}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS === 'ios' ? -150 : -100}>
-             <View style={{alignItems: 'center', marginBottom: Dimensions.get('window').height * 0.2}}>
+             <View style={{alignItems: 'center', marginBottom: Dimensions.get('window').height * 0.15}}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={{alignItems: 'center', width: Dimensions.get('window').width}}>
                         <Image
@@ -29,22 +52,32 @@ function LoginScreen ({navigation}) {
                 <View style={styles.TextInputStyleView}>
                     <FontAwesome name="user" size={25} color={colours.cream} style={styles.TextInputIcon} />
                     <TextInput 
+                    value={email}
                     style={styles.TextInputStyle}
                     placeholder="Email"
-                    placeholderTextColor={colours.cream}>
+                    placeholderTextColor={colours.cream}
+                    onChangeText={text => setEmail(text)}>
                     </TextInput>
                 </View>
                 <View style={styles.TextInputStyleView}>
                     <FontAwesome name="lock" size={25} color={colours.cream} style={styles.TextInputIcon}/>
                     <TextInput
+                    value={password}
+                    secureTextEntry={seePassword}
                     style={styles.TextInputStyle}
                     placeholder="Password"
-                    placeholderTextColor={colours.cream}>
+                    placeholderTextColor={colours.cream}
+                    onChangeText={text => setPassword(text)}>
                     </TextInput>
+                    <TouchableOpacity
+                    onPress={() => setSeePassword(!seePassword)}
+                    style={{alignItems: 'flex-end'}}>
+                        <FontAwesome name={seePassword ? "eye-slash" : "eye"} size={25} color={colours.cream}/>
+                    </TouchableOpacity>
                 </View>
                 <TouchableOpacity 
                 style={styles.loginButton}
-                onPress={() => navigation.replace('Chat')}
+                onPress={() => loginAccount()}
                 >
                     <Text style={{fontSize: 20, fontWeight: '800', color: colours.green}}>Login</Text>
                 </TouchableOpacity>
@@ -82,7 +115,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         margin: 5,
-        backgroundColor: colours.logo_ligh_green
+        marginTop: 20,
+        backgroundColor: colours.logo_light_green
     },
     welcomeText: {
         marginBottom: 3,
@@ -97,13 +131,15 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height * 0.07,
         borderRadius: 15,
         backgroundColor: colours.green,
-        flexDirection: 'row', 
+        flexDirection: 'row',
         alignItems: 'center'
     },  
     TextInputStyle: {
         marginHorizontal: 10,
+        width: Dimensions.get('window').width * 0.52,
+        height: Dimensions.get('window').height * 0.07,
         color: colours.cream,
-        fontSize: 18,
+        fontSize: 15,
     },
     TextInputIcon: {
         marginLeft: 15,

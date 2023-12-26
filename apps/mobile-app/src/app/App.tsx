@@ -1,10 +1,12 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet, Button } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, Dimensions, Image } from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import ChatScreen from './screens/ChatScreen';
 import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from './screens/SignUpScreen';
+import UserCheckScreen from './screens/UserCheckScreen';
 import colours from './colours';
 
 const Stack = createStackNavigator();
@@ -17,17 +19,25 @@ export default function App() {
         headerStyle: styles.headerStyle,
         headerTintColor: colours.cream,
       }}>
+        <Stack.Screen name='UserCheck' component={UserCheckScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Sign Up" component={SignUpScreen} />
+        <Stack.Screen name="Sign Up" component={SignUpScreen} options={{ headerTintColor: colours.logo_dark_green}} />
         <Stack.Screen 
           name="Chat" 
           component={ChatScreen}  
           options={({ route }) => ({  
             headerRight: () => (
-              <Button
-                onPress={() => route.params.showModal()}  // Call the function passed to route.params
-                title="Info"
-                color={colours.green}
+              <TouchableOpacity
+                onPress={() => route.params.showModal()}
+                style={{ marginRight: Dimensions.get('window').width*0.03, alignItems: 'center' }}
+              >
+                <FontAwesome name="list-ul" size={30} color={colours.green}/>
+              </TouchableOpacity>
+            ),
+            headerTitle: () => (
+              <Image 
+              source={require('./assets/PhabPharmaLogo.png')}
+              style={styles.imageStyle}
               />
             ),
           })}
@@ -39,6 +49,10 @@ export default function App() {
 
 const styles = StyleSheet.create({
   headerStyle: {
-    backgroundColor: colours.green
+    backgroundColor: '#DEDCD7'
   },
+  imageStyle: {
+    width: 29,
+    height: 35,
+  }
 });
