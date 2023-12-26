@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, TextInput, TouchableOpacity, Text, FlatList, StyleSheet,  KeyboardAvoidingView, Keyboard, ActivityIndicator, Image, Dimensions} from 'react-native';
+import { View, TextInput, TouchableOpacity, Text, FlatList, StyleSheet,  KeyboardAvoidingView, Keyboard, ActivityIndicator, Image, Dimensions, ScrollView} from 'react-native';
 import colours from '../colours';
 import Voice from '@react-native-voice/voice';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -130,12 +130,13 @@ function ChatScreen({ navigation }) {
     return (
         <KeyboardAvoidingView 
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 80 : -200}
-        style={styles.container}>
-            <View style={messageStyles(messages).view}>
-                {isMenuModalVisible ? (<UserMenuSheet onClose={hideUserSheet} visible={isMenuModalVisible} navigation={navigation}/>) : null}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 85 : 30}
+        style={{flex: 1}}>
+            {isMenuModalVisible ? (<UserMenuSheet onClose={hideUserSheet} visible={isMenuModalVisible} navigation={navigation}/>) : null}
+            <ScrollView style={{flex: 10}}>
                 <FlatList
                     ref={flatListRef}
+                    style={styles.messagesView}
                     data={messages}
                     keyExtractor={(item, index) => index.toString()}
                     inverted={false}
@@ -192,9 +193,9 @@ function ChatScreen({ navigation }) {
                             }
                             
                         }  
-                        }}
+                    }}
                 />
-            </View>
+            </ScrollView>
             <View style={styles.inputContainer}>
                 <TextInput
                     ref={textInputref}
@@ -229,16 +230,13 @@ function ChatScreen({ navigation }) {
     );
 }
 
-const messageStyles = (message) => StyleSheet.create({
-    view: {
-        flex: 1
-    },
-})
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'flex-end',
+    },
+    messagesView: {
+        flex: 10,
+        backgroundColor: colours.logo_cream,
     },
     image: {
         width: 260,  
@@ -286,34 +284,21 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
     },
     inputContainer: {
+        flex: 0.1,
+        justifyContent: 'flex-start',
         flexDirection: 'row',
-        //padding: 5,
-        height: 0.12 * Dimensions.get('window').height,
-        marginHorizontal: 15,
-        marginBottom: '5%',
-        borderColor: colours.green,
-        borderWidth: 1.5,
-        borderRadius: 10,
-        marginTop: 5,
+        padding: 10,
+        borderTopWidth: 1,
     },
     input: {
-        flex: 1,
-        borderRadius: 10,
-        padding: 10,
-        color: colours.green,
-        alignItems: 'center',
-        fontSize: 0.05 * Dimensions.get('window').width,
+        flex: 7,
+        marginRight: 5,
     },
     sendButton: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 0.15 * Dimensions.get('window').width,
-        margin: 5,
-        //borderWidth: 1.5,
-        borderRadius: 5,
-        //borderColor: colours.logo_cream,
-        //backgroundColor: colours.green,
-    },
+        alignSelf: 'center',
+        flex: 1
+    }
+
 });
 
 export default ChatScreen;

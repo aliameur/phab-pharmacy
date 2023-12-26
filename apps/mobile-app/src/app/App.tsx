@@ -1,7 +1,8 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet, TouchableOpacity, Text, Dimensions, Image } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, Dimensions, Image, Platform, StatusBar } from 'react-native';
+import { useHeaderHeight } from '@react-navigation/elements'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import ChatScreen from './screens/ChatScreen';
 import LoginScreen from './screens/LoginScreen';
@@ -12,6 +13,11 @@ import colours from './colours';
 const Stack = createStackNavigator();
 
 export default function App() {
+
+  const headerHeight = Platform.OS === 'ios' ? 44 : 56; // Default header heights
+  const statusBarHeight = StatusBar.currentHeight || 0;
+  const estimatedHeaderHeight = headerHeight + (Platform.OS === 'ios' ? 0 : statusBarHeight);
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{
@@ -36,8 +42,8 @@ export default function App() {
             ),
             headerTitle: () => (
               <Image 
-              source={require('./assets/PhabPharmaLogo.png')}
-              style={styles.imageStyle}
+              source={require('./assets/phab_pharma_no_text.png')}
+              style={{width: headerHeight*0.64, height: headerHeight*0.84}}
               />
             ),
           })}
