@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, TextInput, TouchableOpacity, Text, FlatList, StyleSheet,  KeyboardAvoidingView, Keyboard, ActivityIndicator, Image, Dimensions, ScrollView} from 'react-native';
+import { View, TextInput, TouchableOpacity, Text, FlatList, StyleSheet, KeyboardAvoidingView, Keyboard, ActivityIndicator, Image, Dimensions, ScrollView} from 'react-native';
 import colours from '../colours';
 import Voice from '@react-native-voice/voice';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import ActionSheet from '../components/ActionSheet';
 import UserMenuSheet from '../components/UserMenuSheet';
+
 
 function ChatScreen({ navigation }) {
     const [messages, setMessages] = useState([]);
@@ -130,10 +131,10 @@ function ChatScreen({ navigation }) {
     return (
         <KeyboardAvoidingView 
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 85 : 30}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 30}
         style={{flex: 1}}>
             {isMenuModalVisible ? (<UserMenuSheet onClose={hideUserSheet} visible={isMenuModalVisible} navigation={navigation}/>) : null}
-            <ScrollView style={{flex: 10}}>
+            <View style={{flex: 10, flexShrink: 0}}>
                 <FlatList
                     ref={flatListRef}
                     style={styles.messagesView}
@@ -195,7 +196,7 @@ function ChatScreen({ navigation }) {
                         }  
                     }}
                 />
-            </ScrollView>
+            </View>
             <View style={styles.inputContainer}>
                 <TextInput
                     ref={textInputref}
@@ -284,11 +285,12 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
     },
     inputContainer: {
-        flex: 0.1,
+        flex: 1,
         justifyContent: 'flex-start',
         flexDirection: 'row',
         padding: 10,
         borderTopWidth: 1,
+        flexGrow: 1,
     },
     input: {
         flex: 7,
