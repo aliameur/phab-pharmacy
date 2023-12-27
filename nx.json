@@ -63,7 +63,10 @@
       "!{projectRoot}/**/*.cy.[jt]s?(x)",
       "!{projectRoot}/cypress.config.[jt]s"
     ],
-    "sharedGlobals": []
+    "sharedGlobals": [
+      "{workspaceRoot}/.prettierrc.json",
+      "{workspaceRoot}/.eslintrc.json"
+    ]
   },
   "nxCloudAccessToken": "NzljNTNhNDktNGJhOC00ODUzLWJmYTAtNTgwOTI3OWMxZjI5fHJlYWQtd3JpdGU=",
   "generators": {
@@ -82,14 +85,6 @@
   "plugins": [
     "@nxlv/python"
   ],
-  "implicitDependencies": {
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
-    ".eslintrc.json": "*",
-    ".prettierrc.json": "*"
-  },
   "affected": {
     "defaultBase": "main"
   }
