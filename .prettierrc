@@ -4,6 +4,7 @@
     "@trivago/prettier-plugin-sort-imports",
     "prettier-plugin-tailwindcss"
   ],
+  "tailwindConfig": "./tailwind-workspace-preset.js",
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
   "importOrder": [
