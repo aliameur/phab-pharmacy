@@ -4,12 +4,26 @@
   "sourceRoot": "apps/backend/src",
   "projectType": "application",
   "targets": {
+    "prepare": {
+      "command": "cd apps/backend && npm i",
+      "outputs": [
+        "{projectRoot}/node_modules"
+      ],
+      "cache": true,
+      "inputs": [
+        "{projectRoot}/package-lock.json"
+      ]
+    },
     "serve": {
       "executor": "nx:run-commands",
       "defaultConfiguration": "development",
+      "dependsOn": [
+        "prepare"
+      ],
       "configurations": {
         "development": {
           "commands": [
+            "nx run backend:docker:reset",
             "nx run backend:build:server",
             "cd apps/backend && medusa develop"
           ],
@@ -24,6 +38,25 @@
         }
       }
     },
+    "docker": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "reset",
+      "configurations": {
+        "up": {
+          "command": "docker-compose up -d"
+        },
+        "down": {
+          "command": "docker-compose down"
+        },
+        "reset": {
+          "commands": [
+            "nx run backend:docker:down",
+            "nx run backend:docker:up"
+          ],
+          "parallel": false
+        }
+      }
+    }
   },
   "tags": []
 }
