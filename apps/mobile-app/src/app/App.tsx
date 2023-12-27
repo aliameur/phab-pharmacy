@@ -8,6 +8,7 @@ import ChatScreen from './screens/ChatScreen';
 import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import UserCheckScreen from './screens/UserCheckScreen';
+import TestScreen from './screens/TestScreen';
 import colours from './colours';
 
 const Stack = createStackNavigator();

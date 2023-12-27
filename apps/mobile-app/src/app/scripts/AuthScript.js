@@ -1,9 +1,9 @@
 import * as Keychain from 'react-native-keychain';
+import { Platform } from 'react-native';
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:9000'; 
+const BASE_URL = Platform.OS === 'ios' ? 'http://localhost:9000' : 'http://10.0.2.2:9000'; 
 service = 'JWToken';
-
 const login = async (email, password) => {
     try {
       const response = await axios.post(`${BASE_URL}/store/auth/token`, {
@@ -16,7 +16,7 @@ const login = async (email, password) => {
 
       return ['good', jwtToken];
     } catch (error) {
-      console.error('Login failed', error);
+      console.error('Login failed', error)
       return ['bad', error];
     }
   };

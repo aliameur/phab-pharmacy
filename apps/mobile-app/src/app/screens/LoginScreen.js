@@ -31,7 +31,7 @@ function LoginScreen ({navigation}) {
         <KeyboardAvoidingView
         style={styles.mainView}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? -100 : 0}>
+        keyboardVerticalOffset={Platform.OS === 'ios' ? -100 : -100}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                 <View style={{alignItems: 'center', flex: 1.5}}>
                     <Image
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     },
     welcomeText: {
         flex: 0.7,
-        fontSize: 15,
+        fontSize: 0.06 * Dimensions.get('window').width,
         color: colours.green,
         fontWeight: '400',
     },
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
         flex: 7,
         marginHorizontal: 10,
         color: colours.cream,
-        fontSize: 15,
+        fontSize:  0.05 * Dimensions.get('window').width,
     },
     TextInputIcon: {
         flex: 0.5,

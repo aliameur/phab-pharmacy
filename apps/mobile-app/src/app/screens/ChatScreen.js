@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, TextInput, TouchableOpacity, Text, FlatList, StyleSheet, KeyboardAvoidingView, Keyboard, ActivityIndicator, Image, Dimensions, ScrollView} from 'react-native';
+import { View, TextInput, TouchableOpacity, Text, FlatList, StyleSheet, KeyboardAvoidingView, Keyboard, ActivityIndicator, Image, Dimensions, ScrollView, Platform} from 'react-native';
 import colours from '../colours';
 import Voice from '@react-native-voice/voice';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import ActionSheet from '../components/ActionSheet';
 import UserMenuSheet from '../components/UserMenuSheet';
+import { KeyboardAwareScrollVie, KeyboardAwareFlatList } from 'react-native-keyboard-aware-scroll-view';
 
 
 function ChatScreen({ navigation }) {
@@ -129,12 +130,11 @@ function ChatScreen({ navigation }) {
 
 
     return (
-        <KeyboardAvoidingView 
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 30}
-        style={{flex: 1}}>
+        <KeyboardAvoidingView style={{flex: 1, backgroundColor: colours.cream}}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 65 : -200}>
             {isMenuModalVisible ? (<UserMenuSheet onClose={hideUserSheet} visible={isMenuModalVisible} navigation={navigation}/>) : null}
-            <View style={{flex: 10, flexShrink: 0}}>
+            <View style={styles.messagesView}>
                 <FlatList
                     ref={flatListRef}
                     style={styles.messagesView}
@@ -202,12 +202,18 @@ function ChatScreen({ navigation }) {
                     ref={textInputref}
                     style={styles.input}
                     value={currentMessage}
+                    clearButtonMode='while-editing'
                     multiline
-                    onSubmitEditing={() => {
-                        Keyboard.dismiss();
-                        sendMessage();
+                    returnKeyType='done'
+                    onChangeText={(text) => {
+                        if (text.endsWith('\n')) {
+                            setCurrentMessage(text.slice(0, -1));
+                            Keyboard.dismiss();
+                        } else {
+                            setCurrentMessage(text);
+                            scrollToBottom();
+                        }
                     }}
-                    onChangeText={text => setCurrentMessage(text)}
                     placeholder="Type a message"
                 />
                 {currentMessage != '' & !recording? (<TouchableOpacity 
@@ -220,10 +226,10 @@ function ChatScreen({ navigation }) {
                 style={styles.sendButton}>
                     <Text style={{fontSize: 0.05 * Dimensions.get('window').width, color: colours.green}}>Send</Text>
                 </TouchableOpacity>) : (recording ? 
-                    (<TouchableOpacity style={styles.sendButton} onPress={stopRecording}>
+                    (<TouchableOpacity style={styles.iconMicButton} onPress={stopRecording}>
                     <FontAwesome name="stop-circle" size={30} color={colours.green} />
                 </TouchableOpacity>) :
-                (<TouchableOpacity style={styles.sendButton} onPress={startRecording}>
+                (<TouchableOpacity style={styles.iconMicButton} onPress={startRecording}>
                     <FontAwesome name="microphone" size={30} color={colours.green} />
                 </TouchableOpacity>))}
             </View>
@@ -237,7 +243,8 @@ const styles = StyleSheet.create({
     },
     messagesView: {
         flex: 10,
-        backgroundColor: colours.logo_cream,
+        marginBottom: 3,
+        backgroundColor: colours.cream
     },
     image: {
         width: 260,  
@@ -246,12 +253,12 @@ const styles = StyleSheet.create({
     message: {
         color: colours.cream, 
         textAlign: 'center',
-        fontSize: 0.035 * Dimensions.get('window').width,
+        fontSize: 0.04 * Dimensions.get('window').width,
     },
     response: {
         color: 'black', 
         textAlign: 'center',
-        fontSize: 0.035 * Dimensions.get('window').width,
+        fontSize: 0.04 * Dimensions.get('window').width,
     },
     messageBlock: {
         padding: 10,
@@ -285,20 +292,25 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
     },
     inputContainer: {
-        flex: 1,
         justifyContent: 'flex-start',
         flexDirection: 'row',
-        padding: 10,
+        padding: '5%',
+        paddingBottom: '5%',
         borderTopWidth: 1,
-        flexGrow: 1,
+        backgroundColor: 'white'
     },
     input: {
-        flex: 7,
+        flex: 6,
         marginRight: 5,
+        fontSize: 0.05 * Dimensions.get("window").width,
     },
     sendButton: {
         alignSelf: 'center',
         flex: 1
+    },
+    iconMicButton: {
+        alignSelf: 'center',
+        flex: 0.5
     }
 
 });
