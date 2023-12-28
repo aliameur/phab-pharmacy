@@ -54,6 +54,7 @@
     "@typescript-eslint/parser": "^6.9.1",
     "babel-jest": "^29.4.1",
     "cypress": "^13.0.0",
+    "daisyui": "^4.4.24",
     "detox": "^20.11.1",
     "eas-cli": "~5.2.0",
     "eslint": "~8.48.0",
