@@ -1,12 +1,13 @@
 import { AddToCart } from '../../../components/add-to-cart';
 import { Rating } from '../../../components/rating';
+import { Gallery } from '../../../components/gallery';
 
 export default async function Page() {
   return (
     <main className="px-16">
-      <div className="flex">
-        <div className="w-1/2"></div>
-        <div className="flex w-1/2 flex-col gap-8">
+      <div className="flex pt-12">
+        <Gallery className="h-full w-1/2 pr-10"/>
+        <div className="flex w-1/2 flex-col gap-8 pl-10">
           <div className="flex flex-col gap-2 text-mineral-green-600">
             <h2 className="font-merriweather text-3xl font-bold">BIOGENA</h2>
             <h3 className="text-xl">DAOZym</h3>
@@ -36,7 +37,6 @@ export default async function Page() {
           <AddToCart />
         </div>
       </div>
-      <div></div>
     </main>
   );
 }
