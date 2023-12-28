@@ -1,8 +1,7 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, Modal, StyleSheet} from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
+import React from 'react';
 import { useState } from 'react';
-import colours from '../colours';
+import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Tts from 'react-native-tts';
 
 function ActionSheet({visible, onClose, message }) {

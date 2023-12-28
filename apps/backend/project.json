@@ -6,20 +6,14 @@
   "targets": {
     "prepare": {
       "command": "cd apps/backend && npm i",
-      "outputs": [
-        "{projectRoot}/node_modules"
-      ],
+      "outputs": ["{projectRoot}/node_modules"],
       "cache": true,
-      "inputs": [
-        "{projectRoot}/package-lock.json"
-      ]
+      "inputs": ["{projectRoot}/package-lock.json"]
     },
     "serve": {
       "executor": "nx:run-commands",
       "defaultConfiguration": "development",
-      "dependsOn": [
-        "prepare"
-      ],
+      "dependsOn": ["prepare"],
       "configurations": {
         "development": {
           "commands": [
@@ -54,6 +48,18 @@
             "nx run backend:docker:up"
           ],
           "parallel": false
+        }
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "check",
+      "configurations": {
+        "check": {
+          "command": "prettier --list-different \"{projectRoot}/**/*.{js,jsx,ts,tsx,css,scss,md,json}\""
+        },
+        "fix": {
+          "command": "prettier --write \"{projectRoot}/**/*.{js,jsx,ts,tsx,css,scss,md,json}\""
         }
       }
     }

@@ -1,10 +1,16 @@
-import { View, ActivityIndicator, Image, Dimensions, StyleSheet} from 'react-native';
+import { useEffect } from 'react';
+import {
+  ActivityIndicator,
+  Dimensions,
+  Image,
+  StyleSheet,
+  View,
+} from 'react-native';
+import * as Keychain from 'react-native-keychain';
+
 import colours from '../colours';
 import { login } from '../scripts/AuthScript';
-import * as Keychain from 'react-native-keychain';
-import { useEffect } from 'react';
 import { checkKeychain } from '../scripts/AuthScript';
-
 
 function UserCheckScreen({ navigation }) {
     useEffect(() => {
@@ -46,5 +52,3 @@ const styles = StyleSheet.create({
         marginBottom: 40
     },
 })
-
-export default UserCheckScreen

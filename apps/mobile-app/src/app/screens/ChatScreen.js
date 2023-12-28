@@ -2,113 +2,142 @@ import React, { useState, useRef, useEffect } from 'react';
 import { View, TextInput, TouchableOpacity, Text, FlatList, StyleSheet, KeyboardAvoidingView, Keyboard, ActivityIndicator, Image, Dimensions, ScrollView, Platform} from 'react-native';
 import colours from '../colours';
 import Voice from '@react-native-voice/voice';
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  ActivityIndicator,
+  Dimensions,
+  FlatList,
+  Image,
+  Keyboard,
+  KeyboardAvoidingView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
+import colours from '../colours';
 import ActionSheet from '../components/ActionSheet';
 import UserMenuSheet from '../components/UserMenuSheet';
 import { KeyboardAwareScrollVie, KeyboardAwareFlatList } from 'react-native-keyboard-aware-scroll-view';
 
 
 function ChatScreen({ navigation }) {
-    const [messages, setMessages] = useState([]);
-    const [currentMessage, setCurrentMessage] = useState('');
-    const flatListRef = useRef();
-    const textInputref = useRef();
-    const [isActionSheetNum, setIsActionSheetNum] = useState(0);
-    const [recording, setRecording] = useState();
-    const [isMenuModalVisible, setMenuModalVisible] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const [currentMessage, setCurrentMessage] = useState('');
+  const flatListRef = useRef();
+  const textInputref = useRef();
+  const [isActionSheetNum, setIsActionSheetNum] = useState(0);
+  const [recording, setRecording] = useState();
+  const [isMenuModalVisible, setMenuModalVisible] = useState(false);
 
-    
-
-    const scrollToBottom = () => {
-        if (flatListRef.current) {
-            flatListRef.current.scrollToEnd({ animated: true });
-        }
-    };
-    
-    const showModal = () => setMenuModalVisible(true);
-    useEffect(() => {
-        navigation.setParams({ showModal: () => setMenuModalVisible(true) });
-    }, [navigation]);
-
-    useEffect(() => {
-        const keyboardDidShowListener = Keyboard.addListener(
-          'keyboardDidShow',
-          _keyboardDidShow,
-        );
-        const keyboardDidHideListener = Keyboard.addListener(
-          'keyboardDidHide',
-          _keyboardDidHide,
-        );
-    
-        // Cleanup function
-        return () => {
-          keyboardDidShowListener.remove();
-          keyboardDidHideListener.remove();
-        };
-      }, []);
-    
-      const _keyboardDidShow = () => {
-        flatListRef.current.scrollToEnd({ animated: true });
-      };
-    
-      const _keyboardDidHide = () => {
-        flatListRef.current.scrollToEnd({ animated: true });
-      };
-
-    const handleMessageCreation = () => {
-        if (currentMessage === ''){
-            return;
-        } 
-        const newMessage = {
-            id: messages.length + 2,
-            content: currentMessage, 
-            fromUser: true,
-        };
-        setCurrentMessage('');
-        setMessages(prevMessages => [...prevMessages, newMessage]);
-        handlePostRequest(currentMessage);
+  const scrollToBottom = () => {
+    if (flatListRef.current) {
+      flatListRef.current.scrollToEnd({ animated: true });
     }
+  };
 
-    const handlePostRequest = async (messageToSubmit) => {
-        try {
-            //const response = await fetch('https://llmdoctor-af19c5c44aab.herokuapp.com/api/sendText', {
-            const response = await fetch('http://127.0.0.1:8000/api/sendText', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ text: messageToSubmit, history: messages.length >= 4 ? messages.slice(-4).content: messages.content}),
-            });
+  const showModal = () => setMenuModalVisible(true);
+  useEffect(() => {
+    navigation.setParams({ showModal: () => setMenuModalVisible(true) });
+  }, [navigation]);
 
-            const jsonData = await response.json();
-            const newResponse = {
-                id: messages.length + 2,
-                content: jsonData.message,
-                fromUser: false,
-                location: jsonData.location,
-            };
-            setMessages(prevMessages => [...prevMessages, newResponse]);
-        } catch (error) {
-            console.log('Error posting data: ', error);
-            setMessages(prevMessages => [...prevMessages, { id: Date.now(), content: 'Invalid Load', fromUser: false, location: 'None' }]);
-        }
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      _keyboardDidShow,
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      _keyboardDidHide,
+    );
+
+    // Cleanup function
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
     };
-    
-    const sendMessage = () => {
-        handleMessageCreation();
-    };
+  }, []);
 
-    const showMessageActionSheet = (id) => {
-        setIsActionSheetNum(id);
-    };
+  const _keyboardDidShow = () => {
+    flatListRef.current.scrollToEnd({ animated: true });
+  };
 
-    const hideMessageActionSheet = () => {
-        setIsActionSheetNum(0);
-    };
+  const _keyboardDidHide = () => {
+    flatListRef.current.scrollToEnd({ animated: true });
+  };
 
-    const hideUserSheet = () => {
-        setMenuModalVisible(false);
+  const handleMessageCreation = () => {
+    if (currentMessage === '') {
+      return;
     }
+    const newMessage = {
+      id: messages.length + 2,
+      content: currentMessage,
+      fromUser: true,
+    };
+    setCurrentMessage('');
+    setMessages((prevMessages) => [...prevMessages, newMessage]);
+    handlePostRequest(currentMessage);
+  };
+
+  const handlePostRequest = async (messageToSubmit) => {
+    try {
+      //const response = await fetch('https://llmdoctor-af19c5c44aab.herokuapp.com/api/sendText', {
+      const response = await fetch('http://127.0.0.1:8000/api/sendText', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          text: messageToSubmit,
+          history:
+            messages.length >= 4
+              ? messages.slice(-4).content
+              : messages.content,
+        }),
+      });
+
+      const jsonData = await response.json();
+      const newResponse = {
+        id: messages.length + 2,
+        content: jsonData.message,
+        fromUser: false,
+        location: jsonData.location,
+      };
+      setMessages((prevMessages) => [...prevMessages, newResponse]);
+    } catch (error) {
+      console.log('Error posting data: ', error);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          id: Date.now(),
+          content: 'Invalid Load',
+          fromUser: false,
+          location: 'None',
+        },
+      ]);
+    }
+  };
+
+  const sendMessage = () => {
+    handleMessageCreation();
+  };
+
+  const showMessageActionSheet = (id) => {
+    setIsActionSheetNum(id);
+  };
+
+  const hideMessageActionSheet = () => {
+    setIsActionSheetNum(0);
+  };
+
+  const hideUserSheet = () => {
+    setMenuModalVisible(false);
+  };
 
     async function startRecording() {
         Voice.start('en-US');

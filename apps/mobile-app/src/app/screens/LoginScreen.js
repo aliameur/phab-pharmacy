@@ -1,15 +1,27 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text, StyleSheet,  KeyboardAvoidingView, Keyboard, ActivityIndicator, Image, Dimensions, TouchableWithoutFeedback } from 'react-native';
-import colours from '../colours';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { login } from '../scripts/AuthScript';
+import {
+  ActivityIndicator,
+  Dimensions,
+  Image,
+  Keyboard,
+  KeyboardAvoidingView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import * as Keychain from 'react-native-keychain';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-function LoginScreen ({navigation}) {
+import colours from '../colours';
+import { login } from '../scripts/AuthScript';
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [seePassword, setSeePassword] = useState(true);
+function LoginScreen({ navigation }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [seePassword, setSeePassword] = useState(true);
 
     const loginAccount = async () => {
         try {
@@ -90,7 +102,6 @@ function LoginScreen ({navigation}) {
         </KeyboardAvoidingView>
     );
 }
-
 
 const styles = StyleSheet.create({
     mainView: {

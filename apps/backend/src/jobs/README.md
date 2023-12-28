@@ -3,14 +3,10 @@
 You may define custom scheduled jobs (cron jobs) by creating files in the `/jobs` directory.
 
 ```ts
-import {
-  ProductService,
-  ScheduledJobArgs,
-  ScheduledJobConfig,
-} from "@medusajs/medusa";
+import { ProductService, ScheduledJobArgs, ScheduledJobConfig } from '@medusajs/medusa';
 
 export default async function myCustomJob({ container }: ScheduledJobArgs) {
-  const productService: ProductService = container.resolve("productService");
+  const productService: ProductService = container.resolve('productService');
 
   const products = await productService.listAndCount();
 
@@ -18,8 +14,8 @@ export default async function myCustomJob({ container }: ScheduledJobArgs) {
 }
 
 export const config: ScheduledJobConfig = {
-  name: "daily-product-report",
-  schedule: "0 0 * * *", // Every day at midnight
+  name: 'daily-product-report',
+  schedule: '0 0 * * *', // Every day at midnight
 };
 ```
 

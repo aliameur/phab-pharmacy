@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Modal, StyleSheet} from 'react-native';
-import colours from '../colours';
+import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import * as Keychain from 'react-native-keychain';
+
+import colours from '../colours';
 import { logout } from '../scripts/AuthScript';
 
 function UserMenuSheet({ navigation, visible, onClose }) {
