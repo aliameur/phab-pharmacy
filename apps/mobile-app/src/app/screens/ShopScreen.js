@@ -70,6 +70,9 @@ function ShopScreen({ navigation }) {
                 keyExtractor={item => item.id}
             />
             {isMenuModalVisible ? (<UserMenuSheet onClose={hideUserSheet} visible={isMenuModalVisible} navigation={navigation}/>) : null}
+            <TouchableOpacity style={styles.fixedButton} onPress={() => navigation.navigate('Chat')}>
+                <FontAwesome name="comments-o" size={35}/>
+            </TouchableOpacity>
         </View>
     );
 
@@ -80,6 +83,16 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'flex-end',
+    },
+    fixedButton: {
+        position: 'absolute',
+        right: 10,
+        bottom: 20,
+        backgroundColor: colours.TailWindColors['mineral-green'][200],
+        padding: 15,
+        borderRadius: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     shopCarousel: {
         marginBottom: 10,

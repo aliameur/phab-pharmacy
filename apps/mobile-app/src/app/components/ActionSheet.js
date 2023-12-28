@@ -93,8 +93,8 @@ function ActionSheet({visible, onClose, message }) {
     },
     cancelButton: {
       marginTop: 16,
-      backgroundColor: colours.green,
-      borderColor: colours.green,
+      backgroundColor: colours.LogoColours.green,
+      borderColor: colours.LogoColours.green,
       color: 'white',
       alignItems: 'center',
       justifyContent: 'center',

@@ -13,7 +13,7 @@ function UserCheckScreen({ navigation }) {
             console.log(output)
             if (output[0] === 'good') {
                 console.log('Remembered user')
-                navigation.replace('Chat');
+                navigation.replace('Shop');
             } else {
                 console.log('User forgotten')
                 navigation.replace('Login');
