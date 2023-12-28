@@ -59,7 +59,7 @@ function ShopCarousel ({ id }) {
                     layout={"default"}
                     data={data}
                     sliderWidth={Dimensions.get('window').width}
-                    itemWidth={Dimensions.get('window').width * 0.8}
+                    itemWidth={Dimensions.get('window').width * 0.75}
                     renderItem={renderItem}
                     onSnapToItem={(index) => setActiveIndex(index)}
                 />
