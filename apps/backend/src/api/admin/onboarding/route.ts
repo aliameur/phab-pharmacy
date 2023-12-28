@@ -1,11 +1,11 @@
-import type { MedusaRequest, MedusaResponse } from "@medusajs/medusa";
-import { EntityManager } from "typeorm";
+import type { MedusaRequest, MedusaResponse } from '@medusajs/medusa';
+import { EntityManager } from 'typeorm';
 
-import OnboardingService from "../../../services/onboarding";
+import OnboardingService from '../../../services/onboarding';
 
 export async function GET(req: MedusaRequest, res: MedusaResponse) {
   const onboardingService: OnboardingService =
-    req.scope.resolve("onboardingService");
+    req.scope.resolve('onboardingService');
 
   const status = await onboardingService.retrieve();
 
@@ -14,8 +14,8 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
 
 export async function POST(req: MedusaRequest, res: MedusaResponse) {
   const onboardingService: OnboardingService =
-    req.scope.resolve("onboardingService");
-  const manager: EntityManager = req.scope.resolve("manager");
+    req.scope.resolve('onboardingService');
+  const manager: EntityManager = req.scope.resolve('manager');
 
   const status = await manager.transaction(async (transactionManager) => {
     return await onboardingService

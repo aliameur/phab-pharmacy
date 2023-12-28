@@ -8,19 +8,18 @@ You may define custom models (entities) that will be registered on the global co
 
 ```ts
 // src/models/post.ts
-
-import { BeforeInsert, Column, Entity, PrimaryColumn } from "typeorm";
-import { generateEntityId } from "@medusajs/utils";
-import { BaseEntity } from "@medusajs/medusa";
+import { BaseEntity } from '@medusajs/medusa';
+import { generateEntityId } from '@medusajs/utils';
+import { BeforeInsert, Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class Post extends BaseEntity {
-  @Column({type: 'varchar'})
+  @Column({ type: 'varchar' })
   title: string | null;
 
   @BeforeInsert()
   private beforeInsert(): void {
-    this.id = generateEntityId(this.id, "post")
+    this.id = generateEntityId(this.id, 'post');
   }
 }
 ```
@@ -30,17 +29,17 @@ export class Post extends BaseEntity {
 You also need to create a Migration to create the new table in the database. See [How to Create Migrations](https://docs.medusajs.com/advanced/backend/migrations/) in the documentation.
 
 ### 3. Create a Repository
+
 Entities data can be easily accessed and modified using [TypeORM Repositories](https://typeorm.io/working-with-repository). To create a repository, create a file in `src/repositories`. For example, here’s a repository `PostRepository` for the `Post` entity:
 
 ```ts
 // src/repositories/post.ts
+import { EntityRepository, Repository } from 'typeorm';
 
-import { EntityRepository, Repository } from "typeorm"
-
-import { Post } from "../models/post"
+import { Post } from '../models/post';
 
 @EntityRepository(Post)
-export class PostRepository extends Repository<Post> { }
+export class PostRepository extends Repository<Post> {}
 ```
 
 See more about defining and accesing your custom [Entities](https://docs.medusajs.com/advanced/backend/entities/overview) in the documentation.

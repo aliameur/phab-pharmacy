@@ -1,4 +1,4 @@
-import { OnboardingState } from "../models/onboarding";
+import { OnboardingState } from '../models/onboarding';
 
 export type UpdateOnboardingStateInput = {
   current_step?: string;
