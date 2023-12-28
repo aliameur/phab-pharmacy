@@ -115,7 +115,6 @@ function ChatScreen({ navigation }) {
         setRecording(true);
     };
    Voice.onSpeechResults = (e) => {
-        console.log('onSpeechResults: ', e.value);
         textInputref.current.value = e.value[0]
         setCurrentMessage(e.value[0])
     };

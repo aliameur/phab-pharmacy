@@ -15,9 +15,10 @@ function ActionSheet({visible, onClose, message }) {
       onClose();
     };
     const speakOut = () => {
+      Tts.setDefaultLanguage('en-UK');
       Tts.getInitStatus().then(() => {
         Tts.speak(message, {
-          iosVoiceId: 'com.apple.ttsbundle.Moira-compact',
+          iosVoiceId: 'com.apple.ttsbundle.Samantha-compact',
           rate: 0.5,
         });
       });

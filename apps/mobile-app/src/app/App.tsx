@@ -8,7 +8,7 @@ import ChatScreen from './screens/ChatScreen';
 import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import UserCheckScreen from './screens/UserCheckScreen';
-import TestScreen from './screens/TestScreen';
+import ShopScreen from './screens/ShopScreen';
 import colours from './colours';
 
 const Stack = createStackNavigator();
@@ -31,7 +31,7 @@ export default function App() {
         <Stack.Screen name="Sign Up" component={SignUpScreen} options={{ headerTintColor: colours.logo_dark_green}} />
         <Stack.Screen 
           name="Chat" 
-          component={ChatScreen}  
+          component={ShopScreen}  
           options={({ route }) => ({  
             headerRight: () => (
               <TouchableOpacity
