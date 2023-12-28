@@ -129,7 +129,7 @@ function ChatScreen({ navigation }) {
 
 
     return (
-        <KeyboardAvoidingView style={{flex: 1, backgroundColor: colours.cream}}
+        <KeyboardAvoidingView style={{flex: 1, backgroundColor: colours.LogoColours.cream}}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         keyboardVerticalOffset={Platform.OS === "ios" ? 65 : -200}>
             {isMenuModalVisible ? (<UserMenuSheet onClose={hideUserSheet} visible={isMenuModalVisible} navigation={navigation}/>) : null}
@@ -223,13 +223,13 @@ function ChatScreen({ navigation }) {
                     }, 100);
                 }}
                 style={styles.sendButton}>
-                    <Text style={{fontSize: 0.05 * Dimensions.get('window').width, color: colours.green}}>Send</Text>
+                    <Text style={{fontSize: 0.05 * Dimensions.get('window').width, color: colours.LogoColours.green}}>Send</Text>
                 </TouchableOpacity>) : (recording ? 
                     (<TouchableOpacity style={styles.iconMicButton} onPress={stopRecording}>
-                    <FontAwesome name="stop-circle" size={30} color={colours.green} />
+                    <FontAwesome name="stop-circle" size={30} color={colours.LogoColours.green} />
                 </TouchableOpacity>) :
                 (<TouchableOpacity style={styles.iconMicButton} onPress={startRecording}>
-                    <FontAwesome name="microphone" size={30} color={colours.green} />
+                    <FontAwesome name="microphone" size={30} color={colours.LogoColours.green} />
                 </TouchableOpacity>))}
             </View>
         </KeyboardAvoidingView>
@@ -243,14 +243,14 @@ const styles = StyleSheet.create({
     messagesView: {
         flex: 10,
         marginBottom: 3,
-        backgroundColor: colours.cream
+        backgroundColor: colours.LogoColours.cream
     },
     image: {
         width: 260,  
         height: 200,
     },
     message: {
-        color: colours.cream, 
+        color: colours.LogoColours.cream, 
         textAlign: 'center',
         fontSize: 0.04 * Dimensions.get('window').width,
     },
@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         margin: 10,
         marginBottom: 0,
-        backgroundColor: colours.green,
+        backgroundColor: colours.LogoColours.green,
         borderRadius: 15,
         paddingHorizontal: 15, 
         marginLeft: 30,
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         margin: 10,
         marginBottom: 0,
-        backgroundColor: colours.logo_cream,
+        backgroundColor: colours.LogoColours.logo_cream,
         borderRadius: 15,
         marginRight: '25%',
     },

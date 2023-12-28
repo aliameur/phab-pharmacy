@@ -5,7 +5,6 @@ import Voice from '@react-native-voice/voice';
 import UserMenuSheet from '../components/UserMenuSheet';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { getCollections } from '../scripts/ShopScript';
-import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 import { CarouselItem } from '../components/CarouselCard';
 
 
@@ -71,16 +70,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'flex-end',
-    },
-    item: {
-      backgroundColor: '#f9c2ff',
-      padding: 20,
-      marginVertical: 8,
-      marginHorizontal: 16,
-    },
-    title: {
-      fontSize: 32,
-    },
+    }
   });
 
 export default ShopScreen

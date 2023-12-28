@@ -50,36 +50,36 @@ function LoginScreen ({navigation}) {
                 </View>
             </TouchableWithoutFeedback>
             <View style={styles.TextInputStyleView}>
-                <FontAwesome name="user" size={25} color={colours.cream} style={styles.TextInputIcon} />
+                <FontAwesome name="user" size={25} color={colours.LogoColours.cream} style={styles.TextInputIcon} />
                 <TextInput 
                 value={email}
                 style={styles.TextInputStyle}
                 placeholder="Email"
-                placeholderTextColor={colours.cream}
+                placeholderTextColor={colours.LogoColours.cream}
                 onChangeText={text => setEmail(text)}>
                 </TextInput>
             </View>
             <View style={styles.TextInputStyleView}>
-                <FontAwesome name="lock" size={25} color={colours.cream} style={styles.TextInputIcon}/>
+                <FontAwesome name="lock" size={25} color={colours.LogoColours.cream} style={styles.TextInputIcon}/>
                 <TextInput
                 value={password}
                 secureTextEntry={seePassword}
                 style={styles.TextInputStyle}
                 placeholder="Password"
-                placeholderTextColor={colours.cream}
+                placeholderTextColor={colours.LogoColours.cream}
                 onChangeText={text => setPassword(text)}>
                 </TextInput>
                 <TouchableOpacity
                 onPress={() => setSeePassword(!seePassword)}
                 style={{flex: 0.7, marginRight: 10}}>
-                    <FontAwesome name={seePassword ? "eye-slash" : "eye"} size={25}  color={colours.cream}/>
+                    <FontAwesome name={seePassword ? "eye-slash" : "eye"} size={25}  color={colours.LogoColours.cream}/>
                 </TouchableOpacity>
             </View>
             <TouchableOpacity 
             style={styles.loginButton}
             onPress={() => loginAccount()}
             >
-                <Text style={{fontSize: 20, fontWeight: '800', color: colours.green}}>Login</Text>
+                <Text style={{fontSize: 20, fontWeight: '800', color: colours.LogoColours.green}}>Login</Text>
             </TouchableOpacity>
             <View style={styles.signUpText}>
                 <Text>No Account?</Text>
@@ -96,13 +96,13 @@ const styles = StyleSheet.create({
     mainView: {
         flex: 1,
         justifyContent: 'flex-start',
-        backgroundColor: colours.cream
+        backgroundColor: colours.LogoColours.cream
     },
     loginText: {
         marginTop: 15,
         flex: 0.7,
         fontSize: 20,
-        color: colours.green,
+        color: colours.LogoColours.green,
         fontWeight: '800',
         alignSelf: 'center'
     },
@@ -113,18 +113,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         margin: 5,
         marginHorizontal: '20%',
-        backgroundColor: colours.logo_light_green,
+        backgroundColor: colours.LogoColours.logo_light_green,
     },
     welcomeText: {
         flex: 0.7,
         fontSize: 0.06 * Dimensions.get('window').width,
-        color: colours.green,
+        color: colours.LogoColours.green,
         fontWeight: '400',
     },
     TextInputStyleView:{
         margin: 12,
         borderRadius: 15,
-        backgroundColor: colours.green,
+        backgroundColor: colours.LogoColours.green,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     TextInputStyle: {
         flex: 7,
         marginHorizontal: 10,
-        color: colours.cream,
+        color: colours.LogoColours.cream,
         fontSize:  0.05 * Dimensions.get('window').width,
     },
     TextInputIcon: {

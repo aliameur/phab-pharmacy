@@ -56,42 +56,42 @@ export default function SignUpScreen({navigation}){
                     </View>
                 </TouchableWithoutFeedback>
                 <View style={styles.TextInputStyleView}>
-                    <FontAwesome name="user" size={25} color={colours.cream} style={styles.TextInputIcon}/>
+                    <FontAwesome name="user" size={25} color={colours.LogoColours.cream} style={styles.TextInputIcon}/>
                         <TextInput
                         value={firstName}
                         style={styles.TextInputStyle}
                         placeholder="First Name"
-                        placeholderTextColor={colours.cream}
+                        placeholderTextColor={colours.LogoColours.cream}
                         onChangeText={setFirstName}>
                     </TextInput>
                 </View>
                 <View style={styles.TextInputStyleView}>
-                    <FontAwesome name="user" size={25} color={colours.cream} style={styles.TextInputIcon}/>
+                    <FontAwesome name="user" size={25} color={colours.LogoColours.cream} style={styles.TextInputIcon}/>
                         <TextInput
                         value={lastName}
                         style={styles.TextInputStyle}
                         placeholder="Last Name"
-                        placeholderTextColor={colours.cream}
+                        placeholderTextColor={colours.LogoColours.cream}
                         onChangeText={setLastName}>
                     </TextInput>
                 </View>
                 <View style={styles.TextInputStyleView}>
-                    <FontAwesome name="envelope" size={25} color={colours.cream} style={styles.TextInputIcon}/>
+                    <FontAwesome name="envelope" size={25} color={colours.LogoColours.cream} style={styles.TextInputIcon}/>
                         <TextInput
                         value={email}
                         style={styles.TextInputStyle}
                         placeholder="Email"
-                        placeholderTextColor={colours.cream}
+                        placeholderTextColor={colours.LogoColours.cream}
                         onChangeText={setEmail}>
                     </TextInput>
                 </View>
                 <View style={styles.TextInputStyleView}>
-                    <FontAwesome name="lock" size={25} color={colours.cream} style={styles.TextInputIcon}/>
+                    <FontAwesome name="lock" size={25} color={colours.LogoColours.cream} style={styles.TextInputIcon}/>
                         <TextInput
                         value={password}
                         style={styles.TextInputStyle}
                         placeholder="Password"
-                        placeholderTextColor={colours.cream}
+                        placeholderTextColor={colours.LogoColours.cream}
                         onChangeText={setPassword}>
                     </TextInput>
                 </View>
@@ -99,7 +99,7 @@ export default function SignUpScreen({navigation}){
                     style={styles.signUpButton}
                     onPress={() => {signUpUser()}}
                 >
-                    <Text style={{fontSize: 20, fontWeight: '800', color: colours.green}}>Sign Up</Text>
+                    <Text style={{fontSize: 20, fontWeight: '800', color: colours.LogoColours.green}}>Sign Up</Text>
                 </TouchableOpacity>
             </View>
         </KeyboardAwareScrollView>
@@ -112,26 +112,26 @@ const styles = StyleSheet.create({
         marginBottom: 3,
         fontSize: 15,
         alignContent: 'center',
-        color: colours.green,
+        color: colours.LogoColours.green,
         fontWeight: '800',
     },
     signUpButton: {
         width: Dimensions.get('window').width * 0.5,
         height: Dimensions.get('window').height * 0.07,
-        borderColor: colours.green,
+        borderColor: colours.LogoColours.green,
         borderWidth: 0,
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
         margin: 5,
         marginTop: 20,
-        backgroundColor: colours.logo_light_green
+        backgroundColor: colours.LogoColours.logo_light_green
     },
     signUpMessageText: {
         marginBottom: 3,
         marginBottom: 40,
         fontSize: 17,
-        color: colours.green,
+        color: colours.LogoColours.green,
         fontWeight: '400',
     },
     TextInputStyleView:{
@@ -139,13 +139,13 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width * 0.8,
         height: Dimensions.get('window').height * 0.07,
         borderRadius: 15,
-        backgroundColor: colours.green,
+        backgroundColor: colours.LogoColours.green,
         flexDirection: 'row', 
         alignItems: 'center'
     },  
     TextInputStyle: {
         marginHorizontal: 10,
-        color: colours.cream,
+        color: colours.LogoColours.cream,
         fontSize: 18,
     },
     TextInputIcon: {

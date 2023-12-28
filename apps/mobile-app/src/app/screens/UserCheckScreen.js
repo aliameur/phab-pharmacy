@@ -27,7 +27,7 @@ function UserCheckScreen({ navigation }) {
             <Image 
             source={require('../assets/PhabPharmaLogo.png')}
             style={styles.imageStyle}/>
-            <ActivityIndicator size={'large'} color={colours.logo_dark_green}/>
+            <ActivityIndicator size={'large'} color={colours.LogoColours.logo_dark_green}/>
         </View>
     );
 }
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     mainView: {
         height: Dimensions.get('window').height,
         width: Dimensions.get('window').width,
-        backgroundColor: colours.cream,
+        backgroundColor: colours.LogoColours.cream,
         alignItems: 'center',
         justifyContent: 'center',
     },

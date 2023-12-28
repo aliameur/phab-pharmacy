@@ -39,7 +39,7 @@ function UserMenuSheet({ navigation, visible, onClose }) {
                     style={[styles.button, styles.cancelButton]}
                     onPress={handleCancelPress}
                     >
-                      <Text style={{color: colours.cream, fontSize: 20, fontWeight: '600'}}>Cancel</Text>
+                      <Text style={{color: colours.LogoColours.cream, fontSize: 20, fontWeight: '600'}}>Cancel</Text>
                     </TouchableOpacity>
                 </View>
                 </View>
@@ -56,7 +56,7 @@ function UserMenuSheet({ navigation, visible, onClose }) {
         backgroundColor: 'rgba(0, 0, 0, 0.5)', // Transparent background overlay
     },
     text: {
-        color: colours.green,
+        color: colours.LogoColours.green,
     },
     container: {
       flex: 1,
@@ -74,7 +74,7 @@ function UserMenuSheet({ navigation, visible, onClose }) {
     title: {
       fontSize: 18,
       fontWeight: 'bold',
-      color: colours.green,
+      color: colours.LogoColours.green,
       marginBottom: 16,
     },
     button: {
@@ -84,8 +84,8 @@ function UserMenuSheet({ navigation, visible, onClose }) {
     },
     cancelButton: {
       marginTop: 16,
-      backgroundColor: colours.green,
-      borderColor: colours.green,
+      backgroundColor: colours.LogoColours.green,
+      borderColor: colours.LogoColours.green,
       color: 'white',
       alignItems: 'center',
       justifyContent: 'center',

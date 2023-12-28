@@ -11,7 +11,7 @@ const CarouselItem = ({title}) => (
 
 const styles = StyleSheet.create({
     item: {
-      backgroundColor: colours.logo_light_green,
+      backgroundColor: colours.TailWindColors['norway'][200],
       padding: 20,
       marginBottom: 30,
       height: Dimensions.get('window').height * 0.5,
