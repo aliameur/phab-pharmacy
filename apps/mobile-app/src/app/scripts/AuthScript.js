@@ -1,7 +1,6 @@
 import axios from 'axios';
 import * as Keychain from 'react-native-keychain';
 import { Platform } from 'react-native';
-import axios from 'axios';
 
 const BASE_URL = Platform.OS === 'ios' ? 'http://localhost:9000' : 'http://10.0.2.2:9000'; 
 service = 'JWToken';
@@ -51,7 +50,6 @@ const checkKeychain = async () => {
         },
       };
       const response = await axios(config);
-      console.log(response);
       return ['good', response.data];
     } catch (error) {
       return ['bad', error];

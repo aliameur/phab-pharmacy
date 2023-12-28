@@ -14,11 +14,10 @@ const getCollections = async () =>  {
         for (let i = 0; i < num; i++){
             collections.push({id: response.data["collections"][i]["id"], title: response.data["collections"][i]["title"]})
         }
-        console.log(collections)
         return collections;
     }
     catch(error){
-        console.log('Getting Collections Error: ', error)
+        console.error('Getting Collections Error: ', error)
         return [];
     }
 }

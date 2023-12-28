@@ -12,12 +12,12 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
 import ChatScreen from './screens/ChatScreen';
 import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import UserCheckScreen from './screens/UserCheckScreen';
 import ShopScreen from './screens/ShopScreen';
+import SearchScreen from './screens/SearchScreen';
 import colours from './colours';
 
 const Stack = createStackNavigator();
@@ -81,6 +81,7 @@ export default function App() {
             headerTintColor: colours.LogoColours.green
           })}
         />
+        <Stack.Screen name="Search" component={SearchScreen} options={{ headerTintColor: colours.LogoColours.green}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

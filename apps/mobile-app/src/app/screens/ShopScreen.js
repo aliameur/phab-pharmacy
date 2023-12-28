@@ -13,6 +13,7 @@ function ShopScreen({ navigation }) {
 
     const [isMenuModalVisible, setMenuModalVisible] = useState(false);
     const [collectionsData, setCollectionsData] = useState([])
+    const [searchText, setSearchText] = useState('');
 
     useEffect(() => {
         const getData = async () => {
@@ -31,9 +32,8 @@ function ShopScreen({ navigation }) {
         setMenuModalVisible(false);
     }
 
-    const getNumOfCollections = async () => {
-        collections = await getCollections();
-        return collections.length;
+    const searchSubmit = () => {
+        navigation.navigate('Search', {search: searchText})
     }
 
     return (
@@ -45,12 +45,17 @@ function ShopScreen({ navigation }) {
                         <Text style={{flex: 1, fontSize: 15, fontWeight: '700', color: colours.LogoColours.green, marginHorizontal: '10%'}}>Find all your healthcare needs with ease. Just type and search below.</Text>
                         <View style={{flexDirection: 'row', flex: 3, justifyContent: 'center', alignItems: 'center'}}>
                             <TextInput
+                            value={searchText}
                             fontSize={Dimensions.get('window').width * 0.05}
                             style={{backgroundColor: 'white', height: '35%', width: '70%', paddingLeft: 10}}
                             placeholder='What are you looking for?'
                             placeholderTextColor={colours.TailWindColors.norway[400]}
+                            onChangeText={(text) => setSearchText(text)}
+                            onSubmitEditing={() => searchSubmit()}
                             color={colours.TailWindColors.norway[800]}/>
-                            <TouchableOpacity style={{backgroundColor: colours.LogoColours.green, height: '35%', width: '15%', justifyContent: 'center', alignItems: 'center'}}>
+                            <TouchableOpacity style={{backgroundColor: colours.LogoColours.green, height: '35%', width: '15%', justifyContent: 'center', alignItems: 'center',}}
+                            onPress={() => searchSubmit()}
+                            >
                                 <FontAwesome 
                                 name='search'
                                 size={Dimensions.get('window').width * 0.1}

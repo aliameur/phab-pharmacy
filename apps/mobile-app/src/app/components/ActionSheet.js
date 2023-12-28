@@ -3,6 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Tts from 'react-native-tts';
+import colours from '../colours';
 
 function ActionSheet({visible, onClose, message }) {
     const [speaking, setSpeaking] = useState(false);

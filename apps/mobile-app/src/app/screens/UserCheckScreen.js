@@ -6,10 +6,8 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import * as Keychain from 'react-native-keychain';
 
 import colours from '../colours';
-import { login } from '../scripts/AuthScript';
 import { checkKeychain } from '../scripts/AuthScript';
 
 function UserCheckScreen({ navigation }) {
@@ -52,3 +50,5 @@ const styles = StyleSheet.create({
         marginBottom: 40
     },
 })
+
+export default UserCheckScreen

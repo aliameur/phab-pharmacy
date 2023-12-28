@@ -1,24 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { View, TextInput, TouchableOpacity, Text, FlatList, StyleSheet, KeyboardAvoidingView, Keyboard, ActivityIndicator, Image, Dimensions, ScrollView, Platform} from 'react-native';
-import colours from '../colours';
 import Voice from '@react-native-voice/voice';
-import React, { useEffect, useRef, useState } from 'react';
-import {
-  ActivityIndicator,
-  Dimensions,
-  FlatList,
-  Image,
-  Keyboard,
-  KeyboardAvoidingView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
 import colours from '../colours';
 import ActionSheet from '../components/ActionSheet';
 import UserMenuSheet from '../components/UserMenuSheet';

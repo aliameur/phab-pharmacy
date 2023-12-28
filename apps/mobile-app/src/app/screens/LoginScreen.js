@@ -30,7 +30,7 @@ function LoginScreen({ navigation }) {
                 service = 'JWToken'
                 creds = await Keychain.getGenericPassword( { service } );
                 console.log(creds.password);
-                navigation.replace('Chat'); 
+                navigation.replace('Shop'); 
             } else {
                 console.log('Login Error:', output[1]); 
             }
