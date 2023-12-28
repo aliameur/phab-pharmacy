@@ -1,0 +1,26 @@
+{
+  "name": "admin-dashboard-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/admin-dashboard-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/admin-dashboard-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "admin-dashboard:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "admin-dashboard:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["admin-dashboard"]
+}
