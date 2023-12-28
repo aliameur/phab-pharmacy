@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, FlatList, View, Text, StyleSheet, StatusBar, Dimensions } from 'react-native';
 import colours from '../colours';
 import Voice from '@react-native-voice/voice';
@@ -6,32 +6,18 @@ import UserMenuSheet from '../components/UserMenuSheet';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { getCollections } from '../scripts/ShopScript';
 import { CarouselItem } from '../components/CarouselCard';
+import ShopCarousel from '../components/ShopCarousel';
 
 
 function ShopScreen({ navigation }) {
 
     const [isMenuModalVisible, setMenuModalVisible] = useState(false);
-    const [data, setData] = useState([])
-
-    const DATA = [
-        {
-          id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-          title: 'First Item',
-        },
-        {
-          id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-          title: 'Second Item',
-        },
-        {
-          id: '58694a0f-3da1-471f-bd96-145571e29d72',
-          title: 'Third Item',
-        },
-      ];
+    const [collectionsData, setCollectionsData] = useState([])
 
     useEffect(() => {
         const getData = async () => {
-            const data = await getCollections();
-            setData(data.reverse());
+            const collection_data = await getCollections();
+            setCollectionsData(collection_data);
         };
         getData();
     }, []); 
@@ -56,8 +42,8 @@ function ShopScreen({ navigation }) {
                 ListHeaderComponent={
                     <View style={{height: Dimensions.get('window').height * 0.5}}></View>
                 }
-                data={data}
-                renderItem={({item}) => <CarouselItem title={item.title}/>}
+                data={collectionsData}
+                renderItem={({item}) => <ShopCarousel style={styles.shopCarousel} id={item.id} /> }
                 keyExtractor={item => item.id}
             />
             {isMenuModalVisible ? (<UserMenuSheet onClose={hideUserSheet} visible={isMenuModalVisible} navigation={navigation}/>) : null}
@@ -66,10 +52,14 @@ function ShopScreen({ navigation }) {
 
 }
 
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'flex-end',
+    },
+    shopCarousel: {
+        marginBottom: 10,
     }
   });
 
