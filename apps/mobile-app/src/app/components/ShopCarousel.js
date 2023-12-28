@@ -35,7 +35,7 @@ function ShopCarousel ({ id }) {
                     style={{flex: 4}}
                     resizeMode="contain"
                 />
-                <View style={{alignItems: 'center', alignSelf: 'center', flexDirection: 'row'}}> 
+                <View style={{alignItems: 'center', alignSelf: 'center', flexDirection: 'row', marginTop: 10}}> 
                     <Text style={{fontWeight: '700'}}>Price: </Text>
                     <Text>£{item.price.toString().slice(0,2)}.{item.price.toString().slice(2,4)}</Text>
                 </View>
@@ -58,8 +58,8 @@ function ShopCarousel ({ id }) {
                     loop={true}
                     layout={"default"}
                     data={data}
-                    sliderWidth={300}
-                    itemWidth={300}
+                    sliderWidth={Dimensions.get('window').width}
+                    itemWidth={Dimensions.get('window').width * 0.8}
                     renderItem={renderItem}
                     onSnapToItem={(index) => setActiveIndex(index)}
                 />
@@ -76,8 +76,10 @@ const styles = StyleSheet.create({
     },
     carouselView:{
         flex: 1, 
-        flexDirection:'row', 
-        marginVertical: 30
+        marginVertical: 30,
+        alignItems: 'center', 
+        alignSelf: 'center',
+        justifyContent: 'center',
     },
     detailsButtons: {
         alignItems: 'center', 
