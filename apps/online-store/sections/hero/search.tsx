@@ -5,7 +5,6 @@ import { Search as SearchIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-
 const schema = z.object({ search: z.string().min(1) });
 type TSchema = z.infer<typeof schema>;
 
@@ -22,10 +21,10 @@ export const Search = () => {
       <input
         {...register('search')}
         placeholder="What are you looking for?"
-        className="caret-mineral-green-600 text-mineral-green-600 placeholder:text-mineral-green-400 h-full w-full bg-[#F8F6F4] px-6 py-6 text-xl focus:outline-none"
+        className="h-full w-full bg-[#F8F6F4] px-6 py-6 text-xl text-mineral-green-600 caret-mineral-green-600 placeholder:text-mineral-green-400 focus:outline-none"
       />
-      <button className="bg-mineral-green-600 absolute bottom-0 right-0 top-0 flex aspect-square items-center justify-center transition-all duration-300 hover:bg-opacity-90">
-        <SearchIcon className="text-pampas-100 h-8 w-8" />
+      <button className="absolute bottom-0 right-0 top-0 flex aspect-square items-center justify-center bg-mineral-green-600 transition-all duration-300 hover:bg-opacity-90">
+        <SearchIcon className="h-8 w-8 text-pampas-100" />
       </button>
     </form>
   );

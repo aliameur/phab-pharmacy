@@ -1,39 +1,40 @@
-import React, { useMemo } from "react";
-import { 
-  useAdminCreateProduct,
+import { Button, Text } from '@medusajs/ui';
+import {
   useAdminCreateCollection,
-  useMedusa
-} from "medusa-react";
-import { StepContentProps } from "../../../../widgets/onboarding-flow/onboarding-flow";
-import { Button, Text } from "@medusajs/ui";
-import getSampleProducts from "../../../../utils/sample-products";
-import prepareRegions from "../../../../utils/prepare-region";
+  useAdminCreateProduct,
+  useMedusa,
+} from 'medusa-react';
+import React, { useMemo } from 'react';
+
+import prepareRegions from '../../../../utils/prepare-region';
+import getSampleProducts from '../../../../utils/sample-products';
+import { StepContentProps } from '../../../../widgets/onboarding-flow/onboarding-flow';
 
 const ProductsListDefault = ({ onNext, isComplete }: StepContentProps) => {
   const { mutateAsync: createCollection, isLoading: collectionLoading } =
     useAdminCreateCollection();
   const { mutateAsync: createProduct, isLoading: productLoading } =
     useAdminCreateProduct();
-  const { client } = useMedusa()
+  const { client } = useMedusa();
 
-  const isLoading = useMemo(() => 
-    collectionLoading || productLoading,
-    [collectionLoading, productLoading]
+  const isLoading = useMemo(
+    () => collectionLoading || productLoading,
+    [collectionLoading, productLoading],
   );
 
   const createSample = async () => {
     try {
       const { collection } = await createCollection({
-        title: "Merch",
-        handle: "merch",
+        title: 'Merch',
+        handle: 'merch',
       });
 
-      const regions = await prepareRegions(client)
+      const regions = await prepareRegions(client);
 
       const sampleProducts = getSampleProducts({
         regions,
-        collection_id: collection.id
-      })
+        collection_id: collection.id,
+      });
       const { product } = await createProduct(sampleProducts[0]);
       onNext(product);
     } catch (e) {
@@ -54,7 +55,7 @@ const ProductsListDefault = ({ onNext, isComplete }: StepContentProps) => {
         create a sample one for you.
       </Text>
       {!isComplete && (
-        <div className="flex gap-2 mt-6">
+        <div className="mt-6 flex gap-2">
           <Button
             variant="primary"
             size="base"

@@ -21,9 +21,7 @@ export const FeaturedProductCard = ({
           className="object-contain object-center"
         />
       </div>
-      <span className="text-sm text-pampas-100">
-        {tags.join(' - ')}
-      </span>
+      <span className="text-sm text-pampas-100">{tags.join(' - ')}</span>
       <span className="relative px-4 py-2 text-pampas-100">
         {title}
         <div className="absolute bottom-2 left-4 right-4 h-0.5 origin-center translate-y-full scale-x-0 bg-pampas-100 transition-all duration-300 group-hover:scale-x-100" />
