@@ -16,14 +16,24 @@ export const AddToCart = () => {
   };
   return (
     <div className="flex gap-4">
-      <div className="flex w-28 items-center justify-between rounded-2xl bg-mineral-green-600 px-2 py-2.5 text-pampas-100">
-        <button aria-label="Decrease count by one" onClick={decrement}>
+      <div className="flex items-center justify-between rounded-2xl bg-mineral-green-600 px-0.5 py-2.5 text-pampas-100">
+        <button
+          aria-label="Decrease count by one"
+          onClick={decrement}
+          className="px-3"
+        >
           <Minus />
         </button>
         <div className="h-full w-px bg-white/20" />
-        <span aria-label={`Count is ${count}`}>{count}</span>
+        <span className="w-8 text-center" aria-label={`Count is ${count}`}>
+          {count}
+        </span>
         <div className="h-full w-px bg-white/20" />
-        <button aria-label="Increase count by one" onClick={increment}>
+        <button
+          aria-label="Increase count by one"
+          onClick={increment}
+          className="px-3"
+        >
           <Plus />
         </button>
       </div>

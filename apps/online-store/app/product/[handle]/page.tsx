@@ -11,7 +11,7 @@ export default async function Page() {
             <h2 className="font-merriweather text-3xl font-bold">BIOGENA</h2>
             <h3 className="text-xl">DAOZym</h3>
           </div>
-          <Rating value={1} />
+          <Rating value={2.5} />
           <div className="flex gap-5">
             {Array.from({ length: 4 }).map((_, i) => (
               <div key={i} className="h-24 w-24 bg-neutral-300" />
