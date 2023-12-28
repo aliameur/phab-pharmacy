@@ -34,7 +34,7 @@ const getProducts = async (id) => {
             description: response.data["products"][i]["description"],
             image: response.data["products"][i]["thumbnail"],
             //Note this price is hard coded changes to the backend will cause a breaking bug for pricing 
-            price: response.data["products"][1]["variants"][0]['prices'][2]["amount"]})
+            price: response.data["products"][i]["variants"][0]['prices'][2]["amount"]})
     }
     return products;
 }

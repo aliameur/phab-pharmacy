@@ -40,18 +40,20 @@ function ShopScreen({ navigation }) {
         <View style={styles.container}>
             <FlatList
                 ListHeaderComponent={
-                    <View style={{height: Dimensions.get('window').height * 0.6, alignItems: 'center'}}>
-                        <Text style={{flex: 1, marginTop: 30}}>Your One-Stop Online Wellness Shop</Text>
-                        <Text style={{flex: 1}}>Find all your healthcare needs with ease. Just type and search below.</Text>
-                        <View style={{flexDirection: 'row', flex: 4, justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={{height: Dimensions.get('window').height * 0.5, alignItems: 'center'}}>
+                        <Text style={{flex: 2, marginTop: 30, fontSize: 30, fontWeight: '700', color: colours.LogoColours.green, marginHorizontal: '10%'}}>Your One-Stop Online Wellness Shop</Text>
+                        <Text style={{flex: 1, fontSize: 15, fontWeight: '700', color: colours.LogoColours.green, marginHorizontal: '10%'}}>Find all your healthcare needs with ease. Just type and search below.</Text>
+                        <View style={{flexDirection: 'row', flex: 3, justifyContent: 'center', alignItems: 'center'}}>
                             <TextInput
-                            fontSize={20}
-                            style={{backgroundColor: 'white', height: '25%', width: '70%', paddingLeft: 10}}
-                            placeholder='What are you looking for?'/>
-                            <TouchableOpacity style={{backgroundColor: colours.LogoColours.green, height: '25%', width: '18%', justifyContent: 'center', alignItems: 'center'}}>
+                            fontSize={Dimensions.get('window').width * 0.05}
+                            style={{backgroundColor: 'white', height: '35%', width: '70%', paddingLeft: 10}}
+                            placeholder='What are you looking for?'
+                            placeholderTextColor={colours.TailWindColors.norway[400]}
+                            color={colours.TailWindColors.norway[800]}/>
+                            <TouchableOpacity style={{backgroundColor: colours.LogoColours.green, height: '35%', width: '15%', justifyContent: 'center', alignItems: 'center'}}>
                                 <FontAwesome 
                                 name='search'
-                                size={40}
+                                size={Dimensions.get('window').width * 0.1}
                                 color={colours.LogoColours.cream}/>
                             </TouchableOpacity>
                         </View>
@@ -86,6 +88,7 @@ const styles = StyleSheet.create({
         marginTop: 40,
         fontSize: 40,
         fontWeight: '600',
+        marginLeft: 20,
         color: colours.TailWindColors['pampas'][800]
     }
   });
