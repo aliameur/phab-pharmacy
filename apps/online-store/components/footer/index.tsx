@@ -3,8 +3,8 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 
 import { Logo } from '../logo';
-import { NewsletterForm } from './newsletter-form';
 import { FooterColumn } from './column';
+import { NewsletterForm } from './newsletter-form';
 
 const links = [
   {

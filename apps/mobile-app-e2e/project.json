@@ -54,13 +54,9 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": [
-        "{options.outputFile}"
-      ]
+      "outputs": ["{options.outputFile}"]
     }
   },
   "tags": [],
-  "implicitDependencies": [
-    "mobile-app"
-  ]
+  "implicitDependencies": ["mobile-app"]
 }
