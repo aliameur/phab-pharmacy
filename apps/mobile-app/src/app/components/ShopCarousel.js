@@ -6,7 +6,7 @@ import { SafeAreaView, View, Text, Dimensions, Image, TouchableOpacity, StyleShe
 import { getProducts } from '../scripts/ShopScript';
 import colours from '../colours';
 
-function ShopCarousel ({ id }) {
+function ShopCarousel ({ navigation, id }) {
     const [activeIndex, setActiveIndex] = useState(0);
     const [data, setData] = useState(null);
 
@@ -39,7 +39,7 @@ function ShopCarousel ({ id }) {
                     <Text style={{fontWeight: '700'}}>Price: </Text>
                     <Text>£{item.price.toString().slice(0,2)}.{item.price.toString().slice(2,4)}</Text>
                 </View>
-                <TouchableOpacity style={styles.detailsButtons}>
+                <TouchableOpacity style={styles.detailsButtons} onPress={() => navigation.navigate('Product', {data: item})}>
                     <Text style={{fontSize: 20, color: colours.LogoColours.cream}}>See Details</Text>
                 </TouchableOpacity>
             </View>

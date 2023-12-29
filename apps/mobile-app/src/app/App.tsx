@@ -18,6 +18,7 @@ import SignUpScreen from './screens/SignUpScreen';
 import UserCheckScreen from './screens/UserCheckScreen';
 import ShopScreen from './screens/ShopScreen';
 import SearchScreen from './screens/SearchScreen';
+import ProductScreen from './screens/ProductScreen';
 import colours from './colours';
 
 const Stack = createStackNavigator();
@@ -33,7 +34,7 @@ export default function App() {
       <Stack.Navigator screenOptions={{
         headerTitleAlign: 'center', 
         headerStyle: styles.headerStyle,
-        headerTintColor: colours.cream,
+        headerTintColor: colours.LogoColours.green,
       }}>
         <Stack.Screen name='UserCheck' component={UserCheckScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
@@ -59,6 +60,25 @@ export default function App() {
             headerTintColor: colours.LogoColours.green
           })}
         />
+        <Stack.Screen name="Search" component={SearchScreen} options={{ headerTintColor: colours.LogoColours.green}} />
+        <Stack.Screen name="Product" component={ProductScreen} options={({ navigation }) => (
+            {  
+            headerLeft: () => (
+              <TouchableOpacity
+                onPress={() => navigation.goBack()}
+                style={{ marginLeft: Dimensions.get('window').width*0.03, alignItems: 'center' }}
+              >
+                <FontAwesome name="chevron-left" size={30} color={colours.green}/>
+              </TouchableOpacity>
+            ),
+            headerTitle: () => (
+              <Image 
+              source={require('./assets/phab_pharma_no_text.png')}
+              style={{width: headerHeight*0.64, height: headerHeight*0.84}}
+              />
+            ),
+            headerTintColor: colours.LogoColours.green
+          })} />
         <Stack.Screen 
           name="Chat" 
           component={ChatScreen}  
@@ -81,7 +101,6 @@ export default function App() {
             headerTintColor: colours.LogoColours.green
           })}
         />
-        <Stack.Screen name="Search" component={SearchScreen} options={{ headerTintColor: colours.LogoColours.green}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

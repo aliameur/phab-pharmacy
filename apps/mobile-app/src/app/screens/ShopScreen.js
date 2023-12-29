@@ -69,7 +69,7 @@ function ShopScreen({ navigation }) {
                 return (
                     <View>
                         <Text style={styles.collectionText}>{item.title}</Text>
-                        <ShopCarousel style={styles.shopCarousel} id={item.id} />
+                        <ShopCarousel style={styles.shopCarousel} id={item.id} navigation={navigation}/>
                     </View>
                 )}}
                 keyExtractor={item => item.id}
