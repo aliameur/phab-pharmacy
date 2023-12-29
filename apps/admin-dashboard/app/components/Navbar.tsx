@@ -1,31 +1,24 @@
 import Link from 'next/link';
 import React from 'react';
 
-export default function Navbar() {
+import SidebarToggle from './SidebarToggle';
+
+export default function Navbar({
+  toggleSidebar,
+}: {
+  toggleSidebar: () => void;
+}) {
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 w-full">
       <div className="flex-none pr-2">
-        <button className="btn btn-square btn-ghost">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="inline-block h-6 w-6 stroke-current"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          </svg>
-        </button>
+        <SidebarToggle onToggle={toggleSidebar} />
       </div>
       <div className="flex-1">
         <div className="btn btn-ghost">
           <img src="logo.svg" alt="PhabPharmacy Logo" className="h-8 w-8" />
           <h1 className="text-2xl font-black">PhabPharmacy</h1>
         </div>
+        <p className="px-8 text-sm">Admin Dashboard</p>
       </div>
       <div className="flex-none">
         <button className="btn btn-square btn-ghost">
