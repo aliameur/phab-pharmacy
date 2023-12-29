@@ -18,9 +18,9 @@ export default function Navbar({
           <img src="logo.svg" alt="PhabPharmacy Logo" className="h-8 w-8" />
           <h1 className="text-2xl font-black">PhabPharmacy</h1>
         </div>
-        <p className="px-8 text-sm">Admin Dashboard</p>
       </div>
       <div className="flex-none">
+        <p className="px-8 text-sm">Admin Dashboard</p>
         <button className="btn btn-square btn-ghost">
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -14,7 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <div className="fixed flex">
+    <div className="flex">
       <Sidebar isVisible={sidebarOpen} />
       <div className="flex flex-1 flex-col">
         <Navbar toggleSidebar={toggleSidebar} />
