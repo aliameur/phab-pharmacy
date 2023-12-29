@@ -1,8 +1,6 @@
 import { Platform } from 'react-native';
 import axios from 'axios';
 
-
-
 const BASE_URL = Platform.OS === 'ios' ? 'http://localhost:9000' : 'http://10.0.2.2:9000'; 
 
 const getCollections = async () =>  {
@@ -38,4 +36,17 @@ const getProducts = async (id) => {
     return products;
 }
 
-export { getCollections, getProducts };
+const searchProducts = async (searchText) => {
+    try {
+        response = await axios.post(`${BASE_URL}/store/products/search`, {
+            q: searchText
+        });
+        console.log(response)
+        return response;
+    } catch (error) {
+        console.log('Error: ', error)
+        return [];
+    }
+}
+
+export { getCollections, getProducts, searchProducts };
