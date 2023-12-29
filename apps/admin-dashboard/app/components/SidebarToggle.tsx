@@ -1,11 +1,11 @@
-'use client';
-
 import React from 'react';
 
-export default function SidebarToggle({ onToggle }: { onToggle: () => void }) {
+import SidebarTransition from './SidebarTransition';
+
+export default function SidebarToggle() {
   return (
     <label className="btn btn-square btn-ghost swap swap-rotate">
-      <input type="checkbox" onClick={onToggle} />
+      <input type="checkbox" onClick={SidebarTransition} />
       <svg
         className="swap-off h-7 w-7 fill-current"
         xmlns="http://www.w3.org/2000/svg"

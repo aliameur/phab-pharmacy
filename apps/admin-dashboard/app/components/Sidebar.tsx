@@ -1,26 +1,10 @@
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 
-export default function Sidebar({ isVisible }: { isVisible: boolean }) {
-  const [isPartiallyVisible, setIsPartiallyVisible] = useState(false);
-  useEffect(() => {
-    if (isVisible) {
-      setIsPartiallyVisible(true);
-    } else {
-      setTimeout(() => setIsPartiallyVisible(false), 300);
-    }
-  }, [isVisible]);
-
+export default function Sidebar() {
   return (
-    <div
-      className={`bg-base-100 flex h-screen flex-col justify-between overflow-x-hidden shadow-2xl transition-all duration-300 ease-in-out
-          ${isVisible ? 'w-80' : 'w-0'}
-        `}
-    >
+    <div className="sidebar bg-base-100 flex h-screen w-0 flex-col justify-between overflow-x-hidden shadow-2xl transition-all duration-300 ease-in-out">
       <ul
-        className={`menu bg-base-200 text-base-content h-screen p-4 transition-opacity duration-300
-            ${isPartiallyVisible ? 'visible' : 'invisible'}
-          `}
+        className="menu bg-base-200 text-base-content invisible h-screen p-4 transition-opacity duration-300"
         style={{ minWidth: '20rem' }}
       >
         <li key="products">

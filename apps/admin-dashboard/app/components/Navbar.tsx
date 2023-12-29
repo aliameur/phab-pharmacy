@@ -3,15 +3,11 @@ import React from 'react';
 
 import SidebarToggle from './SidebarToggle';
 
-export default function Navbar({
-  toggleSidebar,
-}: {
-  toggleSidebar: () => void;
-}) {
+export default function Navbar() {
   return (
     <div className="navbar bg-base-100 w-full">
       <div className="flex-none pr-2">
-        <SidebarToggle onToggle={toggleSidebar} />
+        <SidebarToggle />
       </div>
       <div className="flex-1">
         <div className="btn btn-ghost">
