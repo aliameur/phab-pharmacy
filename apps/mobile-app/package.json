@@ -21,6 +21,9 @@
     "react-native-svg": "*",
     "react-native-svg-transformer": "*",
     "react-native-keychain": "*",
-    "axios": "*"
+    "axios": "*",
+    "@react-navigation/elements": "*",
+    "react-native-keyboard-aware-scroll-view": "*",
+    "react-native-snap-carousel": "*"
   }
 }
