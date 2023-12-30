@@ -12,7 +12,8 @@ import ShopCarousel from '../components/ShopCarousel';
 function ShopScreen({ navigation }) {
 
     const [isMenuModalVisible, setMenuModalVisible] = useState(false);
-    const [collectionsData, setCollectionsData] = useState([])
+    const [collectionsData, setCollectionsData] = useState([]);
+    const [cartItems, setCartItems] = useState(0);
     const [searchText, setSearchText] = useState('');
 
     useEffect(() => {
@@ -75,8 +76,14 @@ function ShopScreen({ navigation }) {
                 keyExtractor={item => item.id}
             />
             {isMenuModalVisible ? (<UserMenuSheet onClose={hideUserSheet} visible={isMenuModalVisible} navigation={navigation}/>) : null}
-            <TouchableOpacity style={styles.fixedButton} onPress={() => navigation.navigate('Chat')}>
+            <TouchableOpacity style={styles.chatButton} onPress={() => navigation.navigate('Chat')}>
                 <FontAwesome name="comments-o" size={35}/>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.cartButton} onPress={() => navigation.navigate('Chat')}>
+                <FontAwesome name="shopping-cart" size={35}/>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.cartLittleButton}>
+                    <Text style={{color: colours.LogoColours.cream}}>{cartItems}</Text>
             </TouchableOpacity>
         </View>
     );
@@ -89,9 +96,30 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'flex-end',
     },
-    fixedButton: {
+    cartLittleButton:{
+        position: "absolute",
+        right: 10,
+        bottom: 70,
+        height: 20,
+        width: 20,
+        backgroundColor: colours.TailWindColors.norway[600],
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    cartButton: {
         position: 'absolute',
         right: 10,
+        bottom: 20,
+        backgroundColor: colours.TailWindColors['mineral-green'][200],
+        padding: 15,
+        borderRadius: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    chatButton: {
+        position: 'absolute',
+        right: Dimensions.get('window').width * 0.8,
         bottom: 20,
         backgroundColor: colours.TailWindColors['mineral-green'][200],
         padding: 15,

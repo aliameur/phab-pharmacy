@@ -11,6 +11,7 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
+
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import ChatScreen from './screens/ChatScreen';
 import LoginScreen from './screens/LoginScreen';
@@ -30,6 +31,7 @@ export default function App() {
     headerHeight + (Platform.OS === 'ios' ? 0 : statusBarHeight);
 
   return (
+    
     <NavigationContainer>
       <Stack.Navigator screenOptions={{
         headerTitleAlign: 'center', 
@@ -82,7 +84,7 @@ export default function App() {
         <Stack.Screen 
           name="Chat" 
           component={ChatScreen}  
-          options={({ route }) => (
+          options={({ navigation, route }) => (
             {  
             headerRight: () => (
               <TouchableOpacity
@@ -90,6 +92,14 @@ export default function App() {
                 style={{ marginRight: Dimensions.get('window').width*0.03, alignItems: 'center' }}
               >
                 <FontAwesome name="list-ul" size={30} color={colours.green}/>
+              </TouchableOpacity>
+            ),
+            headerLeft: () => (
+              <TouchableOpacity
+                onPress={() => navigation.goBack()}
+                style={{ marginLeft: Dimensions.get('window').width*0.03, alignItems: 'center' }}
+              >
+                <FontAwesome name="chevron-left" size={30} color={colours.green}/>
               </TouchableOpacity>
             ),
             headerTitle: () => (

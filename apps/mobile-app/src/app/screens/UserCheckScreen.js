@@ -9,6 +9,7 @@ import {
 
 import colours from '../colours';
 import { checkKeychain } from '../scripts/AuthScript';
+import { getCollections } from '../scripts/ShopScript';
 
 function UserCheckScreen({ navigation }) {
     useEffect(() => {
@@ -17,7 +18,11 @@ function UserCheckScreen({ navigation }) {
             console.log(output)
             if (output[0] === 'good') {
                 console.log('Remembered user')
-                navigation.replace('Shop');
+                try {
+                    navigation.replace('Shop');
+                } catch (error){
+
+                }
             } else {
                 console.log('User forgotten')
                 navigation.replace('Login');
