@@ -40,7 +40,22 @@ export default function App() {
       }}>
         <Stack.Screen name='UserCheck' component={UserCheckScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Sign Up" component={SignUpScreen} options={{ headerTintColor: colours.LogoColours.green}} />
+        <Stack.Screen 
+          name="Sign Up" 
+          component={SignUpScreen}  
+          options={({ navigation }) => (
+            {  
+            headerLeft: () => (
+              <TouchableOpacity
+                onPress={() => navigation.goBack()}
+                style={{ marginLeft: Dimensions.get('window').width*0.03, alignItems: 'center' }}
+              >
+                <FontAwesome name="chevron-left" size={30} color={colours.green}/>
+              </TouchableOpacity>
+            ),
+            headerTintColor: colours.LogoColours.green
+          })}
+        />
         <Stack.Screen 
           name="Shop" 
           component={ShopScreen}  

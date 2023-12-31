@@ -49,7 +49,7 @@ export default function SignUpScreen({ navigation }) {
 
     return(
         <KeyboardAwareScrollView
-        extraScrollHeight={80}>
+        extraHeight={1000}>
             <View style={{alignItems: 'center'}}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                     <View style={{alignItems: 'center', marginBottom: -10}}>
@@ -103,6 +103,7 @@ export default function SignUpScreen({ navigation }) {
                         <TextInput
                         value={password}
                         style={styles.TextInputStyle}
+                        onEndEditing={() => signUpUser()}
                         placeholder="Password"
                         placeholderTextColor={colours.LogoColours.cream}
                         onChangeText={setPassword}>
