@@ -38,10 +38,7 @@
     }
   },
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
       "default",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
@@ -74,9 +71,7 @@
       }
     }
   },
-  "plugins": [
-    "@nxlv/python"
-  ],
+  "plugins": ["@nxlv/python"],
   "affected": {
     "defaultBase": "main"
   }
