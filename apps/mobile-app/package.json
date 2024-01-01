@@ -26,6 +26,7 @@
     "@react-navigation/elements": "*",
     "react-native-keyboard-aware-scroll-view": "*",
     "react-native-snap-carousel": "*",
-    "react-native-reanimated-carousel": "*"
+    "react-native-reanimated-carousel": "*",
+    "@react-native-async-storage/async-storage": "*"
   }
 }
