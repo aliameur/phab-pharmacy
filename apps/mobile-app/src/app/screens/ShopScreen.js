@@ -34,6 +34,7 @@ function ShopScreen({ navigation }) {
     }
 
     const searchSubmit = () => {
+        setSearchText('');
         navigation.navigate('Search', {search: searchText})
     }
 

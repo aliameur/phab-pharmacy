@@ -70,7 +70,7 @@ function ShopCarousel ({ navigation, id }) {
                         panGestureHandlerProps={{
                             activeOffsetX: [-10, 10],
                         }}
-                        autoPlayInterval={5000}
+                        autoPlayInterval={3500}
                         data={fake}
                         autoPlay={true}
                         mode={'parallax'}
