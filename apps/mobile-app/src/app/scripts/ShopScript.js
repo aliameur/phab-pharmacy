@@ -1,6 +1,7 @@
 import { Platform } from 'react-native';
 import axios from 'axios';
 
+
 const BASE_URL = Platform.OS === 'ios' ? 'http://localhost:9000' : 'http://10.0.2.2:9000'; 
 
 const getCollections = async () =>  {
@@ -31,7 +32,9 @@ const getProducts = async (id) => {
             description: response.data["products"][i]["description"],
             image: response.data["products"][i]["thumbnail"],
             //Note this price is hard coded changes to the backend will cause a breaking bug for pricing 
-            price: response.data["products"][i]["variants"][0]['prices'][2]["amount"]})
+            price: response.data["products"][i]["variants"][0]['prices'][2]["amount"],
+            variant_id: response.data["products"][i]["variants"][0]['id']
+        })
     }
     return products;
 }
@@ -48,5 +51,7 @@ const searchProducts = async (searchText) => {
         return [];
     }
 }
+
+
 
 export { getCollections, getProducts, searchProducts };
