@@ -80,7 +80,7 @@ function ShopScreen({ navigation }) {
             <TouchableOpacity style={styles.chatButton} onPress={() => navigation.navigate('Chat')}>
                 <FontAwesome name="comments-o" size={35}/>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.cartButton} onPress={() => navigation.navigate('Chat')}>
+            <TouchableOpacity style={styles.cartButton} onPress={() => navigation.navigate('Cart')}>
                 <FontAwesome name="shopping-cart" size={35}/>
             </TouchableOpacity>
             <TouchableOpacity style={styles.cartLittleButton}>

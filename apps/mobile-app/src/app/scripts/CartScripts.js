@@ -29,7 +29,7 @@ const createCart = async (creds) => {
     }
   };
 
-  const addToCart = async (varient_id, quantity) => {
+const addToCart = async (varient_id, quantity) => {
     try {
         const cart_id = await AsyncStorage.getItem('cartID');
         response = await axios.post(`${BASE_URL}/store/carts/${cart_id}/line-items`, {
@@ -42,6 +42,29 @@ const createCart = async (creds) => {
     }
   }
 
+const getCartItems = async () => {
+    try {
+        const cart_id = await AsyncStorage.getItem('cartID');
+        response = await axios.get(`${BASE_URL}/store/carts/${cart_id}`)
+        items = response.data['cart']['items']
+        var products = []
+        for (let i = 0; i < (items.length); i++){
+            products.push({
+                id: items[i]["id"], 
+                title: items[i]["title"], 
+                description: items[i]["description"],
+                image: items[i]["thumbnail"],
+                variant_id: items[i]["variant_id"],
+                quantity: items[i]["quantity"],
+                total: items[i]["total"]
+                //Note this price is hard coded changes to the backend will cause a breaking bug for pricing 
+            })
+        }
+        return products
+    } catch (error) {
+        console.error('Error getting cart items:', error.message)
+    }
+}
 
 
-  export { createCart, addToCart };
+  export { createCart, addToCart, getCartItems };

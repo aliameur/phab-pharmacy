@@ -20,6 +20,8 @@ import UserCheckScreen from './screens/UserCheckScreen';
 import ShopScreen from './screens/ShopScreen';
 import SearchScreen from './screens/SearchScreen';
 import ProductScreen from './screens/ProductScreen';
+import CartScreen from './screens/CartScreen';
+
 import colours from './colours';
 
 const Stack = createStackNavigator();
@@ -126,6 +128,28 @@ export default function App() {
             headerTintColor: colours.LogoColours.green
           })}
         />
+        <Stack.Screen 
+        name="Cart" 
+        component={CartScreen} 
+        options={({ navigation }) => (
+            {  
+            headerLeft: () => (
+              <TouchableOpacity
+                onPress={() => navigation.goBack()}
+                style={{ marginLeft: Dimensions.get('window').width*0.03, alignItems: 'center' }}
+              >
+                <FontAwesome name="chevron-left" size={30} color={colours.green}/>
+              </TouchableOpacity>
+            ),
+            headerTitle: () => (
+              <Image 
+              source={require('./assets/phab_pharma_no_text.png')}
+              style={{width: headerHeight*0.64, height: headerHeight*0.84}}
+              />
+            ),
+            headerTintColor: colours.LogoColours.green
+          })} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
