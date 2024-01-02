@@ -10,7 +10,7 @@ export const Button = ({
   return (
     <button
       className={cn(
-        'group rounded-2xl bg-mineral-green-600 px-8 py-4 text-pampas-100',
+        'group flex justify-center rounded-2xl bg-mineral-green-600 px-8 py-4 text-pampas-100',
         className,
       )}
       {...props}

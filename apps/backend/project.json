@@ -44,8 +44,8 @@
         },
         "reset": {
           "commands": [
-            "nx run backend:docker:down",
-            "nx run backend:docker:up"
+            "docker-compose down",
+            "docker-compose up -d"
           ],
           "parallel": false
         }
