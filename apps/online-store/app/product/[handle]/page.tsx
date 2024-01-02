@@ -1,18 +1,28 @@
+import { notFound } from 'next/navigation';
+
 import { AddToCart } from '../../../components/add-to-cart';
 import { DetailSection } from '../../../components/detail-section';
 import { Gallery } from '../../../components/gallery';
 import { Rating } from '../../../components/rating';
 import { Review } from '../../../components/review';
+import { getProductByHandle } from '../../../lib/medusa';
 
-export default async function Page() {
+type Props = {
+  params: { handle: string };
+};
+
+export default async function Page({ params: { handle } }: Props) {
+  const product = await getProductByHandle(handle).catch((err) => {
+    notFound();
+  });
   return (
     <main className="px-16">
       <div className="flex pb-16 pt-12">
         <Gallery className="sticky top-32 h-full w-1/2 pr-10" />
         <div className="flex w-1/2 flex-col gap-8 pl-10">
           <div className="flex flex-col gap-2 text-mineral-green-600">
-            <h2 className="font-merriweather text-3xl font-bold">BIOGENA</h2>
-            <h3 className="text-xl">DAOZym</h3>
+            <h2 className="font-merriweather text-3xl font-bold">{product.title}</h2>
+            <h3 className="text-xl">{product.subtitle}</h3>
           </div>
           <Rating value={2.5} />
           <div className="flex gap-5">
@@ -22,18 +32,7 @@ export default async function Page() {
           </div>
           <div className="flex flex-col gap-4 text-sm text-mineral-green-600">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad esse
-              est fugit molestias, quos reiciendis sapiente? Adipisci distinctio
-              ea eveniet facilis fugit hic illum, incidunt iusto magnam maiores,
-              molestiae mollitia nam neque officiis provident quas quisquam,
-              repellendus unde veniam vero!
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad esse
-              est fugit molestias, quos reiciendis sapiente? Adipisci distinctio
-              ea eveniet facilis fugit hic illum, incidunt iusto magnam maiores,
-              molestiae mollitia nam neque officiis provident quas quisquam,
-              repellendus unde veniam vero!
+              {product.description}
             </p>
           </div>
           <AddToCart />
