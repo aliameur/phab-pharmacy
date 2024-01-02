@@ -39,12 +39,13 @@ function CartScreen({navigation, route }) {
                         <Text style={{fontSize: 25, flex: 5}}>{item.title}</Text>
                         <Text style={{fontSize: 25, fontWeight: "700", flex: 2}}>£{item.total.toString().slice(0, -2)}.{item.total.toString().slice(-2)}</Text>
                     </View>
-                    <View style={{height: Dimensions.get('window').height * 0.2, flexDirection: 'row'}}>
+                    <View style={{height: Dimensions.get('window').height * 0.12, flexDirection: 'row'}}>
                         <Image 
-                        source={{uri: item.image, height: '100%', width: '50%'}}
-                        resizeMode="cover"
+                            source={{ uri: item.image }}
+                            style={{ height: '100%', width: '30%' }}
+                            resizeMode="cover"
                         />
-                        <Text style={{alignSelf: 'center', fontSize: 20}}>x{item.quantity}</Text>
+                        <Text style={{ alignSelf: 'center', fontSize: 20 }}>x{item.quantity}</Text>
                     </View>
                 </View>
             )}}

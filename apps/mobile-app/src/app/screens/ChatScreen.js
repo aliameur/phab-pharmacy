@@ -25,8 +25,17 @@ function ChatScreen({ navigation }) {
 
   const showModal = () => setMenuModalVisible(true);
   useEffect(() => {
-    navigation.setParams({ showModal: () => setMenuModalVisible(true) });
-  }, [navigation]);
+    navigation.setOptions({ 
+        headerRight: () => (
+            <TouchableOpacity
+                onPress={showModal}
+                style={{ marginRight: Dimensions.get('window').width * 0.03, alignItems: 'center' }}
+            >
+                <FontAwesome name="list-ul" size={30} color={colours.green}/>
+            </TouchableOpacity>
+        )
+    });
+  }, [navigation]); 
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(

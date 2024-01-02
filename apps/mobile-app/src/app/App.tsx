@@ -11,8 +11,8 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import ChatScreen from './screens/ChatScreen';
 import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from './screens/SignUpScreen';
@@ -62,14 +62,6 @@ export default function App() {
           name="Shop" 
           component={ShopScreen}  
           options={({ route }) => ({  
-            headerRight: () => (
-              <TouchableOpacity
-                onPress={() => route.params.showModal()}
-                style={{ marginRight: Dimensions.get('window').width*0.03, alignItems: 'center' }}
-              >
-                <FontAwesome name="list-ul" size={30} color={colours.green}/>
-              </TouchableOpacity>
-            ),
             headerTitle: () => (
               <Image 
               source={require('./assets/phab_pharma_no_text.png')}
@@ -103,14 +95,6 @@ export default function App() {
           component={ChatScreen}  
           options={({ navigation, route }) => (
             {  
-            headerRight: () => (
-              <TouchableOpacity
-                onPress={() => route.params.showModal()}
-                style={{ marginRight: Dimensions.get('window').width*0.03, alignItems: 'center' }}
-              >
-                <FontAwesome name="list-ul" size={30} color={colours.green}/>
-              </TouchableOpacity>
-            ),
             headerLeft: () => (
               <TouchableOpacity
                 onPress={() => navigation.goBack()}
