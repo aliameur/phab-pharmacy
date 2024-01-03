@@ -1,3 +1,1 @@
-// Use this file to export React client components (e.g. those with 'use client' directive) or other non-server utilities
-
-export * from './lib/data-next';
+export * from './lib/reexport';
