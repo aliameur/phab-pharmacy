@@ -1,8 +1,8 @@
-import { MedusaProductByHandleOperation, TRequestFn } from '../types';
+import { MedusaProductOperation, TRequestFn } from '../types';
 
 export const getProductByHandle =
   (requestFn: TRequestFn) => async (handle: string) => {
-    const res = await requestFn<MedusaProductByHandleOperation>({
+    const res = await requestFn<MedusaProductOperation>({
       path: '/products',
       query: { handle },
     });

@@ -14,7 +14,7 @@ export type TRequestFn = <T>(options: {
   body: T;
 }>;
 
-export type MedusaProductByHandleOperation = {
+export type MedusaProductOperation = {
   products: PricedProduct[];
   count: number;
   offset: number;
