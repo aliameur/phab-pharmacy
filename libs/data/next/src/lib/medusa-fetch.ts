@@ -45,8 +45,7 @@ export async function medusaFetch<T>({
         ...headers,
       },
       body: JSON.stringify(body),
-      cache,
-      // TODO only specify cache or revalidate at once
+      ...(cache && !revalidate && { cache }),
       ...((tags || revalidate) && { next: { tags, revalidate } }),
     });
 
