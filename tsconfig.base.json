@@ -17,7 +17,8 @@
     "paths": {
       "@phab/data-core": ["libs/data/core/src/index.ts"],
       "@phab/data-next": ["libs/data/next/src/index.ts"],
-      "@phab/data-next/server": ["libs/data/next/src/server.ts"]
+      "@phab/data-next/server": ["libs/data/next/src/server.ts"],
+      "@phab/data-react-native": ["libs/data/react-native/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
