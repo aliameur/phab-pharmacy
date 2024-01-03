@@ -6,5 +6,7 @@ export const getProductByHandle =
       path: '/products',
       query: { handle },
     });
+    if (res.body.count === 0 || res.body.products.length === 0)
+      throw new Error('No products found');
     return res.body.products[0];
   };
