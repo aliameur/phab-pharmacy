@@ -153,7 +153,6 @@ const mockProduct = {
 };
 
 describe('getProductByHandle', () => {
-  // Mock the requestFn
   const mockRequestFn = jest.fn();
 
   beforeEach(() => {
