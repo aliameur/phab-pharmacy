@@ -16,6 +16,7 @@
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/stack": "^6.3.20",
     "@swc/helpers": "~0.5.2",
+    "@t3-oss/env-nextjs": "^0.7.1",
     "@tanstack/react-query": "^5.15.0",
     "autoprefixer": "^10.4.16",
     "axios": "^1.6.2",
