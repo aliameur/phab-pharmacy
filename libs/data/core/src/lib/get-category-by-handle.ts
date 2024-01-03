@@ -3,7 +3,6 @@ import { MedusaCategoryOperation, TRequestFn } from '../types';
 export const getCategoryByHandle =
   (requestFn: TRequestFn) => async (handle: string) => {
     const res = await requestFn<MedusaCategoryOperation>({
-      method: 'GET',
       path: '/product-categories',
       query: {
         handle,

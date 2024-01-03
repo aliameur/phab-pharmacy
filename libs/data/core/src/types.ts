@@ -1,4 +1,4 @@
-import { ProductCategory } from '@medusajs/medusa';
+import { ProductCategory as MedusaProductCategory } from '@medusajs/medusa';
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 
 export type TRequestFn = <T>(options: {
@@ -22,8 +22,16 @@ export type MedusaProductOperation = {
   limit: number;
 };
 
+export type ProductCategory = Omit<
+  MedusaProductCategory,
+  'products' | 'metadata' | 'is_active' | 'is_internal'
+> & {
+  // may need to add recursive type for nested categories
+  metadata: MedusaProductCategory['metadata'] | null;
+};
+
 export type MedusaCategoryOperation = {
-  product_categories: ProductCategory[]; // may need to add recursive type for nested categories
+  product_categories: ProductCategory[];
   count: number;
   offset: number;
   limit: number;
