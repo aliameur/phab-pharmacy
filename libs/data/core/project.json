@@ -1,0 +1,42 @@
+{
+  "name": "data-core",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/data/core/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/data/core",
+        "main": "libs/data/core/src/index.ts",
+        "tsConfig": "libs/data/core/tsconfig.lib.json",
+        "assets": ["libs/data/core/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/data/core/jest.config.ts"
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "check",
+      "configurations": {
+        "check": {
+          "command": "prettier --list-different \"{projectRoot}/**/*.{js,jsx,ts,tsx,css,scss,md,json}\""
+        },
+        "fix": {
+          "command": "prettier --write \"{projectRoot}/**/*.{js,jsx,ts,tsx,css,scss,md,json}\""
+        }
+      }
+    }
+  },
+  "tags": []
+}
