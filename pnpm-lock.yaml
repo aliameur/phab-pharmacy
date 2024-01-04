@@ -8,9 +8,18 @@ dependencies:
   '@hookform/resolvers':
     specifier: ^3.3.2
     version: 3.3.2(react-hook-form@7.49.2)
+  '@medusajs/inventory':
+    specifier: ^1.11.4
+    version: 1.11.4(ioredis@5.3.2)(pg@8.11.3)(ts-node@10.9.1)
   '@medusajs/medusa-js':
     specifier: ^6.1.4
     version: 6.1.4(@medusajs/medusa@1.19.0)
+  '@medusajs/stock-location':
+    specifier: ^1.11.3
+    version: 1.11.3(ioredis@5.3.2)(pg@8.11.3)(ts-node@10.9.1)
+  '@medusajs/types':
+    specifier: ^1.11.9
+    version: 1.11.9
   '@radix-ui/react-accordion':
     specifier: ^1.1.2
     version: 1.1.2(@types/react-dom@18.2.14)(@types/react@18.2.33)(react-dom@18.2.0)(react@18.2.0)
@@ -2944,6 +2953,44 @@ packages:
       - supports-color
       - tedious
 
+  /@medusajs/inventory@1.11.4(ioredis@5.3.2)(pg@8.11.3)(ts-node@10.9.1):
+    resolution: {integrity: sha512-eesZVXDRd7BUwhZqTYFRcNRkaoZ5EfGvlJztv0p21RpueFeesuSAPGwIYnNUhtm0uACEnOmPGsnrQnFw8l4oCw==}
+    dependencies:
+      '@medusajs/modules-sdk': 1.12.5
+      '@medusajs/utils': 1.11.2(pg@8.11.3)
+      awilix: 8.0.1
+      typeorm: 0.3.17(ioredis@5.3.2)(pg@8.11.3)(ts-node@10.9.1)
+    transitivePeerDependencies:
+      - '@google-cloud/spanner'
+      - '@mikro-orm/better-sqlite'
+      - '@mikro-orm/entity-generator'
+      - '@mikro-orm/mariadb'
+      - '@mikro-orm/migrations-mongodb'
+      - '@mikro-orm/mongodb'
+      - '@mikro-orm/mysql'
+      - '@mikro-orm/seeder'
+      - '@mikro-orm/sqlite'
+      - '@sap/hana-client'
+      - better-sqlite3
+      - hdb-pool
+      - ioredis
+      - mongodb
+      - mssql
+      - mysql
+      - mysql2
+      - oracledb
+      - pg
+      - pg-native
+      - pg-query-stream
+      - redis
+      - sql.js
+      - sqlite3
+      - supports-color
+      - tedious
+      - ts-node
+      - typeorm-aurora-data-api-driver
+    dev: false
+
   /@medusajs/link-modules@0.2.5(pg@8.11.3):
     resolution: {integrity: sha512-lY8qf1rQejvcRdbLVUpInbPQ015QMH0pJS+sVaTX59Z51E9Ik5nXfmAlSM0oNOdYsu4C4Ior4WvwJFO/rRsN/w==}
     engines: {node: '>=16'}
@@ -3183,6 +3230,44 @@ packages:
       - sqlite3
       - supports-color
       - tedious
+
+  /@medusajs/stock-location@1.11.3(ioredis@5.3.2)(pg@8.11.3)(ts-node@10.9.1):
+    resolution: {integrity: sha512-qzP8nOWpP4oB/X7/8TsQbFiWNwxH0kWgnFJPuRxjOg8NBNKqdoFePYfZNHL9ET086MlP3ii9FvUmE28y5wfmmA==}
+    dependencies:
+      '@medusajs/modules-sdk': 1.12.5
+      '@medusajs/utils': 1.11.2(pg@8.11.3)
+      awilix: 8.0.1
+      typeorm: 0.3.17(ioredis@5.3.2)(pg@8.11.3)(ts-node@10.9.1)
+    transitivePeerDependencies:
+      - '@google-cloud/spanner'
+      - '@mikro-orm/better-sqlite'
+      - '@mikro-orm/entity-generator'
+      - '@mikro-orm/mariadb'
+      - '@mikro-orm/migrations-mongodb'
+      - '@mikro-orm/mongodb'
+      - '@mikro-orm/mysql'
+      - '@mikro-orm/seeder'
+      - '@mikro-orm/sqlite'
+      - '@sap/hana-client'
+      - better-sqlite3
+      - hdb-pool
+      - ioredis
+      - mongodb
+      - mssql
+      - mysql
+      - mysql2
+      - oracledb
+      - pg
+      - pg-native
+      - pg-query-stream
+      - redis
+      - sql.js
+      - sqlite3
+      - supports-color
+      - tedious
+      - ts-node
+      - typeorm-aurora-data-api-driver
+    dev: false
 
   /@medusajs/types@1.11.9:
     resolution: {integrity: sha512-848jBTQeefQnvKY3t5OvR3onbfCes/xAGoECyjhn813BcniizN+q02hgv0gZVhB0EyWeJCYDoExz3Sx0ye4Zjg==}

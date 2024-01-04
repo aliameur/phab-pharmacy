@@ -55,6 +55,12 @@ const plugins = [
 ];
 
 const modules = {
+  inventoryService: {
+    resolve: "@medusajs/inventory",
+  },
+  stockLocationService: {
+    resolve: "@medusajs/stock-location",
+  },
   /*eventBus: {
     resolve: "@medusajs/event-bus-redis",
     options: {
