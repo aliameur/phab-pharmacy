@@ -15,6 +15,18 @@
       "options": {
         "jestConfig": "libs/data/react-native/jest.config.ts"
       }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "check",
+      "configurations": {
+        "check": {
+          "command": "prettier --list-different \"{projectRoot}/**/*.{js,jsx,ts,tsx,css,scss,md,json}\""
+        },
+        "fix": {
+          "command": "prettier --write \"{projectRoot}/**/*.{js,jsx,ts,tsx,css,scss,md,json}\""
+        }
+      }
     }
   }
 }
