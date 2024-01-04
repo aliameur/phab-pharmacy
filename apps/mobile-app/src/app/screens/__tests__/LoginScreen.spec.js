@@ -3,7 +3,7 @@ import LoginScreen from '../LoginScreen';
 import { fireEvent } from '@testing-library/react-native';
   
 describe('LoginScreen', () => {
-    
+
     it('renders the login screen', () => {
         const { getByText, getByPlaceholderText } = render(<LoginScreen />);
         
@@ -58,7 +58,6 @@ describe('LoginScreen', () => {
         
         expect(navigationMock.navigate).toHaveBeenCalledWith('Sign Up');
       });
-
 });
 
 

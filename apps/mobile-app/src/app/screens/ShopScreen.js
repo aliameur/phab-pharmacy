@@ -63,8 +63,9 @@ function ShopScreen({ navigation }) {
                             onChangeText={(text) => setSearchText(text)}
                             onSubmitEditing={() => searchSubmit()}
                             color={colours.TailWindColors.norway[800]}/>
-                            <TouchableOpacity style={{backgroundColor: colours.LogoColours.green, height: '35%', width: '15%', justifyContent: 'center', alignItems: 'center',}}
+                            <TouchableOpacity style={{backgroundColor: colours.LogoColours.green, height: '35%', width: '15%', justifyContent: 'center', alignItems: 'center'}}
                             onPress={() => searchSubmit()}
+                            testID = 'search-button'
                             >
                                 <FontAwesome 
                                 name='search'
@@ -85,10 +86,10 @@ function ShopScreen({ navigation }) {
                 keyExtractor={item => item.id}
             />
             {isMenuModalVisible ? (<UserMenuSheet onClose={hideUserSheet} visible={isMenuModalVisible} navigation={navigation}/>) : null}
-            <TouchableOpacity style={styles.chatButton} onPress={() => navigation.navigate('Chat')}>
+            <TouchableOpacity style={styles.chatButton} onPress={() => navigation.navigate('Chat')} testID='chat-button'>
                 <FontAwesome name="comments-o" size={35}/>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.cartButton} onPress={() => navigation.navigate('Cart')}>
+            <TouchableOpacity style={styles.cartButton} onPress={() => navigation.navigate('Cart')} testID='cart-button'>
                 <FontAwesome name="shopping-cart" size={35}/>
             </TouchableOpacity>
             <TouchableOpacity style={styles.cartLittleButton}>
