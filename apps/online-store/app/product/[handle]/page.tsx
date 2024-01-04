@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 
-import { getProductByHandle } from '@phab/data-next';
+import { getProductByHandle, getCategoryByHandle } from '@phab/data-next';
 
 import { AddToCart } from '../../../components/add-to-cart';
 import { DetailSection } from '../../../components/detail-section';
@@ -16,6 +16,8 @@ export default async function Page({ params: { handle } }: Props) {
   const product = await getProductByHandle(handle).catch((err) => {
     notFound();
   });
+  const collection = await getCategoryByHandle('pants')
+  console.log(typeof collection.created_at)
   return (
     <main className="px-16">
       <div className="flex pb-16 pt-12">

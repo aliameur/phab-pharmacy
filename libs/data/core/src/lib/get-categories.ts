@@ -1,14 +1,12 @@
 import { MedusaCategoryOperation, TRequestFn } from '../types';
+import { parseCategoryDateFields } from './utils';
 
 export const getCategories = (requestFn: TRequestFn) => async () => {
   const res = await requestFn<MedusaCategoryOperation>({
     path: '/product-categories',
   });
 
-  return res.body.product_categories.map((category) => ({
-    ...category,
-    // ensure date fields are parsed
-    created_at: new Date(category.created_at),
-    updated_at: new Date(category.updated_at),
-  }));
+  return res.body.product_categories.map((category) =>
+    parseCategoryDateFields(category),
+  );
 };
