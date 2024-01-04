@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button, FlatList, View, Text, StyleSheet, StatusBar, Dimensions, TextInput, TouchableOpacity } from 'react-native';
 import colours from '../colours';
-import Voice from '@react-native-voice/voice';
 import UserMenuSheet from '../components/UserMenuSheet';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { getCollections } from '../scripts/ShopScript';
-import { CarouselItem } from '../components/CarouselCard';
 import ShopCarousel from '../components/ShopCarousel'; 
 
 

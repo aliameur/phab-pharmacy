@@ -1,4 +1,3 @@
-import { useHeaderHeight } from '@react-navigation/elements';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
@@ -39,7 +38,8 @@ export default function App() {
         headerTitleAlign: 'center', 
         headerStyle: styles.headerStyle,
         headerTintColor: colours.LogoColours.green,
-      }}>
+      }}
+      initialRouteName="UserCheck">
         <Stack.Screen name='UserCheck' component={UserCheckScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
         <Stack.Screen 
@@ -52,7 +52,7 @@ export default function App() {
                 onPress={() => navigation.goBack()}
                 style={{ marginLeft: Dimensions.get('window').width*0.03, alignItems: 'center' }}
               >
-                <FontAwesome name="chevron-left" size={30} color={colours.green}/>
+                <FontAwesome name="chevron-left" size={30} color={colours.LogoColours.green}/>
               </TouchableOpacity>
             ),
             headerTintColor: colours.LogoColours.green
@@ -79,7 +79,7 @@ export default function App() {
                 onPress={() => navigation.goBack()}
                 style={{ marginLeft: Dimensions.get('window').width*0.03, alignItems: 'center' }}
               >
-                <FontAwesome name="chevron-left" size={30} color={colours.green}/>
+                <FontAwesome name="chevron-left" size={30} color={colours.LogoColours.green}/>
               </TouchableOpacity>
             ),
             headerTitle: () => (
@@ -100,7 +100,7 @@ export default function App() {
                 onPress={() => navigation.goBack()}
                 style={{ marginLeft: Dimensions.get('window').width*0.03, alignItems: 'center' }}
               >
-                <FontAwesome name="chevron-left" size={30} color={colours.green}/>
+                <FontAwesome name="chevron-left" size={30} color={colours.LogoColours.green}/>
               </TouchableOpacity>
             ),
             headerTitle: () => (

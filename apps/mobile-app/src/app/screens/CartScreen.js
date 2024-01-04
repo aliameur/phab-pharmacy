@@ -1,7 +1,6 @@
-import { Text, View, Image, Dimensions } from "react-native";
+import { FlatList, Text, View, Image, Dimensions } from "react-native";
 import { getCartItems } from "../scripts/CartScripts";
 import { useEffect, useState } from "react";
-import { FlatList } from "react-native-gesture-handler";
 import colours from "../colours";
 
 

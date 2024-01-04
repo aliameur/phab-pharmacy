@@ -5,7 +5,6 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import colours from '../colours';
 import ActionSheet from '../components/ActionSheet';
 import UserMenuSheet from '../components/UserMenuSheet';
-import { KeyboardAwareScrollVie, KeyboardAwareFlatList } from 'react-native-keyboard-aware-scroll-view';
 
 
 function ChatScreen({ navigation }) {
