@@ -24,7 +24,6 @@ describe('ShopScreen', () => {
   
     expect(searchInput.props.value).toBe('Test Product');
   });
-
   it('calls searchSubmit when the search button is pressed', () => {
     const navigationMock = {
       setOptions: jest.fn(),
