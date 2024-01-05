@@ -12,6 +12,14 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'https://phabservice-129311a14694.herokuapp.com/:path*',
+      },
+    ];
+  },
 };
 
 const plugins = [

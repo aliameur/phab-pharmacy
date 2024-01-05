@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://phabservice-129311a14694.herokuapp.com/account';
+const API_URL = '/api/account';
 
 const createAccount = (name: string) =>
   axios.post(`${API_URL}/createaccount`, { name });
