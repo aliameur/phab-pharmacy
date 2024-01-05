@@ -1,11 +1,12 @@
 import { notFound } from 'next/navigation';
 
+import { getProductByHandle } from '@phab/data-next';
+
 import { AddToCart } from '../../../components/add-to-cart';
 import { DetailSection } from '../../../components/detail-section';
 import { Gallery } from '../../../components/gallery';
 import { Rating } from '../../../components/rating';
 import { Review } from '../../../components/review';
-import { getProductByHandle } from '../../../lib/medusa';
 
 type Props = {
   params: { handle: string };
@@ -21,7 +22,9 @@ export default async function Page({ params: { handle } }: Props) {
         <Gallery className="sticky top-32 h-full w-1/2 pr-10" />
         <div className="flex w-1/2 flex-col gap-8 pl-10">
           <div className="flex flex-col gap-2 text-mineral-green-600">
-            <h2 className="font-merriweather text-3xl font-bold">{product.title}</h2>
+            <h2 className="font-merriweather text-3xl font-bold">
+              {product.title}
+            </h2>
             <h3 className="text-xl">{product.subtitle}</h3>
           </div>
           <Rating value={2.5} />
@@ -31,9 +34,7 @@ export default async function Page({ params: { handle } }: Props) {
             ))}
           </div>
           <div className="flex flex-col gap-4 text-sm text-mineral-green-600">
-            <p>
-              {product.description}
-            </p>
+            <p>{product.description}</p>
           </div>
           <AddToCart />
           <div className="flex flex-col gap-8 pt-8">

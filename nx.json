@@ -38,10 +38,7 @@
     }
   },
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
       "default",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
@@ -65,7 +62,8 @@
     "@nx/react": {
       "application": {
         "babel": true
-      }
+      },
+      "library": {}
     },
     "@nx/next": {
       "application": {
@@ -74,9 +72,7 @@
       }
     }
   },
-  "plugins": [
-    "@nxlv/python"
-  ],
+  "plugins": ["@nxlv/python"],
   "affected": {
     "defaultBase": "main"
   }
