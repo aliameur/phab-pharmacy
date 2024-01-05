@@ -1,14 +1,28 @@
 'use client';
 
 import { clsx } from 'clsx';
+import { AnimatePresence, Variants, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
 
 import { Logo } from '../logo';
 import { NavLink } from './link';
+import { SidebarWrapper } from './sidebar-wrapper';
 
 type TSidebar = {
   className?: string;
+};
+
+const listVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: '-50%',
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+  },
 };
 
 export const Sidebar = ({ className }: TSidebar) => {
@@ -25,48 +39,77 @@ export const Sidebar = ({ className }: TSidebar) => {
       >
         <Menu className="h-6 w-6 text-mineral-green-600" />
       </button>
-      {isOpen && (
-        <div className="fixed inset-0 z-10 bg-mineral-green-600 px-4 py-5">
-          <button
-            onClick={closeSidebar}
-            aria-label="Close navigation sidebar"
-            className="p-2"
+      <AnimatePresence>
+        {isOpen && (
+          <SidebarWrapper
+            side="left"
+            className="flex flex-col gap-4 bg-mineral-green-600 px-4 py-5"
           >
-            <X className="h-6 w-6 text-pampas-100" />
-          </button>
-          <div className="flex flex-col items-center gap-8">
-            <Logo />
-            <NavLink
+            <button
               onClick={closeSidebar}
-              className="text-pampas-100 *:bg-pampas-100"
-              href="/"
+              aria-label="Close navigation sidebar"
+              className="p-2"
             >
-              Cold and Flu
-            </NavLink>
-            <NavLink
-              onClick={closeSidebar}
-              className="text-pampas-100 *:bg-pampas-100"
-              href="/"
+              <X className="h-6 w-6 text-pampas-100" />
+            </button>
+            <motion.div
+              initial="hidden"
+              animate="show"
+              transition={{
+                staggerChildren: 0.2,
+                delayChildren: 0.2,
+              }}
+              className="flex flex-col items-center gap-8"
             >
-              Skin Care
-            </NavLink>
-            <NavLink
-              onClick={closeSidebar}
-              className="text-pampas-100 *:bg-pampas-100"
-              href="/"
-            >
-              Headaches and Pain Relief
-            </NavLink>
-            <NavLink
-              onClick={closeSidebar}
-              className="text-pampas-100 *:bg-pampas-100"
-              href="/"
-            >
-              All Products
-            </NavLink>
-          </div>
-        </div>
-      )}
+              <motion.div variants={listVariants}>
+                <Link
+                  onClick={closeSidebar}
+                  href="/"
+                  aria-label="Go to home page"
+                >
+                  <Logo />
+                </Link>
+              </motion.div>
+              <motion.div variants={listVariants}>
+                <NavLink
+                  onClick={closeSidebar}
+                  className="text-pampas-100 *:bg-pampas-100"
+                  href="/"
+                >
+                  Cold and Flu
+                </NavLink>
+              </motion.div>
+              <motion.div variants={listVariants}>
+                <NavLink
+                  onClick={closeSidebar}
+                  className="text-pampas-100 *:bg-pampas-100"
+                  href="/"
+                >
+                  Skin Care
+                </NavLink>
+              </motion.div>
+              <motion.div variants={listVariants}>
+                <NavLink
+                  onClick={closeSidebar}
+                  className="text-pampas-100 *:bg-pampas-100"
+                  href="/"
+                >
+                  Headaches and Pain Relief
+                </NavLink>
+              </motion.div>
+              <motion.div variants={listVariants}>
+                <NavLink
+                  onClick={closeSidebar}
+                  className="text-pampas-100 *:bg-pampas-100"
+                  href="/"
+                >
+                  All Products
+                </NavLink>
+              </motion.div>
+            </motion.div>
+          </SidebarWrapper>
+        )}
+      </AnimatePresence>
     </>
   );
 };
