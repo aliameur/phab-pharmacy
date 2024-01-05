@@ -12,6 +12,7 @@ import { SidebarWrapper } from './sidebar-wrapper';
 
 type TSidebar = {
   className?: string;
+  links: { name: string; href: string }[];
 };
 
 const listVariants: Variants = {
@@ -25,7 +26,7 @@ const listVariants: Variants = {
   },
 };
 
-export const Sidebar = ({ className }: TSidebar) => {
+export const Sidebar = ({ className, links }: TSidebar) => {
   const [isOpen, setIsOpen] = useState(false);
   const openSidebar = () => setIsOpen(true);
   const closeSidebar = () => setIsOpen(false);
@@ -114,6 +115,17 @@ export const Sidebar = ({ className }: TSidebar) => {
                   All Products
                 </NavLink>
               </motion.div>
+              {links.map(({ name, href }) => (
+                <motion.div variants={listVariants} key={name}>
+                  <NavLink
+                    onClick={closeSidebar}
+                    className="text-pampas-100 *:bg-pampas-100"
+                    href={href}
+                  >
+                    {name}
+                  </NavLink>
+                </motion.div>
+              ))}
             </motion.div>
           </SidebarWrapper>
         )}
