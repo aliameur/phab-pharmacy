@@ -1,4 +1,5 @@
 import { Search, ShoppingCart } from 'lucide-react';
+import Link from 'next/link';
 
 import { Logo } from '../logo';
 import { NavLink } from './link';
@@ -7,9 +8,11 @@ import { Sidebar } from './sidebar';
 export const Nav = () => {
   return (
     <nav className="relative flex h-20 w-full items-center justify-between px-4 sm:h-24 md:px-16">
-      <Sidebar className="sm:hidden"/>
+      <Sidebar className="sm:hidden" />
       <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-8 sm:static sm:translate-x-0 sm:translate-y-0">
-        <Logo />
+        <Link href="/">
+          <Logo />
+        </Link>
         <NavLink className="hidden lg:block" href="/">
           Cold and Flu
         </NavLink>

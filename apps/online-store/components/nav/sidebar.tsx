@@ -4,7 +4,7 @@ import { clsx } from 'clsx';
 import { AnimatePresence, Variants, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Logo } from '../logo';
 import { NavLink } from './link';
@@ -29,6 +29,14 @@ export const Sidebar = ({ className }: TSidebar) => {
   const [isOpen, setIsOpen] = useState(false);
   const openSidebar = () => setIsOpen(true);
   const closeSidebar = () => setIsOpen(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    } else {
+      document.body.style.overflow = 'auto'; // Allow scrolling
+    }
+  }, [isOpen]);
 
   return (
     <>
