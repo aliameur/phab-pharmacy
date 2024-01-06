@@ -5,7 +5,7 @@
   "projectType": "application",
   "targets": {
     "prepare": {
-      "command": "cd apps/backend && npm i",
+      "command": "cd apps/backend && yarn",
       "outputs": ["{projectRoot}/node_modules"],
       "cache": true,
       "inputs": ["{projectRoot}/package-lock.json"]
@@ -25,7 +25,7 @@
         },
         "production": {
           "commands": [
-            "nx run backend:buildT",
+            "nx run backend:build",
             "cd apps/backend && medusa start"
           ],
           "parallel": false
