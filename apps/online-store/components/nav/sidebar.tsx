@@ -79,42 +79,6 @@ export const Sidebar = ({ className, links }: TSidebar) => {
                   <Logo />
                 </Link>
               </motion.div>
-              <motion.div variants={listVariants}>
-                <NavLink
-                  onClick={closeSidebar}
-                  className="text-pampas-100 *:bg-pampas-100"
-                  href="/"
-                >
-                  Cold and Flu
-                </NavLink>
-              </motion.div>
-              <motion.div variants={listVariants}>
-                <NavLink
-                  onClick={closeSidebar}
-                  className="text-pampas-100 *:bg-pampas-100"
-                  href="/"
-                >
-                  Skin Care
-                </NavLink>
-              </motion.div>
-              <motion.div variants={listVariants}>
-                <NavLink
-                  onClick={closeSidebar}
-                  className="text-pampas-100 *:bg-pampas-100"
-                  href="/"
-                >
-                  Headaches and Pain Relief
-                </NavLink>
-              </motion.div>
-              <motion.div variants={listVariants}>
-                <NavLink
-                  onClick={closeSidebar}
-                  className="text-pampas-100 *:bg-pampas-100"
-                  href="/"
-                >
-                  All Products
-                </NavLink>
-              </motion.div>
               {links.map(({ name, href }) => (
                 <motion.div variants={listVariants} key={name}>
                   <NavLink
