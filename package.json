@@ -24,6 +24,7 @@
     "autoprefixer": "^10.4.16",
     "axios": "^1.6.2",
     "clsx": "^2.0.0",
+    "currency-symbol-map": "^5.1.0",
     "framer-motion": "^10.17.6",
     "lint-staged": "^15.2.0",
     "lucide-react": "^0.300.0",
