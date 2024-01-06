@@ -8,7 +8,10 @@
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
+    "@medusajs/inventory": "^1.11.4",
     "@medusajs/medusa-js": "^6.1.4",
+    "@medusajs/stock-location": "^1.11.3",
+    "@medusajs/types": "^1.11.9",
     "@radix-ui/react-accordion": "^1.1.2",
     "@react-native-clipboard/clipboard": "^1.13.2",
     "@react-native-masked-view/masked-view": "^0.3.1",
