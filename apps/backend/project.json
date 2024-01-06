@@ -5,7 +5,7 @@
   "projectType": "application",
   "targets": {
     "prepare": {
-      "command": "cd apps/backend && yarn",
+      "command": "cd apps/backend && npm i",
       "outputs": ["{projectRoot}/node_modules"],
       "cache": true,
       "inputs": ["{projectRoot}/package-lock.json"]
