@@ -103,4 +103,4 @@ Run `nx connect` to benefit from remote caching and task distribution.
 
 ## 💎 Contribute
 
-> TODO
+Contributions are welcome! For detailed instructions on how to contribute, please refer to our [Contribution Guidelines](CONTRIBUTING.md).
