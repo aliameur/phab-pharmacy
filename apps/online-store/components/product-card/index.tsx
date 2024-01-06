@@ -1,3 +1,4 @@
+import getSymbolFromCurrency from 'currency-symbol-map';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -8,7 +9,7 @@ type TProductCard = {
   src: string;
   alt: string;
   title: string;
-  price: number;
+  price: { amount?: number; currencyCode?: string };
 };
 
 export const ProductCard = ({ href, src, alt, title, price }: TProductCard) => {
@@ -21,7 +22,11 @@ export const ProductCard = ({ href, src, alt, title, price }: TProductCard) => {
       </div>
       <div className="relative z-30 h-16 text-center">
         <h4 className="text-lg font-bold text-mineral-green-600">{title}</h4>
-        <p className="text-mineral-green-600">£ {price}</p>
+        {price.amount && price.currencyCode ? (
+          <p className="text-mineral-green-600">
+            {getSymbolFromCurrency(price.currencyCode)} {price.amount / 100}
+          </p>
+        ) : null}
       </div>
     </Link>
   );
