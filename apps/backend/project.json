@@ -43,10 +43,7 @@
           "command": "docker-compose down"
         },
         "reset": {
-          "commands": [
-            "docker-compose down",
-            "docker-compose up -d"
-          ],
+          "commands": ["docker-compose down", "docker-compose up -d"],
           "parallel": false
         }
       }
@@ -62,6 +59,14 @@
           "command": "prettier --write \"{projectRoot}/**/*.{js,jsx,ts,tsx,css,scss,md,json}\""
         }
       }
+    },
+    "build-railway": {
+      "executor": "nx:run-commands",
+      "commands": [
+        "cd apps/backend && tsc -p tsconfig.server.json && medusa-admin build",
+        "cd apps/backend && medusa start"
+      ],
+      "parallel": false
     }
   },
   "tags": []
