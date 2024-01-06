@@ -61,7 +61,11 @@
       }
     },
     "build-railway": {
-      "command": "cd apps/backend && tsc -p tsconfig.server.json && medusa-admin build"
+      "executor": "nx:run-commands",
+      "commands": [
+        "nx prepare backend",
+        "cd apps/backend && tsc -p tsconfig.server.json && medusa-admin build"
+      ]
     },
     "start-railway": {
       "command": "cd apps/backend && medusa start"
