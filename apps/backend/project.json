@@ -5,25 +5,17 @@
   "projectType": "application",
   "targets": {
     "serve": {
-      "executor": "nx:run-commands",
-      "dependsOn": [
-        "migrate"
-      ],
+      "executor": "@nx/js:node",
       "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "backend:builds"
+      },
       "configurations": {
         "development": {
-          "commands": [
-            "medusa develop"
-          ],
-          "cwd": "{projectRoot}",
-          "parallel": false
+          "buildTarget": "backend:build:development"
         },
         "production": {
-          "commands": [
-            "nx run backend:buildT",
-            "cd apps/backend && medusa start"
-          ],
-          "parallel": false
+          "buildTarget": "backend:build:production"
         }
       }
     },
@@ -68,11 +60,15 @@
         "outputPath": "dist/apps/backend",
         "main": "apps/backend/index.js",
         "tsConfig": "apps/backend/tsconfig.app.json",
-        "type": "commonjs",
         "assets": [
           "apps/backend/src/assets",
           {
             "glob": "medusa-config.js",
+            "input": "apps/backend",
+            "output": "/"
+          },
+          {
+            "glob": "index.js",
             "input": "apps/backend",
             "output": "/"
           }
@@ -104,16 +100,10 @@
     },
     "start": {
       "executor": "nx:run-commands",
-      "dependsOn": [
-        "build"
-      ],
       "defaultConfiguration": "production",
       "configurations": {
         "production": {
-          "command": "medusa start",
-          "options": {
-            "cwd": "dist/apps/backend"
-          }
+          "command": "cd dist/apps/backend && medusa start"
         }
       }
     },
@@ -121,6 +111,63 @@
       "command": "medusa seed -f data/seed.json",
       "options": {
         "cwd": "{projectRoot}"
+      }
+    },
+    "serve-app": {
+      "executor": "@nx/js:node",
+      "options": {
+        "buildTarget": "backend:build-app"
+      }
+    },
+    "build-app": {
+      "executor": "@nx/esbuild:esbuild",
+      "options": {
+        "main": "apps/backend/index.js",
+        "generatePackageJson": true,
+        "additionalEntryPoints": [
+          "apps/backend/medusa-config.js"
+        ],
+        "format": [
+          "cjs"
+        ],
+        "tsConfig": "apps/backend/tsconfig.app.json",
+        "outputPath": "dist/apps/backend",
+        "assets": [
+          "apps/backend/src/assets",
+          {
+            "glob": "medusa-config.js",
+            "input": "apps/backend",
+            "output": "../"
+          }
+        ]
+      }
+    },
+    "builds": {
+      "executor": "@nx/js:tsc",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/api-service/dist",
+        "main": "apps/api-service/src/index.ts",
+        "tsConfig": "apps/api-service/tsconfig.app.json",
+        "assets": [
+          "apps/api-service/src/assets",
+          {
+            "glob": "medusa-config.js",
+            "input": "apps/api-service",
+            "output": "../"
+          }
+        ],
+        "rootDir": "apps/api-service/src",
+        "generatePackageJson": true
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "generateLockfile": true
+        }
       }
     }
   },

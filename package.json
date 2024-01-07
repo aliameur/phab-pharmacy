@@ -8,6 +8,7 @@
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
+    "@iarna/toml": "^2.2.5",
     "@medusajs/admin": "^7.1.9",
     "@medusajs/cache-inmemory": "^1.8.10",
     "@medusajs/cache-redis": "^1.9.0",
@@ -82,11 +83,13 @@
     "@medusajs/medusa-cli": "^1.3.22",
     "@nx/cypress": "17.2.7",
     "@nx/detox": "17.2.7",
+    "@nx/esbuild": "17.2.8",
     "@nx/eslint": "17.2.7",
     "@nx/eslint-plugin": "17.2.7",
-    "@nx/jest": "17.2.7",
-    "@nx/js": "17.2.7",
+    "@nx/jest": "17.2.8",
+    "@nx/js": "17.2.8",
     "@nx/next": "^17.2.7",
+    "@nx/node": "^17.2.8",
     "@nx/react": "17.2.7",
     "@nx/react-native": "^17.2.7",
     "@nx/workspace": "17.2.7",
@@ -116,6 +119,7 @@
     "cypress": "^13.0.0",
     "detox": "^20.11.1",
     "eas-cli": "~5.2.0",
+    "esbuild": "^0.19.2",
     "eslint": "~8.48.0",
     "eslint-config-next": "13.4.4",
     "eslint-config-prettier": "^9.0.0",
@@ -149,9 +153,5 @@
     "ts-node": "10.9.1",
     "tsconfig-paths": "^4.2.0",
     "typescript": "~5.2.2"
-  },
-  "packageManager": "pnpm@8.12.1",
-  "engines": {
-    "node": "20.x"
   }
 }

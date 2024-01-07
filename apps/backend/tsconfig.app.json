@@ -1,13 +1,16 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs"
+    "outDir": "../../dist/out-tsc",
+    "module": "commonjs",
+    "types": [
+      "node"
+    ]
   },
   "include": [
-    "src/"
+    "src/**/*.ts"
   ],
   "exclude": [
-    "src/admin",
     "**/__tests__",
     "**/__fixtures__",
     "node_modules",
