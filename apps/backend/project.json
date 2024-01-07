@@ -63,18 +63,32 @@
     "start-railway": {
       "executor": "nx:run-commands",
       "defaultConfiguration": "production",
+      "dependsOn": ["build-railway"],
       "configurations": {
         "production": {
           "commands": [
-            "nx prepare backend",
-            "cd apps/backend && tsc -p tsconfig.server.json",
-            "cd apps/backend && npx medusa-admin build",
             "cd apps/backend && medusa start"
           ],
           "parallel": false
         }
       }
-    }
+    },
+    "build-railway": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "production",
+      "outputs": ["{projectRoot}/dist", "{projectRoot}/build"],
+      "dependsOn": ["prepare"],
+      "cache": true,
+      "configurations": {
+        "production": {
+          "commands": [
+            "cd apps/backend && tsc -p tsconfig.server.json",
+            "cd apps/backend && npx medusa-admin build"
+          ],
+          "parallel": false
+        }
+      }
+    },
   },
   "tags": []
 }
