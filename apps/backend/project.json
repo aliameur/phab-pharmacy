@@ -103,12 +103,18 @@
       }
     },
     "start": {
+      "executor": "nx:run-commands",
       "dependsOn": [
         "build"
       ],
-      "command": "medusa start",
-      "options": {
-        "cwd": "dist/apps/backend"
+      "defaultConfiguration": "production",
+      "configurations": {
+        "production": {
+          "command": "medusa start",
+          "options": {
+            "cwd": "dist/apps/backend"
+          }
+        }
       }
     },
     "seed": {
