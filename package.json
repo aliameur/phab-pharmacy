@@ -28,6 +28,7 @@
     "lint-staged": "^15.2.0",
     "lucide-react": "^0.300.0",
     "next": "14.0.4",
+    "patch-package": "^8.0.0",
     "postcss": "^8.4.32",
     "react": "18.2.0",
     "react-dom": "18.2.0",
