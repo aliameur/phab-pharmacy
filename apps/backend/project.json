@@ -43,10 +43,7 @@
           "command": "docker-compose down"
         },
         "reset": {
-          "commands": [
-            "docker-compose down",
-            "docker-compose up -d"
-          ],
+          "commands": ["docker-compose down", "docker-compose up -d"],
           "parallel": false
         }
       }
@@ -65,12 +62,17 @@
     },
     "start-railway": {
       "executor": "nx:run-commands",
-      "commands": [
-        "cd apps/backend && tsc -p tsconfig.server.json",
-        "cd apps/backend && npx medusa-admin build",
-        "cd apps/backend && medusa start"
-      ],
-      "parallel": false
+      "defaultConfiguration": "production",
+      "configurations": {
+        "production": {
+          "commands": [
+          "cd apps/backend && tsc -p tsconfig.server.json",
+          "cd apps/backend && npx medusa-admin build",
+          "cd apps/backend && medusa start"
+        ],
+        "parallel": false
+        }
+      }
     }
   },
   "tags": []
