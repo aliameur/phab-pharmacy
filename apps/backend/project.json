@@ -81,7 +81,7 @@
       "cache": true,
       "configurations": {
         "production": {
-          "commands": ["babel src -d dist --extensions \".ts,.js\""],
+          "commands": ["cd apps/backend && npx babel src -d dist --extensions \".ts,.js\""],
           "parallel": false
         }
       }
