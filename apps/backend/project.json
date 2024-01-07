@@ -16,7 +16,9 @@
     },
     "serve": {
       "executor": "nx:run-commands",
-      "dependsOn": ["migrate"],
+      "dependsOn": [
+        "migrate"
+      ],
       "defaultConfiguration": "development",
       "configurations": {
         "development": {
@@ -114,10 +116,18 @@
       }
     },
     "start": {
-      "dependsOn": ["build"],
+      "dependsOn": [
+        "build"
+      ],
       "command": "medusa start",
       "options": {
         "cwd": "dist/apps/backend"
+      }
+    },
+    "seed": {
+      "command": "medusa seed -f data/seed.json",
+      "options": {
+        "cwd": "{projectRoot}"
       }
     }
   },
