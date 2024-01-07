@@ -1,1 +1,1 @@
-pnpm dlx nx start backend
+web yarn run nx start backend
