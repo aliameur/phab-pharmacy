@@ -66,11 +66,12 @@
       "configurations": {
         "production": {
           "commands": [
-          "cd apps/backend && tsc -p tsconfig.server.json",
-          "cd apps/backend && npx medusa-admin build",
-          "cd apps/backend && medusa start"
-        ],
-        "parallel": false
+            "nx prepare backend",
+            "cd apps/backend && tsc -p tsconfig.server.json",
+            "cd apps/backend && npx medusa-admin build",
+            "cd apps/backend && medusa start"
+          ],
+          "parallel": false
         }
       }
     }
