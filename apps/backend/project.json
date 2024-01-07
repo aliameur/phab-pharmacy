@@ -4,16 +4,6 @@
   "sourceRoot": "apps/backend/src",
   "projectType": "application",
   "targets": {
-    "prepare": {
-      "command": "cd apps/backend && npm i",
-      "outputs": [
-        "{projectRoot}/node_modules"
-      ],
-      "cache": true,
-      "inputs": [
-        "{projectRoot}/package-lock.json"
-      ]
-    },
     "serve": {
       "executor": "nx:run-commands",
       "dependsOn": [
@@ -98,11 +88,8 @@
       }
     },
     "dev": {
-      "executor": "nx:run-commands",
+      "command": "medusa develop",
       "options": {
-        "commands": [
-          "medusa develop"
-        ],
         "cwd": "{projectRoot}"
       }
     },
