@@ -49,7 +49,7 @@ export default function Index() {
     };
 
     initialize();
-  }, []);
+  }, [createAccountsIfNeeded]);
 
   return (
     <div>
