@@ -140,7 +140,7 @@ apps/mobile-app-e2e/artifacts
 
 .pnp.*
 .yarn/*
-#!.yarn/cache
+!.yarn/cache
 !.yarn/releases
 !.yarn/plugins
 !.yarn/sdks
