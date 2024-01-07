@@ -67,7 +67,7 @@
       "configurations": {
         "production": {
           "commands": [
-            "cd apps/backend && medusa start"
+            "cd apps/backend && medusa migrations run && medusa start"
           ],
           "parallel": false
         }
@@ -81,14 +81,11 @@
       "cache": true,
       "configurations": {
         "production": {
-          "commands": [
-            "cd apps/backend && tsc -p tsconfig.server.json",
-            "cd apps/backend && npx medusa-admin build"
-          ],
+          "commands": ["babel src -d dist --extensions \".ts,.js\""],
           "parallel": false
         }
       }
-    },
+    }
   },
   "tags": []
 }
