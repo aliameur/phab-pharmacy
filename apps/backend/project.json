@@ -6,21 +6,24 @@
   "targets": {
     "prepare": {
       "command": "cd apps/backend && npm i",
-      "outputs": ["{projectRoot}/node_modules"],
+      "outputs": [
+        "{projectRoot}/node_modules"
+      ],
       "cache": true,
-      "inputs": ["{projectRoot}/package-lock.json"]
+      "inputs": [
+        "{projectRoot}/package-lock.json"
+      ]
     },
     "serve": {
       "executor": "nx:run-commands",
+      "dependsOn": ["migrate"],
       "defaultConfiguration": "development",
-      "dependsOn": ["prepare"],
       "configurations": {
         "development": {
           "commands": [
-            "nx run backend:docker:reset",
-            "nx run backend:build:server",
-            "cd apps/backend && medusa develop"
+            "medusa develop"
           ],
+          "cwd": "{projectRoot}",
           "parallel": false
         },
         "production": {
@@ -61,6 +64,60 @@
         "fix": {
           "command": "prettier --write \"{projectRoot}/**/*.{js,jsx,ts,tsx,css,scss,md,json}\""
         }
+      }
+    },
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/backend",
+        "main": "apps/backend/index.js",
+        "tsConfig": "apps/backend/tsconfig.app.json",
+        "type": "commonjs",
+        "assets": [
+          "apps/backend/src/assets",
+          {
+            "glob": "medusa-config.js",
+            "input": "apps/backend",
+            "output": "/"
+          }
+        ],
+        "rootDir": "apps/backend/src",
+        "generatePackageJson": true
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "generateLockfile": true
+        }
+      }
+    },
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "medusa develop"
+        ],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "migrate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "medusa migrations run"
+        ],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "start": {
+      "dependsOn": ["build"],
+      "command": "medusa start",
+      "options": {
+        "cwd": "dist/apps/backend"
       }
     }
   },

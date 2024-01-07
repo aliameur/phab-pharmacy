@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "commonjs"
+  },
+  "include": [
+    "src/"
+  ],
+  "exclude": [
+    "src/admin",
+    "**/__tests__",
+    "**/__fixtures__",
+    "node_modules",
+    "build",
+    "**/*.spec.js"
+  ]
+}
