@@ -4,12 +4,13 @@ on:
   pull_request:
 
 jobs:
-  deploy-heroku:
+  main:
     runs-on: ubuntu-latest
     steps:
       - uses: DerYeger/yarn-setup-action@master
         with:
           node-version: 18
+      - run: echo "Hello world"
       - uses: nrwl/nx-set-shas@v3
       - run: git branch --track main origin/dev
       - run: yarn nx run backend:format

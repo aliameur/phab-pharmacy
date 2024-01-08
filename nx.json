@@ -97,5 +97,13 @@
   },
   "cli": {
     "packageManager": "yarn"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx-cloud",
+      "options": {
+        "accessToken": "MzYwZDk2MGQtMWQ5Ni00MmIyLWJlNmYtOTQxNzQ0NDFmMWRifHJlYWQtd3JpdGU="
+      }
+    }
   }
 }
