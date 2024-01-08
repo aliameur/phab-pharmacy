@@ -2,29 +2,32 @@ name: Deploy Backend to Heroku 🚀
 on: [ pull_request, push ]
 
 jobs:
-  prepare:
+  deploy:
     name: Prepare
     runs-on: ubuntu-latest
     steps:
-      - run : yarn -v
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4.0.1
+        with:
+          node-version: 18
+      - run: npm i -g yarn
+      - name: Restore cached dependencies
+        uses: actions/cache/restore@v3
+        with:
+          path: |
+            node_modules
+            ~/.cache
+          key: dependencies-${{ hashFiles('yarn.lock') }}
+      - run: yarn install --immutable
+      - name: Cache dependencies
+        uses: actions/cache/save@v3
+        with:
+          path: |
+            node_modules
+            ~/.cache
+          key: dependencies-${{ hashFiles('yarn.lock') }}
 
-  main:
-    name: Main Job
-    runs-on: ubuntu-latest
-    needs: prepare
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/yarn-setup
-      - run: echo "Hello world"
-      - run: yarn nx build backend
       - run: yarn nx run backend:format
-      - run: yarn nx lint backend
+      - run: yarn nx-cloud record -- echo "TODO lint"
       - run: yarn nx-cloud record -- echo "TODO test"
-  deploy:
-    name: Deploy 🚀
-    runs-on: ubuntu-latest
-    needs: main
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/yarn-setup
-      - run: echo "TODO Deploy to heroku"
+      - run: yarn nx build backend
