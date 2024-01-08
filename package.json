@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "prepare": "husky install",
     "heroku-postbuild": "nx build $PROJECT_NAME --prod"
   },
   "private": true,
