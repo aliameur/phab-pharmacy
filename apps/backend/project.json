@@ -103,7 +103,7 @@
       "defaultConfiguration": "production",
       "configurations": {
         "production": {
-          "command": "cd dist/apps/backend && medusa start"
+          "command": "cd dist/apps/backend && medusa migrations run && medusa start"
         }
       }
     },
