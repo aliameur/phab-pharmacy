@@ -21,9 +21,7 @@
     },
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/apps/backend",
@@ -62,9 +60,7 @@
     "migrate": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          "medusa migrations run"
-        ],
+        "commands": ["medusa migrations run"],
         "cwd": "{projectRoot}"
       }
     },
@@ -97,10 +93,7 @@
           "command": "docker-compose down"
         },
         "reset": {
-          "commands": [
-            "docker-compose down",
-            "docker-compose up -d"
-          ],
+          "commands": ["docker-compose down", "docker-compose up -d"],
           "parallel": false
         }
       }

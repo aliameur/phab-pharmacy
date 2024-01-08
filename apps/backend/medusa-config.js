@@ -18,9 +18,8 @@ switch (process.env.NODE_ENV) {
 }
 
 try {
-  dotenv.config({path: process.cwd() + '/' + ENV_FILE_NAME});
-} catch (e) {
-}
+  dotenv.config({ path: process.cwd() + '/' + ENV_FILE_NAME });
+} catch (e) {}
 
 // CORS when consuming Medusa from admin
 const ADMIN_CORS =
@@ -47,23 +46,29 @@ const plugins = [
 
 const modules = {
   inventoryService: {
-    resolve: "@medusajs/inventory",
+    resolve: '@medusajs/inventory',
   },
   stockLocationService: {
-    resolve: "@medusajs/stock-location",
+    resolve: '@medusajs/stock-location',
   },
-  eventBus: process.env.NODE_ENV !== 'development' ? {
-    resolve: "@medusajs/event-bus-redis",
-    options: {
-      redisUrl: REDIS_URL
-    }
-  } : undefined,
-  cacheService: process.env.NODE_ENV !== 'development' ? {
-    resolve: "@medusajs/cache-redis",
-    options: {
-      redisUrl: REDIS_URL
-    }
-  } : undefined,
+  eventBus:
+    process.env.NODE_ENV !== 'development'
+      ? {
+          resolve: '@medusajs/event-bus-redis',
+          options: {
+            redisUrl: REDIS_URL,
+          },
+        }
+      : undefined,
+  cacheService:
+    process.env.NODE_ENV !== 'development'
+      ? {
+          resolve: '@medusajs/cache-redis',
+          options: {
+            redisUrl: REDIS_URL,
+          },
+        }
+      : undefined,
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule['projectConfig']} */
@@ -74,7 +79,10 @@ const projectConfig = {
   database_url: DATABASE_URL,
   admin_cors: ADMIN_CORS,
   redis_url: process.env.NODE_ENV !== 'development' ? REDIS_URL : undefined,
-  database_extra: process.env.NODE_ENV !== 'development' ? {ssl: {rejectUnauthorized: false}} : {},
+  database_extra:
+    process.env.NODE_ENV !== 'development'
+      ? { ssl: { rejectUnauthorized: false } }
+      : {},
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule} */
