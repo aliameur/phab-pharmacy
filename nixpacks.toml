@@ -8,4 +8,4 @@ cmds = ['npm install -g corepack && corepack enable', 'yarn install --frozen-loc
 cmd = 'yarn nx run backend:build:production'
 
 [start]
-cmd = 'yarn nx run backend:build:start'
+cmd = 'yarn nx run backend:start:production'
