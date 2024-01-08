@@ -8,7 +8,6 @@
     "serve": "nx start backend",
     "heroku-postbuild": "nx migrate backend",
     "build": "nx build backend"
-
   },
   "private": true,
   "dependencies": {
