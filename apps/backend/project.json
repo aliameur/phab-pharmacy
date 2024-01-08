@@ -22,7 +22,7 @@
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": [
-        "{options.outputFile}"
+        "{options.outputPath}"
       ],
       "defaultConfiguration": "production",
       "options": {
@@ -31,16 +31,8 @@
         "tsConfig": "apps/backend/tsconfig.app.json",
         "assets": [
           "apps/backend/src/assets",
-          {
-            "glob": "medusa-config.js",
-            "input": "apps/backend",
-            "output": "/"
-          },
-          {
-            "glob": "index.js",
-            "input": "apps/backend",
-            "output": "/"
-          }
+          "apps/backend/medusa-config.js",
+          "apps/backend/index.js"
         ],
         "rootDir": "apps/backend/src",
         "generatePackageJson": true
