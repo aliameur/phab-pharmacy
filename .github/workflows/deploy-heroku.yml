@@ -7,14 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Yarn Setup
-        uses: ./.github/actions/yarn-setup.yml
+        uses: ./.github/actions/yarn-setup
 
   main:
     name: Main Job
     runs-on: ubuntu-latest
     needs: prepare
     steps:
-      - uses: ./.github/actions/setup-yarn.yml
+      - uses: ./.github/actions/yarn-setup
       - run: echo "Hello world"
       - run: yarn nx build backend
       - run: yarn nx run backend:format
@@ -25,5 +25,5 @@ jobs:
     runs-on: ubuntu-latest
     needs: main
     steps:
-      - uses: ./.github/actions/setup-yarn.yml
+      - uses: ./.github/actions/yarn-setup
       - run: echo "TODO Deploy to heroku"
