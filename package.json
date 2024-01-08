@@ -154,6 +154,6 @@
   },
   "packageManager": "yarn@4.0.2",
   "engines": {
-    "node": "16.x"
+    "node": "20.x"
   }
 }
