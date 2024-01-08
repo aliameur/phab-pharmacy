@@ -18,8 +18,9 @@ switch (process.env.NODE_ENV) {
 }
 
 try {
-  dotenv.config({ path: process.cwd() + '/' + ENV_FILE_NAME });
-} catch (e) {}
+  dotenv.config({path: process.cwd() + '/' + ENV_FILE_NAME});
+} catch (e) {
+}
 
 // CORS when consuming Medusa from admin
 const ADMIN_CORS =
@@ -28,8 +29,14 @@ const ADMIN_CORS =
 // CORS to avoid issues when consuming Medusa from a client
 const STORE_CORS = process.env.STORE_CORS || 'http://localhost:8000';
 
+const DB_USERNAME = process.env.DB_USERNAME
+const DB_PASSWORD = process.env.DB_PASSWORD
+const DB_HOST = process.env.DB_HOST
+const DB_PORT = process.env.DB_PORT
+const DB_DATABASE = process.env.DB_DATABASE
+
 const DATABASE_URL =
-  process.env.DATABASE_URL || 'postgres://localhost/medusa-starter-default';
+  `postgres://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}`
 
 const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379';
 
@@ -51,18 +58,18 @@ const modules = {
   stockLocationService: {
     resolve: "@medusajs/stock-location",
   },
-  /*eventBus: {
+  eventBus: process.env.NODEE_ENV !== 'development' ? {
     resolve: "@medusajs/event-bus-redis",
     options: {
       redisUrl: REDIS_URL
     }
-  },
-  cacheService: {
+  } : undefined,
+  cacheService: process.env.NODEE_ENV !== 'development' ? {
     resolve: "@medusajs/cache-redis",
     options: {
       redisUrl: REDIS_URL
     }
-  },*/
+  } : undefined,
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule['projectConfig']} */
@@ -72,8 +79,9 @@ const projectConfig = {
   store_cors: STORE_CORS,
   database_url: DATABASE_URL,
   admin_cors: ADMIN_CORS,
-  // Uncomment the following lines to enable REDIS
-  //redis_url: REDIS_URL
+
+  redis_url: process.env.NODEE_ENV !== 'development' ? REDIS_URL : undefined,
+  database_extra: process.env.NODEE_ENV !== 'development' ? {ssl: {rejectUnauthorized: false}} : undefined,
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule} */
