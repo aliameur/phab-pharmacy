@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Yarn Setup
-        uses: ./.github/actions/yarn-setup
+        uses: ./.github/actions/yarn-setup.yml
 
   main:
     name: Main Job
