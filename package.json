@@ -3,8 +3,12 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "prepare": "husky install",
-    "start": "nx start backend"
+    "prepare": "nx build backend",
+    "start": "nx start backend",
+    "serve": "nx start backend",
+    "heroku-postbuild": "nx migrate backend",
+    "build": "nx build backend"
+
   },
   "private": true,
   "dependencies": {
