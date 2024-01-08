@@ -5006,7 +5006,7 @@ __metadata:
     metro-react-native-babel-transformer: 0.76.8
     metro-resolver: 0.76.8
     next: 14.0.4
-    nx: latest
+    nx: ^17.2.8
     nx-ignore: ^17.2.2
     postcss: ^8.4.32
     prettier: ^3.1.1
@@ -18109,7 +18109,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nx@npm:17.2.8, nx@npm:latest":
+"nx@npm:17.2.8, nx@npm:^17.2.8":
   version: 17.2.8
   resolution: "nx@npm:17.2.8"
   dependencies:
