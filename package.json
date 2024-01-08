@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "heroku-postbuild": "nx build $PROJECT_NAME --prod --skip-nx-cache"
+    "heroku-postbuild": "nx build $PROJECT_NAME --prod"
   },
   "private": true,
   "dependencies": {
