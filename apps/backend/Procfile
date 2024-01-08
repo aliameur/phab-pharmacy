@@ -1,1 +1,1 @@
-web: cd dist/apps/backend && medusa start
+web: cd dist/apps/backend && yarn medusa start
