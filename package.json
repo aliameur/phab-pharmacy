@@ -157,7 +157,7 @@
     "tsconfig-paths": "^4.2.0",
     "typescript": "~5.2.2"
   },
-  "packageManager": "yarn@4.0.2",
+  "packageManager": "yarn@3.6.4",
   "engines": {
     "node": "20.x"
   }
