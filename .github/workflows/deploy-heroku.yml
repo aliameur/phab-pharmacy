@@ -1,0 +1,25 @@
+name: Deploy Backend to Heroku 🚀
+on:
+  push:
+  pull_request:
+
+jobs:
+  prepare:
+    name: Prepare
+    runs-on: ubuntu-latest
+    steps:
+      - uses: DerYeger/yarn-setup-action@master
+        with:
+          node-version: 16
+  track-nx:
+    name: Track NX
+    runs-on: ubuntu-latest
+    steps:
+      - uses: nrwl/nx-set-shas@v3
+      # This line is needed for nx affected to work when CI is running on a PR
+      - run: git branch --track main origin/dev
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - run: yarn nx run backend:format
+      - run: yarn nx-cloud -- echo "TODO run lint command here"
