@@ -4557,7 +4557,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/react@npm:17.2.8":
+"@nx/react@npm:17.2.8, @nx/react@npm:latest":
   version: 17.2.8
   resolution: "@nx/react@npm:17.2.8"
   dependencies:
@@ -4929,7 +4929,7 @@ __metadata:
     "@nx/js": 17.2.8
     "@nx/next": ^17.2.7
     "@nx/node": ^17.2.8
-    "@nx/react": 17.2.7
+    "@nx/react": latest
     "@nx/react-native": ^17.2.7
     "@nx/workspace": 17.2.7
     "@nxlv/python": ^17.0.0
@@ -4954,7 +4954,6 @@ __metadata:
     "@testing-library/react": 14.0.0
     "@testing-library/react-native": ~12.3.0
     "@trivago/prettier-plugin-sort-imports": ^4.3.0
-    "@trumbitta/nx-plugin-unused-deps": ^1.12.1
     "@types/express": ^4.17.21
     "@types/jest": ^29.5.11
     "@types/node": 18.16.9
@@ -4972,7 +4971,7 @@ __metadata:
     cors: ^2.8.5
     currency-symbol-map: ^5.1.0
     cypress: ^13.0.0
-    detox: ^20.11.1
+    detox: ^20.14.8
     dotenv: ^16.3.1
     eas-cli: ~5.2.0
     esbuild: ^0.19.2
@@ -4993,6 +4992,7 @@ __metadata:
     jest-environment-node: ^29.4.1
     jest-react-native: 18.0.0
     lint-staged: ^15.2.0
+    lodash: ^4.17.21
     lucide-react: ^0.300.0
     medusa-fulfillment-manual: ^1.1.38
     medusa-interfaces: ^1.3.7
@@ -5006,12 +5006,13 @@ __metadata:
     metro-react-native-babel-transformer: 0.76.8
     metro-resolver: 0.76.8
     next: 14.0.4
-    nx: 17.2.7
+    nx: latest
     nx-ignore: ^17.2.2
     postcss: ^8.4.32
     prettier: ^3.1.1
     prettier-plugin-tailwindcss: ^0.5.9
     prism-react-renderer: ^2.3.1
+    provide: ^0.1.3
     react: 18.2.0
     react-dom: 18.2.0
     react-hook-form: ^7.49.2
@@ -6459,15 +6460,6 @@ __metadata:
     "@vue/compiler-sfc":
       optional: true
   checksum: 22bb311ca24f09eef25915a66727e7be113b703f196f6ea0589dc9730b11a6f1e5e4bcc468213101d138b570d310792c83abb8d9487c53f9e597942fea052b6e
-  languageName: node
-  linkType: hard
-
-"@trumbitta/nx-plugin-unused-deps@npm:^1.12.1":
-  version: 1.12.1
-  resolution: "@trumbitta/nx-plugin-unused-deps@npm:1.12.1"
-  peerDependencies:
-    "@nrwl/workspace": ">=13.0.0"
-  checksum: ab83cfae2034c0fbb8e516607c6c1610a2d48c47f0d56a7092d5ee386078d720c9c6713414413db4c4fdd0faa03934751390ed74fcef1a525f52ad6567d713b6
   languageName: node
   linkType: hard
 
@@ -10748,7 +10740,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"detox@npm:^20.11.1":
+"detox@npm:^20.14.8":
   version: 20.14.8
   resolution: "detox@npm:20.14.8"
   dependencies:
@@ -18117,7 +18109,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nx@npm:17.2.8":
+"nx@npm:17.2.8, nx@npm:latest":
   version: 17.2.8
   resolution: "nx@npm:17.2.8"
   dependencies:
@@ -19521,6 +19513,13 @@ __metadata:
     retry: ^0.12.0
     signal-exit: ^3.0.2
   checksum: 1be1bb702b9d47bdf18d75f22578f51370781feba7d2617f70ff8c66a86bcfa6e55b4f69c57fc326380110f2d1ffdb6e54a4900814bf156c04ee4eb2d3c065aa
+  languageName: node
+  linkType: hard
+
+"provide@npm:^0.1.3":
+  version: 0.1.3
+  resolution: "provide@npm:0.1.3"
+  checksum: 4a4cdec343491f05bb14e2015a9dbbe4a15f3b33b781e4b93e9d4f009eeee7dc1128c3dd60e359ad9d5519e7864ea1aba3bcab9b5cb96857bfe3856b366413eb
   languageName: node
   linkType: hard
 
