@@ -74,7 +74,7 @@ const projectConfig = {
   database_url: DATABASE_URL,
   admin_cors: ADMIN_CORS,
   redis_url: process.env.NODE_ENV !== 'development' ? REDIS_URL : undefined,
-  database_extra: process.env.NODE_ENV !== 'development' ? {ssl: {rejectUnauthorized: false}} : undefined,
+  database_extra: process.env.NODE_ENV !== 'development' ? {ssl: {rejectUnauthorized: false}} : {},
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule} */
