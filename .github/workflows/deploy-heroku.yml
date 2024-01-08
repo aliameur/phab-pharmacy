@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: DerYeger/yarn-setup-action@master
         with:
-          node-version: 16
+          node-version: 18
       - uses: nrwl/nx-set-shas@v3
       - run: git branch --track main origin/dev
       - run: yarn nx run backend:format
