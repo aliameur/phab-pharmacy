@@ -15,7 +15,7 @@ jobs:
           path: |
             node_modules
             ~/.cache
-            key: dependencies-${{ hashFiles('yarn.lock') }}
+          key: dependencies-${{ hashFiles('yarn.lock') }}
       - run: yarn install --immutable
       - name: Cache dependencies
         uses: actions/cache/save@v3
