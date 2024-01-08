@@ -136,11 +136,5 @@ apps/mobile-app-e2e/artifacts
 
 .env.local
 
-# Yarn & Heroku
-yarn.lock
+# Yarn
 .yarn/*
-!.yarn/cache
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
