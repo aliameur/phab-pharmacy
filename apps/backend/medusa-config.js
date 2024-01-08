@@ -52,13 +52,13 @@ const modules = {
   stockLocationService: {
     resolve: "@medusajs/stock-location",
   },
-  eventBus: process.env.NODEE_ENV !== 'development' ? {
+  eventBus: process.env.NODE_ENV !== 'development' ? {
     resolve: "@medusajs/event-bus-redis",
     options: {
       redisUrl: REDIS_URL
     }
   } : undefined,
-  cacheService: process.env.NODEE_ENV !== 'development' ? {
+  cacheService: process.env.NODE_ENV !== 'development' ? {
     resolve: "@medusajs/cache-redis",
     options: {
       redisUrl: REDIS_URL
@@ -73,9 +73,8 @@ const projectConfig = {
   store_cors: STORE_CORS,
   database_url: DATABASE_URL,
   admin_cors: ADMIN_CORS,
-
-  redis_url: process.env.NODEE_ENV !== 'development' ? REDIS_URL : undefined,
-  database_extra: process.env.NODEE_ENV !== 'development' ? {ssl: {rejectUnauthorized: false}} : undefined,
+  redis_url: process.env.NODE_ENV !== 'development' ? REDIS_URL : undefined,
+  database_extra: process.env.NODE_ENV !== 'development' ? {ssl: {rejectUnauthorized: false}} : undefined,
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule} */
