@@ -25,6 +25,7 @@ jobs:
   deploy:
     name: Deploy 🚀
     runs-on: ubuntu-latest
+    needs: main
     steps:
       - uses: DerYeger/yarn-setup-action@master
         with:
