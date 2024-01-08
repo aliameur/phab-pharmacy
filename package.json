@@ -3,11 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "prepare": "yarn nx build backend",
-    "start": "yarn nx start backend",
-    "serve": "yarn nx start backend",
-    "heroku-postbuild": "yarn nx migrate backend",
-    "build": "yarn nx build backend"
+    "heroku-postbuild": "nx build $PROJECT_NAME --prod"
   },
   "private": true,
   "dependencies": {
