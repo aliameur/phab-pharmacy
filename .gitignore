@@ -44,7 +44,6 @@ Thumbs.db
 # Expo
 node_modules/
 .expo/
-.yarn/
 dist/
 npm-debug.*
 *.jks
@@ -136,3 +135,7 @@ apps/mobile-app-e2e/artifacts
 apps/mobile-app-e2e/artifacts
 
 .env.local
+
+# Yarn
+.yarn/*
+!.yarn/releases

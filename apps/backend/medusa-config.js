@@ -42,37 +42,33 @@ const plugins = [
       upload_dir: 'uploads',
     },
   },
-  {
-    resolve: '@medusajs/admin',
-    /** @type {import('@medusajs/admin').PluginOptions} */
-    options: {
-      autoRebuild: true,
-      develop: {
-        open: process.env.OPEN_BROWSER !== 'false',
-      },
-    },
-  },
 ];
 
 const modules = {
   inventoryService: {
-    resolve: "@medusajs/inventory",
+    resolve: '@medusajs/inventory',
   },
   stockLocationService: {
-    resolve: "@medusajs/stock-location",
+    resolve: '@medusajs/stock-location',
   },
-  /*eventBus: {
-    resolve: "@medusajs/event-bus-redis",
-    options: {
-      redisUrl: REDIS_URL
-    }
-  },
-  cacheService: {
-    resolve: "@medusajs/cache-redis",
-    options: {
-      redisUrl: REDIS_URL
-    }
-  },*/
+  eventBus:
+    process.env.NODE_ENV !== 'development'
+      ? {
+          resolve: '@medusajs/event-bus-redis',
+          options: {
+            redisUrl: REDIS_URL,
+          },
+        }
+      : undefined,
+  cacheService:
+    process.env.NODE_ENV !== 'development'
+      ? {
+          resolve: '@medusajs/cache-redis',
+          options: {
+            redisUrl: REDIS_URL,
+          },
+        }
+      : undefined,
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule['projectConfig']} */
@@ -82,8 +78,11 @@ const projectConfig = {
   store_cors: STORE_CORS,
   database_url: DATABASE_URL,
   admin_cors: ADMIN_CORS,
-  // Uncomment the following lines to enable REDIS
-  //redis_url: REDIS_URL
+  redis_url: process.env.NODE_ENV !== 'development' ? REDIS_URL : undefined,
+  database_extra:
+    process.env.NODE_ENV !== 'development'
+      ? { ssl: { rejectUnauthorized: false } }
+      : {},
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule} */
