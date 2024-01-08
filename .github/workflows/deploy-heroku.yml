@@ -1,5 +1,5 @@
 name: Deploy Backend to Heroku 🚀
-on: [pull_request, push]
+on: [ pull_request, push ]
 
 jobs:
   prepare:
@@ -20,3 +20,13 @@ jobs:
       - run: echo "Hello world"
       - run: yarn nx build backend
       - run: yarn nx run backend:format
+      - run: yarn nx lint backend
+      - run: yarn nx-cloud record -- echo "TODO test"
+  deploy:
+    name: Deploy 🚀
+    runs-on: ubuntu-latest
+    steps:
+      - uses: DerYeger/yarn-setup-action@master
+        with:
+          node-version: 16
+      - run: echo "TODO Deploy to heroku"
