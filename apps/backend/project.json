@@ -19,37 +19,6 @@
         }
       }
     },
-    "docker": {
-      "executor": "nx:run-commands",
-      "defaultConfiguration": "reset",
-      "configurations": {
-        "up": {
-          "command": "docker-compose up -d"
-        },
-        "down": {
-          "command": "docker-compose down"
-        },
-        "reset": {
-          "commands": [
-            "docker-compose down",
-            "docker-compose up -d"
-          ],
-          "parallel": false
-        }
-      }
-    },
-    "format": {
-      "executor": "nx:run-commands",
-      "defaultConfiguration": "check",
-      "configurations": {
-        "check": {
-          "command": "prettier --list-different \"{projectRoot}/**/*.{js,jsx,ts,tsx,css,scss,md,json}\""
-        },
-        "fix": {
-          "command": "prettier --write \"{projectRoot}/**/*.{js,jsx,ts,tsx,css,scss,md,json}\""
-        }
-      }
-    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": [
@@ -83,6 +52,15 @@
         }
       }
     },
+    "start": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "production",
+      "configurations": {
+        "production": {
+          "command": "cd dist/apps/backend && medusa migrations run && medusa start"
+        }
+      }
+    },
     "dev": {
       "command": "medusa develop",
       "options": {
@@ -98,12 +76,15 @@
         "cwd": "{projectRoot}"
       }
     },
-    "start": {
+    "format": {
       "executor": "nx:run-commands",
-      "defaultConfiguration": "production",
+      "defaultConfiguration": "check",
       "configurations": {
-        "production": {
-          "command": "cd dist/apps/backend && medusa migrations run && medusa start"
+        "check": {
+          "command": "prettier --list-different \"{projectRoot}/**/*.{js,jsx,ts,tsx,css,scss,md,json}\""
+        },
+        "fix": {
+          "command": "prettier --write \"{projectRoot}/**/*.{js,jsx,ts,tsx,css,scss,md,json}\""
         }
       }
     },
@@ -113,60 +94,22 @@
         "cwd": "{projectRoot}"
       }
     },
-    "serve-app": {
-      "executor": "@nx/js:node",
-      "options": {
-        "buildTarget": "backend:build-app"
-      }
-    },
-    "build-app": {
-      "executor": "@nx/esbuild:esbuild",
-      "options": {
-        "main": "apps/backend/index.js",
-        "generatePackageJson": true,
-        "additionalEntryPoints": [
-          "apps/backend/medusa-config.js"
-        ],
-        "format": [
-          "cjs"
-        ],
-        "tsConfig": "apps/backend/tsconfig.app.json",
-        "outputPath": "dist/apps/backend",
-        "assets": [
-          "apps/backend/src/assets",
-          {
-            "glob": "medusa-config.js",
-            "input": "apps/backend",
-            "output": "../"
-          }
-        ]
-      }
-    },
-    "builds": {
-      "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputFile}"
-      ],
-      "defaultConfiguration": "production",
-      "options": {
-        "outputPath": "dist/apps/api-service/dist",
-        "main": "apps/api-service/src/index.ts",
-        "tsConfig": "apps/api-service/tsconfig.app.json",
-        "assets": [
-          "apps/api-service/src/assets",
-          {
-            "glob": "medusa-config.js",
-            "input": "apps/api-service",
-            "output": "../"
-          }
-        ],
-        "rootDir": "apps/api-service/src",
-        "generatePackageJson": true
-      },
+    "docker": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "reset",
       "configurations": {
-        "development": {},
-        "production": {
-          "generateLockfile": true
+        "up": {
+          "command": "docker-compose up -d"
+        },
+        "down": {
+          "command": "docker-compose down"
+        },
+        "reset": {
+          "commands": [
+            "docker-compose down",
+            "docker-compose up -d"
+          ],
+          "parallel": false
         }
       }
     }
