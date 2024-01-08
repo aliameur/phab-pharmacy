@@ -6,10 +6,7 @@ jobs:
     name: Prepare
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Yarn Setup
-        uses: ./.github/actions/yarn-setup
+      - run : yarn -v
 
   main:
     name: Main Job
