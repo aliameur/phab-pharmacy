@@ -1,7 +1,9 @@
+import Layout from './components/Layout';
+
 export default async function Index() {
   return (
-    <main>
-      Admin Panel
-    </main>
+    <Layout>
+      <></>
+    </Layout>
   );
 }
