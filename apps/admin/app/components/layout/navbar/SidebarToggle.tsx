@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SidebarTransition from './SidebarTransition';
+import SidebarTransition from '../sidebar/SidebarTransition';
 
 export default function SidebarToggle() {
   return (

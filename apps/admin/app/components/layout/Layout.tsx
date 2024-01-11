@@ -1,5 +1,5 @@
-import Navbar from './Navbar';
-import Sidebar from './Sidebar';
+import Navbar from './navbar/Navbar';
+import Sidebar from './sidebar/Sidebar';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

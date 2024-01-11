@@ -1,6 +1,3 @@
-import Link from 'next/link';
-import React from 'react';
-
 import SidebarToggle from './SidebarToggle';
 import ThemeButton from './ThemeButton';
 
@@ -15,7 +12,7 @@ export default function Navbar() {
       </div>
 
       <div className="flex-none">
-        <p className="text-sm px-2">Admin Dashboard</p>
+        <p className="px-2 text-sm">Admin Dashboard</p>
         <ThemeButton />
       </div>
     </div>
