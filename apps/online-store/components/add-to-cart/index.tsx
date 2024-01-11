@@ -1,11 +1,17 @@
 'use client';
 
+import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import { Minus, Plus } from 'lucide-react';
 import { useState } from 'react';
 
+import { addItem } from '../../lib/cart/actions';
 import { Button } from '../button';
 
-export const AddToCart = () => {
+type TAddToCart = {
+  product: PricedProduct;
+};
+
+export const AddToCart = ({ product }: TAddToCart) => {
   const [count, setCount] = useState(1);
 
   // TODO set the max to ATC at once
@@ -37,7 +43,14 @@ export const AddToCart = () => {
           <Plus />
         </button>
       </div>
-      <Button className="w-96 font-bold uppercase tracking-wider">
+      <Button
+        onClick={async () => {
+          const a = await addItem(product.variants[0].id);
+          console.log('added')
+          console.log(a)
+        }}
+        className="w-96 font-bold uppercase tracking-wider"
+      >
         Add to Cart
       </Button>
     </div>

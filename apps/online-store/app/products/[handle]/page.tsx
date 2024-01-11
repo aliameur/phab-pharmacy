@@ -47,7 +47,7 @@ export default async function Page({ params: { handle } }: Props) {
           <div className="flex flex-col gap-4 text-sm text-mineral-green-600">
             <p>{product.description}</p>
           </div>
-          <AddToCart />
+          <AddToCart product={product} />
           <div className="flex flex-col gap-8 pt-8">
             <DetailSection title="Description">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. At

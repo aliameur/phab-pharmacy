@@ -6,4 +6,9 @@ export * from './lib/get-category-by-handle';
 
 export * from './lib/get-products-by-category-handle';
 
-export type { TRequestFn } from './types';
+export * from './lib/create-cart';
+export * from './lib/get-cart';
+export * from './lib/add-cart-line-item';
+export * from './lib/update-cart-line-item';
+
+export type { TRequestFn, MedusaCart } from './types';
