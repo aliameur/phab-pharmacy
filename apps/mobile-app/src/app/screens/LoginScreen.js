@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
+  Platform,
 } from 'react-native';
 import * as Keychain from 'react-native-keychain';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -74,6 +75,7 @@ function LoginScreen({ navigation }) {
             <View style={styles.TextInputStyleView}>
                 <FontAwesome name="lock" size={25} color={colours.LogoColours.cream} style={styles.TextInputIcon}/>
                 <TextInput
+                testID="password-input"
                 value={password}
                 secureTextEntry={seePassword}
                 style={styles.TextInputStyle}
@@ -82,6 +84,7 @@ function LoginScreen({ navigation }) {
                 onChangeText={text => setPassword(text)}>
                 </TextInput>
                 <TouchableOpacity
+                testID = 'eye-icon'
                 onPress={() => setSeePassword(!seePassword)}
                 style={{flex: 0.7, marginRight: 10}}>
                     <FontAwesome name={seePassword ? "eye-slash" : "eye"} size={25}  color={colours.LogoColours.cream}/>

@@ -15,7 +15,6 @@ function UserCheckScreen({ navigation }) {
     useEffect(() => {
         const performCheck = async () => {
             const output = await checkKeychain();
-            console.log(output)
             if (output[0] === 'good') {
                 console.log('Remembered user')
                 try {

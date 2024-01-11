@@ -22,6 +22,7 @@
     "@medusajs/types": "^1.11.9",
     "@medusajs/utils": "^1.11.2",
     "@radix-ui/react-accordion": "^1.1.2",
+    "@react-native-async-storage/async-storage": "^1.21.0",
     "@react-native-clipboard/clipboard": "^1.13.2",
     "@react-native-masked-view/masked-view": "^0.3.1",
     "@react-native-voice/voice": "^3.2.4",

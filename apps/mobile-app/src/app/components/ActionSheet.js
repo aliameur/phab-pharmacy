@@ -6,7 +6,6 @@ import Tts from 'react-native-tts';
 import colours from '../colours';
 
 function ActionSheet({visible, onClose, message }) {
-    const [speaking, setSpeaking] = useState(false);
     const handleCancelPress = () => {
         onClose(); 
     };
