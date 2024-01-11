@@ -9,8 +9,8 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import ChatScreen from './screens/ChatScreen';
 import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from './screens/SignUpScreen';

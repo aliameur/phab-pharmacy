@@ -19,8 +19,12 @@ const login = async (email, password) => {
     await createCart(creds);
     return ['good', jwtToken];
   } catch (error) {
-      console.error('Login failed', error)
-      return ['bad', error];
+      if (error.response.data === 'Unauthorized') {
+        return ['bad', 'Invalid Login Password']
+      }
+      else {
+        return ['bad', error.response.data.message];
+      }
     }
   };
 

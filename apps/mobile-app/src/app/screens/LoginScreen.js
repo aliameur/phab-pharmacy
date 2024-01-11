@@ -23,6 +23,7 @@ function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [seePassword, setSeePassword] = useState(true);
+  const [errorMessage, setErrorMessage] = useState('');
 
     const loginAccount = async () => {
         try {
@@ -34,6 +35,7 @@ function LoginScreen({ navigation }) {
                 navigation.replace('Shop'); 
             } else {
                 console.log('Login Error:', output[1]); 
+                setErrorMessage(output[1]);
             }
         } catch (error) {
             console.log('Login Exception:', error); 
@@ -90,6 +92,10 @@ function LoginScreen({ navigation }) {
                     <FontAwesome name={seePassword ? "eye-slash" : "eye"} size={25}  color={colours.LogoColours.cream}/>
                 </TouchableOpacity>
             </View>
+            {errorMessage && <View
+            style={styles.errorView}> 
+                <Text style={styles.errorMessage}>{errorMessage}</Text>
+            </View>}
             <TouchableOpacity 
             style={styles.loginButton}
             onPress={() => loginAccount()}
@@ -163,6 +169,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row', 
         marginTop: 15, 
         alignSelf: 'center',
+    },
+    errorView: {
+        flex: 0.15,
+        alignItems: 'center'
+    },
+    errorMessage: {
+        color: '#aa0a14'
     }
 });
 
