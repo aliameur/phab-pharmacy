@@ -7,7 +7,6 @@ import {
   Platform,
   StatusBar,
   StyleSheet,
-  Text,
   TouchableOpacity,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
@@ -27,9 +26,6 @@ const Stack = createStackNavigator();
 
 export default function App() {
   const headerHeight = Platform.OS === 'ios' ? 44 : 56; // Default header heights
-  const statusBarHeight = StatusBar.currentHeight || 0;
-  const estimatedHeaderHeight =
-    headerHeight + (Platform.OS === 'ios' ? 0 : statusBarHeight);
 
   return (
     

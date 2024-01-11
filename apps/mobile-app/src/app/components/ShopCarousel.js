@@ -1,6 +1,4 @@
-
 import Carousel from 'react-native-reanimated-carousel';
-
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView, View, Text, Dimensions, Image, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import { getProducts } from '../scripts/ShopScript';
