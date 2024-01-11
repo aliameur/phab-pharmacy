@@ -1,11 +1,11 @@
-import {Inter, Merriweather} from 'next/font/google';
-import {ReactNode} from 'react';
+import { Inter, Merriweather } from 'next/font/google';
+import { ReactNode } from 'react';
 
-import {Footer} from '../components/footer';
-import {Nav} from '../components/nav';
+import { Footer } from '../components/footer';
+import { Nav } from '../components/nav';
 import './global.css';
 
-const inter = Inter({subsets: ['latin'], variable: '--font-inter'});
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const merriweather = Merriweather({
   weight: ['400', '700'],
   subsets: ['latin'],
@@ -13,20 +13,23 @@ const merriweather = Merriweather({
 });
 
 export const metadata = {
-  title: 'Online Store | Phab Pharmacy',
+  title: {
+    template: '%s | Phab Pharmacy',
+    default: 'Phab Pharmacy',
+  },
   description: 'Find all your healthcare needs with ease.',
 };
 
-export default function RootLayout({children}: { children: ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-    <body
-      className={`${inter.variable} ${merriweather.variable} bg-pampas-100 font-inter`}
-    >
-    <Nav/>
-    {children}
-    <Footer/>
-    </body>
+      <body
+        className={`${inter.variable} ${merriweather.variable} bg-pampas-100 font-inter`}
+      >
+        <Nav />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

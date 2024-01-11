@@ -18,6 +18,10 @@ const products = [
   },
 ];
 
+export const metadata = {
+  title: 'Home | Phab Pharmacy',
+};
+
 export default async function Index() {
   return (
     <main>

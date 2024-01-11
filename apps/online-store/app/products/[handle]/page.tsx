@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { getProductByHandle } from '@phab/data-next';
@@ -7,6 +8,16 @@ import { DetailSection } from '../../../components/detail-section';
 import { Gallery } from '../../../components/gallery';
 import { Rating } from '../../../components/rating';
 import { Review } from '../../../components/review';
+
+export async function generateMetadata({
+  params: { handle },
+}: Props): Promise<Metadata> {
+  const { title, description } = await getProductByHandle(handle);
+  return {
+    title,
+    description: description,
+  };
+}
 
 type Props = {
   params: { handle: string };
