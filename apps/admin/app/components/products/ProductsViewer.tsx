@@ -19,13 +19,15 @@ export default function ProductsViewer({
 }: Props) {
   return (
     <div>
-      {productsByCategory.map((products, index) => (
-        <CategoryPanel
-          key={categories[index].id}
-          products={products}
-          category={categories[index]}
-        />
-      ))}
+      {productsByCategory.map((products, index) =>
+        products.length > 0 && !categories[index].handle.includes('hidden') ? (
+          <CategoryPanel
+            key={categories[index].id}
+            products={products}
+            category={categories[index]}
+          />
+        ) : null,
+      )}
     </div>
   );
 }
