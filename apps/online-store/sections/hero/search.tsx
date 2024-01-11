@@ -5,10 +5,15 @@ import { Search as SearchIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
+import { cn } from '../../lib/utils';
+
 const schema = z.object({ search: z.string().min(1) });
 type TSchema = z.infer<typeof schema>;
 
-export const Search = () => {
+type TSearch = {
+  className?: string;
+};
+export const Search = ({ className }: TSearch) => {
   const { register, handleSubmit } = useForm<TSchema>({
     resolver: zodResolver(schema),
   });
@@ -17,7 +22,10 @@ export const Search = () => {
     console.log(search);
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="relative">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className={cn('relative', className)}
+    >
       <input
         {...register('search')}
         placeholder="What are you looking for?"
