@@ -1,42 +1,38 @@
 import { Platform } from 'react-native';
 import axios from 'axios';
 
+import {getProductsByCategoryHandle, getCategories } from '@phab/data-react-native';
 
-const BASE_URL = Platform.OS === 'ios' ? 'http://localhost:9000' : 'http://10.0.2.2:9000'; 
 
-const getCollections = async () =>  {
-    try {
-        response = await axios.get(BASE_URL + '/store/collections')
-        num = response.data["count"]
+const BASE_URL = 'https://phab-pharmacy-backend-ab775283aa48.herokuapp.com';
 
-        var collections = []
-        for (let i = 0; i < num; i++){
-            collections.push({id: response.data["collections"][i]["id"], title: response.data["collections"][i]["title"]})
-        }
-        return collections;
+const getStoreCategories = async () =>  {
+    data = await getCategories();
+    var categories = []
+    num = data.length
+    for (let i = 0; i < num; i++){
+        categories.push({id: data[i]["id"], handle: data[i]["handle"], title: data[i]["name"]})
     }
-    catch(error){
-        console.error('Getting Collections Error: ', error)
-        return [];
-    }
+    return categories
 }
 
-const getProducts = async (id) => {
-    response = await axios.get(BASE_URL + '/store/products?collection_id[]=' + id)
-    num = response.data['count'];
+const getStoreProducts = async (handle) => {
+    data = await getProductsByCategoryHandle(handle)
+    num = data.length
     var products = []
     for (let i = 0; i < num; i++){
         products.push({
-            id: response.data["products"][i]["id"], 
-            title: response.data["products"][i]["title"], 
-            description: response.data["products"][i]["description"],
-            image: response.data["products"][i]["thumbnail"],
+            id: data[i]["id"], 
+            title: data[i]["title"], 
+            description: data[i]["description"],
+            image: data[i]["thumbnail"],
             //Note this price is hard coded changes to the backend will cause a breaking bug for pricing 
-            price: response.data["products"][i]["variants"][0]['prices'][2]["amount"],
-            variant_id: response.data["products"][i]["variants"][0]['id']
+            price: data[i]["variants"][0]['prices'][0]["amount"],
+            variant_id: data[i]["variants"][0]['id']
         })
     }
-    return products;
+    return products
+    
 }
 
 const searchProducts = async (searchText) => {
@@ -54,4 +50,4 @@ const searchProducts = async (searchText) => {
 
 
 
-export { getCollections, getProducts, searchProducts };
+export { getStoreCategories, getStoreProducts, searchProducts };

@@ -1,24 +1,24 @@
 import Carousel from 'react-native-reanimated-carousel';
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView, View, Text, Dimensions, Image, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
-import { getProducts } from '../scripts/ShopScript';
+import { getStoreProducts } from '../scripts/ShopScript';
 import colours from '../colours';
 
-function ShopCarousel ({ navigation, id }) {
+function ShopCarousel ({ navigation, handle }) {
     const [activeIndex, setActiveIndex] = useState(0);
     const [data, setData] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const result = await getProducts(id);
+                const result = await getStoreProducts(handle);
                 setData(result);
             } catch (error) {
                 console.error('Failed to fetch data:', error);
             }
         };
         fetchData();
-    }, [id]);
+    }, [handle]);
 
     const renderItem = ({ item, index }) => {
         return (

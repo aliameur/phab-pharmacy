@@ -4,7 +4,7 @@ import { Platform } from 'react-native';
 import { createCart } from './CartScripts';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const BASE_URL = Platform.OS === 'ios' ? 'http://localhost:9000' : 'http://10.0.2.2:9000'; 
+const BASE_URL = 'https://phab-pharmacy-backend-ab775283aa48.herokuapp.com'
 service = 'JWToken';
 
 const login = async (email, password) => {
@@ -15,6 +15,7 @@ const login = async (email, password) => {
     });
     const jwtToken = response.data.access_token;
     await Keychain.setGenericPassword(email, jwtToken, { service });
+    const creds = await Keychain.getGenericPassword({ service });
     await createCart(creds);
     return ['good', jwtToken];
   } catch (error) {
@@ -77,6 +78,7 @@ const createUser = async (firstName, lastName, email, password) => {
       email: email,
       password: password,
     });
+    const creds = await Keychain.getGenericPassword({ service });
     await createCart(creds);
     return ['good', response.data];
   } catch (error) {

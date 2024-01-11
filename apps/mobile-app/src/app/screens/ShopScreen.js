@@ -3,7 +3,7 @@ import { Button, FlatList, View, Text, StyleSheet, StatusBar, Dimensions, TextIn
 import colours from '../colours';
 import UserMenuSheet from '../components/UserMenuSheet';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { getCollections } from '../scripts/ShopScript';
+import { getStoreCategories } from '../scripts/ShopScript';
 import ShopCarousel from '../components/ShopCarousel'; 
 
 
@@ -16,8 +16,8 @@ function ShopScreen({ navigation }) {
 
     useEffect(() => {
         const getData = async () => {
-            const collection_data = await getCollections();
-            setCollectionsData(collection_data.reverse());
+            const category_data = await getStoreCategories();
+            setCollectionsData(category_data);
         };
         getData();
     }, []); 
@@ -80,7 +80,7 @@ function ShopScreen({ navigation }) {
                 return (
                     <View>
                         <Text style={styles.collectionText}>{item.title}</Text>
-                        <ShopCarousel style={styles.shopCarousel} id={item.id} navigation={navigation}/>
+                        <ShopCarousel style={styles.shopCarousel} handle={item.handle} navigation={navigation}/>
                     </View>
                 )}}
                 keyExtractor={item => item.id}

@@ -2,7 +2,7 @@ import { Platform } from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const BASE_URL = Platform.OS === 'ios' ? 'http://localhost:9000' : 'http://10.0.2.2:9000'; 
+const BASE_URL = 'https://phab-pharmacy-backend-ab775283aa48.herokuapp.com';
 
 const createCart = async (creds) => {
     try {

@@ -28,6 +28,7 @@ export default function SignUpScreen({ navigation }) {
     const signUpUser = async () => {
         try {
             const signUpResult = await createUser(firstName, lastName, email, password);
+            console.log('Finished')
             if (signUpResult[0] === 'good') {
                 const loginResult = await login(email, password);
                 if (loginResult[0] === 'good') {
@@ -39,7 +40,7 @@ export default function SignUpScreen({ navigation }) {
                     console.log('Login failed:', loginResult[1]);
                 }
             } else {
-                console.log('Signup failed:', signUpResult[1]);
+                console.log('Signup failed:', signUpResult);
             }
         } catch (error) {
             console.error('Signup error:', error);
