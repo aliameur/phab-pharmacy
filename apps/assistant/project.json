@@ -15,6 +15,27 @@
       "executor": "@nxlv/python:add",
       "options": {}
     },
+    "serve": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry run gunicorn api.index:app",
+        "cwd": "apps/assistant/assistant_api"
+      }
+    },
+    "info": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry env info",
+        "cwd": "apps/assistant/assistant_api"
+      }
+    },
+    "show_deps": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry show",
+        "cwd": "apps/assistant/assistant_api"
+      }
+    },
     "update": {
       "executor": "@nxlv/python:update",
       "options": {}
