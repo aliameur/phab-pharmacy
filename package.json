@@ -117,6 +117,7 @@
     "babel-jest": "^29.4.1",
     "babel-preset-medusa-package": "^1.1.19",
     "cypress": "^13.0.0",
+    "daisyui": "^4.6.0",
     "detox": "^20.14.8",
     "eas-cli": "~5.2.0",
     "esbuild": "^0.19.2",
