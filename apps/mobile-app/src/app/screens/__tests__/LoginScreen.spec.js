@@ -1,11 +1,12 @@
-import { render } from '@testing-library/react-native';
+import { render } from '../../test-utils';
 import LoginScreen from '../LoginScreen'; 
 import { fireEvent } from '@testing-library/react-native';
   
 describe('LoginScreen', () => {
-
     it('renders the login screen', () => {
-        const { getByText, getByPlaceholderText } = render(<LoginScreen />);
+        const { getByText, getByPlaceholderText } = render(
+          <LoginScreen />
+        );
         
         expect(getByText('Welcome back!')).toBeTruthy();
         expect(getByPlaceholderText('Email')).toBeTruthy();

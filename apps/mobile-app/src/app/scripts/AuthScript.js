@@ -16,7 +16,15 @@ const login = async (email, password) => {
     const jwtToken = response.data.access_token;
     await Keychain.setGenericPassword(email, jwtToken, { service });
     const creds = await Keychain.getGenericPassword({ service });
-    await createCart(creds);
+    try {
+      const cart = await AsyncStorage.getItem('cartID');
+      if (cart !== null) {
+        console.log('Loaded cart: ', cart)
+      }
+    } catch (error) {
+      console.log('Failed to load cart with error:', error)
+      await createCart(creds);
+    }
     return ['good', jwtToken];
   } catch (error) {
       if (error.response.data === 'Unauthorized') {

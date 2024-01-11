@@ -37,10 +37,27 @@ const addToCart = async (varient_id, quantity) => {
             quantity: quantity
         })
         console.log('Item added to cart')
+        return true
     } catch (error) {
         console.error('Adding error', error.message)
+        return false
     }
   }
+
+const getCartItemNumber = async () => {
+  try {
+    const cart_id = await AsyncStorage.getItem('cartID');
+    response = await axios.get(`${BASE_URL}/store/carts/${cart_id}`)
+    count = 0
+    num = response.data['cart']['items'].length
+    for (let i = 0; i < num; i++) {
+      count += response.data['cart']['items'][i]['quantity']
+    }
+    return count
+  } catch (error) {
+      console.error('Error getting number of cart items:', error)
+  }
+}
 
 const getCartItems = async () => {
     try {
@@ -67,4 +84,4 @@ const getCartItems = async () => {
 }
 
 
-  export { createCart, addToCart, getCartItems };
+export { createCart, addToCart, getCartItems, getCartItemNumber };

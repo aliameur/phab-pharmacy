@@ -1,16 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, FlatList, View, Image, Text, StyleSheet, StatusBar, Dimensions, TextInput, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import { searchProducts } from '../scripts/ShopScript';
 import colours from '../colours';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { addToCart } from '../scripts/CartScripts';
+import { CartContext } from '../contexts/CartContext';
 
 
 function ProductScreen({ route }) {
     const { data } = route.params;
+    const { loadNumberCart } = useContext(CartContext);
     const addItemToCart = async (variant_id, quantity) => {
         console.log('Staring adding')
-        await addToCart(variant_id, quantity);
+        response = await addToCart(variant_id, quantity);
+        if (response) {
+            try {
+                await loadNumberCart();
+            }
+            catch (error) {
+                console.log(error)
+            }
+        }
     }
     return ( 
         <SafeAreaView style={{flex: 1, justifyContent: 'center', 'backgroundColor': colours.LogoColours.cream}}>

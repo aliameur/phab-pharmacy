@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   ActivityIndicator,
   Dimensions,
@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import * as Keychain from 'react-native-keychain';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { CartContext } from '../contexts/CartContext';
 
 import colours from '../colours';
 import { login } from '../scripts/AuthScript';
@@ -24,6 +25,7 @@ function LoginScreen({ navigation }) {
   const [password, setPassword] = useState('');
   const [seePassword, setSeePassword] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
+  const { loadNumberCart } = useContext(CartContext);
 
     const loginAccount = async () => {
         try {
@@ -32,6 +34,7 @@ function LoginScreen({ navigation }) {
                 service = 'JWToken'
                 creds = await Keychain.getGenericPassword( { service } );
                 console.log(creds.password);
+                await loadNumberCart();
                 navigation.replace('Shop'); 
             } else {
                 console.log('Login Error:', output[1]); 
