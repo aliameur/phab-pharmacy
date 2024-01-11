@@ -3,22 +3,29 @@ import React from 'react';
 
 import CategoryPanel from './CategoryPanel';
 
-interface Props {
-    products: PricedProduct[][];
-    categories: any[];
+interface CategoryTemporary {
+  id: string;
+  handle: string;
 }
 
-export default function ProductsViewer({ products, categories } : Props) {
+interface Props {
+  productsByCategory: PricedProduct[][];
+  categories: CategoryTemporary[];
+}
 
-  console.log(products[0]);
-
+export default function ProductsViewer({
+  productsByCategory,
+  categories,
+}: Props) {
   return (
     <div>
-        {
-            products.map((product, index) => (
-                <CategoryPanel products={product} category={categories[index]} />
-            ))
-        }
+      {productsByCategory.map((products, index) => (
+        <CategoryPanel
+          key={categories[index].id}
+          products={products}
+          category={categories[index]}
+        />
+      ))}
     </div>
   );
 }
