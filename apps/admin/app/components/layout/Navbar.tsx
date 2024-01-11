@@ -7,9 +7,8 @@ export default function Navbar() {
   return (
     <div className="navbar bg-base-100 w-full">
       <div className="flex-1">
-        <div className="btn btn-ghost">
+        <div className="px-4">
           <img src="logo.svg" alt="PhabPharmacy Logo" className="h-8 w-8" />
-          <h1 className="text-2xl font-black">PhabPharmacy</h1>
         </div>
         <SidebarToggle />
       </div>
