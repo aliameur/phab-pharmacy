@@ -1,5 +1,6 @@
 'use client';
 
+import { LineItem } from '@medusajs/medusa';
 import { ShoppingCart, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
@@ -66,7 +67,7 @@ export const CartSidebar = ({ cart }: TCartSidebar) => {
             <X className="h-6 w-6 text-pampas-100" />
           </button>
           <h3 className="font-merriweather text-3xl text-pampas-100">Cart</h3>
-          {cart?.items.map((item) => (
+          {cart?.items.map((item: LineItem) => (
             <CartLine
               onClick={closeSidebar}
               currencyCode={cart.region.currency_code}

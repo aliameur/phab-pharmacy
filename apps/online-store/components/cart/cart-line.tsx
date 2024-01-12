@@ -28,29 +28,8 @@ export const CartLine = ({
   onClick,
 }: TCartLine) => {
   return (
-    <div className="flex w-full flex-col border-b border-neutral-300">
+    <div className="flex w-full flex-col border-b border-pampas-100">
       <div className="relative flex w-full flex-row justify-between px-1 py-4">
-        {/*<div className="absolute z-40 -mt-2 ml-[55px]">*/}
-        {/*  <button aria-label="Remove cart item">*/}
-        {/*    <X />*/}
-        {/*  </button>*/}
-        {/*  /!*<DeleteItemButton item={item} />*!/*/}
-        {/*</div>*/}
-        {/*<Link*/}
-        {/*  href={merchandiseUrl}*/}
-        {/*  onClick={closeCart}*/}
-        {/*  className="z-30 flex flex-row space-x-4"*/}
-        {/*>*/}
-        {/*  <div className="relative h-16 w-16 cursor-pointer overflow-hidden rounded-md border border-neutral-300 bg-neutral-300">*/}
-        {/*<Image*/}
-        {/*  className="h-16 w-16 object-cover"*/}
-        {/*  src={src}*/}
-        {/*  alt={alt}*/}
-        {/*  width={64}*/}
-        {/*  height={64}*/}
-        {/*/>*/}
-        {/*  </div>*/}
-
         <Link
           href={`/products/${item.variant.product.handle}`}
           onClick={onClick}

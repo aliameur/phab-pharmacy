@@ -48,8 +48,6 @@ export type TCart = CartDTO & {
     deleted_at: Date | null
     name: string
     currency_code: string
-
-
   }
 };
 
