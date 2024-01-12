@@ -21,7 +21,7 @@ This repo contains the source code for the following projects:
 
 - [Node.js](https://nodejs.org/en/download/)
 - [Docker](https://docs.docker.com/install/)
-- [Yarn](https://yarnpkg.com) (8.12.1)
+- [Yarn](https://yarnpkg.com) (3.6.4)
 - Xcode (for iOS development)
 - Android Studio (for Android development)
 
@@ -32,7 +32,7 @@ $ node -v # v20.8.1
 
 $ docker -v # Docker version 24.0.6, build ed223bc
 
-$ yarn -v # 8.12.1
+$ yarn -v # 3.6.4
 ```
 
 We recommend installing the NX CLI globally. This is not required, but it will make it easier to run commands. (if you don't install preface all nx commands with `yarn`)
