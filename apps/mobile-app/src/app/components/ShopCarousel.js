@@ -25,6 +25,13 @@ function ShopCarousel ({ navigation, handle }) {
         fetchData();
     }, [handle]);
 
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('en-GB', {
+            style: 'currency',
+            currency: 'GBP',
+        }).format(price / 100); // Assuming price is in pence
+    };
+
     const addItemToCart = async (variant_id, quantity) => {
         setWaiting(true);
         response = await addToCart(variant_id, quantity);
@@ -56,7 +63,7 @@ function ShopCarousel ({ navigation, handle }) {
                 />
                 <View style={{alignItems: 'center', alignSelf: 'center', flexDirection: 'row', marginTop: 10}}> 
                     <Text style={{fontWeight: '700', fontSize: 20}}>Price: </Text>
-                    <Text style={{fontSize: 20}}>£{item.price.toString().slice(0,2)}.{item.price.toString().slice(2,4)}</Text>
+                    <Text style={{fontSize: 20}}>{formatPrice(item.price)}</Text>
                 </View>
                     <View style={{flex: 0.8, flexDirection: 'row', margin: 20, width: '70%', justifyContent: 'center', alignSelf: 'center'}}>
                         <TouchableOpacity style={styles.detailsButtons} onPress={() => navigation.navigate('Product', {data: item})}>
