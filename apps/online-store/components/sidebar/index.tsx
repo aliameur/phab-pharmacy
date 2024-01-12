@@ -1,7 +1,15 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { ReactNode, forwardRef, useEffect, useRef, useState } from 'react';
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  forwardRef,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import { cn } from '../../lib/utils';
 
@@ -10,13 +18,24 @@ type TSidebar = {
   children: (args: { closeSidebar: () => void }) => ReactNode;
   outerIcon: (args: { openSidebar: () => void }) => ReactNode;
   className?: string;
+  controlState?: boolean;
+  controlSetter?: Dispatch<SetStateAction<boolean>>;
 };
 
 export const Sidebar = forwardRef<HTMLDivElement, TSidebar>(
-  ({ side, children, className, outerIcon }, ref) => {
-    const [isOpen, setIsOpen] = useState(false);
+  (
+    { side, children, className, outerIcon, controlSetter, controlState },
+    ref,
+  ) => {
     const x = side === 'left' ? '-100%' : '100%';
     const sidebarRef = useRef<HTMLDivElement>(null);
+
+    const [internalState, internalSetter] = useState(false);
+    const controlled =
+      controlState !== undefined && controlSetter !== undefined;
+    const [isOpen, setIsOpen] = controlled
+      ? [controlState, controlSetter]
+      : [internalState, internalSetter];
 
     const openSidebar = () => setIsOpen(true);
     const closeSidebar = () => setIsOpen(false);
@@ -27,9 +46,8 @@ export const Sidebar = forwardRef<HTMLDivElement, TSidebar>(
           isOpen &&
           sidebarRef.current &&
           !sidebarRef.current.contains(event.target as HTMLElement)
-        ) {
+        )
           setIsOpen(false);
-        }
       }
 
       if (isOpen) {
@@ -42,7 +60,7 @@ export const Sidebar = forwardRef<HTMLDivElement, TSidebar>(
       return () => {
         document.removeEventListener('mousedown', handleOutsideClick);
       };
-    }, [isOpen]);
+    }, [isOpen, setIsOpen]);
 
     return (
       <>

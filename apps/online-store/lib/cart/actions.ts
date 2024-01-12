@@ -35,7 +35,7 @@ export const addItem = async (
   try {
     const lineItem = cart.items.find((line) => line.variant_id === variantId);
     if (lineItem) {
-      cart = await updateCartLineItem(cartId, lineItem.id, 1);
+      cart = await updateCartLineItem(cartId, lineItem.id, lineItem.quantity + 1);
     } else {
       cart = await addCartLineItem(cartId, variantId, 1);
     }
