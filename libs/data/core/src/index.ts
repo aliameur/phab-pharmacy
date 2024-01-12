@@ -6,4 +6,4 @@ export * from './lib/get-category-by-handle';
 
 export * from './lib/get-products-by-category-handle';
 
-export type { TRequestFn } from './types';
+export type { TRequestFn, ProductCategory } from './types';
