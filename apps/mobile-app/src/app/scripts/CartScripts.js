@@ -37,10 +37,27 @@ const addToCart = async (varient_id, quantity) => {
             quantity: quantity
         })
         console.log('Item added to cart')
+        return true
     } catch (error) {
         console.error('Adding error', error.message)
+        return false
     }
   }
+
+const getCartItemNumber = async () => {
+  try {
+    const cart_id = await AsyncStorage.getItem('cartID');
+    response = await axios.get(`${BASE_URL}/store/carts/${cart_id}`)
+    count = 0
+    num = response.data['cart']['items'].length
+    for (let i = 0; i < num; i++) {
+      count += response.data['cart']['items'][i]['quantity']
+    }
+    return count
+  } catch (error) {
+      console.error('Error getting number of cart items:', error)
+  }
+}
 
 const getCartItems = async () => {
     try {
@@ -57,14 +74,13 @@ const getCartItems = async () => {
                 variant_id: items[i]["variant_id"],
                 quantity: items[i]["quantity"],
                 total: items[i]["total"]
-                //Note this price is hard coded changes to the backend will cause a breaking bug for pricing 
             })
         }
-        return products
+        return [products, response.data['cart']['total']]
     } catch (error) {
         console.error('Error getting cart items:', error.message)
     }
 }
 
 
-  export { createCart, addToCart, getCartItems };
+export { createCart, addToCart, getCartItems, getCartItemNumber };

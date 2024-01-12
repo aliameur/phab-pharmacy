@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, FlatList, View, Text, StyleSheet, StatusBar, Dimensions, TextInput, TouchableOpacity } from 'react-native';
 import colours from '../colours';
 import UserMenuSheet from '../components/UserMenuSheet';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { getStoreCategories } from '../scripts/ShopScript';
 import ShopCarousel from '../components/ShopCarousel'; 
+import { ShopContext } from '../contexts/ShopContext';
 
 
 function ShopScreen({ navigation }) {
 
     const [isMenuModalVisible, setMenuModalVisible] = useState(false);
     const [collectionsData, setCollectionsData] = useState([]);
-    const [cartItems, setCartItems] = useState(0);
     const [searchText, setSearchText] = useState('');
+    const { cartCount } = useContext(ShopContext);
 
     useEffect(() => {
         const getData = async () => {
@@ -93,7 +94,7 @@ function ShopScreen({ navigation }) {
                 <FontAwesome name="shopping-cart" size={35}/>
             </TouchableOpacity>
             <TouchableOpacity style={styles.cartLittleButton}>
-                    <Text style={{color: colours.LogoColours.cream}}>{cartItems}</Text>
+                    <Text style={{color: colours.LogoColours.cream}}>{cartCount}</Text>
             </TouchableOpacity>
         </View>
     );
