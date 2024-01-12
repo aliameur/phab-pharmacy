@@ -6,13 +6,13 @@ import { useTransition } from 'react';
 
 import { updateCartLineItem } from '@phab/data-next';
 
-export default function EditItemQuantityButton({
+export const EditItemQuantityButton = ({
   item,
   type,
 }: {
   item: LineItem;
   type: 'plus' | 'minus';
-}) {
+}) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
@@ -53,4 +53,4 @@ export default function EditItemQuantityButton({
       )}
     </button>
   );
-}
+};

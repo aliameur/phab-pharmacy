@@ -1,7 +1,7 @@
-const Price = ({
+export const Price = ({
   amount,
   className,
-  currencyCode = 'GBP'
+  currencyCode = 'GBP',
 }: {
   amount: number;
   className?: string;
@@ -12,9 +12,7 @@ const Price = ({
     {`${new Intl.NumberFormat(undefined, {
       style: 'currency',
       currency: currencyCode,
-      currencyDisplay: 'narrowSymbol'
+      currencyDisplay: 'narrowSymbol',
     }).format(amount)}`}
   </p>
 );
-
-export default Price;

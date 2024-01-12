@@ -6,6 +6,8 @@ import { useEffect, useRef, useState } from 'react';
 
 import { TCart } from '@phab/data-core';
 
+import { Button } from '../button';
+import { Price } from '../price';
 import { Sidebar } from '../sidebar';
 import { CartLine } from './cart-line';
 
@@ -80,6 +82,21 @@ export const CartSidebar = ({ cart }: TCartSidebar) => {
               alt={item.title}
             />
           ))}
+          {cart?.total ? (
+            <div className="mt-auto">
+              <div className="flex items-center justify-between py-4 text-pampas-100">
+                <p className="text-pampas-100">Total</p>
+                <Price
+                  amount={cart.total}
+                  currencyCode={cart.region.currency_code}
+                  className="text-xl"
+                />
+              </div>
+              <Button className="w-full" variant="light">
+                Proceed to Checkout
+              </Button>
+            </div>
+          ) : null}
         </>
       )}
     </Sidebar>

@@ -82,7 +82,10 @@ export const FeaturedCategory = ({
                 <FeaturedProductCard
                   title={product.title || ''}
                   tags={product.tags?.map((tag) => tag.value) || []}
-                  price={product.variants[0].prices[0]}
+                  price={{
+                    amount: product.variants[0].prices[0].amount,
+                    currencyCode: product.variants[0].prices[0].currency_code,
+                  }}
                 />
               </Link>
             </SwiperSlide>

@@ -3,9 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ComponentProps } from 'react';
 
-import Price from '../price';
-import EditItemQuantityButton from './edit-item-quantity-button';
-import {DeleteItemButton} from "./delete-item-button";
+import { Price } from '../price';
+import { DeleteItemButton } from './delete-item-button';
+import { EditItemQuantityButton } from './edit-item-quantity-button';
 
 type TCartLine = ComponentProps<typeof Image> & {
   item: LineItem;
@@ -43,7 +43,10 @@ export const CartLine = ({
               width={80}
               className="square h-20 w-20 rounded-xl border-2 border-norway-300 object-cover"
             />
-            <DeleteItemButton item={item} className='absolute -right-2 -top-2'/>
+            <DeleteItemButton
+              item={item}
+              className="absolute -right-2 -top-2"
+            />
             {/*<button*/}
             {/*  aria-label="Remove cart item"*/}
             {/*  className="absolute -right-2 -top-2"*/}
