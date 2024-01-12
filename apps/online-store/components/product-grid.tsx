@@ -1,7 +1,7 @@
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 
-import { ProductCard } from './product-card';
 import { getCheapestVariantPriceInCurrency } from '../lib/utils';
+import { ProductCard } from './product-card';
 
 type TProductGrid = {
   products: PricedProduct[];

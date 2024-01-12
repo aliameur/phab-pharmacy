@@ -26,6 +26,4 @@ jobs:
             ~/.cache
           key: dependencies-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn nx affected --target lint
-      - run: yarn nx affected --target test
-      - run: yarn nx affected --target format
+      - run: yarn nx affected -t format,lint,test

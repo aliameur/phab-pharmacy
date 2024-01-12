@@ -1,11 +1,7 @@
 'use client';
 
 import { ShoppingCart, X } from 'lucide-react';
-import {
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { MedusaCart } from '@phab/data-core';
 

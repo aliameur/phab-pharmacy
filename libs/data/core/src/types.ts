@@ -1,8 +1,7 @@
 import { ProductCategory as MedusaProductCategory } from '@medusajs/medusa';
+import { LineItem } from '@medusajs/medusa';
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import { CartDTO } from '@medusajs/types/dist/cart/common';
-import {LineItem} from "@medusajs/medusa";
-
 
 export type TRequestFn = <T>(options: {
   cache?: RequestCache;

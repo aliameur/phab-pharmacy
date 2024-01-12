@@ -15,7 +15,7 @@ type TAddToCart = {
 export const AddToCart = ({ product }: TAddToCart) => {
   const [count, setCount] = useState(1);
   const router = useRouter();
-  console.log('atc render')
+  console.log('atc render');
 
   // TODO set the max to ATC at once
   const increment = () => setCount((prev) => prev + 1);
@@ -49,7 +49,7 @@ export const AddToCart = ({ product }: TAddToCart) => {
       <Button
         onClick={async () => {
           const a = await addItem(product.variants[0].id);
-          console.log(a)
+          console.log(a);
           router.refresh();
         }}
         className="w-96 font-bold uppercase tracking-wider"

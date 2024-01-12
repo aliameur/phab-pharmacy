@@ -79,12 +79,12 @@ export const FeaturedCategory = ({
           {products.map((product) => (
             <SwiperSlide className="max-w-min" key={product.title}>
               <Link href={`/products/${product.handle}`}>
-              <FeaturedProductCard
-                title={product.title || ''}
-                tags={product.tags?.map((tag) => tag.value) || []}
-                price={product.variants[0].prices[0]}
-              />
-                </Link>
+                <FeaturedProductCard
+                  title={product.title || ''}
+                  tags={product.tags?.map((tag) => tag.value) || []}
+                  price={product.variants[0].prices[0]}
+                />
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
