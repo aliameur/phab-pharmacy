@@ -93,7 +93,7 @@
     "@nxlv/python"
   ],
   "affected": {
-    "defaultBase": "main"
+    "defaultBase": "origin/dev"
   },
   "cli": {
     "packageManager": "yarn"

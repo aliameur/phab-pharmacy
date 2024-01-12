@@ -1,12 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, FlatList, View, Image, Text, StyleSheet, StatusBar, Dimensions, TextInput, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import { searchProducts } from '../scripts/ShopScript';
 import colours from '../colours';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { addToCart } from '../scripts/CartScripts';
+import { ShopContext } from '../contexts/ShopContext';
 
 
 function ProductScreen({ route }) {
     const { data } = route.params;
+    const { loadNumberCart, loadCartData } = useContext(ShopContext);
+    const addItemToCart = async (variant_id, quantity) => {
+        response = await addToCart(variant_id, quantity);
+        if (response) {
+            try {
+                await loadNumberCart();
+                await loadCartData();
+            }
+            catch (error) {
+                console.log(error)
+            }
+        }
+    }
     return ( 
         <SafeAreaView style={{flex: 1, justifyContent: 'center', 'backgroundColor': colours.LogoColours.cream}}>
             <View style={styles.halfBackground}/>
@@ -27,7 +42,9 @@ function ProductScreen({ route }) {
                 </View>
             </View>
             <View style={{flex: 1, marginBottom: 10}}>
-                <TouchableOpacity style={{backgroundColor: colours.LogoColours.green, width: '40%', height: '70%', alignSelf: 'center', justifyContent: 'center', borderRadius: 10}}>
+                <TouchableOpacity style={{backgroundColor: colours.LogoColours.green, width: '40%', height: '70%', alignSelf: 'center', justifyContent: 'center', borderRadius: 10}}
+                    onPress={() => addItemToCart(data.variant_id, 1)}
+                >
                         <View style={{alignItems: 'center', alignSelf: 'center', flexDirection: 'row'}}>
                             <Text style={{color: colours.LogoColours.cream, alignContent: 'center'}}>Add to Cart</Text>
                             <FontAwesome 

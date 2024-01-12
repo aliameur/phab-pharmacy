@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   ActivityIndicator,
   Dimensions,
@@ -11,9 +11,11 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
+  Platform,
 } from 'react-native';
 import * as Keychain from 'react-native-keychain';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { ShopContext } from '../contexts/ShopContext';
 
 import colours from '../colours';
 import { login } from '../scripts/AuthScript';
@@ -22,6 +24,8 @@ function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [seePassword, setSeePassword] = useState(true);
+  const [errorMessage, setErrorMessage] = useState('');
+  const { loadNumberCart } = useContext(ShopContext);
 
     const loginAccount = async () => {
         try {
@@ -30,9 +34,11 @@ function LoginScreen({ navigation }) {
                 service = 'JWToken'
                 creds = await Keychain.getGenericPassword( { service } );
                 console.log(creds.password);
+                await loadNumberCart();
                 navigation.replace('Shop'); 
             } else {
                 console.log('Login Error:', output[1]); 
+                setErrorMessage(output[1]);
             }
         } catch (error) {
             console.log('Login Exception:', error); 
@@ -74,6 +80,7 @@ function LoginScreen({ navigation }) {
             <View style={styles.TextInputStyleView}>
                 <FontAwesome name="lock" size={25} color={colours.LogoColours.cream} style={styles.TextInputIcon}/>
                 <TextInput
+                testID="password-input"
                 value={password}
                 secureTextEntry={seePassword}
                 style={styles.TextInputStyle}
@@ -82,11 +89,16 @@ function LoginScreen({ navigation }) {
                 onChangeText={text => setPassword(text)}>
                 </TextInput>
                 <TouchableOpacity
+                testID = 'eye-icon'
                 onPress={() => setSeePassword(!seePassword)}
                 style={{flex: 0.7, marginRight: 10}}>
                     <FontAwesome name={seePassword ? "eye-slash" : "eye"} size={25}  color={colours.LogoColours.cream}/>
                 </TouchableOpacity>
             </View>
+            {errorMessage && <View
+            style={styles.errorView}> 
+                <Text style={styles.errorMessage}>{errorMessage}</Text>
+            </View>}
             <TouchableOpacity 
             style={styles.loginButton}
             onPress={() => loginAccount()}
@@ -160,6 +172,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row', 
         marginTop: 15, 
         alignSelf: 'center',
+    },
+    errorView: {
+        flex: 0.15,
+        alignItems: 'center'
+    },
+    errorMessage: {
+        color: '#aa0a14'
     }
 });
 

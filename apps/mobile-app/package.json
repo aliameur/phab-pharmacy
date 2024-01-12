@@ -8,6 +8,8 @@
     "@react-navigation/stack": "*",
     "@react-native-clipboard/clipboard": "*",
     "@react-native-voice/voice": "*",
+    "@react-native-async-storage/async-storage": "*",
+    "@react-navigation/elements": "*",
     "@testing-library/jest-native": "*",
     "@testing-library/react-native": "*",
     "metro-config": "*",
@@ -23,9 +25,10 @@
     "react-native-keychain": "*",
     "react-native-reanimated": "*",
     "axios": "*",
-    "@react-navigation/elements": "*",
     "react-native-keyboard-aware-scroll-view": "*",
     "react-native-snap-carousel": "*",
-    "react-native-reanimated-carousel": "*"
+    "react-native-reanimated-carousel": "*",
+    "tslib": "*",
+    "@medusajs/medusa": "*"
   }
 }

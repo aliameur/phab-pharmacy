@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { getProductByHandle } from '@phab/data-next';
@@ -7,6 +8,16 @@ import { DetailSection } from '../../../components/detail-section';
 import { Gallery } from '../../../components/gallery';
 import { Rating } from '../../../components/rating';
 import { Review } from '../../../components/review';
+
+export async function generateMetadata({
+  params: { handle },
+}: Props): Promise<Metadata> {
+  const { title, description } = await getProductByHandle(handle);
+  return {
+    title,
+    description: description,
+  };
+}
 
 type Props = {
   params: { handle: string };
@@ -36,7 +47,7 @@ export default async function Page({ params: { handle } }: Props) {
           <div className="flex flex-col gap-4 text-sm text-mineral-green-600">
             <p>{product.description}</p>
           </div>
-          <AddToCart />
+          <AddToCart product={product} />
           <div className="flex flex-col gap-8 pt-8">
             <DetailSection title="Description">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. At

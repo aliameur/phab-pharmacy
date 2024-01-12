@@ -2929,6 +2929,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@jest/create-cache-key-function@npm:^27.4.2":
+  version: 27.5.1
+  resolution: "@jest/create-cache-key-function@npm:27.5.1"
+  dependencies:
+    "@jest/types": ^27.5.1
+  checksum: a6c3a8c769aca6f66f5dc80f1c77e66980b4f213a6b2a15a92ba3595f032848a1261c06c9c798dcf2b672b1ffbefad5085af89d130548741c85ddbe0cf4284e7
+  languageName: node
+  linkType: hard
+
 "@jest/create-cache-key-function@npm:^29.2.1":
   version: 29.7.0
   resolution: "@jest/create-cache-key-function@npm:29.7.0"
@@ -4943,6 +4952,7 @@ __metadata:
     "@nx/workspace": 17.2.7
     "@nxlv/python": ^17.0.0
     "@radix-ui/react-accordion": ^1.1.2
+    "@react-native-async-storage/async-storage": ^1.21.0
     "@react-native-clipboard/clipboard": ^1.13.2
     "@react-native-community/cli": 11.3.7
     "@react-native-community/cli-platform-android": 11.3.7
@@ -4956,6 +4966,7 @@ __metadata:
     "@swc/cli": ~0.1.62
     "@swc/core": ~1.3.85
     "@swc/helpers": ~0.5.2
+    "@swc/jest": 0.2.20
     "@t3-oss/env-nextjs": ^0.7.1
     "@tanstack/react-query": ^4.22.0
     "@testing-library/jest-dom": 5.16.5
@@ -5320,6 +5331,17 @@ __metadata:
     "@types/react":
       optional: true
   checksum: bed9c7e8de243a5ec3b93bb6a5860950b0dba359b6680c84d57c7a655e123dec9b5891c5dfe81ab970652e7779fe2ad102a23177c7896dde95f7340817d47ae5
+  languageName: node
+  linkType: hard
+
+"@react-native-async-storage/async-storage@npm:^1.21.0":
+  version: 1.21.0
+  resolution: "@react-native-async-storage/async-storage@npm:1.21.0"
+  dependencies:
+    merge-options: ^3.0.4
+  peerDependencies:
+    react-native: ^0.0.0-0 || >=0.60 <1.0
+  checksum: 969cdeb444a037087b1897553082e148e25c8331055dd0dc142f76deeb4aadd9ed5ec26926ae990b3e9ff088396e74ab557148a2dd2a7db86058051b774f2619
   languageName: node
   linkType: hard
 
@@ -6283,6 +6305,17 @@ __metadata:
   dependencies:
     tslib: ^2.4.0
   checksum: 61c3f7ccd47fc70ad91437df88be6b458cdc11e311cb331288827d7c50befffc72aa18fe913ec2a9e70fbf44e4b818bed38bfd7c329d689e1ff3c198d084cd02
+  languageName: node
+  linkType: hard
+
+"@swc/jest@npm:0.2.20":
+  version: 0.2.20
+  resolution: "@swc/jest@npm:0.2.20"
+  dependencies:
+    "@jest/create-cache-key-function": ^27.4.2
+  peerDependencies:
+    "@swc/core": "*"
+  checksum: 160a2d0336c416ec38ad267892ba67696c853318b207cfc9924da09a3318345bc37ca255782764ef651399cb8c0e9976ebdf90284799acb6b0c45c5d8bc4edbc
   languageName: node
   linkType: hard
 
@@ -16779,6 +16812,15 @@ __metadata:
   version: 1.0.1
   resolution: "merge-descriptors@npm:1.0.1"
   checksum: 5abc259d2ae25bb06d19ce2b94a21632583c74e2a9109ee1ba7fd147aa7362b380d971e0251069f8b3eb7d48c21ac839e21fa177b335e82c76ec172e30c31a26
+  languageName: node
+  linkType: hard
+
+"merge-options@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "merge-options@npm:3.0.4"
+  dependencies:
+    is-plain-obj: ^2.1.0
+  checksum: d86ddb3dd6e85d558dbf25dc944f3527b6bacb944db3fdda6e84a3f59c4e4b85231095f58b835758b9a57708342dee0f8de0dffa352974a48221487fe9f4584f
   languageName: node
   linkType: hard
 

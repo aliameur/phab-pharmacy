@@ -1,7 +1,3 @@
 export default async function Index() {
-  return (
-    <main>
-      Admin Panel
-    </main>
-  );
+  return <main>Admin Panel</main>;
 }

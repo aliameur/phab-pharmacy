@@ -5,7 +5,6 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import colours from '../colours';
 import ActionSheet from '../components/ActionSheet';
 import UserMenuSheet from '../components/UserMenuSheet';
-import { KeyboardAwareScrollVie, KeyboardAwareFlatList } from 'react-native-keyboard-aware-scroll-view';
 
 
 function ChatScreen({ navigation }) {
@@ -25,8 +24,17 @@ function ChatScreen({ navigation }) {
 
   const showModal = () => setMenuModalVisible(true);
   useEffect(() => {
-    navigation.setParams({ showModal: () => setMenuModalVisible(true) });
-  }, [navigation]);
+    navigation.setOptions({ 
+        headerRight: () => (
+            <TouchableOpacity
+                onPress={showModal}
+                style={{ marginRight: Dimensions.get('window').width * 0.03, alignItems: 'center' }}
+            >
+                <FontAwesome name="list-ul" size={30} color={colours.green}/>
+            </TouchableOpacity>
+        )
+    });
+  }, [navigation]); 
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(

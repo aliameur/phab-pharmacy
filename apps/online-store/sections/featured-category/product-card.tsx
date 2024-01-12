@@ -1,9 +1,10 @@
+import getSymbolFromCurrency from 'currency-symbol-map';
 import Image from 'next/image';
 
 type TFeaturedProductCard = {
   tags: string[];
   title: string;
-  price: string;
+  price: { amount?: number; currencyCode?: string };
 };
 
 export const FeaturedProductCard = ({
@@ -27,9 +28,11 @@ export const FeaturedProductCard = ({
         <div className="absolute bottom-2 left-4 right-4 h-0.5 origin-center translate-y-full scale-x-0 bg-pampas-100 transition-all duration-300 group-hover:scale-x-100" />
       </span>
       <div className="overflow-hidden px-4 py-1 text-pampas-100">
-        <span className="flex -translate-y-full py-1 transition-all duration-300 group-hover:translate-y-0">
-          {price}
-        </span>
+        {price.amount && price.currencyCode ? (
+          <span className="flex -translate-y-full py-1 transition-all duration-300 group-hover:translate-y-0">
+            {getSymbolFromCurrency(price.currencyCode)} {price.amount / 100}
+          </span>
+        ) : null}
       </div>
     </div>
   );
