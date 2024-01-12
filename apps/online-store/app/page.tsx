@@ -1,34 +1,41 @@
-import { FAQs, FeaturedCategory, Hero, Team, Testimonials } from '../sections';
+import {
+  getCategoryByHandle,
+  getProductsByCategoryHandle,
+} from '@phab/data-next';
 
-const products = [
-  {
-    title: 'Product Title',
-    tags: ['Tag 1', 'Tag 2'],
-    price: '£23.99',
-  },
-  {
-    title: 'Product Title',
-    tags: ['Tag 1', 'Tag 2'],
-    price: '£23.99',
-  },
-  {
-    title: 'Product Title',
-    tags: ['Tag 1', 'Tag 2'],
-    price: '£23.99',
-  },
-];
+import { FAQs, FeaturedCategory, Hero, Team, Testimonials } from '../sections';
 
 export const metadata = {
   title: 'Home | Phab Pharmacy',
 };
 
 export default async function Index() {
+  const [coldAndFlu, skinCare, headachesAndPainRelief] = await Promise.all([
+    getCategoryData('cold-and-flu'),
+    getCategoryData('skin-care'),
+    getCategoryData('headaches-and-pain-relief'),
+  ]);
   return (
     <main>
       <Hero />
-      <FeaturedCategory title="Category" side="left" products={products} />
-      <FeaturedCategory title="Category" side="right" products={products} />
-      <FeaturedCategory title="Category" side="left" products={products} />
+      <FeaturedCategory
+        title={coldAndFlu.category.name}
+        side="left"
+        products={coldAndFlu.products}
+        href={`/categories/${coldAndFlu.category.handle}`}
+      />
+      <FeaturedCategory
+        title={skinCare.category.name}
+        side="right"
+        products={skinCare.products}
+        href={`/categories/${skinCare.category.handle}`}
+      />
+      <FeaturedCategory
+        title={headachesAndPainRelief.category.name}
+        side="left"
+        products={headachesAndPainRelief.products}
+        href={`/categories/${headachesAndPainRelief.category.handle}`}
+      />
       <Testimonials
         testimonials={[
           {
@@ -116,4 +123,12 @@ export default async function Index() {
       />
     </main>
   );
+}
+
+async function getCategoryData(handle: string) {
+  const [category, products] = await Promise.all([
+    getCategoryByHandle(handle),
+    getProductsByCategoryHandle(handle),
+  ]);
+  return { category, products };
 }
