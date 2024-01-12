@@ -17,13 +17,11 @@ const createCart = async (creds) => {
         }
       });
       const customer_id = customerResponse.data.id; 
-  
       const updateResponse = await axios.post(`${BASE_URL}/store/carts/${cart_id}`, {
         customer_id: customer_id,
         email: creds.username
       });
       console.log('Added user to cart');
-      
     } catch (error) {
       console.error('Error in createCart function', error);
     }

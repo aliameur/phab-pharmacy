@@ -18,7 +18,6 @@ const login = async (email, password) => {
     const creds = await Keychain.getGenericPassword({ service });
     try {
       const cart = await AsyncStorage.getItem('cartID');
-      console.log('cart', cart)
       if (cart) {
         console.log('Loaded cart: ', cart)
       }

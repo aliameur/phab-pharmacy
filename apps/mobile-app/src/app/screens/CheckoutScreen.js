@@ -20,8 +20,15 @@ export default function CheckoutScreen({ navigation }) {
           if (error) {
             console.log('Payment confirmation error', error);
           } else if (paymentIntent) {
-            await completeCart();
-            console.log('Success from promise', paymentIntent);
+            response = await completeCart();
+            if (response){
+                console.log('Success from payment process');
+                navigation.replace('Shop');
+            } 
+            else{
+                console.log('Failed');
+            }
+            
         }
     };
 

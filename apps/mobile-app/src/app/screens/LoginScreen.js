@@ -33,7 +33,6 @@ function LoginScreen({ navigation }) {
             if (output[0] === 'good') {
                 service = 'JWToken'
                 creds = await Keychain.getGenericPassword( { service } );
-                console.log(creds.password);
                 await loadNumberCart();
                 navigation.replace('Shop'); 
             } else {

@@ -1,5 +1,7 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { createCart } from './CartScripts'
+import * as Keychain from 'react-native-keychain';
 
 const BASE_URL = 'https://phab-pharmacy-backend-ab775283aa48.herokuapp.com';
 
@@ -38,7 +40,16 @@ const completeCart = async () => {
     const cart_id = await AsyncStorage.getItem('cartID');
     try {
         const response = await axios.post(`${BASE_URL}/store/carts/${cart_id}/complete`);
-        console.log('Sucessful Order', response.data)
+        console.log(response.data.type)
+        if (response.data.type === 'order'){
+            console.log('Sucessful Order', response.data)
+            const creds = await Keychain.getGenericPassword({ service });
+            await createCart(creds);
+            return true;
+        }
+        else {
+            return false;
+        }
     } catch (error) {
         console.error('Error creating payment sessions:', error.response ? error.response.data : error.message);
     }
