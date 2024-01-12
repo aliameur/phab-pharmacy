@@ -14,7 +14,7 @@ export const medusaFetch = async <T>({
   cache?: RequestCache;
   method?: 'GET' | 'POST';
   headers?: HeadersInit;
-  body?: string;
+  body?: Record<string, string | number>;
   path?: string;
   query?: { [key: string]: string };
   tags?: string[];

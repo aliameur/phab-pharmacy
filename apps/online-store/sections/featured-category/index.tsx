@@ -1,6 +1,8 @@
 'use client';
 
-import { ComponentProps, useState } from 'react';
+import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
+import Link from 'next/link';
+import { useState } from 'react';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as TSwiper } from 'swiper/types';
@@ -13,12 +15,14 @@ import { SliderButton } from './slider-button';
 type TFeaturedCategory = {
   side: 'left' | 'right';
   title: string;
-  products: ComponentProps<typeof FeaturedProductCard>[];
+  products: PricedProduct[];
+  href: string;
 };
 export const FeaturedCategory = ({
   side,
   title,
   products,
+  href,
 }: TFeaturedCategory) => {
   const [swiper, setSwiper] = useState<TSwiper | null>(null);
 
@@ -74,11 +78,13 @@ export const FeaturedCategory = ({
         >
           {products.map((product) => (
             <SwiperSlide className="max-w-min" key={product.title}>
-              <FeaturedProductCard
-                title={product.title}
-                tags={product.tags}
-                price={product.price}
-              />
+              <Link href={`/products/${product.handle}`}>
+                <FeaturedProductCard
+                  title={product.title || ''}
+                  tags={product.tags?.map((tag) => tag.value) || []}
+                  price={product.variants[0].prices[0]}
+                />
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -87,7 +93,9 @@ export const FeaturedCategory = ({
         <h2 className="font-merriweather text-[40px] text-mineral-green-600">
           {title}
         </h2>
-        <Button>Shop {title}</Button>
+        <Button>
+          <Link href={href}>Shop {title}</Link>
+        </Button>
       </div>
     </div>
   );

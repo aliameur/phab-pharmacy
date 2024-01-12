@@ -1,14 +1,13 @@
-import { ComponentProps } from 'react';
+import { Slot } from '@radix-ui/react-slot';
+import { ComponentPropsWithoutRef } from 'react';
 
 import { cn } from '../lib/utils';
 
-export const Button = ({
-  className,
-  children,
-  ...props
-}: ComponentProps<'button'>) => {
+type TButton = ComponentPropsWithoutRef<'button'> & { asChild?: boolean };
+export const Button = ({ className, children, asChild, ...props }: TButton) => {
+  const Comp = asChild ? Slot : 'button';
   return (
-    <button
+    <Comp
       className={cn(
         'group flex justify-center rounded-2xl bg-mineral-green-600 px-8 py-4 text-pampas-100',
         className,
@@ -23,6 +22,6 @@ export const Button = ({
           {children}
         </span>
       </div>
-    </button>
+    </Comp>
   );
 };

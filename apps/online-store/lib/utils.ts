@@ -26,6 +26,6 @@ export const getCheapestVariantPriceInCurrency = (
         ? cheapest
         : variant
       : cheapest;
-  })
-  return getPriceIn(cheapestVariant.prices, currencyCode)
+  });
+  return getPriceIn(cheapestVariant.prices, currencyCode);
 };
