@@ -10,5 +10,6 @@ export * from './lib/create-cart';
 export * from './lib/get-cart';
 export * from './lib/add-cart-line-item';
 export * from './lib/update-cart-line-item';
+export * from './lib/remove-cart-line-item';
 
-export type { TRequestFn, MedusaCart } from './types';
+export type { TRequestFn, TCart } from './types';

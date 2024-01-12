@@ -41,7 +41,7 @@ export const addItem = async (
         lineItem.quantity + 1,
       );
     } else {
-      cart = await addCartLineItem(cartId, variantId, 1);
+      cart = await addCartLineItem({ cartId, variantId, quantity: 1 });
     }
     return { cartId: cart.id || '' };
   } catch (e) {

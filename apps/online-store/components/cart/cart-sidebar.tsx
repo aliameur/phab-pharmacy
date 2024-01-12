@@ -3,12 +3,13 @@
 import { ShoppingCart, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
-import { MedusaCart } from '@phab/data-core';
+import { TCart } from '@phab/data-core';
 
 import { Sidebar } from '../sidebar';
+import { CartLine } from './cart-line';
 
 type TCartSidebar = {
-  cart: MedusaCart | undefined;
+  cart: TCart | undefined;
 };
 
 export const CartSidebar = ({ cart }: TCartSidebar) => {
@@ -16,7 +17,7 @@ export const CartSidebar = ({ cart }: TCartSidebar) => {
   const cartTotal = lineItems.reduce((total, item) => {
     return total + item.quantity;
   }, 0);
-  const quantityRef = useRef<number>(0);
+  const quantityRef = useRef<number>(cartTotal);
   const [isOpen, setIsOpen] = useState(false); // controlled sidebar to respond to quantityRef
 
   useEffect(() => {
@@ -65,7 +66,19 @@ export const CartSidebar = ({ cart }: TCartSidebar) => {
             <X className="h-6 w-6 text-pampas-100" />
           </button>
           <h3 className="font-merriweather text-3xl text-pampas-100">Cart</h3>
-          {cart?.items.map((item) => <div key={item.id}>{item.title}</div>)}
+          {cart?.items.map((item) => (
+            <CartLine
+              onClick={closeSidebar}
+              currencyCode={cart.region.currency_code}
+              item={item}
+              key={item.id}
+              quantity={item.quantity}
+              id={item.variant_id || item.product_id || ''}
+              title={item.title}
+              src={item.thumbnail || ''}
+              alt={item.title}
+            />
+          ))}
         </>
       )}
     </Sidebar>

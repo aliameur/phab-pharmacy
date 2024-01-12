@@ -1,20 +1,16 @@
 import { MedusaCartOperation, TRequestFn } from '../types';
 
-type TUpdateCartLineItem = {
+type TRemoveCartLineItem = {
   cartId: string;
   lineId: string;
-  quantity: number;
 };
 
-export const updateCartLineItem =
+export const removeCartLineItem =
   (requestFn: TRequestFn) =>
-  async ({ cartId, lineId, quantity }: TUpdateCartLineItem) => {
+  async ({ cartId, lineId }: TRemoveCartLineItem) => {
     const res = await requestFn<MedusaCartOperation>({
       path: `/carts/${cartId}/line-items/${lineId}`,
-      method: 'POST',
-      body: {
-        quantity,
-      },
+      method: 'DELETE',
     });
 
     return res.body.cart;

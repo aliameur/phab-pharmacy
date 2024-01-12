@@ -12,7 +12,7 @@ export const medusaFetch = async <T>({
   headers,
 }: {
   cache?: RequestCache;
-  method?: 'GET' | 'POST';
+  method?: 'GET' | 'POST'| 'DELETE';
   headers?: HeadersInit;
   body?: Record<string, string | number>;
   path?: string;
