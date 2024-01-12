@@ -88,7 +88,7 @@ function CartScreen({navigation, route }) {
             </View>
             <View style={{flex: 0.1, justifyContent: 'center', alignItems:'center'}}>
                 <TouchableOpacity style={{width: '90%', height: '70%', borderRadius: 15, justifyContent:'center', alignItems: 'center'}}
-                onPress={() => navigation.replace('Shop')}
+                onPress={() => navigation.goBack()}
                 >
                     <Text style={{fontSize: 20}}>Continue Shopping</Text>
                 </TouchableOpacity>

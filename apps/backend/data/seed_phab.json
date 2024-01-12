@@ -1,1273 +1,1273 @@
 {
-    "store": {
-      "currencies": ["gbp"]
+  "store": {
+    "currencies": ["gbp"]
+  },
+  "users": [
+    {
+      "email": "admin@medusa-test.com",
+      "password": "supersecret"
+    }
+  ],
+  "regions": [
+    {
+      "id": "test-region-uk",
+      "name": "UK",
+      "currency_code": "gbp",
+      "tax_rate": 20,
+      "payment_providers": ["manual"],
+      "fulfillment_providers": ["manual"],
+      "countries": ["gb"]
+    }
+  ],
+  "shipping_options": [
+    {
+      "name": "UK Standard Shipping",
+      "region_id": "test-region-uk",
+      "provider_id": "manual",
+      "data": {
+        "id": "manual-fulfillment"
+      },
+      "price_type": "flat_rate",
+      "amount": 500
     },
-    "users": [
-      {
-        "email": "admin@medusa-test.com",
-        "password": "supersecret"
-      }
-    ],
-    "regions": [
-      {
-        "id": "test-region-uk",
-        "name": "UK",
-        "currency_code": "gbp",
-        "tax_rate": 20,
-        "payment_providers": ["manual"],
-        "fulfillment_providers": ["manual"],
-        "countries": ["gb"]
-      }
-    ],
-    "shipping_options": [
-      {
-        "name": "UK Standard Shipping",
-        "region_id": "test-region-uk",
-        "provider_id": "manual",
-        "data": {
-          "id": "manual-fulfillment"
+    {
+      "name": "UK Express Shipping",
+      "region_id": "test-region-uk",
+      "provider_id": "manual",
+      "data": {
+        "id": "manual-fulfillment"
+      },
+      "price_type": "flat_rate",
+      "amount": 1000
+    },
+    {
+      "name": "UK Return Shipping",
+      "region_id": "test-region-uk",
+      "provider_id": "manual",
+      "data": {
+        "id": "manual-fulfillment"
+      },
+      "price_type": "flat_rate",
+      "is_return": true,
+      "amount": 500
+    }
+  ],
+  "products": [
+    {
+      "title": "Vicks Vaporub",
+      "categories": [
+        {
+          "id": "pcat_cold_flu"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "vicks-vaporub",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 3.7
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 15,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Vicks First Defence",
+      "categories": [
+        {
+          "id": "pcat_cold_flu"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "vicks-first-defence",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 5
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Gsk Night Nurse",
+      "categories": [
+        {
+          "id": "pcat_cold_flu"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "gsk-night-nurse",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 7.5
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 30,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Lemsip Max",
+      "categories": [
+        {
+          "id": "pcat_cold_flu"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "lemsip-max",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 3.7
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 25,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Lemsip Standard",
+      "categories": [
+        {
+          "id": "pcat_cold_flu"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "lemsip-standard",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 3.5
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 25,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Sudafed Day and Night",
+      "categories": [
+        {
+          "id": "pcat_cold_flu"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "sudafed-day-and-night",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 3.2
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 30,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Sudafed Max",
+      "categories": [
+        {
+          "id": "pcat_cold_flu"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "sudafed-max",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 3.2
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 30,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Benylin Mucus relief",
+      "categories": [
+        {
+          "id": "pcat_cold_flu"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "benylin-mucus-relief",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 3.2
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Benylin 4 flu",
+      "categories": [
+        {
+          "id": "pcat_cold_flu"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "benylin-4-flu",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 4.9
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "E45 Psoriasis cream",
+      "categories": [
+        {
+          "id": "pcat_skincare"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "e45-psoriasis-cream",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 16
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 15,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Eurax Skin cream",
+      "categories": [
+        {
+          "id": "pcat_skincare"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "eurax-skin-cream",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 4.2
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 15,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Eucerin Skin relief cream",
+      "categories": [
+        {
+          "id": "pcat_skincare"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "eucerin-skin-relief-cream",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 7
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Eucerin Face scrub",
+      "categories": [
+        {
+          "id": "pcat_skincare"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "eucerin-face-scrub",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 6
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Dermalex Psoriasis cream",
+      "categories": [
+        {
+          "id": "pcat_skincare"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "dermalex-psoriasis-cream",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 25
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 10,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Dermalex Repair and Restore",
+      "categories": [
+        {
+          "id": "pcat_skincare"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "dermalex-repair-and-restore",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 10
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 10,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Dermalex Eczema cream",
+      "categories": [
+        {
+          "id": "pcat_skincare"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "dermalex-eczema-cream",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 9.7
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
         },
-        "price_type": "flat_rate",
-        "amount": 500
-      },
-      {
-        "name": "UK Express Shipping",
-        "region_id": "test-region-uk",
-        "provider_id": "manual",
-        "data": {
-          "id": "manual-fulfillment"
-        },
-        "price_type": "flat_rate",
-        "amount": 1000
-      },
-      {
-        "name": "UK Return Shipping",
-        "region_id": "test-region-uk",
-        "provider_id": "manual",
-        "data": {
-          "id": "manual-fulfillment"
-        },
-        "price_type": "flat_rate",
-        "is_return": true,
-        "amount": 500
-      }
-    ],
-    "products": [
-      {
-        "title": "Vicks Vaporub",
-        "categories": [
-          {
-            "id": "pcat_cold_flu"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "vicks-vaporub",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 3.7
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 15,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Vicks First Defence",
-        "categories": [
-          {
-            "id": "pcat_cold_flu"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "vicks-first-defence",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 5
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 20,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Gsk Night Nurse",
-        "categories": [
-          {
-            "id": "pcat_cold_flu"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "gsk-night-nurse",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 7.5
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 30,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Lemsip Max",
-        "categories": [
-          {
-            "id": "pcat_cold_flu"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "lemsip-max",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 3.7
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 25,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Lemsip Standard",
-        "categories": [
-          {
-            "id": "pcat_cold_flu"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "lemsip-standard",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 3.5
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 25,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Sudafed Day and Night",
-        "categories": [
-          {
-            "id": "pcat_cold_flu"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "sudafed-day-and-night",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 3.2
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 30,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Sudafed Max",
-        "categories": [
-          {
-            "id": "pcat_cold_flu"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "sudafed-max",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 3.2
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 30,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Benylin Mucus relief",
-        "categories": [
-          {
-            "id": "pcat_cold_flu"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "benylin-mucus-relief",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 3.2
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 20,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Benylin 4 flu",
-        "categories": [
-          {
-            "id": "pcat_cold_flu"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "benylin-4-flu",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 4.9
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 20,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "E45 Psoriasis cream",
-        "categories": [
-          {
-            "id": "pcat_skincare"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "e45-psoriasis-cream",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 16
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 15,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Eurax Skin cream",
-        "categories": [
-          {
-            "id": "pcat_skincare"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "eurax-skin-cream",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 4.2
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 15,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Eucerin Skin relief cream",
-        "categories": [
-          {
-            "id": "pcat_skincare"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "eucerin-skin-relief-cream",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 7
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 20,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Eucerin Face scrub",
-        "categories": [
-          {
-            "id": "pcat_skincare"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "eucerin-face-scrub",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 6
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 20,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Dermalex Psoriasis cream",
-        "categories": [
-          {
-            "id": "pcat_skincare"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "dermalex-psoriasis-cream",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 25
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 10,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Dermalex Repair and Restore",
-        "categories": [
-          {
-            "id": "pcat_skincare"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "dermalex-repair-and-restore",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 10
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 10,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Dermalex Eczema cream",
-        "categories": [
-          {
-            "id": "pcat_skincare"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "dermalex-eczema-cream",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 9.7
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 20,
-            "manage_inventory": true
-          },
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 22.2
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 5,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Cetaphil Moisturising cream",
-        "categories": [
-          {
-            "id": "pcat_skincare"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "cetaphil-moisturising-cream",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 7.6
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 20,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Cetaphil Exfoliating cleanser",
-        "categories": [
-          {
-            "id": "pcat_skincare"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "cetaphil-exfoliating-cleanser",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 10.1
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 20,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Nurofen Meltlets",
-        "categories": [
-          {
-            "id": "pcat_headaches_pain_relief"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "nurofen-meltlets",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 3.7
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 40,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Nurofen Express",
-        "categories": [
-          {
-            "id": "pcat_headaches_pain_relief"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "nurofen-express",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 3.5
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 30,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Nurofen Max strength",
-        "categories": [
-          {
-            "id": "pcat_headaches_pain_relief"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "nurofen-max-strength",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 6.2
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 25,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Nurofen Standard",
-        "categories": [
-          {
-            "id": "pcat_headaches_pain_relief"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "nurofen-standard",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 3.2
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 30,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Cuprofen Max strength",
-        "categories": [
-          {
-            "id": "pcat_headaches_pain_relief"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "cuprofen-max-strength",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 9
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 20,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Solpadeine Headache",
-        "categories": [
-          {
-            "id": "pcat_headaches_pain_relief"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "solpadeine-headache",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 1.6
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 20,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Anadin Extra",
-        "categories": [
-          {
-            "id": "pcat_headaches_pain_relief"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "anadin-extra",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 2
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 30,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Anadin Triple action",
-        "categories": [
-          {
-            "id": "pcat_headaches_pain_relief"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "anadin-triple-action",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 1.9
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 30,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Anadin Original",
-        "categories": [
-          {
-            "id": "pcat_headaches_pain_relief"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "anadin-original",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 1.5
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 30,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Disprin Soluble",
-        "categories": [
-          {
-            "id": "pcat_headaches_pain_relief"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "disprin-soluble",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 2.8
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 20,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Dioralyte Blackcurrant",
-        "categories": [
-          {
-            "id": "pcat_digestion"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "dioralyte-blackcurrant",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 7.3
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 20,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Dioralyte Lemon",
-        "categories": [
-          {
-            "id": "pcat_digestion"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "dioralyte-lemon",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 7.3
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 20,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Gaviscon Chewable",
-        "categories": [
-          {
-            "id": "pcat_digestion"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "gaviscon-chewable",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 3.5
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 25,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Senokot Max",
-        "categories": [
-          {
-            "id": "pcat_digestion"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "senokot-max",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 2.7
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 10,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Gaviscon Advance",
-        "categories": [
-          {
-            "id": "pcat_digestion"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "gaviscon-advance",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 8.1
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 10,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Benadryl Relief",
-        "categories": [
-          {
-            "id": "pcat_allergy"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "benadryl-relief",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 7.1
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 20,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Piriteze tabs",
-        "categories": [
-          {
-            "id": "pcat_allergy"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "piriteze-tabs",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 2.3
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 20,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Beconase Relief",
-        "categories": [
-          {
-            "id": "pcat_allergy"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "beconase-relief",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 4
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 20,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Dettol Antiseptic",
-        "categories": [
-          {
-            "id": "pcat_first_aid"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "dettol-antiseptic",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 3
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 20,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Dettol Hand sanitizer",
-        "categories": [
-          {
-            "id": "pcat_first_aid"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "dettol-hand-sanitizer",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 6.3
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 50,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "Elastoplast plasters",
-        "categories": [
-          {
-            "id": "pcat_first_aid"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "elastoplast-plasters",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 2
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 30,
-            "manage_inventory": true
-          }
-        ]
-      },
-      {
-        "title": "TCP Liquid",
-        "categories": [
-          {
-            "id": "pcat_first_aid"
-          }
-        ],
-        "subtitle": null,
-        "description": null,
-        "handle": "tcp-liquid",
-        "is_giftcard": false,
-        "weight": 0,
-        "images": [],
-        "options": [],
-        "variants": [
-          {
-            "title": "Purchase price",
-            "prices": [
-              {
-                "currency_code": "gbp",
-                "amount": 3.2
-              }
-            ],
-            "options": [],
-            "inventory_quantity": 20,
-            "manage_inventory": true
-          }
-        ]
-      }
-    ],
-    "categories": [
-      {
-        "id": "pcat_cold_flu",
-        "name": "Cold and Flu",
-        "rank": 0,
-        "category_children": [],
-        "handle": "cold-and-flu"
-      },
-      {
-        "id": "pcat_skincare",
-        "name": "Skincare",
-        "rank": 0,
-        "category_children": [],
-        "handle": "skincare"
-      },
-      {
-        "id": "pcat_headaches_pain_relief",
-        "name": "Headaches and Pain Relief",
-        "rank": 0,
-        "category_children": [],
-        "handle": "headachespain"
-      },
-      {
-        "id": "pcat_digestion",
-        "name": "Digestion",
-        "rank": 0,
-        "category_children": [],
-        "handle": "digestion"
-      },
-      {
-        "id": "pcat_allergy",
-        "name": "Allergy",
-        "rank": 0,
-        "category_children": [],
-        "handle": "allergy"
-      },
-      {
-        "id": "pcat_first_aid",
-        "name": "First Aid",
-        "rank": 0,
-        "category_children": [],
-        "handle": "first_aid"
-      }
-    ]
-  }
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 22.2
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 5,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Cetaphil Moisturising cream",
+      "categories": [
+        {
+          "id": "pcat_skincare"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "cetaphil-moisturising-cream",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 7.6
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Cetaphil Exfoliating cleanser",
+      "categories": [
+        {
+          "id": "pcat_skincare"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "cetaphil-exfoliating-cleanser",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 10.1
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Nurofen Meltlets",
+      "categories": [
+        {
+          "id": "pcat_headaches_pain_relief"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "nurofen-meltlets",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 3.7
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 40,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Nurofen Express",
+      "categories": [
+        {
+          "id": "pcat_headaches_pain_relief"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "nurofen-express",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 3.5
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 30,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Nurofen Max strength",
+      "categories": [
+        {
+          "id": "pcat_headaches_pain_relief"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "nurofen-max-strength",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 6.2
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 25,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Nurofen Standard",
+      "categories": [
+        {
+          "id": "pcat_headaches_pain_relief"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "nurofen-standard",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 3.2
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 30,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Cuprofen Max strength",
+      "categories": [
+        {
+          "id": "pcat_headaches_pain_relief"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "cuprofen-max-strength",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 9
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Solpadeine Headache",
+      "categories": [
+        {
+          "id": "pcat_headaches_pain_relief"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "solpadeine-headache",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 1.6
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Anadin Extra",
+      "categories": [
+        {
+          "id": "pcat_headaches_pain_relief"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "anadin-extra",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 2
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 30,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Anadin Triple action",
+      "categories": [
+        {
+          "id": "pcat_headaches_pain_relief"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "anadin-triple-action",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 1.9
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 30,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Anadin Original",
+      "categories": [
+        {
+          "id": "pcat_headaches_pain_relief"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "anadin-original",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 1.5
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 30,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Disprin Soluble",
+      "categories": [
+        {
+          "id": "pcat_headaches_pain_relief"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "disprin-soluble",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 2.8
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Dioralyte Blackcurrant",
+      "categories": [
+        {
+          "id": "pcat_digestion"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "dioralyte-blackcurrant",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 7.3
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Dioralyte Lemon",
+      "categories": [
+        {
+          "id": "pcat_digestion"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "dioralyte-lemon",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 7.3
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Gaviscon Chewable",
+      "categories": [
+        {
+          "id": "pcat_digestion"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "gaviscon-chewable",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 3.5
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 25,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Senokot Max",
+      "categories": [
+        {
+          "id": "pcat_digestion"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "senokot-max",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 2.7
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 10,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Gaviscon Advance",
+      "categories": [
+        {
+          "id": "pcat_digestion"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "gaviscon-advance",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 8.1
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 10,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Benadryl Relief",
+      "categories": [
+        {
+          "id": "pcat_allergy"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "benadryl-relief",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 7.1
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Piriteze tabs",
+      "categories": [
+        {
+          "id": "pcat_allergy"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "piriteze-tabs",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 2.3
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Beconase Relief",
+      "categories": [
+        {
+          "id": "pcat_allergy"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "beconase-relief",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 4
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Dettol Antiseptic",
+      "categories": [
+        {
+          "id": "pcat_first_aid"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "dettol-antiseptic",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 3
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Dettol Hand sanitizer",
+      "categories": [
+        {
+          "id": "pcat_first_aid"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "dettol-hand-sanitizer",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 6.3
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 50,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Elastoplast plasters",
+      "categories": [
+        {
+          "id": "pcat_first_aid"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "elastoplast-plasters",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 2
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 30,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "TCP Liquid",
+      "categories": [
+        {
+          "id": "pcat_first_aid"
+        }
+      ],
+      "subtitle": null,
+      "description": null,
+      "handle": "tcp-liquid",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 3.2
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "pcat_cold_flu",
+      "name": "Cold and Flu",
+      "rank": 0,
+      "category_children": [],
+      "handle": "cold-and-flu"
+    },
+    {
+      "id": "pcat_skincare",
+      "name": "Skincare",
+      "rank": 0,
+      "category_children": [],
+      "handle": "skincare"
+    },
+    {
+      "id": "pcat_headaches_pain_relief",
+      "name": "Headaches and Pain Relief",
+      "rank": 0,
+      "category_children": [],
+      "handle": "headachespain"
+    },
+    {
+      "id": "pcat_digestion",
+      "name": "Digestion",
+      "rank": 0,
+      "category_children": [],
+      "handle": "digestion"
+    },
+    {
+      "id": "pcat_allergy",
+      "name": "Allergy",
+      "rank": 0,
+      "category_children": [],
+      "handle": "allergy"
+    },
+    {
+      "id": "pcat_first_aid",
+      "name": "First Aid",
+      "rank": 0,
+      "category_children": [],
+      "handle": "first_aid"
+    }
+  ]
+}
