@@ -1,7 +1,4 @@
-import {
-  getCategoryByHandle,
-  getProductsByCategoryHandle,
-} from '@phab/data-next';
+import { getCategories, getProductsByCategoryHandle } from '@phab/data-next';
 
 import { FAQs, FeaturedCategory, Hero, Team, Testimonials } from '../sections';
 
@@ -10,32 +7,26 @@ export const metadata = {
 };
 
 export default async function Index() {
-  const [coldAndFlu, skinCare, headachesAndPainRelief] = await Promise.all([
-    getCategoryData('cold-and-flu'),
-    getCategoryData('skin-care'),
-    getCategoryData('headaches-and-pain-relief'),
-  ]);
+  const categories = await getCategories();
+  const data = await Promise.all(
+    categories.map(async (category) => ({
+      category,
+      products: await getProductsByCategoryHandle(category.handle),
+    })),
+  );
+
   return (
     <main>
       <Hero />
-      <FeaturedCategory
-        title={coldAndFlu.category.name}
-        side="left"
-        products={coldAndFlu.products}
-        href={`/categories/${coldAndFlu.category.handle}`}
-      />
-      <FeaturedCategory
-        title={skinCare.category.name}
-        side="right"
-        products={skinCare.products}
-        href={`/categories/${skinCare.category.handle}`}
-      />
-      <FeaturedCategory
-        title={headachesAndPainRelief.category.name}
-        side="left"
-        products={headachesAndPainRelief.products}
-        href={`/categories/${headachesAndPainRelief.category.handle}`}
-      />
+      {data.map(({ category, products }, i) => (
+        <FeaturedCategory
+          key={category.id}
+          title={category.name}
+          side={i % 2 === 0 ? 'left' : 'right'}
+          products={products}
+          href={`/categories/${category.handle}`}
+        />
+      ))}
       <Testimonials
         testimonials={[
           {
@@ -123,12 +114,4 @@ export default async function Index() {
       />
     </main>
   );
-}
-
-async function getCategoryData(handle: string) {
-  const [category, products] = await Promise.all([
-    getCategoryByHandle(handle),
-    getProductsByCategoryHandle(handle),
-  ]);
-  return { category, products };
 }
