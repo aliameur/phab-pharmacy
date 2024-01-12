@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import { CartContext } from './contexts/CartContext';
+import { ShopContext } from './contexts/ShopContext';
 
 const customRender = (ui) => {
     const providerProps = {
@@ -8,9 +8,9 @@ const customRender = (ui) => {
         loadNumberCart: jest.fn(),
     };
   return render(
-    <CartContext.Provider value={providerProps}>
+    <ShopContext.Provider value={providerProps}>
       {ui}
-    </CartContext.Provider>
+    </ShopContext.Provider>
   );
 };
 

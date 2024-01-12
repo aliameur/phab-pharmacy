@@ -6,14 +6,14 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import { CartContext } from '../contexts/CartContext';
+import { ShopContext } from '../contexts/ShopContext';
 
 import colours from '../colours';
 import { checkKeychain } from '../scripts/AuthScript';
 
 
 function UserCheckScreen({ navigation }) {
-    const { loadNumberCart } = useContext(CartContext);
+    const { loadNumberCart } = useContext(ShopContext);
     useEffect(() => {
         const performCheck = async () => {
             const output = await checkKeychain();

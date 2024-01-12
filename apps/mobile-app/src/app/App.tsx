@@ -23,7 +23,7 @@ import CartScreen from './screens/CartScreen';
 
 import colours from './colours';
 
-import { CartProvider } from './contexts/CartContext';
+import { ShopProvider } from './contexts/ShopContext';
 
 const Stack = createStackNavigator();
 
@@ -31,7 +31,7 @@ export default function App() {
   const headerHeight = Platform.OS === 'ios' ? 44 : 56; // Default header heights
 
   return (
-    <CartProvider>
+    <ShopProvider>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{
           headerTitleAlign: 'center', 
@@ -132,7 +132,7 @@ export default function App() {
 
         </Stack.Navigator>
       </NavigationContainer>
-    </CartProvider>
+    </ShopProvider>
   );
 }
 

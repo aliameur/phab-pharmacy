@@ -3,12 +3,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import { SafeAreaView, View, Text, Dimensions, Image, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import { getStoreProducts } from '../scripts/ShopScript';
 import { addToCart } from '../scripts/CartScripts';
-import { CartContext } from '../contexts/CartContext';
+import { ShopContext } from '../contexts/ShopContext';
 import colours from '../colours';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 function ShopCarousel ({ navigation, handle }) {
-    const { loadNumberCart, loadCartData } = useContext(CartContext);
+    const { loadNumberCart, loadCartData } = useContext(ShopContext);
     const [activeIndex, setActiveIndex] = useState(0);
     const [data, setData] = useState(null);
     const [addItemWaiting, setWaiting] = useState(false);

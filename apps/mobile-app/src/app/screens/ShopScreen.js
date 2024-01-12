@@ -5,7 +5,7 @@ import UserMenuSheet from '../components/UserMenuSheet';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { getStoreCategories } from '../scripts/ShopScript';
 import ShopCarousel from '../components/ShopCarousel'; 
-import { CartContext } from '../contexts/CartContext';
+import { ShopContext } from '../contexts/ShopContext';
 
 
 function ShopScreen({ navigation }) {
@@ -13,7 +13,7 @@ function ShopScreen({ navigation }) {
     const [isMenuModalVisible, setMenuModalVisible] = useState(false);
     const [collectionsData, setCollectionsData] = useState([]);
     const [searchText, setSearchText] = useState('');
-    const { cartCount } = useContext(CartContext);
+    const { cartCount } = useContext(ShopContext);
 
     useEffect(() => {
         const getData = async () => {

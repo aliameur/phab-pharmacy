@@ -2,12 +2,12 @@ import { FlatList, Text, View, Image, Dimensions, ActivityIndicator, TouchableOp
 import { getCartItems } from "../scripts/CartScripts";
 import { useEffect, useState, useContext } from "react";
 import colours from "../colours";
-import { CartContext } from '../contexts/CartContext';
+import { ShopContext } from '../contexts/ShopContext';
 
 
 
 function CartScreen({navigation, route }) {
-    const { cartData, cartTotal, loadCartData } = useContext(CartContext);
+    const { cartData, cartTotal, loadCartData } = useContext(ShopContext);
 
     useEffect(() => {
         const getCartProducts = async () => {

@@ -4,12 +4,12 @@ import { searchProducts } from '../scripts/ShopScript';
 import colours from '../colours';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { addToCart } from '../scripts/CartScripts';
-import { CartContext } from '../contexts/CartContext';
+import { ShopContext } from '../contexts/ShopContext';
 
 
 function ProductScreen({ route }) {
     const { data } = route.params;
-    const { loadNumberCart, loadCartData } = useContext(CartContext);
+    const { loadNumberCart, loadCartData } = useContext(ShopContext);
     const addItemToCart = async (variant_id, quantity) => {
         response = await addToCart(variant_id, quantity);
         if (response) {
