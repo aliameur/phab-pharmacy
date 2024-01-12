@@ -1,12 +1,17 @@
 import Carousel from 'react-native-reanimated-carousel';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { SafeAreaView, View, Text, Dimensions, Image, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import { getStoreProducts } from '../scripts/ShopScript';
+import { addToCart } from '../scripts/CartScripts';
+import { CartContext } from '../contexts/CartContext';
 import colours from '../colours';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 function ShopCarousel ({ navigation, handle }) {
+    const { loadNumberCart, loadCartData } = useContext(CartContext);
     const [activeIndex, setActiveIndex] = useState(0);
     const [data, setData] = useState(null);
+    const [addItemWaiting, setWaiting] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -19,6 +24,21 @@ function ShopCarousel ({ navigation, handle }) {
         };
         fetchData();
     }, [handle]);
+
+    const addItemToCart = async (variant_id, quantity) => {
+        setWaiting(true);
+        response = await addToCart(variant_id, quantity);
+        if (response) {
+            try {
+                await loadNumberCart();
+                await loadCartData();
+            }
+            catch (error) {
+                console.log(error)
+            }
+        }
+        setWaiting(false);
+    }
 
     const renderItem = ({ item, index }) => {
         return (
@@ -38,9 +58,17 @@ function ShopCarousel ({ navigation, handle }) {
                     <Text style={{fontWeight: '700', fontSize: 20}}>Price: </Text>
                     <Text style={{fontSize: 20}}>£{item.price.toString().slice(0,2)}.{item.price.toString().slice(2,4)}</Text>
                 </View>
-                <TouchableOpacity style={styles.detailsButtons} onPress={() => navigation.navigate('Product', {data: item})}>
-                    <Text style={{fontSize: 25, color: colours.LogoColours.cream}}>Buy Now</Text>
-                </TouchableOpacity>
+                    <View style={{flex: 0.8, flexDirection: 'row', margin: 20, width: '70%', justifyContent: 'center', alignSelf: 'center'}}>
+                        <TouchableOpacity style={styles.detailsButtons} onPress={() => navigation.navigate('Product', {data: item})}>
+                            <Text style={{fontSize: 25, color: colours.LogoColours.cream}}>Buy Now</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{marginLeft: 20, flex: 1.2, backgroundColor: colours.TailWindColors['mineral-green'][600], borderRadius: 10, alignItems: 'center', alignSelf: 'center', justifyContent: 'center', height: '100%'}}
+                            onPress={() => addItemToCart(item.variant_id, 1)}
+                        >
+                            {!addItemWaiting && <FontAwesome name="shopping-cart" size={30} color={colours.LogoColours.cream}/>}
+                            {addItemWaiting && <ActivityIndicator color={colours.LogoColours.cream}/>}
+                        </TouchableOpacity>
+                    </View>
             </View>
         );
     };
@@ -143,8 +171,8 @@ const styles = StyleSheet.create({
         alignItems: 'center', 
         alignSelf: 'center',
         justifyContent: 'center',
-        height: '12%',
-        width: '50%',
+        flex: 4,
+        height: '100%',
         marginVertical: '3%',
         borderRadius: 10,
         backgroundColor: colours.TailWindColors['mineral-green'][600],
