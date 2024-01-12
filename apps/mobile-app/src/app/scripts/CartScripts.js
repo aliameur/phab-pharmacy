@@ -74,10 +74,9 @@ const getCartItems = async () => {
                 variant_id: items[i]["variant_id"],
                 quantity: items[i]["quantity"],
                 total: items[i]["total"]
-                //Note this price is hard coded changes to the backend will cause a breaking bug for pricing 
             })
         }
-        return products
+        return [products, response.data['cart']['total']]
     } catch (error) {
         console.error('Error getting cart items:', error.message)
     }

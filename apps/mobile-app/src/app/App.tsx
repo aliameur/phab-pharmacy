@@ -8,6 +8,7 @@ import {
   StatusBar,
   StyleSheet,
   TouchableOpacity,
+  Text,
 } from 'react-native';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
@@ -124,10 +125,7 @@ export default function App() {
                 </TouchableOpacity>
               ),
               headerTitle: () => (
-                <Image 
-                source={require('./assets/phab_pharma_no_text.png')}
-                style={{width: headerHeight*0.64, height: headerHeight*0.84}}
-                />
+                <Text style={{fontSize: 25, fontWeight: '700'}}>My Cart</Text>
               ),
               headerTintColor: colours.LogoColours.green
             })} />

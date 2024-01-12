@@ -9,13 +9,13 @@ import { CartContext } from '../contexts/CartContext';
 
 function ProductScreen({ route }) {
     const { data } = route.params;
-    const { loadNumberCart } = useContext(CartContext);
+    const { loadNumberCart, loadCartData } = useContext(CartContext);
     const addItemToCart = async (variant_id, quantity) => {
-        console.log('Staring adding')
         response = await addToCart(variant_id, quantity);
         if (response) {
             try {
                 await loadNumberCart();
+                await loadCartData();
             }
             catch (error) {
                 console.log(error)
