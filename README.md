@@ -21,7 +21,7 @@ This repo contains the source code for the following projects:
 
 - [Node.js](https://nodejs.org/en/download/)
 - [Docker](https://docs.docker.com/install/)
-- [Pnpm](https://pnpm.io/) (8.12.1)
+- [Yarn](https://yarnpkg.com) (8.12.1)
 - Xcode (for iOS development)
 - Android Studio (for Android development)
 
@@ -32,10 +32,10 @@ $ node -v # v20.8.1
 
 $ docker -v # Docker version 24.0.6, build ed223bc
 
-$ pnpm -v # 8.12.1
+$ yarn -v # 8.12.1
 ```
 
-We recommend installing the NX CLI globally. This is not required, but it will make it easier to run commands. (if you don't install preface all nx commands with `pnpm dlx`)
+We recommend installing the NX CLI globally. This is not required, but it will make it easier to run commands. (if you don't install preface all nx commands with `yarn`)
 
 We also recommend installing the [Nx Console extensions](https://nx.dev/nx-console). It provides autocomplete and UI for running tasks and generators (available for both VS Code and Jetbrains).
 
@@ -55,8 +55,7 @@ $ git clone https://github.com/aliameur/phab-pharmacy.git
 2. Install the dependencies:
 ```bash
 $ cd phab-pharmacy
-$ pnpm i
-$ nx prepare backend # make sure to separately install the backend dependencies
+$ yarn
 ```
 
 3. Populate environment variables
@@ -70,7 +69,7 @@ $ cp apps/online-store/.env.template apps/online-store/.env
 ```bash
 $ nx serve backend 
 ```
-The backend should be running at http://localhost:9000 and the admin panel should open at http://localhost:7001.  
+The backend should be running at http://localhost:9000  
 
 ### Start the online-store
 
@@ -86,7 +85,15 @@ $ nx run-ios mobile-app # for ios
 $ nx run-android mobile-app # for android 
 ```
 
-### Start the assistant-api
+### Start the admin
+
+```bash
+$ nx serve admin 
+```
+
+The admin panel should be running at http://localhost:4300.
+
+> ### Start the assistant-api
 
 > TODO
 
