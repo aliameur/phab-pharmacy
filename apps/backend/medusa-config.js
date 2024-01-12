@@ -28,8 +28,12 @@ const ADMIN_CORS =
 // CORS to avoid issues when consuming Medusa from a client
 const STORE_CORS = process.env.STORE_CORS || 'http://localhost:8000';
 
-const STRIPE_API_KEY = process.env.STRIPE_API_KEY || 'sk_test_51OXhG9Ft5sDw0bX5k0Wch8Gzn4mSWieoS9ehHCJoxieRgKQZEtGb4SiIsvEMZpAlA6YIafsCj8BVXglhIeM795eW00vNa1dhKi';
-const STRIPE_WEBHOOK_SECRET =  process.env.STRIPE_WEBHOOK_SECRET || 'whsec_TOg54Dwkdi2aGKRTvSMEeV9Pvc8KfbDZ'
+const STRIPE_API_KEY =
+  process.env.STRIPE_API_KEY ||
+  'sk_test_51OXhG9Ft5sDw0bX5k0Wch8Gzn4mSWieoS9ehHCJoxieRgKQZEtGb4SiIsvEMZpAlA6YIafsCj8BVXglhIeM795eW00vNa1dhKi';
+
+const STRIPE_WEBHOOK_SECRET =
+  process.env.STRIPE_WEBHOOK_SECRET || 'whsec_TOg54Dwkdi2aGKRTvSMEeV9Pvc8KfbDZ';
 
 const DATABASE_URL =
   process.env.DATABASE_URL || 'postgres://localhost/medusa-starter-default';
