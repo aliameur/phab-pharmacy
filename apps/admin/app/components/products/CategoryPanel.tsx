@@ -12,7 +12,7 @@ interface Props {
 
 export default function CategoryPanel({ products, category }: Props) {
   return (
-    <div className="items-left my-4 flex w-full flex-col bg-white p-4 dark:bg-gray-800 dark:text-white">
+    <div className="items-left mb-8 flex w-full flex-col bg-white p-4 dark:bg-gray-800 dark:text-white">
       <h1 className="mb-4 text-4xl font-extrabold text-gray-900 dark:text-white">
         {category.handle}
       </h1>
