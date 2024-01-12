@@ -82,7 +82,9 @@ function CartScreen({navigation, route }) {
             )}}
             keyExtractor={item => item.id}/>
             <View style={{flex: 0.15, justifyContent: 'center', alignItems:'center'}}>
-                <TouchableOpacity style={{backgroundColor: colours.TailWindColors["mineral-green"][600], width: '90%', height: '70%', borderRadius: 15, justifyContent:'center', alignItems: 'center'}}>
+                <TouchableOpacity style={{backgroundColor: colours.TailWindColors["mineral-green"][600], width: '90%', height: '70%', borderRadius: 15, justifyContent:'center', alignItems: 'center'}}
+                    onPress={() => navigation.navigate('Checkout')}
+                >
                     <Text style={{color: colours.LogoColours.cream, fontSize: 27, fontWeight: "500"}}>Pay via Card - £{cartTotal.toString().slice(0, -2)}.{cartTotal.toString().slice(-2)}</Text>
                 </TouchableOpacity>
             </View>

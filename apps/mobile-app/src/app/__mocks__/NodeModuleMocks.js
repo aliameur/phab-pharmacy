@@ -6,39 +6,45 @@ jest.mock('@react-navigation/native', () => {
     };
   });
   
-  jest.mock('@react-navigation/stack', () => {
-    return {
-      createStackNavigator: jest.fn(() => ({
-        Navigator: ({ children }) => <div>{children}</div>, 
-        Screen: ({ children }) => <div>{children}</div>, 
-      })),
-    };
-  });
-  
-  jest.mock('@react-native-voice/voice', () => {
-    return {
-      onSpeechStart: jest.fn(),
-      onSpeechEnd: jest.fn(),
-    };
-  });
-  
-  jest.mock('@react-native-clipboard/clipboard', () => ({
-    setString: jest.fn(),
-    getString: jest.fn(() => Promise.resolve('mocked clipboard content')),
-  }));
-  
-  jest.mock('react-native-tts', () => {
-    return {
-      speak: jest.fn(),
-      stop: jest.fn(),
-    };
-  });
-  
-  jest.mock('react-native-keychain', () => {
-    return {
-      getGenericPassword: jest.fn(),
-    };
-  });
+jest.mock('@react-navigation/stack', () => {
+  return {
+    createStackNavigator: jest.fn(() => ({
+      Navigator: ({ children }) => <div>{children}</div>, 
+      Screen: ({ children }) => <div>{children}</div>, 
+    })),
+  };
+});
+
+jest.mock('@react-native-voice/voice', () => {
+  return {
+    onSpeechStart: jest.fn(),
+    onSpeechEnd: jest.fn(),
+  };
+});
+
+jest.mock('@react-native-clipboard/clipboard', () => ({
+  setString: jest.fn(),
+  getString: jest.fn(() => Promise.resolve('mocked clipboard content')),
+}));
+
+jest.mock('react-native-tts', () => {
+  return {
+    speak: jest.fn(),
+    stop: jest.fn(),
+  };
+});
+
+jest.mock('react-native-keychain', () => {
+  return {
+    getGenericPassword: jest.fn(),
+  };
+});
+
+jest.mock('@stripe/stripe-react-native', () => {
+  return {
+    StripeProvider: jest.fn().mockReturnValue(null),
+  };
+});
   
 jest.mock('react-native-vector-icons/FontAwesome', () => 'FontAwesome');
 

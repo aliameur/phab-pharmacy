@@ -55,7 +55,7 @@ const getCartItemNumber = async () => {
     }
     return count
   } catch (error) {
-      console.error('Error getting number of cart items:', error)
+      console.error('Error getting number of cart items:')
   }
 }
 

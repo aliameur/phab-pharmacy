@@ -29,6 +29,7 @@
     "react-native-snap-carousel": "*",
     "react-native-reanimated-carousel": "*",
     "tslib": "*",
-    "@medusajs/medusa": "*"
+    "@medusajs/medusa": "*",
+    "@stripe/stripe-react-native": "*"
   }
 }

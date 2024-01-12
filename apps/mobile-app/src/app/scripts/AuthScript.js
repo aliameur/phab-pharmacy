@@ -18,8 +18,13 @@ const login = async (email, password) => {
     const creds = await Keychain.getGenericPassword({ service });
     try {
       const cart = await AsyncStorage.getItem('cartID');
-      if (cart !== null) {
+      console.log('cart', cart)
+      if (cart) {
         console.log('Loaded cart: ', cart)
+      }
+      else {
+        console.log('Failed to load cartID')
+        await createCart(creds);
       }
     } catch (error) {
       console.log('Failed to load cart with error:', error)
@@ -39,6 +44,7 @@ const login = async (email, password) => {
 const logout = async () => {
   try {
     token = await Keychain.getGenericPassword({ service });
+    await AsyncStorage.removeItem('cartID');
     const response = await axios.delete(`${BASE_URL}/store/auth`, {
       headers: {
         Authorization: `Bearer ${token.password}`, // Replace {access_token} with the actual token
@@ -66,8 +72,13 @@ const checkKeychain = async () => {
       const response = await axios(config);
       try {
         const cart = await AsyncStorage.getItem('cartID');
-        if (cart !== null) {
+        console.log('cart', cart)
+        if (cart) {
           console.log('Loaded cart: ', cart)
+        }
+        else {
+          console.log('Failed to load cartID')
+          await createCart(creds);
         }
       } catch (error) {
         console.log('Failed to load cart with error:', error)

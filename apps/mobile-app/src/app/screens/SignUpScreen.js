@@ -34,7 +34,7 @@ export default function SignUpScreen({ navigation }) {
                 if (loginResult[0] === 'good') {
                     navigation.reset({
                         index: 0,
-                        routes: [{ name: 'Chat' }],
+                        routes: [{ name: 'Shop' }],
                     });
                 } else {
                     console.log('Login failed:', loginResult[1]);
