@@ -1,11 +1,16 @@
 import { CardField, useStripe } from '@stripe/stripe-react-native';
 import { setStripePaymentSession, completeCart } from '../scripts/PaymentsScripts';
-import { View, Button } from "react-native";
+import { View, Button, ActivityIndicator } from "react-native";
+import { ShopContext } from '../contexts/ShopContext';
+import { useState, useContext } from 'react';
 
 export default function CheckoutScreen({ navigation }) {
     const { confirmPayment } = useStripe();
+    const { loadNumberCart, loadCartData} = useContext(ShopContext);
+    const [loadingPayment, setPaymenetLoading] = useState(false);
 
     const handlePayPress = async () => {
+        setPaymenetLoading(true);
         const billingDetails = {
             email: 'jenny.rosen@example.com',
         };
@@ -23,12 +28,17 @@ export default function CheckoutScreen({ navigation }) {
             response = await completeCart();
             if (response){
                 console.log('Success from payment process');
-                navigation.replace('Shop');
+                await loadNumberCart();
+                await loadCartData();
+                navigation.reset({
+                    index: 0,
+                    routes: [{ name: 'PaymentSuccess' }],
+                });
             } 
             else{
                 console.log('Failed');
             }
-            
+        setPaymenetLoading(false);
         }
     };
 
@@ -50,6 +60,7 @@ export default function CheckoutScreen({ navigation }) {
         }}
       />
       <Button title="Pay" onPress={() => handlePayPress()} />
+      { loadingPayment && <ActivityIndicator size={'large'}/>}
     </View>
   );
 }

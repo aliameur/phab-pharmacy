@@ -22,7 +22,7 @@ import SearchScreen from './screens/SearchScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
 import CheckoutScreen from './screens/CheckoutScreen';
-
+import PaymentSuccessScreen from './screens/PaymentSuccessScreen';
 import colours from './colours';
 
 import { ShopProvider } from './contexts/ShopContext';
@@ -141,6 +141,16 @@ export default function App() {
                 {  
                 headerTitle: () => (
                   <Text style={{fontSize: 25, fontWeight: '700', color: colours.LogoColours.green}}>Checkout</Text>
+                ),
+                headerTintColor: colours.LogoColours.green
+              })} />
+            <Stack.Screen 
+            name="PaymentSuccess" 
+            component={PaymentSuccessScreen} 
+            options={({ navigation }) => (
+                {  
+                headerTitle: () => (
+                  <Text style={{fontSize: 25, fontWeight: '700', color: colours.LogoColours.green}}>Success</Text>
                 ),
                 headerTintColor: colours.LogoColours.green
               })} />

@@ -7,11 +7,12 @@ import { ShopContext } from '../contexts/ShopContext';
 
 
 function CartScreen({navigation, route }) {
-    const { cartData, cartTotal, loadCartData } = useContext(ShopContext);
+    const { cartData, cartTotal, loadCartData, loadNumberCart } = useContext(ShopContext);
 
     useEffect(() => {
         const getCartProducts = async () => {
             await loadCartData();
+            await loadNumberCart();
         };  
         getCartProducts();
     }, []); 
@@ -50,12 +51,6 @@ function CartScreen({navigation, route }) {
         <View style={{flex: 1, justifyContent: 'flex-start', backgroundColor: 'white'}}>
             <FlatList 
             style={styles.flatList}
-            /*
-            ListHeaderComponent={
-                <View style={styles.flatListHeader}>
-                    <Text style={{fontSize: 30, fontWeight: "700"}}>Your Bill...</Text>
-                </View>
-            }*/
             data={cartData}
             renderItem={({item}) => {
             return (
