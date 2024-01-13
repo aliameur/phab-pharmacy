@@ -7,8 +7,9 @@ import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as TSwiper } from 'swiper/types';
 
-import { Button } from '../../components/button';
-import { cn } from '../../lib/utils';
+import { AnimatedButton } from '@phab/ui/core';
+import { cn } from '@phab/utils';
+
 import { FeaturedProductCard } from './product-card';
 import { SliderButton } from './slider-button';
 
@@ -80,9 +81,13 @@ export const FeaturedCategory = ({
             <SwiperSlide className="max-w-min" key={product.title}>
               <Link href={`/products/${product.handle}`}>
                 <FeaturedProductCard
+                  src={product.thumbnail || ''}
                   title={product.title || ''}
                   tags={product.tags?.map((tag) => tag.value) || []}
-                  price={product.variants[0].prices[0]}
+                  price={{
+                    amount: product.variants[0].prices[0].amount,
+                    currencyCode: product.variants[0].prices[0].currency_code,
+                  }}
                 />
               </Link>
             </SwiperSlide>
@@ -90,12 +95,12 @@ export const FeaturedCategory = ({
         </Swiper>
       </div>
       <div className="flex w-1/2 flex-col items-center gap-6 md:gap-12">
-        <h2 className="font-merriweather text-[40px] text-mineral-green-600">
+        <h2 className="text-center font-merriweather text-[40px] text-mineral-green-600">
           {title}
         </h2>
-        <Button>
+        <AnimatedButton>
           <Link href={href}>Shop {title}</Link>
-        </Button>
+        </AnimatedButton>
       </div>
     </div>
   );

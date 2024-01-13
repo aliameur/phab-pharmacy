@@ -1,9 +1,11 @@
-import getSymbolFromCurrency from 'currency-symbol-map';
 import Image from 'next/image';
+
+import { Price } from '@phab/ui/core';
 
 type TFeaturedProductCard = {
   tags: string[];
   title: string;
+  src: string;
   price: { amount?: number; currencyCode?: string };
 };
 
@@ -11,13 +13,14 @@ export const FeaturedProductCard = ({
   tags,
   title,
   price,
+  src,
 }: TFeaturedProductCard) => {
   return (
     <div className="group relative flex flex-col items-center gap-2 pb-2">
       <div className="relative aspect-[1.26] h-[300px] overflow-hidden bg-norway-200 sm:h-[400px]">
         <Image
           alt="product"
-          src="/placeholder-product.png"
+          src={src}
           fill
           className="object-contain object-center"
         />
@@ -29,9 +32,11 @@ export const FeaturedProductCard = ({
       </span>
       <div className="overflow-hidden px-4 py-1 text-pampas-100">
         {price.amount && price.currencyCode ? (
-          <span className="flex -translate-y-full py-1 transition-all duration-300 group-hover:translate-y-0">
-            {getSymbolFromCurrency(price.currencyCode)} {price.amount / 100}
-          </span>
+          <Price
+            className="flex -translate-y-full py-1 transition-all duration-300 group-hover:translate-y-0"
+            amount={price.amount / 100}
+            currencyCode={price.currencyCode}
+          />
         ) : null}
       </div>
     </div>

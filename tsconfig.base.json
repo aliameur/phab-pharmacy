@@ -17,9 +17,14 @@
     "paths": {
       "@phab/data-core": ["libs/data/core/src/index.ts"],
       "@phab/data-next": ["libs/data/next/src/index.ts"],
-      "@phab/data-next/server": ["libs/data/next/src/server.ts"],
       "@phab/data-react-native": ["libs/data/react-native/src/index.ts"],
-      "@phab/test": ["libs/test/src/index.ts"]
+      "@phab/ui/cart": ["libs/ui/cart/src/index.ts"],
+      "@phab/ui/cart/server": ["libs/ui/cart/src/server.ts"],
+      "@phab/ui/core": ["libs/ui/core/src/index.ts"],
+      "@phab/ui/core/server": ["libs/ui/core/src/server.ts"],
+      "@phab/ui/product": ["libs/ui/product/src/index.ts"],
+      "@phab/ui/product/server": ["libs/ui/product/src/server.ts"],
+      "@phab/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

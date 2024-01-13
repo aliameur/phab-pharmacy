@@ -5,8 +5,8 @@ import { Variants, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 
-import { Logo } from '../logo';
-import { Sidebar } from '../sidebar';
+import { Logo, Sidebar } from '@phab/ui/core';
+
 import { NavLink } from './link';
 
 type TMenubar = {

@@ -1,10 +1,12 @@
-import { Search } from 'lucide-react';
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 import { getCategories } from '@phab/data-next';
+import { CartButton } from '@phab/ui/cart';
+import { Cart } from '@phab/ui/cart/server';
+import { Logo } from '@phab/ui/core';
 
-import { Logo } from '../logo';
-import { Cart } from './cart';
+import { SearchModal } from '../search';
 import { NavLink } from './link';
 import { Menubar } from './menubar';
 
@@ -43,10 +45,10 @@ export const Nav = async () => {
         ))}
       </div>
       <div className="flex items-center gap-8">
-        <button aria-label="Search" className="p-2">
-          <Search className="h-6 w-6 text-mineral-green-600" />
-        </button>
-        <Cart />
+        <SearchModal />
+        <Suspense fallback={<CartButton />}>
+          <Cart />
+        </Suspense>
       </div>
     </nav>
   );

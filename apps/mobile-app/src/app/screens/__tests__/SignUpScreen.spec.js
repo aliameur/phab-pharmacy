@@ -1,13 +1,15 @@
-import React from 'react';
 import { fireEvent } from '@testing-library/react-native';
-import { render } from '../../test-utils'
-import SignUpScreen from '../SignUpScreen';
+import React from 'react';
 
+import { render } from '../../test-utils';
+import SignUpScreen from '../SignUpScreen';
 
 describe('SignUpScreen', () => {
   it('renders the sign-up screen with input fields and a sign-up button', () => {
-    const { getByPlaceholderText, getByText, getByTestId } = render(<SignUpScreen />);
-    
+    const { getByPlaceholderText, getByText, getByTestId } = render(
+      <SignUpScreen />,
+    );
+
     expect(getByPlaceholderText('First Name')).toBeTruthy();
     expect(getByPlaceholderText('Last Name')).toBeTruthy();
     expect(getByPlaceholderText('Email')).toBeTruthy();
@@ -32,5 +34,4 @@ describe('SignUpScreen', () => {
     expect(emailInput.props.value).toBe('john@example.com');
     expect(passwordInput.props.value).toBe('password123');
   });
-  
 });
