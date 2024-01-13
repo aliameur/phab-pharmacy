@@ -2,6 +2,7 @@ import { Platform } from 'react-native';
 import axios from 'axios';
 import * as Keychain from 'react-native-keychain';
 import {getProductsByCategoryHandle, getCategories } from '@phab/data-react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 service = 'JWToken';
 const BASE_URL = 'https://phab-pharmacy-backend-ab775283aa48.herokuapp.com';
@@ -88,24 +89,31 @@ const addShippingAddress = async (first_name, last_name, address, city, postal) 
         console.log('Error', error)
         return false
     }
-    console.log('Address added successfully');
+    console.log('Address added successfully to User');
     return true
 }
 
-const addShippingAddressToOrder = async (id) => {
+const addShippingAddressToOrder = async (address) => {
     const cart_id = await AsyncStorage.getItem('cartID');
     try {
-        const response = await axios.post(`${BASE_URL}/store/carts/${cart_id}/shipping-methods`, {
-            option_id: id
+        const response = await axios.post(`${BASE_URL}/store/carts/${cart_id}`, {
+            shipping_address: {
+                first_name: address.first_name,
+                last_name: address.last_name,
+                address_1: address.address_1,
+                city: address.city,
+                country_code: address.country_code,
+                postal_code: address.postal_code
+            }
         })
     } catch (error){
-        console.log('Error', error)
+        console.log('Error Adding Shipping to Order', error.response.data.message)
         return false
     }
-    console.log('Address added successfully');
+    console.log('Shipping Address added to Cart');
     return true
 }
 
 
 
-export { getStoreCategories, getStoreProducts, searchProducts, getShippingAddress, addShippingAddress };
+export { getStoreCategories, getStoreProducts, searchProducts, getShippingAddress, addShippingAddress, addShippingAddressToOrder };
