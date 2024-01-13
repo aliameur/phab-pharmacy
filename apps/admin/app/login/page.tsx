@@ -2,7 +2,7 @@
 
 import { useAdminLogin } from 'medusa-react';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -10,6 +10,12 @@ export default function Login() {
   const [error, setError] = useState<null | string>(null);
   const adminLogin = useAdminLogin();
   const router = useRouter();
+
+  useEffect(() => {
+    if (localStorage.getItem('apiToken')) {
+      router.push('/products');
+    }
+  });
 
   const handleLogin = () => {
     adminLogin.mutate(
