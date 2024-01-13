@@ -5,5 +5,6 @@ export * from './lib/price';
 export * from './lib/animated-button';
 export * from './lib/sidebar';
 export * from './lib/logo';
+export * from './lib/rating';
 
 export * from './utils';

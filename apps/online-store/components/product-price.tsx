@@ -5,6 +5,7 @@ import { PricedVariant } from '@medusajs/medusa/dist/types/pricing';
 import { useSearchParams } from 'next/navigation';
 
 import { Price } from '@phab/ui/core';
+import { getOptionTitle } from '@phab/utils';
 
 type TProductPrice = {
   variants: PricedVariant[];
@@ -43,8 +44,4 @@ export const ProductPrice = ({ variants, options }: TProductPrice) => {
       />
     </div>
   );
-};
-
-const getOptionTitle = (options: ProductOption[], optionId: string) => {
-  return options.find((opt) => opt.id === optionId)?.title;
 };

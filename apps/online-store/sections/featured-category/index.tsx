@@ -7,8 +7,9 @@ import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as TSwiper } from 'swiper/types';
 
-import { Button } from '../../components/button';
-import { cn } from '../../lib/utils';
+import { AnimatedButton } from '@phab/ui/core';
+import { cn } from '@phab/utils';
+
 import { FeaturedProductCard } from './product-card';
 import { SliderButton } from './slider-button';
 
@@ -97,9 +98,9 @@ export const FeaturedCategory = ({
         <h2 className="text-center font-merriweather text-[40px] text-mineral-green-600">
           {title}
         </h2>
-        <Button>
+        <AnimatedButton>
           <Link href={href}>Shop {title}</Link>
-        </Button>
+        </AnimatedButton>
       </div>
     </div>
   );

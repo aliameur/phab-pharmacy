@@ -3,13 +3,12 @@ import { notFound } from 'next/navigation';
 
 import { getProductByHandle } from '@phab/data-next';
 import { AddToCart } from '@phab/ui/cart';
+import { Rating } from '@phab/ui/core';
+import { Gallery, VariantSelector } from '@phab/ui/product';
 
 import { DetailSection } from '../../../components/detail-section';
-import { Gallery } from '../../../components/gallery';
 import { ProductPrice } from '../../../components/product-price';
-import { Rating } from '../../../components/rating';
 import { Review } from '../../../components/review';
-import { VariantSelector } from '../../../components/variant-selector';
 
 export async function generateMetadata({
   params: { handle },

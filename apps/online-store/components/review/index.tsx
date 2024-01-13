@@ -1,7 +1,7 @@
 import { Heart } from 'lucide-react';
 import { ReactNode } from 'react';
 
-import { Rating } from '../rating';
+import { Rating } from '@phab/ui/core';
 
 type TReview = {
   children: ReactNode;
