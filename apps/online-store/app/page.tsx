@@ -1,4 +1,5 @@
 import { getCategories, getProductsByCategoryHandle } from '@phab/data-next';
+import {Suspense} from "react";
 
 import { FAQs, FeaturedCategory, Hero, Team, Testimonials } from '../sections';
 
@@ -17,7 +18,9 @@ export default async function Index() {
 
   return (
     <main>
-      <Hero />
+      <Suspense>
+        <Hero />
+      </Suspense>
       {data.map(({ category, products }, i) => (
         <FeaturedCategory
           key={category.id}
