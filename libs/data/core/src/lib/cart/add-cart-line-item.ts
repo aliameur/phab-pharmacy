@@ -1,4 +1,5 @@
 import { MedusaCartOperation, TRequestFn } from '../../types';
+import { isNotFoundError } from '../utils';
 
 type TAddCartLineItem = {
   cartId: string;
@@ -17,6 +18,8 @@ export const addCartLineItem =
         quantity,
       },
     });
+
+    if (isNotFoundError(res)) throw new Error('Cart not found');
 
     return res.body.cart;
   };

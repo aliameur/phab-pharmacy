@@ -1,4 +1,5 @@
 import { MedusaCartOperation, TRequestFn } from '../../types';
+import { isMedusaError } from '../utils';
 
 type TUpdateCartLineItem = {
   cartId: string;
@@ -16,6 +17,12 @@ export const updateCartLineItem =
         quantity,
       },
     });
+
+    if (isMedusaError(res.body) && res.status === 400)
+      throw new Error('Medusa Error: is the lineId valid?');
+
+    if (isMedusaError(res.body))
+      throw new Error('Medusa Error: is the cartId valid?');
 
     return res.body.cart;
   };
