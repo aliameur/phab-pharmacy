@@ -14,6 +14,7 @@ function UserMenuSheet({ navigation, visible, onClose }) {
         onClose(); 
     };
     const handleCancelPress = () => {
+
         onClose(); 
     };
     return (

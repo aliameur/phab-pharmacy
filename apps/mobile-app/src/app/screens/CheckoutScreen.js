@@ -6,11 +6,13 @@ import { ShopContext } from '../contexts/ShopContext';
 import { useState, useContext } from 'react';
 import colours from '../colours';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import ShippingSheet from '../components/ShippingSheet';
 
 export default function CheckoutScreen({ navigation }) {
     const { confirmPayment } = useStripe();
     const { loadNumberCart, loadCartData, cartTotal, shipping_addresses } = useContext(ShopContext);
     const [loadingPayment, setPaymenetLoading] = useState(false);
+    const [isShippingMenuVisbile, setShippingMeuVisible] = useState(false);
 
     const formatPrice = (price) => {
         return new Intl.NumberFormat('en-GB', {
@@ -18,6 +20,14 @@ export default function CheckoutScreen({ navigation }) {
             currency: 'GBP',
         }).format(price / 100);
     };
+
+    const handleShippingAddPress = () => {
+        setShippingMeuVisible(true);
+    }
+
+    const hideShippingSheet = () => {
+        setShippingMeuVisible(false);
+    }
 
     const handlePayPress = async () => {
         setPaymenetLoading(true);
@@ -67,13 +77,14 @@ export default function CheckoutScreen({ navigation }) {
                     <Text>Full</Text>
                 ) : (
                     <TouchableOpacity style={{backgroundColor:  colours.TailWindColors["mineral-green"][200], borderRadius: 10, justifyContent: 'center', alignItems: 'center', height: '50%'}}
-                        onPress={() => navigation.navigate('Shipping')}
+                        onPress={() => handleShippingAddPress()}
                     >
                         <FontAwesome name='plus' color={colours.LogoColours.green} size={40}/>
                         <Text>Add new address</Text>
                     </TouchableOpacity>
                 )}
                 <Button onPress={() => getShippingAddress()} title={shipping_addresses.toString()}/>
+                {isShippingMenuVisbile ? (<ShippingSheet onClose={hideShippingSheet} visible={isShippingMenuVisbile}/>) : null}
             </View>
         </View>
         <CardField

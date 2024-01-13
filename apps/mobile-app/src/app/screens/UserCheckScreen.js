@@ -13,7 +13,7 @@ import { checkKeychain } from '../scripts/AuthScript';
 
 
 function UserCheckScreen({ navigation }) {
-    const { loadNumberCart } = useContext(ShopContext);
+    const { loadNumberCart, loadCartData } = useContext(ShopContext);
     useEffect(() => {
         const performCheck = async () => {
             const output = await checkKeychain();
@@ -21,6 +21,7 @@ function UserCheckScreen({ navigation }) {
                 console.log('Remembered user')
                 try {
                     await loadNumberCart();
+                    await loadCartData();
                     navigation.replace('Shop');
                 } catch (error){
                 }
