@@ -3,7 +3,7 @@
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-import { cn, createUrl } from '../lib/utils';
+import { cn, createUrl } from '@phab/utils';
 
 type Combination = {
   id: string;
