@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes navbarLogoAnimate {
+  from {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.5) translateX(100px);
+  }
+}
+@keyframes sidebarLogoAnimate {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.logo {
+  transition:
+    transform 0.3s,
+    opacity 0.3s;
+}
+
+.navbar-logo.animating {
+  animation: navbarLogoAnimate 0.3s forwards;
+}
+
+.sidebar-logo.animating {
+  animation: sidebarLogoAnimate 0.3s forwards;
+}
