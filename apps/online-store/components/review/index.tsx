@@ -17,11 +17,13 @@ export const Review = ({ children, rating, name, date, likes }: TReview) => {
   };
   return (
     <div className="flex h-48 gap-24 border-b border-mineral-green-600/20 py-6 text-mineral-green-600">
-      <span className="sm:block hidden font-bold">{renderDate()}</span>
+      <span className="hidden font-bold sm:block">{renderDate()}</span>
       <div className="flex h-full flex-col gap-4">
         <Rating value={rating} />
         <span className="text-sm font-bold">{name}</span>
-        <p className="overflow-clip h-[60px] text-ellipsis text-sm">{children}</p>
+        <p className="h-[60px] overflow-clip text-ellipsis text-sm">
+          {children}
+        </p>
       </div>
       <div className="flex h-full flex-col justify-between text-sm">
         <span className="font-bold">Verified Purchase</span>
