@@ -1,6 +1,6 @@
 import { CardField, useStripe } from '@stripe/stripe-react-native';
 import { setStripePaymentSession, completeCart } from '../scripts/PaymentsScripts';
-import { getShippingAddress } from '../scripts/ShopScript';
+import { addShippingAddressToOrder } from '../scripts/ShopScript';
 import { View, Button, ActivityIndicator, Text, TouchableOpacity, FlatList } from "react-native";
 import { ShopContext } from '../contexts/ShopContext';
 import { useState, useContext } from 'react';
@@ -15,6 +15,7 @@ export default function CheckoutScreen({ navigation }) {
     const [isShippingMenuVisbile, setShippingMeuVisible] = useState(false);
     const [checkedID, setCheckedID] = useState(null);
     const [shippingData, setShippingData] = useState(null);
+    const [paymentFail, setPaymentFail] = useState(false);
 
     const formatPrice = (price) => {
         return new Intl.NumberFormat('en-GB', {
@@ -34,35 +35,40 @@ export default function CheckoutScreen({ navigation }) {
     const handlePayPress = async () => {
         if (shippingData) {
             setPaymenetLoading(true);
+            response = await addShippingAddressToOrder(shippingData);
+            if (response) {
+                const billingDetails = {
+                    email: 'jenny.rosen@example.com',
+                };
+                const clientSecret = await setStripePaymentSession();
+                const {paymentIntent, error} = await confirmPayment(clientSecret, {
+                    paymentMethodType: 'Card',
+                    paymentMethodData: {
+                    billingDetails,
+                    },
+                });
             
-            const billingDetails = {
-                email: 'jenny.rosen@example.com',
-            };
-            const clientSecret = await setStripePaymentSession();
-            const {paymentIntent, error} = await confirmPayment(clientSecret, {
-                paymentMethodType: 'Card',
-                paymentMethodData: {
-                billingDetails,
-                },
-            });
-        
-            if (error) {
-                console.log('Payment confirmation error', error);
-            } else if (paymentIntent) {
-                response = await completeCart();
-                if (response){
-                    console.log('Success from payment process');
-                    await loadNumberCart();
-                    await loadCartData();
-                    navigation.reset({
-                        index: 0,
-                        routes: [{ name: 'PaymentSuccess' }],
-                    });
-                } 
-                else{
-                    console.log('Failed');
+                if (error) {
+                    console.log('Payment confirmation error', error);
+                } else if (paymentIntent) {
+                    response = await completeCart();
+                    if (response){
+                        console.log('Success from payment process');
+                        await loadNumberCart();
+                        await loadCartData();
+                        navigation.reset({
+                            index: 0,
+                            routes: [{ name: 'PaymentSuccess' }],
+                        });
+                    } 
+                    else{
+                        console.log('Failed');
+                    }
+                setPaymenetLoading(false);
                 }
-            setPaymenetLoading(false);
+            } else {
+                setPaymentFail(true);
+                setPaymenetLoading(false);
             }
         }
         
@@ -99,13 +105,19 @@ export default function CheckoutScreen({ navigation }) {
                                 </View>
                                     {(index === checkedID) ? (
                                         <TouchableOpacity style={{flex: 1, alignSelf: 'center', borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: colours.TailWindColors['mineral-green'][200]}}
-                                        onPress={() => setShippingData(item)}
+                                        onPress={() => {
+                                            setShippingData(item)
+                                            setCheckedID(index)
+                                        }}
                                         >
                                         <FontAwesome size={30} color={colours.LogoColours.green} name='check'/>
                                         </TouchableOpacity>
                                     ) : (
                                         <TouchableOpacity style={{flex: 1, alignSelf: 'center', borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: colours.TailWindColors['mineral-green'][200]}}
-                                        onPress={() => setShippingData(item)}
+                                        onPress={() => {
+                                            setShippingData(item)
+                                            setCheckedID(index)
+                                        }}
                                         >
                                         <FontAwesome size={30} color={colours.LogoColours.green} name='plus'/>
                                         </TouchableOpacity>
@@ -113,7 +125,7 @@ export default function CheckoutScreen({ navigation }) {
                             </View>
                         )}}
                 /> 
-                <TouchableOpacity style={{flex: 0.23,  backgroundColor:  colours.TailWindColors["mineral-green"][200], borderRadius: 10, justifyContent: 'center', alignItems: 'center'}}
+                <TouchableOpacity style={{flex: 0.23,  paddingVertical: 5, backgroundColor:  colours.TailWindColors["mineral-green"][200], borderRadius: 10, justifyContent: 'center', alignItems: 'center'}}
                     onPress={() => handleShippingAddPress()}>
                     <FontAwesome name='plus' color={colours.LogoColours.green} size={40}/>
                     <Text>Add new address</Text>
@@ -139,9 +151,8 @@ export default function CheckoutScreen({ navigation }) {
         />
         <View style={{flex: 2, justifyContent: 'center'}}>
             <TouchableOpacity
-            style={{justifyContent: 'center', alignItems: 'center'}}
-                onPress={() => handlePayPress()}
-            >
+                style={{justifyContent: 'center', alignItems: 'center'}}
+                onPress={() => handlePayPress()}>
                 <Text>Pay {formatPrice(cartTotal)}</Text>
             </TouchableOpacity>
             { loadingPayment && <ActivityIndicator size={'large'}/>}
