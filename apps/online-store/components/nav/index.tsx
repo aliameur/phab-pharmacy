@@ -5,6 +5,7 @@ import { getCategories } from '@phab/data-next';
 import { CartButton } from '@phab/ui/cart';
 import { Cart } from '@phab/ui/cart/server';
 import { Logo } from '@phab/ui/core';
+import { filterHiddenCategories } from '@phab/utils';
 
 import { SearchModal } from '../search';
 import { NavLink } from './link';
@@ -19,7 +20,7 @@ const featuredLinks = [
 
 export const Nav = async () => {
   const categories = await getCategories().catch(() => []);
-  const categoryLinks = categories
+  const categoryLinks = filterHiddenCategories(categories)
     .map((category) => ({
       name: category.name,
       href: `/categories/${category.handle}`,
