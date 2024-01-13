@@ -47,12 +47,6 @@ export const CartLine = ({
               item={item}
               className="absolute -right-2 -top-2"
             />
-            {/*<button*/}
-            {/*  aria-label="Remove cart item"*/}
-            {/*  className="absolute -right-2 -top-2"*/}
-            {/*>*/}
-            {/*  <X className="text-pampas-100" />*/}
-            {/*</button>*/}
           </div>
           <div className="px-4">
             <p className="mb-2 text-pampas-100">{item.title}</p>

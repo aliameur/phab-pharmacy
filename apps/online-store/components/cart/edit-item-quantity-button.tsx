@@ -4,7 +4,7 @@ import { Minus, MoreHorizontal, Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 
-import { updateCartLineItem } from '@phab/data-next';
+import { removeCartLineItem, updateCartLineItem } from '@phab/data-next';
 
 export const EditItemQuantityButton = ({
   item,
@@ -24,7 +24,10 @@ export const EditItemQuantityButton = ({
       onClick={() => {
         startTransition(async () => {
           if (type === 'minus' && item.quantity - 1 === 0) {
-            console.log('remove item');
+            await removeCartLineItem({
+              cartId: item.cart_id,
+              lineId: item.id || '',
+            });
           } else {
             await updateCartLineItem({
               cartId: item.cart_id,
