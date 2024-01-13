@@ -22,6 +22,10 @@ type TSidebar = {
   controlSetter?: Dispatch<SetStateAction<boolean>>;
 };
 
+// Sidebar wrapper function exposes a render function that allows children to share state
+// Allows clean syntax, but pay attention to dependencies - IF MISUSED WILL CAUSE INFINITE RENDER LOOP
+// Can also be used as a controlled component
+
 export const Sidebar = forwardRef<HTMLDivElement, TSidebar>(
   (
     { side, children, className, outerIcon, controlSetter, controlState },
