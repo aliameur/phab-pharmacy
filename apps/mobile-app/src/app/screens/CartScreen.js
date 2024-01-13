@@ -1,21 +1,17 @@
 import { useContext, useEffect, useState } from 'react';
 import {
-  ActivityIndicator,
   Dimensions,
   FlatList,
   Image,
-  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { addToCart } from '../scripts/CartScripts';
 import colours from '../colours';
 import { ShopContext } from '../contexts/ShopContext';
-import { getCartItems } from '../scripts/CartScripts';
-
-
 
 function CartScreen({navigation, route }) {
     const { cartData, cartTotal, loadCartData, loadNumberCart, loadShippingAddress } = useContext(ShopContext);
@@ -36,38 +32,26 @@ function CartScreen({navigation, route }) {
         }).format(price / 100); 
     };
 
-    if (!cartData){
-        items = [{title: 'Loading item 1'}, {title: 'Loading item 2'}]
-        return (
-            <View>
-                <View>
-                    <FlatList 
-                    ListHeaderComponent={
-                        <View style={{borderBottomWidth: 2, borderColor: colours.LogoColours.green}}>
-                            <Text style={{fontSize: 30, fontWeight: "700"}}>Your Bill...</Text>
-                        </View>
-                    }
-                    data={items}
-                    renderItem={({item}) => {
-                    return (
-                        <View style={{flex: 1, borderBottomWidth: 2, borderColor: colours.LogoColours.green}}>
-                            <View style={{flexDirection: "row"}}>
-                                <Text style={{fontSize: 25, flex: 5}}>{item.title}</Text>
-                                <Text style={{fontSize: 25, fontWeight: "700", flex: 2}}>£99.99</Text>
-                            </View>
-                            <View style={{height: Dimensions.get('window').height * 0.12, flexDirection: 'row'}}>
-                                <ActivityIndicator size={"large"}/>
-                                <Text style={{ alignSelf: 'center', fontSize: 20 }}>x99</Text>
-                            </View>
-                        </View>
-                    )}}
-                    keyExtractor={item => item.id}/>
-                </View>
-            </View>
-        )
+    const addItem = async (item) => {
+        response = await addToCart(item.variant_id, 1);
+        if (response){
+            await loadCartData();
+        } 
+    }
+
+    const minusItem = async (item) => {
+        response = await addToCart(item.variant_id, 1);
+        if (response){
+            await loadCartData();
+        } 
     }
     return (
         <View style={{flex: 1, justifyContent: 'flex-start', backgroundColor: 'white'}}>
+            {cartData.length === 0 ? (
+                    <Text style={{alignSelf: 'center', position: 'absolute', top: '30%', fontSize: 20, fontWeight: '600', textAlign: 'center'}}>It's lonely here add something to your cart</Text>
+                ) : (
+                    null
+            )}
             <FlatList 
             style={styles.flatList}
             data={cartData}
@@ -84,11 +68,21 @@ function CartScreen({navigation, route }) {
                             <Text style={{fontSize: 20, flex: 5, color: colours.LogoColours.green}}>{item.title}</Text>
                         </View>
                         <View style={{flex: 0.5, flexDirection: 'row', justifyContent:'space-between', margin: 10}}>
-                            <View>
-                                <Text style={{color: colours.LogoColours.green, fontSize: 18}}>x{item.quantity}</Text>
+                            <View style={{flexDirection: 'row', flex: 1}}>
+                                <Text style={{color: colours.LogoColours.green, fontSize: 18, alignSelf: 'center'}}>x{item.quantity}</Text>
+                                <View style={{flexDirection: 'row', alignItems: 'center'}}> 
+                                    <TouchableOpacity style={{marginLeft: '20%', backgroundColor: colours.LogoColours.green, padding:'6%', borderRadius: 5}}>
+                                        <FontAwesome size={15} color={colours.LogoColours.cream} name='minus'/>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity style={{marginLeft: '5%', backgroundColor: colours.LogoColours.green, padding:'6%', borderRadius: 5}}
+                                        onPress={() => addItem(item)}
+                                    >
+                                        <FontAwesome size={15} color={colours.LogoColours.cream} name='plus'/> 
+                                    </TouchableOpacity>
+                                </View>
                             </View>
                             <View>
-                                <Text style={{color: colours.LogoColours.green, fontSize: 20, fontWeight: '500'}}>{formatPrice(item.total.toString())}</Text>
+                                <Text style={{flex: 1, color: colours.LogoColours.green, fontSize: 20, fontWeight: '500', alignSelf: 'center'}}>{formatPrice(item.total.toString())}</Text>
                             </View>
                         </View>
                     </View>
@@ -96,14 +90,18 @@ function CartScreen({navigation, route }) {
             )}}
             keyExtractor={item => item.id}/>
             <View style={{flex: 0.15, justifyContent: 'center', alignItems:'center'}}>
-                <TouchableOpacity style={{backgroundColor: colours.TailWindColors["mineral-green"][600], width: '90%', height: '70%', borderRadius: 15, justifyContent:'center', alignItems: 'center'}}
-                    onPress={() => navigation.navigate('Checkout')}
-                >
-                    <Text style={{color: colours.LogoColours.cream, fontSize: 27, fontWeight: "500"}}>Pay via Card - {formatPrice(cartTotal.toString())}</Text>
-                </TouchableOpacity>
+                {cartData.length === 0 ? (
+                        null
+                    ) : (
+                        <TouchableOpacity style={{backgroundColor: colours.TailWindColors["mineral-green"][600], width: '90%', height: '70%', borderRadius: 15, justifyContent:'center', alignItems: 'center'}}
+                        onPress={() => navigation.navigate('Checkout')}
+                        >
+                        <Text style={{color: colours.LogoColours.cream, fontSize: 27, fontWeight: "500"}}>Pay via Card - {formatPrice(cartTotal.toString())}</Text>
+                        </TouchableOpacity>
+                )}
             </View>
-            <View style={{flex: 0.1, justifyContent: 'center', alignItems:'center'}}>
-                <TouchableOpacity style={{width: '90%', height: '70%', borderRadius: 15, justifyContent:'center', alignItems: 'center'}}
+            <View style={{flex: 0.15, justifyContent: 'center', alignItems:'center'}}>
+                <TouchableOpacity style={[{width: '90%', height: '70%', borderRadius: 15, justifyContent:'center', alignItems: 'center'}, cartData.length === 0 ? { backgroundColor: colours.TailWindColors.norway[200] } : {}]}
                 onPress={() => navigation.goBack()}
                 >
                     <Text style={{fontSize: 20}}>Continue Shopping</Text>
