@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { getProductByHandle } from '@phab/data-next';
+import { AddToCart } from '@phab/ui/cart';
 
-import { AddToCart } from '../../../components/add-to-cart';
 import { DetailSection } from '../../../components/detail-section';
 import { Gallery } from '../../../components/gallery';
 import { ProductPrice } from '../../../components/product-price';

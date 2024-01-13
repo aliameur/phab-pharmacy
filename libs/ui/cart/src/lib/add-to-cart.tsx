@@ -5,8 +5,9 @@ import { Ban, Minus, MoreHorizontal, Plus } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState, useTransition } from 'react';
 
-import { addItem } from '../../lib/cart/actions';
-import { Button } from '../button';
+import { AnimatedButton } from '@phab/ui/core';
+
+import { addItem } from './actions';
 
 type TAddToCart = {
   product: PricedProduct;
@@ -67,7 +68,7 @@ export const AddToCart = ({ product }: TAddToCart) => {
           <Plus />
         </button>
       </div>
-      <Button
+      <AnimatedButton
         aria-label="Add item to cart"
         title={title}
         disabled={isPending || !variant?.purchasable || !selectedVariantId}
@@ -100,9 +101,9 @@ export const AddToCart = ({ product }: TAddToCart) => {
         {variant?.purchasable
           ? selectedVariantId
             ? 'Add to Cart'
-            : 'Select a size'
+            : 'Select a variant'
           : 'Out Of Stock'}
-      </Button>
+      </AnimatedButton>
     </div>
   );
 };
