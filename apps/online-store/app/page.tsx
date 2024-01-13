@@ -11,10 +11,12 @@ export const metadata = {
 export default async function Index() {
   const categories = await getCategories();
   const data = await Promise.all(
-    categories.map(async (category) => ({
-      category,
-      products: await getProductsByCategoryHandle(category.handle),
-    })),
+    categories
+      .filter((cat) => !cat.handle.startsWith('hidden'))
+      .map(async (category) => ({
+        category,
+        products: await getProductsByCategoryHandle(category.handle),
+      })),
   );
 
   return (
