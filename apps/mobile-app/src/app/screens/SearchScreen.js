@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, FlatList, View, Text, StyleSheet, StatusBar, Dimensions, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, StatusBar, Dimensions, TextInput, TouchableOpacity } from 'react-native';
 import {searchProducts} from '../scripts/ShopScript';
 
 function ShopScreen({ navigation, route }){

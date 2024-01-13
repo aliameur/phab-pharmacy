@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import {
   ActivityIndicator,
   Dimensions,
@@ -6,22 +6,23 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import { ShopContext } from '../contexts/ShopContext';
 
 import colours from '../colours';
 import { checkKeychain } from '../scripts/AuthScript';
-import { getCollections } from '../scripts/ShopScript';
+
 
 function UserCheckScreen({ navigation }) {
+    const { loadNumberCart } = useContext(ShopContext);
     useEffect(() => {
         const performCheck = async () => {
             const output = await checkKeychain();
-            console.log(output)
             if (output[0] === 'good') {
                 console.log('Remembered user')
                 try {
+                    await loadNumberCart();
                     navigation.replace('Shop');
                 } catch (error){
-
                 }
             } else {
                 console.log('User forgotten')

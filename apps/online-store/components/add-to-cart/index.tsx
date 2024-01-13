@@ -1,12 +1,21 @@
 'use client';
 
+import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import { Minus, Plus } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
+import { addItem } from '../../lib/cart/actions';
 import { Button } from '../button';
 
-export const AddToCart = () => {
+type TAddToCart = {
+  product: PricedProduct;
+};
+
+export const AddToCart = ({ product }: TAddToCart) => {
   const [count, setCount] = useState(1);
+  const router = useRouter();
+  console.log('atc render');
 
   // TODO set the max to ATC at once
   const increment = () => setCount((prev) => prev + 1);
@@ -37,7 +46,14 @@ export const AddToCart = () => {
           <Plus />
         </button>
       </div>
-      <Button className="w-96 font-bold uppercase tracking-wider">
+      <Button
+        onClick={async () => {
+          const a = await addItem(product.variants[0].id);
+          console.log(a);
+          router.refresh();
+        }}
+        className="w-96 font-bold uppercase tracking-wider"
+      >
         Add to Cart
       </Button>
     </div>

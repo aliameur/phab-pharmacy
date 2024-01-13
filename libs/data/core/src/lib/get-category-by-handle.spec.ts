@@ -36,7 +36,10 @@ describe('getCategoryByHandle', () => {
   });
 
   it('throws error if no category', async () => {
-    mockRequestFn.mockResolvedValue({ body: { product_categories: [] }, count: 0 });
+    mockRequestFn.mockResolvedValue({
+      body: { product_categories: [] },
+      count: 0,
+    });
 
     expect(
       getCategoryByHandle(mockRequestFn)('not-pcat_pants'),

@@ -58,6 +58,7 @@ function UserMenuSheet({ navigation, visible, onClose }) {
     },
     text: {
         color: colours.LogoColours.green,
+        fontSize: 20
     },
     container: {
       flex: 1,

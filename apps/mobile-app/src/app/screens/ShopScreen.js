@@ -1,39 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, FlatList, View, Text, StyleSheet, StatusBar, Dimensions, TextInput, TouchableOpacity } from 'react-native';
 import colours from '../colours';
-import Voice from '@react-native-voice/voice';
 import UserMenuSheet from '../components/UserMenuSheet';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { getCollections } from '../scripts/ShopScript';
-import { CarouselItem } from '../components/CarouselCard';
+import { getStoreCategories } from '../scripts/ShopScript';
 import ShopCarousel from '../components/ShopCarousel'; 
+import { ShopContext } from '../contexts/ShopContext';
 
 
 function ShopScreen({ navigation }) {
 
     const [isMenuModalVisible, setMenuModalVisible] = useState(false);
     const [collectionsData, setCollectionsData] = useState([]);
-    const [cartItems, setCartItems] = useState(0);
     const [searchText, setSearchText] = useState('');
+    const { cartCount } = useContext(ShopContext);
 
     useEffect(() => {
         const getData = async () => {
-            const collection_data = await getCollections();
-            setCollectionsData(collection_data.reverse());
+            const category_data = await getStoreCategories();
+            setCollectionsData(category_data);
         };
         getData();
     }, []); 
 
     const showModal = () => setMenuModalVisible(true);
     useEffect(() => {
-        navigation.setParams({ showModal: () => setMenuModalVisible(true) });
+        navigation.setOptions({ 
+            headerRight: () => (
+                <TouchableOpacity
+                    onPress={showModal}
+                    style={{ marginRight: Dimensions.get('window').width * 0.03, alignItems: 'center' }}
+                >
+                    <FontAwesome name="list-ul" size={30} color={colours.green}/>
+                </TouchableOpacity>
+            )
+        });
     }, [navigation]);
+
 
     const hideUserSheet = () => {
         setMenuModalVisible(false);
     }
 
     const searchSubmit = () => {
+        setSearchText('');
         navigation.navigate('Search', {search: searchText})
     }
 
@@ -54,8 +64,9 @@ function ShopScreen({ navigation }) {
                             onChangeText={(text) => setSearchText(text)}
                             onSubmitEditing={() => searchSubmit()}
                             color={colours.TailWindColors.norway[800]}/>
-                            <TouchableOpacity style={{backgroundColor: colours.LogoColours.green, height: '35%', width: '15%', justifyContent: 'center', alignItems: 'center',}}
+                            <TouchableOpacity style={{backgroundColor: colours.LogoColours.green, height: '35%', width: '15%', justifyContent: 'center', alignItems: 'center'}}
                             onPress={() => searchSubmit()}
+                            testID = 'search-button'
                             >
                                 <FontAwesome 
                                 name='search'
@@ -70,20 +81,20 @@ function ShopScreen({ navigation }) {
                 return (
                     <View>
                         <Text style={styles.collectionText}>{item.title}</Text>
-                        <ShopCarousel style={styles.shopCarousel} id={item.id} navigation={navigation}/>
+                        <ShopCarousel style={styles.shopCarousel} handle={item.handle} navigation={navigation}/>
                     </View>
                 )}}
                 keyExtractor={item => item.id}
             />
             {isMenuModalVisible ? (<UserMenuSheet onClose={hideUserSheet} visible={isMenuModalVisible} navigation={navigation}/>) : null}
-            <TouchableOpacity style={styles.chatButton} onPress={() => navigation.navigate('Chat')}>
+            <TouchableOpacity style={styles.chatButton} onPress={() => navigation.navigate('Chat')} testID='chat-button'>
                 <FontAwesome name="comments-o" size={35}/>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.cartButton} onPress={() => navigation.navigate('Chat')}>
+            <TouchableOpacity style={styles.cartButton} onPress={() => navigation.navigate('Cart')} testID='cart-button'>
                 <FontAwesome name="shopping-cart" size={35}/>
             </TouchableOpacity>
             <TouchableOpacity style={styles.cartLittleButton}>
-                    <Text style={{color: colours.LogoColours.cream}}>{cartItems}</Text>
+                    <Text style={{color: colours.LogoColours.cream}}>{cartCount}</Text>
             </TouchableOpacity>
         </View>
     );
