@@ -8,6 +8,7 @@ import { DetailSection } from '../../../components/detail-section';
 import { Gallery } from '../../../components/gallery';
 import { Rating } from '../../../components/rating';
 import { Review } from '../../../components/review';
+import {VariantSelector} from "../../../components/variant-selector";
 
 export async function generateMetadata({
   params: { handle },
@@ -39,11 +40,7 @@ export default async function Page({ params: { handle } }: Props) {
             <h3 className="text-xl">{product.subtitle}</h3>
           </div>
           <Rating value={2.5} />
-          <div className="flex gap-5">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="h-24 w-24 bg-neutral-300" />
-            ))}
-          </div>
+          <VariantSelector product={product}/>
           <div className="flex flex-col gap-4 text-sm text-mineral-green-600">
             <p>{product.description}</p>
           </div>
