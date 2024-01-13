@@ -1,11 +1,14 @@
-import { Search, ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 import { getCategories } from '@phab/data-next';
+import { CartButton } from '@phab/ui/cart';
+import { Cart } from '@phab/ui/cart/server';
+import { Logo } from '@phab/ui/core';
 
-import { Logo } from '../logo';
+import { SearchModal } from '../search';
 import { NavLink } from './link';
-import { Sidebar } from './sidebar';
+import { Menubar } from './menubar';
 
 const featuredLinks = [
   { name: 'Cold and Flu', href: '/categories/cold-and-flu' },
@@ -21,10 +24,10 @@ export const Nav = async () => {
       name: category.name,
       href: `/categories/${category.handle}`,
     }))
-    .concat({ name: 'All Products', href: '/store' })
+    .concat({ name: 'All Products', href: '/store' });
   return (
     <nav className="relative flex h-20 w-full items-center justify-between px-4 sm:h-24 md:px-16">
-      <Sidebar className="sm:hidden" links={categoryLinks} />
+      <Menubar className="sm:hidden" links={categoryLinks} />
       <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-8 sm:static sm:translate-x-0 sm:translate-y-0">
         <Link href="/">
           <Logo />
@@ -42,12 +45,10 @@ export const Nav = async () => {
         ))}
       </div>
       <div className="flex items-center gap-8">
-        <button aria-label="Search" className="p-2">
-          <Search className="h-6 w-6 text-mineral-green-600" />
-        </button>
-        <button aria-label="Open cart sidebar" className="p-2">
-          <ShoppingCart className="h-6 w-6 text-mineral-green-600" />
-        </button>
+        <SearchModal />
+        <Suspense fallback={<CartButton />}>
+          <Cart />
+        </Suspense>
       </div>
     </nav>
   );

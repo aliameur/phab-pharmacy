@@ -1,30 +1,38 @@
+import { Suspense } from 'react';
+
+import { getCategories, getProductsByCategoryHandle } from '@phab/data-next';
+
 import { FAQs, FeaturedCategory, Hero, Team, Testimonials } from '../sections';
 
-const products = [
-  {
-    title: 'Product Title',
-    tags: ['Tag 1', 'Tag 2'],
-    price: '£23.99',
-  },
-  {
-    title: 'Product Title',
-    tags: ['Tag 1', 'Tag 2'],
-    price: '£23.99',
-  },
-  {
-    title: 'Product Title',
-    tags: ['Tag 1', 'Tag 2'],
-    price: '£23.99',
-  },
-];
+export const metadata = {
+  title: 'Home | Phab Pharmacy',
+};
 
 export default async function Index() {
+  const categories = await getCategories();
+  const data = await Promise.all(
+    categories
+      .filter((cat) => !cat.handle.startsWith('hidden'))
+      .map(async (category) => ({
+        category,
+        products: await getProductsByCategoryHandle(category.handle),
+      })),
+  );
+
   return (
     <main>
-      <Hero />
-      <FeaturedCategory title="Category" side="left" products={products} />
-      <FeaturedCategory title="Category" side="right" products={products} />
-      <FeaturedCategory title="Category" side="left" products={products} />
+      <Suspense>
+        <Hero />
+      </Suspense>
+      {data.map(({ category, products }, i) => (
+        <FeaturedCategory
+          key={category.id}
+          title={category.name}
+          side={i % 2 === 0 ? 'left' : 'right'}
+          products={products}
+          href={`/categories/${category.handle}`}
+        />
+      ))}
       <Testimonials
         testimonials={[
           {

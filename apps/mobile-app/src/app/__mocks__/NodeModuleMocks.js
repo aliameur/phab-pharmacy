@@ -49,30 +49,28 @@ jest.mock('@stripe/stripe-react-native', () => {
 jest.mock('react-native-vector-icons/FontAwesome', () => 'FontAwesome');
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
-    setItem: jest.fn(() => Promise.resolve()),
-    getItem: jest.fn(() => Promise.resolve('mocked value')),
-    removeItem: jest.fn(() => Promise.resolve()),
-    clear: jest.fn(() => Promise.resolve()),
-  }));
-  
+  setItem: jest.fn(() => Promise.resolve()),
+  getItem: jest.fn(() => Promise.resolve('mocked value')),
+  removeItem: jest.fn(() => Promise.resolve()),
+  clear: jest.fn(() => Promise.resolve()),
+}));
+
 jest.mock('react-native-keyboard-aware-scroll-view', () => ({
-    KeyboardAwareScrollView: ({ children }) => (
-      <div data-testid="keyboard-aware-scroll-view-mock">
-        {children}
-      </div>
-    ),
-  }));
+  KeyboardAwareScrollView: ({ children }) => (
+    <div data-testid="keyboard-aware-scroll-view-mock">{children}</div>
+  ),
+}));
 
 jest.mock('react-native-reanimated-carousel', () => {
-    const React = require('react');
-  
-    // Mock the Carousel component with a placeholder component
-    const Carousel = ({ children }) => {
-      return <div data-testid="carousel-mock">{children}</div>;
-    };
-  
-    return {
-      __esModule: true,
-      default: Carousel,
-    };
-  });
+  const React = require('react');
+
+  // Mock the Carousel component with a placeholder component
+  const Carousel = ({ children }) => {
+    return <div data-testid="carousel-mock">{children}</div>;
+  };
+
+  return {
+    __esModule: true,
+    default: Carousel,
+  };
+});

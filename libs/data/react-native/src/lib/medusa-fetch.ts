@@ -1,7 +1,8 @@
 import axios, { AxiosHeaders } from 'axios';
 
 const MEDUSA_BACKEND_URL =
-  process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || 'https://phab-pharmacy-backend-ab775283aa48.herokuapp.com';
+  process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL ||
+  'https://phab-pharmacy-backend-ab775283aa48.herokuapp.com';
 const MEDUSA_API_KEY = process.env.NEXT_PUBLIC_MEDUSA_API_KEY || '';
 
 export const medusaFetch = async <T>({
@@ -12,9 +13,9 @@ export const medusaFetch = async <T>({
   headers,
 }: {
   cache?: RequestCache;
-  method?: 'GET' | 'POST';
+  method?: 'GET' | 'POST' | 'DELETE';
   headers?: HeadersInit;
-  body?: string;
+  body?: Record<string, string | number>;
   path?: string;
   query?: { [key: string]: string };
   tags?: string[];

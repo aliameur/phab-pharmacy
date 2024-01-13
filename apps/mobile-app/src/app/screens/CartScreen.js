@@ -1,8 +1,19 @@
-import { FlatList, Text, View, Image, Dimensions, ActivityIndicator, TouchableOpacity, StyleSheet, Platform } from "react-native";
-import { getCartItems } from "../scripts/CartScripts";
-import { useEffect, useState, useContext } from "react";
-import colours from "../colours";
+import { useContext, useEffect, useState } from 'react';
+import {
+  ActivityIndicator,
+  Dimensions,
+  FlatList,
+  Image,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+
+import colours from '../colours';
 import { ShopContext } from '../contexts/ShopContext';
+import { getCartItems } from '../scripts/CartScripts';
 
 
 
@@ -102,13 +113,10 @@ function CartScreen({navigation, route }) {
     )
 }
 
-
-
 const styles = StyleSheet.create({
-    flatList: {
-        flex: 10,
-    }
-})
+  flatList: {
+    flex: 10,
+  },
+});
 
-
-export default CartScreen
+export default CartScreen;

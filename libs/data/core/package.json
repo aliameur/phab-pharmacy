@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "dependencies": {
     "tslib": "^2.3.0",
-    "@medusajs/medusa": "^1.19.0"
+    "@medusajs/medusa": "^1.19.0",
+    "@medusajs/types": "^1.11.9"
   },
   "type": "commonjs",
   "main": "./src/index.js",

@@ -8,11 +8,13 @@ import {
   Platform,
   StatusBar,
   StyleSheet,
-  TouchableOpacity,
   Text,
+  TouchableOpacity,
 } from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import colours from './colours';
+import { ShopProvider } from './contexts/ShopContext';
 import ChatScreen from './screens/ChatScreen';
 import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from './screens/SignUpScreen';
@@ -23,10 +25,6 @@ import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
 import CheckoutScreen from './screens/CheckoutScreen';
 import PaymentSuccessScreen from './screens/PaymentSuccessScreen';
-
-import colours from './colours';
-
-import { ShopProvider } from './contexts/ShopContext';
 
 const Stack = createStackNavigator();
 

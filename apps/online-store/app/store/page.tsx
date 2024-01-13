@@ -1,9 +1,13 @@
 import { notFound } from 'next/navigation';
 
 import { getProducts } from '@phab/data-next';
+import { ProductGrid } from '@phab/ui/product';
 
-import { ProductGrid } from '../../components/product-grid';
 import { Search } from '../../sections/hero/search';
+
+export const metadata = {
+  title: 'Store',
+};
 
 export default async function Page() {
   const products = await getProducts().catch((err) => {

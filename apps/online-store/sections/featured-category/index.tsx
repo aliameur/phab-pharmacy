@@ -1,24 +1,29 @@
 'use client';
 
-import { ComponentProps, useState } from 'react';
+import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
+import Link from 'next/link';
+import { useState } from 'react';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as TSwiper } from 'swiper/types';
 
-import { Button } from '../../components/button';
-import { cn } from '../../lib/utils';
+import { AnimatedButton } from '@phab/ui/core';
+import { cn } from '@phab/utils';
+
 import { FeaturedProductCard } from './product-card';
 import { SliderButton } from './slider-button';
 
 type TFeaturedCategory = {
   side: 'left' | 'right';
   title: string;
-  products: ComponentProps<typeof FeaturedProductCard>[];
+  products: PricedProduct[];
+  href: string;
 };
 export const FeaturedCategory = ({
   side,
   title,
   products,
+  href,
 }: TFeaturedCategory) => {
   const [swiper, setSwiper] = useState<TSwiper | null>(null);
 
@@ -74,20 +79,28 @@ export const FeaturedCategory = ({
         >
           {products.map((product) => (
             <SwiperSlide className="max-w-min" key={product.title}>
-              <FeaturedProductCard
-                title={product.title}
-                tags={product.tags}
-                price={product.price}
-              />
+              <Link href={`/products/${product.handle}`}>
+                <FeaturedProductCard
+                  src={product.thumbnail || ''}
+                  title={product.title || ''}
+                  tags={product.tags?.map((tag) => tag.value) || []}
+                  price={{
+                    amount: product.variants[0].prices[0].amount,
+                    currencyCode: product.variants[0].prices[0].currency_code,
+                  }}
+                />
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
       <div className="flex w-1/2 flex-col items-center gap-6 md:gap-12">
-        <h2 className="font-merriweather text-[40px] text-mineral-green-600">
+        <h2 className="text-center font-merriweather text-[40px] text-mineral-green-600">
           {title}
         </h2>
-        <Button>Shop {title}</Button>
+        <AnimatedButton>
+          <Link href={href}>Shop {title}</Link>
+        </AnimatedButton>
       </div>
     </div>
   );

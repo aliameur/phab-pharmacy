@@ -8,15 +8,19 @@ const { composePlugins, withNx } = require('@nx/next');
  **/
 const nextConfig = {
   nx: {
-    // Set this to true if you would like to use SVGR
-    // See: https://github.com/gregberge/svgr
     svgr: false,
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'medusa-public-images.s3.eu-west-1.amazonaws.com',
+        pathname: '/**',
+      },
+    ],
   },
 };
 
-const plugins = [
-  // Add more Next.js plugins to this list if needed.
-  withNx,
-];
+const plugins = [withNx];
 
 module.exports = composePlugins(...plugins)(nextConfig);

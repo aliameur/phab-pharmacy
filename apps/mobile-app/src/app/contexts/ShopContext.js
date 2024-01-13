@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+
 import { getCartItemNumber, getCartItems } from '../scripts/CartScripts';
 import { getShippingAddress } from '../scripts/ShopScript';
 
@@ -13,7 +14,7 @@ export const ShopProvider = ({ children }) => {
   const loadNumberCart = async () => {
     count = await getCartItemNumber();
     setCartCount(count);
-  }
+  };
 
   const loadCartData = async () => {
     const items = await getCartItems();

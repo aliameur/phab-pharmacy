@@ -1,9 +1,5 @@
-export * from './lib/get-products';
-export * from './lib/get-product-by-handle';
+export * from './lib/cart';
+export * from './lib/product';
+export * from './lib/category';
 
-export * from './lib/get-categories';
-export * from './lib/get-category-by-handle';
-
-export * from './lib/get-products-by-category-handle';
-
-export type { TRequestFn } from './types';
+export type { TRequestFn, TCart, ProductCategory } from './types';

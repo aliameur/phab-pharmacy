@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import {
   ActivityIndicator,
   Dimensions,
@@ -6,11 +6,10 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import { ShopContext } from '../contexts/ShopContext';
 
 import colours from '../colours';
+import { ShopContext } from '../contexts/ShopContext';
 import { checkKeychain } from '../scripts/AuthScript';
-
 
 function UserCheckScreen({ navigation }) {
     const { loadNumberCart, loadCartData } = useContext(ShopContext);
@@ -31,31 +30,35 @@ function UserCheckScreen({ navigation }) {
             }
         };
 
-        performCheck();
-    }, [navigation]); 
-    return (
-        <View style={styles.mainView}>
-            <Image 
-            source={require('../assets/PhabPharmaLogo.png')}
-            style={styles.imageStyle}/>
-            <ActivityIndicator size={'large'} color={colours.LogoColours.logo_dark_green}/>
-        </View>
-    );
+    performCheck();
+  }, [navigation]);
+  return (
+    <View style={styles.mainView}>
+      <Image
+        source={require('../assets/PhabPharmaLogo.png')}
+        style={styles.imageStyle}
+      />
+      <ActivityIndicator
+        size={'large'}
+        color={colours.LogoColours.logo_dark_green}
+      />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    mainView: {
-        height: Dimensions.get('window').height,
-        width: Dimensions.get('window').width,
-        backgroundColor: colours.LogoColours.cream,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    imageStyle: {
-        height: 110,
-        width: 83,
-        marginBottom: 40
-    },
-})
+  mainView: {
+    height: Dimensions.get('window').height,
+    width: Dimensions.get('window').width,
+    backgroundColor: colours.LogoColours.cream,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  imageStyle: {
+    height: 110,
+    width: 83,
+    marginBottom: 40,
+  },
+});
 
-export default UserCheckScreen
+export default UserCheckScreen;

@@ -15,9 +15,9 @@ export async function medusaFetch<T>({
   revalidate = REVALIDATE_WINDOW,
 }: {
   cache?: RequestCache;
-  method?: 'GET' | 'POST';
+  method?: 'GET' | 'POST' | 'DELETE';
   headers?: HeadersInit;
-  body?: string;
+  body?: Record<string, string | number>;
   path?: string;
   query?: { [key: string]: string };
   tags?: string[];

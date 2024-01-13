@@ -1,23 +1,23 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   ActivityIndicator,
   Dimensions,
   Image,
   Keyboard,
   KeyboardAvoidingView,
+  Platform,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
-  Platform,
 } from 'react-native';
 import * as Keychain from 'react-native-keychain';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { ShopContext } from '../contexts/ShopContext';
 
 import colours from '../colours';
+import { ShopContext } from '../contexts/ShopContext';
 import { login } from '../scripts/AuthScript';
 
 function LoginScreen({ navigation }) {
@@ -115,70 +115,70 @@ function LoginScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    mainView: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        backgroundColor: colours.LogoColours.cream
-    },
-    loginText: {
-        marginTop: 15,
-        flex: 0.7,
-        fontSize: 20,
-        color: colours.LogoColours.green,
-        fontWeight: '800',
-        alignSelf: 'center'
-    },
-    loginButton: {
-        flex: 0.3,
-        borderRadius: 15,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 5,
-        marginHorizontal: '20%',
-        backgroundColor: colours.LogoColours.logo_light_green,
-    },
-    welcomeText: {
-        flex: 0.7,
-        fontSize: 0.06 * Dimensions.get('window').width,
-        color: colours.LogoColours.green,
-        fontWeight: '400',
-    },
-    TextInputStyleView:{
-        margin: 12,
-        borderRadius: 15,
-        backgroundColor: colours.LogoColours.green,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 0.35,
-    },  
-    TextInputStyle: {
-        flex: 7,
-        marginHorizontal: 10,
-        color: colours.LogoColours.cream,
-        fontSize:  0.05 * Dimensions.get('window').width,
-    },
-    TextInputIcon: {
-        flex: 0.5,
-        marginLeft: 15,
-    },
-    imageStyle: {
-        marginTop: '10%',
-        flex: 1.5,
-    },
-    signUpText:{
-        flex: 1,
-        flexDirection: 'row', 
-        marginTop: 15, 
-        alignSelf: 'center',
-    },
-    errorView: {
-        flex: 0.15,
-        alignItems: 'center'
-    },
-    errorMessage: {
-        color: '#aa0a14'
-    }
+  mainView: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    backgroundColor: colours.LogoColours.cream,
+  },
+  loginText: {
+    marginTop: 15,
+    flex: 0.7,
+    fontSize: 20,
+    color: colours.LogoColours.green,
+    fontWeight: '800',
+    alignSelf: 'center',
+  },
+  loginButton: {
+    flex: 0.3,
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 5,
+    marginHorizontal: '20%',
+    backgroundColor: colours.LogoColours.logo_light_green,
+  },
+  welcomeText: {
+    flex: 0.7,
+    fontSize: 0.06 * Dimensions.get('window').width,
+    color: colours.LogoColours.green,
+    fontWeight: '400',
+  },
+  TextInputStyleView: {
+    margin: 12,
+    borderRadius: 15,
+    backgroundColor: colours.LogoColours.green,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 0.35,
+  },
+  TextInputStyle: {
+    flex: 7,
+    marginHorizontal: 10,
+    color: colours.LogoColours.cream,
+    fontSize: 0.05 * Dimensions.get('window').width,
+  },
+  TextInputIcon: {
+    flex: 0.5,
+    marginLeft: 15,
+  },
+  imageStyle: {
+    marginTop: '10%',
+    flex: 1.5,
+  },
+  signUpText: {
+    flex: 1,
+    flexDirection: 'row',
+    marginTop: 15,
+    alignSelf: 'center',
+  },
+  errorView: {
+    flex: 0.15,
+    alignItems: 'center',
+  },
+  errorMessage: {
+    color: '#aa0a14',
+  },
 });
 
 export default LoginScreen;

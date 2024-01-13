@@ -1,0 +1,1298 @@
+{
+  "store": {
+    "currencies": [
+      "gbp"
+    ]
+  },
+  "users": [
+    {
+      "email": "admin@medusa-test.com",
+      "password": "supersecret"
+    }
+  ],
+  "regions": [
+    {
+      "id": "test-region-uk",
+      "name": "UK",
+      "currency_code": "gbp",
+      "tax_rate": 20,
+      "payment_providers": [
+        "manual"
+      ],
+      "fulfillment_providers": [
+        "manual"
+      ],
+      "countries": [
+        "gb"
+      ]
+    }
+  ],
+  "shipping_options": [
+    {
+      "name": "UK Standard Shipping",
+      "region_id": "test-region-uk",
+      "provider_id": "manual",
+      "data": {
+        "id": "manual-fulfillment"
+      },
+      "price_type": "flat_rate",
+      "amount": 500
+    },
+    {
+      "name": "UK Express Shipping",
+      "region_id": "test-region-uk",
+      "provider_id": "manual",
+      "data": {
+        "id": "manual-fulfillment"
+      },
+      "price_type": "flat_rate",
+      "amount": 1000
+    },
+    {
+      "name": "UK Return Shipping",
+      "region_id": "test-region-uk",
+      "provider_id": "manual",
+      "data": {
+        "id": "manual-fulfillment"
+      },
+      "price_type": "flat_rate",
+      "is_return": true,
+      "amount": 500
+    }
+  ],
+  "products": [
+    {
+      "title": "Vicks VapoRub",
+      "categories": [
+        {
+          "id": "pcat_cold_flu"
+        }
+      ],
+      "subtitle": null,
+      "description": "Vicks VapoRub is a renowned topical ointment designed to provide relief from common cold symptoms. It is applied externally to the chest and throat area. Its unique formula, featuring ingredients like camphor, eucalyptus oil, and menthol, delivers a warming sensation and emits soothing vapors. This helps alleviate congestion, ease coughing, and clear nasal passages, making it a trusted choice for cold relief and respiratory comfort.",
+      "handle": "vicks-vaporub",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 585
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 15,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Vicks First Defence",
+      "categories": [
+        {
+          "id": "pcat_cold_flu"
+        }
+      ],
+      "subtitle": null,
+      "description": "Vicks First Defence is a nasal spray formulated to stop cold symptoms in their early stages. By trapping, inactivating, and helping remove cold viruses, it aims to reduce the risk of a full-blown cold. This nasal spray is designed for proactive defense against the onset of cold symptoms, making it a convenient and preventative choice during the cold season.",
+      "handle": "vicks-first-defence",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 884
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Gsk Night Nurse",
+      "categories": [
+        {
+          "id": "pcat_cold_flu"
+        }
+      ],
+      "subtitle": null,
+      "description": "GSK Night Nurse is a liquid medication designed for nighttime relief from cold and flu symptoms. It effectively alleviates common symptoms such as coughing, sore throat, fever, and runny nose, ensuring a restful night's sleep during illness. This trusted product is known for its ability to provide relief and comfort when you need it most, allowing you to wake up feeling better in the morning.",
+      "handle": "gsk-night-nurse",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 1170
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 30,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Lemsip Max",
+      "categories": [
+        {
+          "id": "pcat_cold_flu"
+        }
+      ],
+      "subtitle": null,
+      "description": "Lemsip Max is a powerful cold and flu remedy available in a convenient sachet format. It effectively combats a range of symptoms including headaches, fevers, sore throat, and congestion, providing quick relief to help you feel better during illness.",
+      "handle": "lemsip-max",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 546
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 30,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Lemsip Standard",
+      "categories": [
+        {
+          "id": "pcat_cold_flu"
+        }
+      ],
+      "subtitle": null,
+      "description": "Lemsip Standard is a traditional, effective remedy for cold and flu symptoms. It combines a pain reliever and a decongestant to alleviate headaches, fever, sore throat, and congestion.",
+      "handle": "lemsip-standard",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 585
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 25,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Sudafed Day and Night",
+      "categories": [
+        {
+          "id": "pcat_cold_flu"
+        }
+      ],
+      "subtitle": null,
+      "description": "Sudafed Day and Night offers a dual-formula treatment: the Day capsules combat cold and flu symptoms without drowsiness, while the Night capsules aid restful sleep during illness.",
+      "handle": "sudafed-day-and-night",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 585
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 30,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Sudafed Max",
+      "categories": [
+        {
+          "id": "pcat_cold_flu"
+        }
+      ],
+      "subtitle": null,
+      "description": "Sudafed Max Strength is a powerful decongestant designed to relieve nasal and sinus congestion. It targets symptoms of colds and flu, making breathing easier and providing quick relief.",
+      "handle": "sudafed-max",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 546
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 30,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Benylin Mucus relief",
+      "categories": [
+        {
+          "id": "pcat_cold_flu"
+        }
+      ],
+      "subtitle": null,
+      "description": "Benylin Mucus Relief is designed to help clear bronchial congestion. It works effectively to reduce chest mucus and phlegm, thereby relieving coughing and aiding easier breathing.",
+      "handle": "benylin-mucus-relief",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 624
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Benylin 4 flu",
+      "categories": [
+        {
+          "id": "pcat_cold_flu"
+        }
+      ],
+      "subtitle": null,
+      "description": "Benylin 4 Flu is a comprehensive solution for flu symptoms. It provides relief from fever, aches, congestion, and sore throat, helping you recover from the flu more comfortably. This all-in-one medication is a trusted choice for managing flu symptoms effectively.",
+      "handle": "benylin-4-flu",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 780
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "E45 Psoriasis cream",
+      "categories": [
+        {
+          "id": "pcat_skincare"
+        }
+      ],
+      "subtitle": null,
+      "description": "E45 Psoriasis Cream is a specialized treatment formulated to alleviate the symptoms of psoriasis. It moisturizes and soothes dry, flaky, and itchy skin associated with psoriasis, promoting skin comfort.",
+      "handle": "e45-psoriasis-cream",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 2600
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 15,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Eurax Skin cream",
+      "categories": [
+        {
+          "id": "pcat_skincare"
+        }
+      ],
+      "subtitle": null,
+      "description": "Eurax Skin Cream is an effective treatment designed to provide relief from skin irritations such as itching and rashes. It's formulated to soothe conditions like eczema and dermatitis.",
+      "handle": "eurax-skin-cream",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 741
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 15,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Eucerin Skin relief cream",
+      "categories": [
+        {
+          "id": "pcat_skincare"
+        }
+      ],
+      "subtitle": null,
+      "description": "Eucerin Skin Relief Cream is specially formulated to provide relief for very dry and irritated skin. It deeply moisturizes, helping to soothe redness and itching, ideal for sensitive skin care.",
+      "handle": "eucerin-skin-relief-cream",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 1170
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Eucerin Face scrub",
+      "categories": [
+        {
+          "id": "pcat_skincare"
+        }
+      ],
+      "subtitle": null,
+      "description": "Eucerin Face Scrub is designed for gentle exfoliation, helping to unclog pores and smooth the skin's surface. It's suitable for sensitive skin, promoting a clearer and more radiant complexion.",
+      "handle": "eucerin-face-scrub",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 975
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Dermalex Psoriasis cream",
+      "categories": [
+        {
+          "id": "pcat_skincare"
+        }
+      ],
+      "subtitle": null,
+      "description": "Dermalex Psoriasis Cream is a specialized skin treatment formulated to alleviate symptoms of psoriasis. It moisturizes and helps reduce scaling, itching, and inflammation associated with this skin condition.",
+      "handle": "dermalex-psoriasis-cream",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 3900
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 10,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Dermalex Repair and Restore",
+      "categories": [
+        {
+          "id": "pcat_skincare"
+        }
+      ],
+      "subtitle": null,
+      "description": "Dermalex Repair and Restore is a unique moisturizing cream developed to provide intensive hydration. It's designed for very dry skin, targeting symptoms like dryness, flaking, and itching, promoting skin health and comfort.",
+      "handle": "dermalex-repair-and-restore",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 1560
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 10,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Dermalex Eczema Cream (30g)",
+      "categories": [
+        {
+          "id": "pcat_skincare"
+        }
+      ],
+      "subtitle": null,
+      "description": "Dermalex Eczema Cream (30g) is a clinically proven treatment specifically formulated for eczema. It helps relieve symptoms like dryness, itching, and redness, while creating a barrier to prevent new flare-ups.",
+      "handle": "dermalex-eczema-cream-30g",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase Price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 1560
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Dermalex Eczema Cream (100g)",
+      "categories": [
+        {
+          "id": "pcat_cold_flu"
+        }
+      ],
+      "subtitle": null,
+      "description": "Dermalex Eczema Cream in the 100g format offers the same targeted eczema relief as the 30g version, but in a larger size. It's ideal for long-term management of eczema symptoms, providing effective hydration and relief from dryness, itching, and redness, while supporting the skin's natural barrier to reduce flare-ups.",
+      "handle": "dermalex-eczema-cream-100g",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 3250
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 5,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Cetaphil Moisturising cream",
+      "categories": [
+        {
+          "id": "pcat_skincare"
+        }
+      ],
+      "subtitle": null,
+      "description": "Cetaphil Moisturising Cream is designed for long-lasting hydration, especially suitable for dry and sensitive skin. It nourishes and protects the skin barrier, providing relief from dryness without clogging pores.",
+      "handle": "cetaphil-moisturising-cream",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 1300
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Cetaphil Exfoliating cleanser",
+      "categories": [
+        {
+          "id": "pcat_skincare"
+        }
+      ],
+      "subtitle": null,
+      "description": "Cetaphil Exfoliating Cleanser is designed to gently exfoliate and cleanse the skin. It helps to remove dead skin cells, leaving the skin feeling smooth and refreshed. Suitable for all skin types, it's particularly beneficial for those with sensitive skin, offering a mild yet effective cleansing solution.",
+      "handle": "cetaphil-exfoliating-cleanser",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 1560
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Nurofen Meltlets",
+      "categories": [
+        {
+          "id": "pcat_headaches_pain_relief"
+        }
+      ],
+      "subtitle": null,
+      "description": "Nurofen Meltlets are an over-the-counter pain relief medication in a melt-in-the-mouth format, designed for convenience without needing water. They provide effective relief from various types of pain, including headaches and migraines.",
+      "handle": "nurofen-meltlets",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 520
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 40,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Nurofen Express",
+      "categories": [
+        {
+          "id": "pcat_headaches_pain_relief"
+        }
+      ],
+      "subtitle": null,
+      "description": "Nurofen Express is a fast-acting pain relief medication, designed to quickly alleviate symptoms such as headaches, dental pain, and muscular aches. Its formulation ensures rapid absorption and relief.",
+      "handle": "nurofen-express",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 520
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 30,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Nurofen Max strength",
+      "categories": [
+        {
+          "id": "pcat_headaches_pain_relief"
+        }
+      ],
+      "subtitle": null,
+      "description": "Nurofen Max Strength is a high-potency pain reliever designed for more severe pain. It offers powerful relief for symptoms such as headaches, muscular pain, and inflammation, with a formulation that aims for fast and effective results. Ideal for those who need stronger pain management.",
+      "handle": "nurofen-max-strength",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 910
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 25,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Nurofen Standard",
+      "categories": [
+        {
+          "id": "pcat_headaches_pain_relief"
+        }
+      ],
+      "subtitle": null,
+      "description": "Nurofen Standard is a widely-used, effective pain relief medication suitable for a range of ailments, including headaches, dental pain, and muscular discomfort. Its standard formulation provides reliable relief and is a go-to choice for managing everyday pains.",
+      "handle": "nurofen-standard",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 520
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 30,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Cuprofen Max strength",
+      "categories": [
+        {
+          "id": "pcat_headaches_pain_relief"
+        }
+      ],
+      "subtitle": null,
+      "description": "Cuprofen Max Strength is a high-strength ibuprofen-based medication, designed to provide powerful relief from pain and inflammation. It's particularly effective for conditions like arthritis, muscular pain, and severe headaches, offering strong and targeted pain management for those who need a more potent solution.",
+      "handle": "cuprofen-max-strength",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 1430
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Solpadeine Headache",
+      "categories": [
+        {
+          "id": "pcat_headaches_pain_relief"
+        }
+      ],
+      "subtitle": null,
+      "description": "Solpadeine Headache is a medication specifically formulated to alleviate headache pain. It combines the pain-relieving properties of paracetamol with the added strength of caffeine, enhancing its effectiveness in providing quick and efficient relief from headache symptoms. This makes it a suitable choice for those seeking rapid relief from mild to moderate headache pain.",
+      "handle": "solpadeine-headache",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 260
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Anadin Extra",
+      "categories": [
+        {
+          "id": "pcat_headaches_pain_relief"
+        }
+      ],
+      "subtitle": null,
+      "description": "Anadin Extra is a pain relief medication formulated to provide effective treatment for a variety of pains, including headaches, migraines, and period pain. It combines aspirin, paracetamol, and caffeine for enhanced pain relief, offering a powerful solution for those needing stronger, more comprehensive pain management.",
+      "handle": "anadin-extra",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 299
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 30,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Anadin Triple action",
+      "categories": [
+        {
+          "id": "pcat_headaches_pain_relief"
+        }
+      ],
+      "subtitle": null,
+      "description": "Anadin Triple Action is a pain relief medication that combines aspirin, paracetamol, and caffeine. This triple-ingredient formula is designed to effectively treat a variety of pain symptoms, including headaches, muscle pain, and period pain, offering a comprehensive approach to pain management. Its combination of ingredients works to provide fast and efficient relief.",
+      "handle": "anadin-triple-action",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 260
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 30,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Anadin Original",
+      "categories": [
+        {
+          "id": "pcat_headaches_pain_relief"
+        }
+      ],
+      "subtitle": null,
+      "description": "Anadin Original is a pain relief medication known for its effective treatment of mild to moderate pain, including headaches, migraines, and period pain. Its formulation primarily consists of aspirin, which works by reducing inflammation and pain. It's suitable for those seeking reliable relief from common types of pain.",
+      "handle": "anadin-original",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 234
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 30,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Disprin Soluble",
+      "categories": [
+        {
+          "id": "pcat_headaches_pain_relief"
+        }
+      ],
+      "subtitle": null,
+      "description": "Disprin Soluble is a fast-acting, soluble aspirin medication designed for quick absorption and relief. It's effective in alleviating various types of pain, such as headaches, migraines, and dental pain, and also reduces fever and inflammation. Its soluble form makes it easy to consume, offering a convenient option for those who prefer not to swallow pills.",
+      "handle": "disprin-soluble",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 468
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Dioralyte Blackcurrant",
+      "categories": [
+        {
+          "id": "pcat_digestion"
+        }
+      ],
+      "subtitle": null,
+      "description": "Dioralyte Blackcurrant is an oral rehydration solution designed to treat dehydration, especially after diarrhea. It replenishes body water and salts, and its blackcurrant flavor makes it palatable. Ideal for restoring fluid and electrolyte balance efficiently.",
+      "handle": "dioralyte-blackcurrant",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 1040
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Dioralyte Lemon",
+      "categories": [
+        {
+          "id": "pcat_digestion"
+        }
+      ],
+      "subtitle": null,
+      "description": "Dioralyte Lemon is an oral rehydration solution, flavored with lemon, intended to quickly restore hydration and electrolyte balance. It's typically used to treat dehydration caused by diarrhea, replenishing essential body salts and fluids in a palatable, easy-to-consume format.",
+      "handle": "dioralyte-lemon",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 1040
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Gaviscon Chewable",
+      "categories": [
+        {
+          "id": "pcat_digestion"
+        }
+      ],
+      "subtitle": null,
+      "description": "Gaviscon Chewable tablets are designed for convenient relief from heartburn and indigestion. They work by forming a protective barrier in the stomach to prevent acid reflux, providing effective and fast-acting relief. The chewable format makes them easy to take without water, ideal for on-the-go use.",
+      "handle": "gaviscon-chewable",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 546
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 25,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Senokot Max",
+      "categories": [
+        {
+          "id": "pcat_digestion"
+        }
+      ],
+      "subtitle": null,
+      "description": "Senokot Max Strength is a potent, over-the-counter laxative designed for short-term relief of occasional constipation. Its active ingredient, Senna, works by gently stimulating the bowel muscles, promoting a natural and comfortable bowel movement. It's typically used when a stronger dose is needed for effective relief.",
+      "handle": "senokot-max",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 390
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 10,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Gaviscon Advance",
+      "categories": [
+        {
+          "id": "pcat_digestion"
+        }
+      ],
+      "subtitle": null,
+      "description": "Gaviscon Advance is a specially formulated version of the classic Gaviscon, offering advanced relief from heartburn and acid reflux. It works by creating a stronger, longer-lasting protective barrier in the stomach, preventing acid from rising into the esophagus. This makes it highly effective for soothing symptoms of indigestion and providing quick relief.",
+      "handle": "gaviscon-advance",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 1300
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 10,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Benadryl Relief",
+      "categories": [
+        {
+          "id": "pcat_allergy"
+        }
+      ],
+      "subtitle": null,
+      "description": "Benadryl Relief is an antihistamine medication designed to quickly alleviate symptoms of allergies, such as sneezing, runny nose, and itchy eyes. It's effective for seasonal allergies, pet allergies, and other common allergic reactions, offering relief that can last for several hours. Benadryl Relief is known for its fast-acting formula, making it a go-to choice for those seeking immediate relief from uncomfortable allergy symptoms.",
+      "handle": "benadryl-relief",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 1170
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Piriteze tabs",
+      "categories": [
+        {
+          "id": "pcat_allergy"
+        }
+      ],
+      "subtitle": null,
+      "description": "Piriteze Tablets are an allergy medication containing cetirizine hydrochloride. They offer effective relief from symptoms like hay fever, pet allergies, and skin reactions. These non-drowsy tablets provide long-lasting relief, making them suitable for daily use during allergy seasons or exposure to allergens.",
+      "handle": "piriteze-tabs",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 390
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Beconase Relief",
+      "categories": [
+        {
+          "id": "pcat_allergy"
+        }
+      ],
+      "subtitle": null,
+      "description": "Beconase Allergy Nasal Spray, known for its anti-inflammatory properties, provides effective relief from common allergy symptoms like sneezing, itching, and a runny or blocked nose. It's particularly beneficial for those suffering from hay fever, pet, or dust allergies, offering targeted nasal symptom control.",
+      "handle": "beconase-relief",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 780
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Dettol Antiseptic",
+      "categories": [
+        {
+          "id": "pcat_first_aid"
+        }
+      ],
+      "subtitle": null,
+      "description": "Dettol Antiseptic is a versatile disinfectant that's widely used for its ability to kill germs and bacteria. It's effective in providing protection against infection in cuts, scratches, and insect bites. Dettol can also be used as a household disinfectant to sanitize surfaces, making it a staple in many homes for both personal and household hygiene.",
+      "handle": "dettol-antiseptic",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 416
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Dettol Hand sanitizer",
+      "categories": [
+        {
+          "id": "pcat_first_aid"
+        }
+      ],
+      "subtitle": null,
+      "description": "Dettol Hand Sanitizer is a convenient and effective way to maintain hand hygiene. It contains a high concentration of alcohol, which kills germs and bacteria upon application. This portable hand sanitizer is ideal for on-the-go use, providing quick and convenient hand disinfection when soap and water are not readily available.",
+      "handle": "dettol-hand-sanitizer",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 910
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 50,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "Elastoplast plasters",
+      "categories": [
+        {
+          "id": "pcat_first_aid"
+        }
+      ],
+      "subtitle": null,
+      "description": "Elastoplast Plasters are adhesive bandages designed for wound protection and healing. They come in various sizes and types to suit different needs, from small cuts to larger wounds. These plasters are known for their durability, flexibility, and strong adhesive properties, ensuring that wounds are well-covered and protected during the healing process. They are a trusted choice for minor wound care.",
+      "handle": "elastoplast-plasters",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 390
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 30,
+          "manage_inventory": true
+        }
+      ]
+    },
+    {
+      "title": "TCP Liquid",
+      "categories": [
+        {
+          "id": "pcat_first_aid"
+        }
+      ],
+      "subtitle": null,
+      "description": "TCP Liquid is an antiseptic solution known for its powerful germ-killing properties. It's commonly used for disinfecting minor cuts, wounds, and insect bites. TCP Liquid helps prevent infection and supports the healing process. It can also be used as a mouthwash to relieve sore throats and mouth ulcers.",
+      "handle": "tcp-liquid",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
+          "prices": [
+            {
+              "currency_code": "gbp",
+              "amount": 520
+            }
+          ],
+          "options": [],
+          "inventory_quantity": 20,
+          "manage_inventory": true
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "pcat_cold_flu",
+      "name": "Cold and Flu",
+      "rank": 0,
+      "category_children": [],
+      "handle": "cold-and-flu"
+    },
+    {
+      "id": "pcat_skincare",
+      "name": "Skincare",
+      "rank": 0,
+      "category_children": [],
+      "handle": "skincare"
+    },
+    {
+      "id": "pcat_headaches_pain_relief",
+      "name": "Headaches and Pain Relief",
+      "rank": 0,
+      "category_children": [],
+      "handle": "headachespain"
+    },
+    {
+      "id": "pcat_digestion",
+      "name": "Digestion",
+      "rank": 0,
+      "category_children": [],
+      "handle": "digestion"
+    },
+    {
+      "id": "pcat_allergy",
+      "name": "Allergy",
+      "rank": 0,
+      "category_children": [],
+      "handle": "allergy"
+    },
+    {
+      "id": "pcat_first_aid",
+      "name": "First Aid",
+      "rank": 0,
+      "category_children": [],
+      "handle": "first_aid"
+    }
+  ]
+}

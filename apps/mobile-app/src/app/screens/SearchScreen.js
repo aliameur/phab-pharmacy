@@ -1,26 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, StatusBar, Dimensions, TextInput, TouchableOpacity } from 'react-native';
-import {searchProducts} from '../scripts/ShopScript';
+import React, { useEffect, useState } from 'react';
+import {
+  Dimensions,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
-function ShopScreen({ navigation, route }){
-    const [products, setProducts] = useState([]); 
+import { searchProducts } from '../scripts/ShopScript';
 
-    useEffect(() => {
-        const getData = async () => {
-            const search = route.params?.search; 
-            console.log(await searchProducts(search));
-        };
+function ShopScreen({ navigation, route }) {
+  const [products, setProducts] = useState([]);
 
-        if (route.params?.search) {
-            getData();
-        }
-    }, [route.params?.search]);
+  useEffect(() => {
+    const getData = async () => {
+      const search = route.params?.search;
+      console.log(await searchProducts(search));
+    };
 
-    return(
-        <View>
-            <Text>{products}</Text>
-        </View>
-    )
+    if (route.params?.search) {
+      getData();
+    }
+  }, [route.params?.search]);
+
+  return (
+    <View>
+      <Text>{products}</Text>
+    </View>
+  );
 }
 
-export default ShopScreen
+export default ShopScreen;

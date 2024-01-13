@@ -1,15 +1,25 @@
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import {
   getCategoryByHandle,
   getProductsByCategoryHandle,
 } from '@phab/data-next';
-
-import { ProductGrid } from '../../../components/product-grid';
+import { ProductGrid } from '@phab/ui/product';
 
 type Props = {
   params: { handle: string };
 };
+
+export async function generateMetadata({
+  params: { handle },
+}: Props): Promise<Metadata> {
+  const { name, description } = await getCategoryByHandle(handle);
+  return {
+    title: name,
+    description: description,
+  };
+}
 
 export default async function Page({ params: { handle } }: Props) {
   const [category, products] = await Promise.all([
