@@ -20,8 +20,7 @@ export const ProductGrid = ({ products }: TProductGrid) => {
             key={product.id}
             href={`/products/${product.handle}`}
             alt={product.title || ''}
-            // src={product.thumbnail || ''}
-            src="/placeholder-product.png"
+            src={product.thumbnail || ''}
             title={product.title || ''}
             price={{
               amount: cheapestPrice?.amount,

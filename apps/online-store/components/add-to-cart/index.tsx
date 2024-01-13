@@ -45,8 +45,8 @@ export const AddToCart = ({ product }: TAddToCart) => {
     setCount((prev) => prev - 1);
   };
   return (
-    <div className="flex gap-4">
-      <div className="flex items-center justify-between rounded-2xl bg-mineral-green-600 px-0.5 py-2.5 text-pampas-100">
+    <div className="flex flex-col gap-4 sm:flex-row">
+      <div className="mr-auto flex h-14 items-center justify-between rounded-2xl bg-mineral-green-600 px-0.5 py-2.5 text-pampas-100 sm:mr-0">
         <button
           aria-label="Decrease count by one"
           onClick={decrement}
@@ -84,7 +84,7 @@ export const AddToCart = ({ product }: TAddToCart) => {
             router.refresh();
           });
         }}
-        className="w-96 font-bold uppercase tracking-wider"
+        className="w-full font-bold uppercase tracking-wider md:max-w-96"
         icon={
           variant?.purchasable ? (
             isPending ? (

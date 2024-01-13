@@ -29,13 +29,13 @@ export default async function Page({ params: { handle } }: Props) {
     notFound();
   });
   return (
-    <main className="px-16">
-      <div className="flex pb-16 pt-12">
+    <main className="px-4 sm:px-12 md:px-16">
+      <div className="flex flex-col gap-8 pb-16 pt-12 lg:flex-row lg:gap-0">
         <Gallery
-          className="sticky top-32 h-full w-1/2 pr-10"
+          className="mx-auto h-full w-full max-w-screen-md lg:sticky lg:top-32 lg:w-1/2 lg:pr-10 "
           images={product.images || []}
         />
-        <div className="flex w-1/2 flex-col gap-8 pl-10">
+        <div className="flex w-full flex-col gap-8 lg:w-1/2 lg:pl-10">
           <div className="flex flex-col gap-2 text-mineral-green-600">
             <h2 className="font-merriweather text-3xl font-bold">
               {product.title}
@@ -65,6 +65,11 @@ export default async function Page({ params: { handle } }: Props) {
               maxime omnis perspiciatis suscipit.
             </DetailSection>
             <DetailSection title="Usage">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. At
+              doloribus exercitationem nostrum pariatur? Amet, aperiam deserunt
+              maxime omnis perspiciatis suscipit.
+            </DetailSection>
+            <DetailSection title="Delivery Policy">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. At
               doloribus exercitationem nostrum pariatur? Amet, aperiam deserunt
               maxime omnis perspiciatis suscipit.

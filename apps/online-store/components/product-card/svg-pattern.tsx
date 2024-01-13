@@ -5,7 +5,6 @@ export const SVGPattern = (props: ComponentPropsWithoutRef<'svg'>) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
-      preserveAspectRatio="none"
       viewBox="0 0 276 351"
       {...props}
     >

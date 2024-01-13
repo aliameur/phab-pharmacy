@@ -19,8 +19,13 @@ export const Gallery = ({ className = '', images }: TGallery) => {
   const imageIndex = imageSearchParam ? parseInt(imageSearchParam) : 0;
 
   return (
-    <div className={`flex h-full w-1/2 gap-5 pr-8 ${className}`}>
-      <div className="flex flex-col gap-5">
+    <div
+      className={cn(
+        'flex h-full flex-col-reverse gap-5 xl:flex-row',
+        className,
+      )}
+    >
+      <div className="flex justify-center gap-5 xl:flex-col xl:justify-start">
         {images.map((image, i) => {
           const newSearchParams = new URLSearchParams(searchParams.toString());
           newSearchParams.set('image', (i + 1).toString());
@@ -43,7 +48,10 @@ export const Gallery = ({ className = '', images }: TGallery) => {
         })}
       </div>
       <div className="relative min-h-[60vh] w-full bg-mineral-green-600 ">
-        <TopRight className="absolute -right-12 -top-12 z-10" />
+        <TopRight
+          preserveAspectRatio="xMaxYMin meet"
+          className="absolute -right-4 -top-4 z-10 w-4/5 sm:-right-12 sm:-top-12 xl:w-auto"
+        />
         {/* Safeguard against manipulating url */}
         <Image
           src={images[imageIndex - 1]?.url || images[0].url}
