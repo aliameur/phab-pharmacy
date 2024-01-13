@@ -9,6 +9,7 @@ import { TCart } from '@phab/data-core';
 import { Button } from '../button';
 import { Price } from '../price';
 import { Sidebar } from '../sidebar';
+import { CartButton } from './cart-button';
 import { CartLine } from './cart-line';
 
 type TCartSidebar = {
@@ -43,18 +44,7 @@ export const CartSidebar = ({ cart }: TCartSidebar) => {
       side="right"
       className="flex flex-col gap-4 bg-mineral-green-600 px-4 py-5 sm:max-w-md"
       outerIcon={({ openSidebar }) => (
-        <button
-          onClick={openSidebar}
-          aria-label="Open cart sidebar"
-          className="relative p-2"
-        >
-          {cartTotal ? (
-            <div className="absolute -right-0.5 -top-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-mineral-green-600 text-xs font-medium text-pampas-100">
-              {cartTotal}
-            </div>
-          ) : null}
-          <ShoppingCart className="h-6 w-6 text-mineral-green-600" />
-        </button>
+        <CartButton total={cartTotal} onClick={openSidebar} />
       )}
     >
       {({ closeSidebar }) => (
@@ -81,7 +71,7 @@ export const CartSidebar = ({ cart }: TCartSidebar) => {
             />
           ))}
           {!cart || !cart?.items || cart?.items.length === 0 ? (
-            <div className="flex items-center justify-center py-16 text-pampas-100 flex-col gap-8">
+            <div className="flex flex-col items-center justify-center gap-8 py-16 text-pampas-100">
               <ShoppingCart className="h-12 w-12" />
               <h4 className="font-merriweather text-2xl">Your Cart is Empty</h4>
             </div>

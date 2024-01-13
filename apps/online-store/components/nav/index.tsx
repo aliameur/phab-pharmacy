@@ -1,9 +1,11 @@
 import { Search } from 'lucide-react';
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 import { getCategories } from '@phab/data-next';
 
 import { Cart } from '../cart';
+import { CartButton } from '../cart/cart-button';
 import { Logo } from '../logo';
 import { NavLink } from './link';
 import { Menubar } from './menubar';
@@ -46,7 +48,9 @@ export const Nav = async () => {
         <button aria-label="Search" className="p-2">
           <Search className="h-6 w-6 text-mineral-green-600" />
         </button>
-        <Cart />
+        <Suspense fallback={<CartButton />}>
+          <Cart />
+        </Suspense>
       </div>
     </nav>
   );
