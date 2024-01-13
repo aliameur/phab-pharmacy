@@ -1,11 +1,5 @@
 import { MoneyAmount } from '@medusajs/medusa';
 import { PricedVariant } from '@medusajs/medusa/dist/types/pricing';
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-export const cn = (...inputs: ClassValue[]) => {
-  return twMerge(clsx(inputs));
-};
 
 export const getPriceIn = (prices: MoneyAmount[], currencyCode: string) => {
   return prices.find(

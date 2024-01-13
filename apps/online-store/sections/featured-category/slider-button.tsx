@@ -1,6 +1,6 @@
 import { MoveRight } from 'lucide-react';
 
-import { cn } from '../../lib/utils';
+import { cn } from '@phab/utils';
 
 type TSliderButton = {
   direction: 'left' | 'right';
