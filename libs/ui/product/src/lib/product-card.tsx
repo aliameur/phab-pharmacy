@@ -25,7 +25,7 @@ export const ProductCard = ({ href, src, alt, title, price }: TProductCard) => {
         {price.amount && price.currencyCode ? (
           <p className="text-mineral-green-600">
             {getSymbolFromCurrency(price.currencyCode)} {price.amount / 100}
-          {/*  TODO use price component here */}
+            {/*  TODO use price component here */}
           </p>
         ) : null}
       </div>
