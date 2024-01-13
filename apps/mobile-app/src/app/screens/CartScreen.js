@@ -7,15 +7,23 @@ import { ShopContext } from '../contexts/ShopContext';
 
 
 function CartScreen({navigation, route }) {
-    const { cartData, cartTotal, loadCartData, loadNumberCart } = useContext(ShopContext);
+    const { cartData, cartTotal, loadCartData, loadNumberCart, loadShippingAddress } = useContext(ShopContext);
 
     useEffect(() => {
         const getCartProducts = async () => {
+            await loadShippingAddress();
             await loadCartData();
             await loadNumberCart();
         };  
         getCartProducts();
     }, []); 
+
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('en-GB', {
+            style: 'currency',
+            currency: 'GBP',
+        }).format(price / 100); 
+    };
 
     if (!cartData){
         items = [{title: 'Loading item 1'}, {title: 'Loading item 2'}]
@@ -69,7 +77,7 @@ function CartScreen({navigation, route }) {
                                 <Text style={{color: colours.LogoColours.green, fontSize: 18}}>x{item.quantity}</Text>
                             </View>
                             <View>
-                                <Text style={{color: colours.LogoColours.green, fontSize: 20, fontWeight: '500'}}>£{item.total.toString().slice(0, -2)}.{item.total.toString().slice(-2)}</Text>
+                                <Text style={{color: colours.LogoColours.green, fontSize: 20, fontWeight: '500'}}>{formatPrice(item.total.toString())}</Text>
                             </View>
                         </View>
                     </View>
@@ -80,7 +88,7 @@ function CartScreen({navigation, route }) {
                 <TouchableOpacity style={{backgroundColor: colours.TailWindColors["mineral-green"][600], width: '90%', height: '70%', borderRadius: 15, justifyContent:'center', alignItems: 'center'}}
                     onPress={() => navigation.navigate('Checkout')}
                 >
-                    <Text style={{color: colours.LogoColours.cream, fontSize: 27, fontWeight: "500"}}>Pay via Card - £{cartTotal.toString().slice(0, -2)}.{cartTotal.toString().slice(-2)}</Text>
+                    <Text style={{color: colours.LogoColours.cream, fontSize: 27, fontWeight: "500"}}>Pay via Card - {formatPrice(cartTotal.toString())}</Text>
                 </TouchableOpacity>
             </View>
             <View style={{flex: 0.1, justifyContent: 'center', alignItems:'center'}}>

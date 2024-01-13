@@ -10,6 +10,7 @@ import { ShopContext } from '../contexts/ShopContext';
 function ProductScreen({ route }) {
     const { data } = route.params;
     const { loadNumberCart, loadCartData } = useContext(ShopContext);
+
     const addItemToCart = async (variant_id, quantity) => {
         response = await addToCart(variant_id, quantity);
         if (response) {
@@ -22,6 +23,14 @@ function ProductScreen({ route }) {
             }
         }
     }
+
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('en-GB', {
+            style: 'currency',
+            currency: 'GBP',
+        }).format(price / 100); 
+    };
+
     return ( 
         <SafeAreaView style={{flex: 1, justifyContent: 'center', 'backgroundColor': colours.LogoColours.cream}}>
             <View style={styles.halfBackground}/>
@@ -38,7 +47,7 @@ function ProductScreen({ route }) {
                 <Text style={{fontSize: 20, fontWeight: '600', marginHorizontal: 10}}>{data.description}</Text>
                 <View style={{alignItems: 'center', alignSelf: 'center', flexDirection: 'row', marginTop: 5}}> 
                     <Text style={{fontWeight: '700', fontSize: 20, color: colours.TailWindColors.pampas[900]}}>Price: </Text>
-                    <Text style={{fontSize: 20, color: colours.TailWindColors.pampas[900]}}>£{data.price.toString().slice(0,2)}.{data.price.toString().slice(2,4)}</Text>
+                    <Text style={{fontSize: 20, color: colours.TailWindColors.pampas[900]}}>{formatPrice(data.price.toString())}</Text>
                 </View>
             </View>
             <View style={{flex: 1, marginBottom: 10}}>

@@ -1,9 +1,9 @@
 import { Platform } from 'react-native';
 import axios from 'axios';
-
+import * as Keychain from 'react-native-keychain';
 import {getProductsByCategoryHandle, getCategories } from '@phab/data-react-native';
 
-
+service = 'JWToken';
 const BASE_URL = 'https://phab-pharmacy-backend-ab775283aa48.herokuapp.com';
 
 const getStoreCategories = async () =>  {
@@ -48,6 +48,23 @@ const searchProducts = async (searchText) => {
     }
 }
 
+const getShippingAddress = async () => {
+    const creds = await Keychain.getGenericPassword({ service });
+    try {
+        const config = {
+          method: 'get',
+          url: BASE_URL + '/store/customers/me',
+          headers: {
+            Authorization: `Bearer ${creds.password}`,
+          },
+        };
+        const response = await axios(config);
+        return response.data.customer.shipping_addresses
+    } catch (e){
+        console.log('Address error: ', e);
+    }
+}
 
 
-export { getStoreCategories, getStoreProducts, searchProducts };
+
+export { getStoreCategories, getStoreProducts, searchProducts, getShippingAddress };

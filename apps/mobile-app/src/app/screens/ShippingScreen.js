@@ -10,14 +10,10 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import colours from '../colours';
 
 
-function PaymentSuccessScreen({ navigation }) {
+function ShippingScreen({ navigation }) {
 
     return (
         <View style={{flex: 1.5, justifyContent: 'center', alignItems: 'center', marginTop: '15%'}}>
-            <Image 
-            source={require('../assets/PhabPharmaLogo.png')}
-            resizeMode='contain'
-            style={{flex: 1}}/>
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                 <FontAwesome name="check" size={100} color={colours.LogoColours.green}/>
             </View>
@@ -29,8 +25,7 @@ function PaymentSuccessScreen({ navigation }) {
             </TouchableOpacity>
         </View>
     )
-
 }
 
 
-export default PaymentSuccessScreen
+export default ShippingScreen

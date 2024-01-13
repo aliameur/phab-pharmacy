@@ -29,7 +29,7 @@ function ShopCarousel ({ navigation, handle }) {
         return new Intl.NumberFormat('en-GB', {
             style: 'currency',
             currency: 'GBP',
-        }).format(price / 100); // Assuming price is in pence
+        }).format(price / 100); 
     };
 
     const addItemToCart = async (variant_id, quantity) => {
@@ -67,7 +67,7 @@ function ShopCarousel ({ navigation, handle }) {
                 </View>
                     <View style={{flex: 0.8, flexDirection: 'row', margin: 20, width: '70%', justifyContent: 'center', alignSelf: 'center'}}>
                         <TouchableOpacity style={styles.detailsButtons} onPress={() => navigation.navigate('Product', {data: item})}>
-                            <Text style={{fontSize: 25, color: colours.LogoColours.cream}}>Buy Now</Text>
+                            <Text style={{fontSize: 25, color: colours.LogoColours.cream}}>See Details</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={{marginLeft: 20, flex: 1.2, backgroundColor: colours.TailWindColors['mineral-green'][600], borderRadius: 10, alignItems: 'center', alignSelf: 'center', justifyContent: 'center', height: '100%'}}
                             onPress={() => addItemToCart(item.variant_id, 1)}
