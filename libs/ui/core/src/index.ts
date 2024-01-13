@@ -6,5 +6,7 @@ export * from './lib/animated-button';
 export * from './lib/sidebar';
 export * from './lib/logo';
 export * from './lib/rating';
+export * from './lib/review';
+export * from './lib/detail-section';
 
 export * from './utils';

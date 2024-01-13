@@ -2,3 +2,4 @@
 export * from './lib/product-grid';
 export * from './lib/variant-selector';
 export * from './lib/gallery';
+export * from './lib/product-price';

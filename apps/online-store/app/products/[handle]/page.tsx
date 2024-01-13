@@ -3,12 +3,8 @@ import { notFound } from 'next/navigation';
 
 import { getProductByHandle } from '@phab/data-next';
 import { AddToCart } from '@phab/ui/cart';
-import { Rating } from '@phab/ui/core';
-import { Gallery, VariantSelector } from '@phab/ui/product';
-
-import { DetailSection } from '../../../components/detail-section';
-import { ProductPrice } from '../../../components/product-price';
-import { Review } from '../../../components/review';
+import { DetailSection, Rating, Review } from '@phab/ui/core';
+import { Gallery, ProductPrice, VariantSelector } from '@phab/ui/product';
 
 export async function generateMetadata({
   params: { handle },
