@@ -35,6 +35,7 @@ export const Gallery = ({ className = '', images }: TGallery) => {
             <Link
               href={url}
               key={image.id}
+              scroll={false}
               className={cn(
                 'relative h-24 w-24 overflow-hidden rounded-xl border-2 border-norway-300 bg-mineral-green-600',
                 {
@@ -42,7 +43,7 @@ export const Gallery = ({ className = '', images }: TGallery) => {
                 },
               )}
             >
-              <Image src={image.url} alt="" fill sizes="96w" />
+              <Image src={image.url} alt="" className='object-cover' fill sizes="96w" />
             </Link>
           );
         })}

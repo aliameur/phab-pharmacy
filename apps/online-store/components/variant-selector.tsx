@@ -98,7 +98,7 @@ export const VariantSelector = ({ product }: TVariantSelector) => {
                     disabled={!purchasable}
                     onClick={() => {
                       if (!purchasable) return;
-                      router.replace(optionUrl);
+                      router.replace(optionUrl, { scroll: false });
                     }}
                     className={cn(
                       'rounded-xl border-2 border-norway-200 bg-mineral-green-600 px-4 py-2 text-pampas-100',
@@ -108,7 +108,7 @@ export const VariantSelector = ({ product }: TVariantSelector) => {
                         'border-2 border-norway-400 ': isActive,
                       },
                     )}
-                    title={`${option.title} ${value}${
+                    title={`${option.title} ${value.value}${
                       !purchasable ? ' (Out of Stock)' : ''
                     }`}
                   >
