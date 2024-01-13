@@ -17,7 +17,7 @@ export default function Sidebar() {
         />
       </div>
       <ul
-        className="menu text-base-content invisible mt-16 h-screen p-4 transition-opacity duration-300"
+        className="menu text-base-content invisible mt-8 h-screen p-4 transition-opacity duration-300"
         style={{ minWidth: '20rem' }}
       >
         <li key="products">
