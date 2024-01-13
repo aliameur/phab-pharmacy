@@ -65,6 +65,47 @@ const getShippingAddress = async () => {
     }
 }
 
+const addShippingAddress = async (first_name, last_name, address, city, postal) => {
+    const creds = await Keychain.getGenericPassword({ service });
+    const addressData = {
+        address: {
+          first_name: first_name,
+          last_name: last_name,
+          address_1: address,
+          city: city,
+          country_code: "GB",
+          postal_code: postal,
+        }
+    };
+    try {
+        const response = await axios.post(`${BASE_URL}/store/customers/me/addresses`, addressData, {
+            headers: {
+                'Authorization': `Bearer ${creds.password}`,
+                'Content-Type': 'application/json'
+            }
+        })
+    } catch (error){
+        console.log('Error', error)
+        return false
+    }
+    console.log('Address added successfully');
+    return true
+}
+
+const addShippingAddressToOrder = async (id) => {
+    const cart_id = await AsyncStorage.getItem('cartID');
+    try {
+        const response = await axios.post(`${BASE_URL}/store/carts/${cart_id}/shipping-methods`, {
+            option_id: id
+        })
+    } catch (error){
+        console.log('Error', error)
+        return false
+    }
+    console.log('Address added successfully');
+    return true
+}
 
 
-export { getStoreCategories, getStoreProducts, searchProducts, getShippingAddress };
+
+export { getStoreCategories, getStoreProducts, searchProducts, getShippingAddress, addShippingAddress };

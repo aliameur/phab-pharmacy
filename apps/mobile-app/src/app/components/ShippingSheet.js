@@ -1,14 +1,31 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import colours from '../colours';
 import { TextInput } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { addShippingAddress } from '../scripts/ShopScript';
+import { ShopContext } from '../contexts/ShopContext';
 
 function ShippingSheet ({ visible, onClose}) {
+    const { loadShippingAddress } = useContext(ShopContext);
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [address, setAddress] = useState('');
+    const [city, setCity] = useState('');
+    const [postal, setPostal] = useState('');
+
     const handleCancelPress = () => {
         onClose(); 
     };
+
+    const handleAddPress = async () => {
+        const result = await addShippingAddress(firstName, lastName, address, city, postal);
+        if (result) {
+            await loadShippingAddress();
+            onClose();
+        }
+    }
     return (
         <Modal
             animationType="fade"
@@ -24,10 +41,11 @@ function ShippingSheet ({ visible, onClose}) {
                             <View style={styles.TextInputStyleView}>
                                 <FontAwesome name="user" size={25} color={colours.TailWindColors['mineral-green'][600]} style={styles.TextInputIcon} />
                                 <TextInput 
+                                value={firstName}
                                 style={styles.TextInputStyle}
                                 placeholder="John"
                                 placeholderTextColor={colours.LogoColours.cream}
-                                >
+                                onChangeText={text => setFirstName(text)}>
                                 </TextInput>
                             </View>
                         </View>
@@ -36,10 +54,12 @@ function ShippingSheet ({ visible, onClose}) {
                             <View style={styles.TextInputStyleView}>
                                 <FontAwesome name="user" size={25} color={colours.TailWindColors['mineral-green'][600]} style={styles.TextInputIcon} />
                                 <TextInput 
+                                value={lastName}
                                 style={styles.TextInputStyle}
                                 placeholder="Appleseed"
                                 placeholderTextColor={colours.LogoColours.cream}
-                                >
+                                onChangeText={text => setLastName(text)}>
+                                
                                 </TextInput>
                             </View>
                         </View>
@@ -48,10 +68,12 @@ function ShippingSheet ({ visible, onClose}) {
                             <View style={styles.TextInputStyleView}>
                                 <FontAwesome name="home" size={25} color={colours.TailWindColors['mineral-green'][600]} style={styles.TextInputIcon} />
                                 <TextInput 
+                                value={address}
                                 style={styles.TextInputStyle}
-                                placeholder="Email"
+                                placeholder="12 Oak Tree Road"
                                 placeholderTextColor={colours.LogoColours.cream}
-                                >
+                                onChangeText={text => setAddress(text)}>
+                                
                                 </TextInput>
                             </View>
                         </View>
@@ -60,10 +82,12 @@ function ShippingSheet ({ visible, onClose}) {
                             <View style={styles.TextInputStyleView}>
                                 <FontAwesome name="building-o" size={25} color={colours.TailWindColors['mineral-green'][600]} style={styles.TextInputIcon} />
                                 <TextInput 
+                                value={city}
                                 style={styles.TextInputStyle}
-                                placeholder="Email"
+                                placeholder="Pear City"
                                 placeholderTextColor={colours.LogoColours.cream}
-                                >
+                                onChangeText={text => setCity(text)}>
+                                
                                 </TextInput>
                             </View>
                         </View>
@@ -71,21 +95,31 @@ function ShippingSheet ({ visible, onClose}) {
                             <Text>Postal Code</Text>
                             <View style={styles.TextInputStyleView}>
                                 <FontAwesome name="truck" size={25} color={colours.TailWindColors['mineral-green'][600]} style={styles.TextInputIcon} />
-                                <TextInput 
+                                <TextInput
+                                value={postal}
                                 style={styles.TextInputStyle}
-                                placeholder="Email"
+                                placeholder="W6 9PL"
                                 placeholderTextColor={colours.LogoColours.cream}
+                                onChangeText={text => setPostal(text)}
                                 >
                                 </TextInput>
                             </View>
                         </View>
                     </KeyboardAwareScrollView>
-                    <TouchableOpacity
-                    style={styles.cancelButton}
-                    onPress={handleCancelPress}
-                    >
-                        <Text style={{color: colours.LogoColours.cream, fontSize: 20, fontWeight: '600'}}>Save Address</Text>
-                    </TouchableOpacity>
+                    <View style={{flex: 0.2, flexDirection: 'row', paddingHorizontal: '10%'}}>
+                        <TouchableOpacity
+                        style={styles.backButton}
+                        onPress={handleCancelPress}
+                        >
+                            <FontAwesome name="chevron-left" size={23} color={colours.LogoColours.cream}/>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                        style={styles.cancelButton}
+                        onPress={handleAddPress}
+                        >
+                            <Text style={{color: colours.LogoColours.cream, fontSize: 18, fontWeight: '600'}}>Save Address</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         </Modal>
@@ -121,6 +155,7 @@ function ShippingSheet ({ visible, onClose}) {
     cancelButton: {
         marginTop: 16,
         width: '60%',
+        height: '60%',
         backgroundColor: colours.TailWindColors['mineral-green'][600],
         borderColor: colours.LogoColours.green,
         color: 'white',
@@ -129,7 +164,21 @@ function ShippingSheet ({ visible, onClose}) {
         justifyContent: 'center',
         borderRadius: 10,
         padding: 12,
-        flex: 0.1
+        flex: 6
+    },
+    backButton: {
+        marginTop: 16,
+        width: '20%',
+        height: '60%',
+        marginRight: '10%',
+        backgroundColor: colours.TailWindColors['mineral-green'][600],
+        color: 'white',
+        alignItems: 'center',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        padding: 12,
+        flex: 1
     },
     TextWholeInputView: {
         height: '25%',
@@ -148,7 +197,7 @@ function ShippingSheet ({ visible, onClose}) {
         flex: 8,
         marginHorizontal: 10,
         color: colours.TailWindColors['mineral-green'][600],
-        fontSize:  17,
+        fontSize:  16,
     },
     TextInputIcon: {
         flex: 1,
