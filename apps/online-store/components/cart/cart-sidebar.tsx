@@ -80,6 +80,13 @@ export const CartSidebar = ({ cart }: TCartSidebar) => {
               alt={item.title}
             />
           ))}
+          {!cart || !cart?.items || cart?.items.length === 0 ? (
+            <div className="flex items-center justify-center py-16 text-pampas-100 flex-col gap-8">
+              <ShoppingCart className="h-12 w-12" />
+              <h4 className="font-merriweather text-2xl">Your Cart is Empty</h4>
+            </div>
+          ) : null}
+
           {cart?.total ? (
             <div className="mt-auto">
               <div className="flex items-center justify-between py-4 text-pampas-100">
