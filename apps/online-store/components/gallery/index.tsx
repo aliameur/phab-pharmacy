@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-import {cn, createUrl} from '../../lib/utils';
+import { cn, createUrl } from '../../lib/utils';
 import { TopRight } from './top-right';
 
 type TGallery = {
@@ -30,9 +30,12 @@ export const Gallery = ({ className = '', images }: TGallery) => {
             <Link
               href={url}
               key={image.id}
-              className={cn("relative h-24 w-24 bg-mineral-green-600 rounded-xl border-2 border-norway-300 overflow-hidden", {
-                "border-norway-400": isActive,
-              })}
+              className={cn(
+                'relative h-24 w-24 overflow-hidden rounded-xl border-2 border-norway-300 bg-mineral-green-600',
+                {
+                  'border-norway-400': isActive,
+                },
+              )}
             >
               <Image src={image.url} alt="" fill sizes="96w" />
             </Link>
@@ -40,7 +43,7 @@ export const Gallery = ({ className = '', images }: TGallery) => {
         })}
       </div>
       <div className="relative min-h-[60vh] w-full bg-mineral-green-600 ">
-        <TopRight className="absolute z-10 -right-12 -top-12" />
+        <TopRight className="absolute -right-12 -top-12 z-10" />
         {/* Safeguard against manipulating url */}
         <Image
           src={images[imageIndex - 1]?.url || images[0].url}

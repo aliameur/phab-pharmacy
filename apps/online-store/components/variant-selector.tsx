@@ -47,7 +47,9 @@ export const VariantSelector = ({ product }: TVariantSelector) => {
       {product.variants.length > 1 &&
         (product.options || []).map((option, i) => (
           <div key={option.id}>
-            <h4 className='mb-2 text-mineral-green-600 font-merriweather text-lg'>{option.title}</h4>
+            <h4 className="mb-2 font-merriweather text-lg text-mineral-green-600">
+              {option.title}
+            </h4>
             <div className="flex gap-5">
               {option.values.map((value, i) => {
                 const optionTitle = option.title.toLowerCase();

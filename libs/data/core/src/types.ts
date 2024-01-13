@@ -5,7 +5,7 @@ import { CartDTO } from '@medusajs/types/dist/cart/common';
 
 export type TRequestFn = <T>(options: {
   cache?: RequestCache;
-  method?: 'GET' | 'POST'| 'DELETE';
+  method?: 'GET' | 'POST' | 'DELETE';
   headers?: HeadersInit;
   body?: Record<string, string | number>;
   path?: string;
@@ -42,13 +42,13 @@ export type MedusaCategoryOperation = {
 export type TCart = CartDTO & {
   items: LineItem[];
   region: {
-    id: string
-    created_at: Date
-    updated_at: Date
-    deleted_at: Date | null
-    name: string
-    currency_code: string
-  }
+    id: string;
+    created_at: Date;
+    updated_at: Date;
+    deleted_at: Date | null;
+    name: string;
+    currency_code: string;
+  };
 };
 
 export type MedusaCartOperation = {

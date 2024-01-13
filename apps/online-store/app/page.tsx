@@ -1,5 +1,6 @@
+import { Suspense } from 'react';
+
 import { getCategories, getProductsByCategoryHandle } from '@phab/data-next';
-import {Suspense} from "react";
 
 import { FAQs, FeaturedCategory, Hero, Team, Testimonials } from '../sections';
 
