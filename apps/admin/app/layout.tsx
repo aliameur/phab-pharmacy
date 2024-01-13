@@ -1,4 +1,5 @@
 import './global.css';
+import Layout from './layout/Layout';
 
 export const metadata = {
   title: 'PhabPharmacy Admin',
@@ -13,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Layout>{children}</Layout>
+      </body>
     </html>
   );
 }
