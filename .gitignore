@@ -54,6 +54,7 @@ npm-debug.*
 *.orig.*
 web-build/
 cache/
+.cache/
 
 
 apps/mobile-app-e2e/artifacts
