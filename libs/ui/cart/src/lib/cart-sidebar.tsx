@@ -5,10 +5,8 @@ import { ShoppingCart, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 import { TCart } from '@phab/data-core';
+import { AnimatedButton, Price, Sidebar } from '@phab/ui/core';
 
-import { Button } from '../button';
-import { Price } from '../price';
-import { Sidebar } from '../sidebar';
 import { CartButton } from './cart-button';
 import { CartLine } from './cart-line';
 
@@ -87,9 +85,9 @@ export const CartSidebar = ({ cart }: TCartSidebar) => {
                   className="text-xl"
                 />
               </div>
-              <Button className="w-full" variant="light">
+              <AnimatedButton className="w-full" variant="light">
                 Proceed to Checkout
-              </Button>
+              </AnimatedButton>
             </div>
           ) : null}
         </>

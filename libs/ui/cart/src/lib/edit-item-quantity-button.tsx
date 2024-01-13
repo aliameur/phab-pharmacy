@@ -1,10 +1,10 @@
 import { LineItem } from '@medusajs/medusa';
-import clsx from 'clsx';
 import { Minus, MoreHorizontal, Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 
 import { removeCartLineItem, updateCartLineItem } from '@phab/data-next';
+import { cn } from '@phab/ui/core';
 
 export const EditItemQuantityButton = ({
   item,
@@ -39,7 +39,7 @@ export const EditItemQuantityButton = ({
         });
       }}
       disabled={isPending}
-      className={clsx(
+      className={cn(
         'ease flex h-full min-w-[36px] max-w-[36px] flex-none items-center justify-center rounded-full px-2 transition-all duration-200 hover:border-neutral-800 hover:opacity-80',
         {
           'cursor-not-allowed': isPending,

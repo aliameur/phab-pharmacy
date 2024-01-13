@@ -4,8 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 
 import { removeCartLineItem } from '@phab/data-next';
-
-import { cn } from '../../lib/utils';
+import { cn } from '@phab/ui/core';
 
 type DeleteItemButton = {
   item: LineItem;

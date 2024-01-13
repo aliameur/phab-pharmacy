@@ -2,10 +2,10 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 
 import { getCategories } from '@phab/data-next';
+import { CartButton } from '@phab/ui/cart';
+import { Cart } from '@phab/ui/cart/server';
+import { Logo } from '@phab/ui/core';
 
-import { Cart } from '../cart';
-import { CartButton } from '../cart/cart-button';
-import { Logo } from '../logo';
 import { SearchModal } from '../search';
 import { NavLink } from './link';
 import { Menubar } from './menubar';

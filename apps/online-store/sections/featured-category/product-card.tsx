@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { Price } from '../../components/price';
+import { Price } from '@phab/ui/core';
 
 type TFeaturedProductCard = {
   tags: string[];

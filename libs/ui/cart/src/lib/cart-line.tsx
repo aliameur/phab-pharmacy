@@ -3,7 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ComponentProps } from 'react';
 
-import { Price } from '../price';
+import { Price } from '@phab/ui/core';
+
 import { DeleteItemButton } from './delete-item-button';
 import { EditItemQuantityButton } from './edit-item-quantity-button';
 

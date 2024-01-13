@@ -4,7 +4,7 @@ import { ProductOption } from '@medusajs/medusa';
 import { PricedVariant } from '@medusajs/medusa/dist/types/pricing';
 import { useSearchParams } from 'next/navigation';
 
-import { Price } from './price';
+import { Price } from '@phab/ui/core';
 
 type TProductPrice = {
   variants: PricedVariant[];
