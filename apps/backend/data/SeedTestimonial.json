@@ -1,0 +1,40 @@
+{
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Ben Dover",
+      "position": "Customer",
+      "message": "I cannot be more satisfied about how Phab Pharmacy handled my medical and pharmaceutical needs. Their knowledgeable staff, exquisite product selection and unmatched prices make it a no brainer to visit the shop more often. I will be a repeat customer!"
+    },
+    {
+      "id": 2,
+      "name": "Sam Sung",
+      "position": "Customer",
+      "message": "The technical prowess of Phab Pharmacy shows how advanced they are at implementing artificial intelligence in the realm of the pharmaceutical industry. Although still an emerging brand with three stores, their commitment to innovation will propel them to new heights in the industry by setting standards that even the big dogs are yet to consider."
+    },
+    {
+      "id": 3,
+      "name": "Deja Viau",
+      "position": "Customer",
+      "message": "The selection of products was so wide. I have never seen anything like it! Will for sure be coming back."
+    },
+    {
+      "id": 4,
+      "name": "Ali C. Izyu",
+      "position": "Customer",
+      "message": "I have never seen such a beautifully designed store. Their store navigation system is extremely useful and intuitive."
+    },
+    {
+      "id": 5,
+      "name": "Anita Dickenme",
+      "position": "Employee",
+      "message": "The company has done the most for my professional development by having me attend various training sessions so that I can perform to the best of my ability. I recommend Phab Pharmacy to anyone in the industry!"
+    },
+        {
+      "id": 5,
+      "name": "Anita Dickenme",
+      "position": "Employee",
+      "message": "The company has done the most for my professional development by having me attend various training sessions so that I can perform to the best of my ability. I recommend Phab Pharmacy to anyone in the industry!"
+    }
+  ]
+}

@@ -489,22 +489,22 @@
       ]
     },
     {
-      "title": "Dermalex Eczema Cream",
+      "title": "Dermalex Eczema Cream (30g)",
       "categories": [
         {
           "id": "pcat_skincare"
         }
       ],
       "subtitle": null,
-      "description": "Dermalex Eczema Cream is a clinically proven treatment specifically formulated for eczema. It helps relieve symptoms like dryness, itching, and redness, while creating a barrier to prevent new flare-ups.",
-      "handle": "dermalex-eczema-cream",
+      "description": "Dermalex Eczema Cream (30g) is a clinically proven treatment specifically formulated for eczema. It helps relieve symptoms like dryness, itching, and redness, while creating a barrier to prevent new flare-ups.",
+      "handle": "dermalex-eczema-cream-30g",
       "is_giftcard": false,
       "weight": 0,
       "images": [],
       "options": [],
       "variants": [
         {
-          "title": "30g",
+          "title": "Purchase Price",
           "prices": [
             {
               "currency_code": "gbp",
@@ -515,8 +515,23 @@
           "inventory_quantity": 20,
           "manage_inventory": true
         },
+  {
+      "title": "Dermalex Eczema Cream (100g)",
+      "categories": [
         {
-          "title": "100g",
+          "id": "pcat_cold_flu"
+        }
+      ],
+      "subtitle": null,
+      "description": "Dermalex Eczema Cream in the 100g format offers the same targeted eczema relief as the 30g version, but in a larger size. It's ideal for long-term management of eczema symptoms, providing effective hydration and relief from dryness, itching, and redness, while supporting the skin's natural barrier to reduce flare-ups.",
+      "handle": "dermalex-eczema-cream-100g",
+      "is_giftcard": false,
+      "weight": 0,
+      "images": [],
+      "options": [],
+      "variants": [
+        {
+          "title": "Purchase price",
           "prices": [
             {
               "currency_code": "gbp",

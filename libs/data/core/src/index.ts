@@ -12,4 +12,4 @@ export * from './lib/add-cart-line-item';
 export * from './lib/update-cart-line-item';
 export * from './lib/remove-cart-line-item';
 
-export type { TRequestFn, TCart } from './types';
+export type { TRequestFn, TCart, ProductCategory } from './types';
