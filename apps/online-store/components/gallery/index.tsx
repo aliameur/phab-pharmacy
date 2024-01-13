@@ -43,7 +43,13 @@ export const Gallery = ({ className = '', images }: TGallery) => {
                 },
               )}
             >
-              <Image src={image.url} alt="" className='object-cover' fill sizes="96w" />
+              <Image
+                src={image.url}
+                alt=""
+                className="object-cover"
+                fill
+                sizes="96w"
+              />
             </Link>
           );
         })}

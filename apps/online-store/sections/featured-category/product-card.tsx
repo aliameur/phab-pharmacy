@@ -5,6 +5,7 @@ import { Price } from '../../components/price';
 type TFeaturedProductCard = {
   tags: string[];
   title: string;
+  src: string;
   price: { amount?: number; currencyCode?: string };
 };
 
@@ -12,13 +13,14 @@ export const FeaturedProductCard = ({
   tags,
   title,
   price,
+  src,
 }: TFeaturedProductCard) => {
   return (
     <div className="group relative flex flex-col items-center gap-2 pb-2">
       <div className="relative aspect-[1.26] h-[300px] overflow-hidden bg-norway-200 sm:h-[400px]">
         <Image
           alt="product"
-          src="/placeholder-product.png"
+          src={src}
           fill
           className="object-contain object-center"
         />

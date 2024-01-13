@@ -80,6 +80,7 @@ export const FeaturedCategory = ({
             <SwiperSlide className="max-w-min" key={product.title}>
               <Link href={`/products/${product.handle}`}>
                 <FeaturedProductCard
+                  src={product.thumbnail || ''}
                   title={product.title || ''}
                   tags={product.tags?.map((tag) => tag.value) || []}
                   price={{
