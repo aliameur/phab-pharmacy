@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Platform } from 'react-native';
 import * as Keychain from 'react-native-keychain';
 import {getProductsByCategoryHandle, getCategories } from '@phab/data-react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
