@@ -1,5 +1,5 @@
-import { MedusaProductOperation, TRequestFn } from '../types';
-import { getCategoryByHandle } from './get-category-by-handle';
+import { MedusaProductOperation, TRequestFn } from '../../types';
+import { getCategoryByHandle } from '../category/get-category-by-handle';
 
 export const getProductsByCategoryHandle =
   (requestFn: TRequestFn) => async (categoryHandle: string) => {

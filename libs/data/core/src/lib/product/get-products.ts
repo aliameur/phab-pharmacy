@@ -1,4 +1,4 @@
-import { MedusaProductOperation, TRequestFn } from '../types';
+import { MedusaProductOperation, TRequestFn } from '../../types';
 
 export const getProducts = (requestFn: TRequestFn) => async () => {
   const res = await requestFn<MedusaProductOperation>({

@@ -1,4 +1,4 @@
-import { ProductCategory } from '../types';
+import { ProductCategory } from '../../types';
 import { getCategories } from './get-categories';
 
 const mockCategories: ProductCategory[] = [

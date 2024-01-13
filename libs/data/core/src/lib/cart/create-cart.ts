@@ -1,4 +1,4 @@
-import { MedusaCartOperation, TRequestFn } from '../types';
+import { MedusaCartOperation, TRequestFn } from '../../types';
 
 export const createCart = (requestFn: TRequestFn) => async () => {
   const res = await requestFn<MedusaCartOperation>({

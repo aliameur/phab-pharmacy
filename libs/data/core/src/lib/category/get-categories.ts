@@ -1,5 +1,5 @@
-import { MedusaCategoryOperation, TRequestFn } from '../types';
-import { parseCategoryDateFields } from './utils';
+import { MedusaCategoryOperation, TRequestFn } from '../../types';
+import { parseCategoryDateFields } from '../utils';
 
 export const getCategories = (requestFn: TRequestFn) => async () => {
   const res = await requestFn<MedusaCategoryOperation>({

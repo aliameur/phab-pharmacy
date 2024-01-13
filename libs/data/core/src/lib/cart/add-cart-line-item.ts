@@ -1,4 +1,4 @@
-import { MedusaCartOperation, TRequestFn } from '../types';
+import { MedusaCartOperation, TRequestFn } from '../../types';
 
 type TAddCartLineItem = {
   cartId: string;
