@@ -82,7 +82,7 @@ export const CartSidebar = ({ cart }: TCartSidebar) => {
               <div className="flex items-center justify-between py-4 text-pampas-100">
                 <p className="text-pampas-100">Total</p>
                 <Price
-                  amount={cart.total}
+                  amount={cart.total / 100}
                   currencyCode={cart.region.currency_code}
                   className="text-xl"
                 />

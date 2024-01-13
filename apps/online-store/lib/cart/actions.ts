@@ -9,9 +9,13 @@ import {
   updateCartLineItem,
 } from '@phab/data-next';
 
-export const addItem = async (
-  variantId: string | undefined,
-): Promise<{
+export const addItem = async ({
+  variantId,
+  quantity,
+}: {
+  variantId: string | undefined;
+  quantity: number;
+}): Promise<{
   message?: string;
   cartId: string;
 }> => {
@@ -38,10 +42,10 @@ export const addItem = async (
       cart = await updateCartLineItem({
         cartId,
         lineId: lineItem.id,
-        quantity: lineItem.quantity + 1,
+        quantity: lineItem.quantity + quantity,
       });
     } else {
-      cart = await addCartLineItem({ cartId, variantId, quantity: 1 });
+      cart = await addCartLineItem({ cartId, variantId, quantity: quantity });
     }
     return { cartId: cart.id || '' };
   } catch (e) {

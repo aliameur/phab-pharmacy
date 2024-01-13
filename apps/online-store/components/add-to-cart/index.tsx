@@ -1,9 +1,9 @@
 'use client';
 
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
-import { Minus, Plus } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { Ban, Minus, MoreHorizontal, Plus } from 'lucide-react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, useTransition } from 'react';
 
 import { addItem } from '../../lib/cart/actions';
 import { Button } from '../button';
@@ -15,7 +15,28 @@ type TAddToCart = {
 export const AddToCart = ({ product }: TAddToCart) => {
   const [count, setCount] = useState(1);
   const router = useRouter();
-  console.log('atc render');
+  const searchParams = useSearchParams();
+  const [isPending, startTransition] = useTransition();
+  const defaultVariantId =
+    product.variants.length === 1 ? product.variants[0]?.id : undefined;
+  const variant = product.variants.find(
+    (variant) =>
+      variant.options?.every(
+        (option) =>
+          option.value ===
+          searchParams.get(
+            product.options
+              ?.find((opt) => opt.values.some((v) => v.id === option.id))
+              ?.title.toLowerCase() || '',
+          ),
+      ),
+  );
+  const selectedVariantId = variant?.id || defaultVariantId;
+  const title = !variant?.purchasable
+    ? 'Out of stock'
+    : !selectedVariantId
+      ? 'Please select options'
+      : undefined;
 
   // TODO set the max to ATC at once
   const increment = () => setCount((prev) => prev + 1);
@@ -47,14 +68,40 @@ export const AddToCart = ({ product }: TAddToCart) => {
         </button>
       </div>
       <Button
-        onClick={async () => {
-          const a = await addItem(product.variants[0].id);
-          console.log(a);
-          router.refresh();
+        aria-label="Add item to cart"
+        title={title}
+        disabled={isPending || !variant?.purchasable || !selectedVariantId}
+        onClick={() => {
+          // Safeguard in case someone messes with `disabled` in devtools.
+          if (!variant?.purchasable || !selectedVariantId) return;
+
+          startTransition(async () => {
+            await addItem({
+              variantId: variant.id || defaultVariantId,
+              quantity: count,
+            });
+
+            router.refresh();
+          });
         }}
         className="w-96 font-bold uppercase tracking-wider"
+        icon={
+          variant?.purchasable ? (
+            isPending ? (
+              <MoreHorizontal className="h-6 w-6 text-pampas-100" />
+            ) : (
+              <Plus className="h-6 w-6 text-pampas-100" />
+            )
+          ) : (
+            <Ban className="h-6 w-6 text-pampas-100" />
+          )
+        }
       >
-        Add to Cart
+        {variant?.purchasable
+          ? selectedVariantId
+            ? 'Add to Cart'
+            : 'Select a size'
+          : 'Out Of Stock'}
       </Button>
     </div>
   );
