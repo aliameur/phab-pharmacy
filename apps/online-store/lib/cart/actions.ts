@@ -35,13 +35,13 @@ export const addItem = async (
   try {
     const lineItem = cart.items.find((line) => line.variant_id === variantId);
     if (lineItem) {
-      cart = await updateCartLineItem(
+      cart = await updateCartLineItem({
         cartId,
-        lineItem.id,
-        lineItem.quantity + 1,
-      );
+        lineId: lineItem.id,
+        quantity: lineItem.quantity + 1,
+      });
     } else {
-      cart = await addCartLineItem(cartId, variantId, 1);
+      cart = await addCartLineItem({ cartId, variantId, quantity: 1 });
     }
     return { cartId: cart.id || '' };
   } catch (e) {

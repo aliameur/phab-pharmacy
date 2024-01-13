@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 import { getCategories } from '@phab/data-next';
 
+import { Cart } from '../cart';
 import { Logo } from '../logo';
-import { Cart } from './cart';
 import { NavLink } from './link';
 import { Menubar } from './menubar';
 

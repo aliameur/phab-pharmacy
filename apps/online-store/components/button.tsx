@@ -3,13 +3,26 @@ import { ComponentPropsWithoutRef } from 'react';
 
 import { cn } from '../lib/utils';
 
-type TButton = ComponentPropsWithoutRef<'button'> & { asChild?: boolean };
-export const Button = ({ className, children, asChild, ...props }: TButton) => {
+type TButton = ComponentPropsWithoutRef<'button'> & {
+  asChild?: boolean;
+  variant?: 'light' | 'dark';
+};
+export const Button = ({
+  className,
+  children,
+  asChild,
+  variant = 'dark',
+  ...props
+}: TButton) => {
   const Comp = asChild ? Slot : 'button';
   return (
     <Comp
       className={cn(
-        'group flex justify-center rounded-2xl bg-mineral-green-600 px-8 py-4 text-pampas-100',
+        'group flex justify-center rounded-2xl px-8 py-4',
+        {
+          'bg-mineral-green-600 text-pampas-100': variant === 'dark',
+          'bg-pampas-100 text-mineral-green-600': variant === 'light',
+        },
         className,
       )}
       {...props}

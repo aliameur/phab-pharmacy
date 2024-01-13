@@ -139,3 +139,11 @@ apps/mobile-app-e2e/artifacts
 # Yarn
 .yarn/*
 !.yarn/releases
+
+# Poetry
+.cache
+
+# Linting and Testing
+reports
+coverage
+apps/assistant/.coverage
