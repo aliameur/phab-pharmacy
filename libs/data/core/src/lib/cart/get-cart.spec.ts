@@ -22,7 +22,8 @@ describe('getCart', () => {
 
   it('returns undefined if no cart', async () => {
     mockRequestFn.mockResolvedValue({
-      body: { status: 404, type: 'not_found' },
+      status: 404,
+      body: { type: 'not_found' },
     });
 
     const result = await getCartFn('not_cart_123');
