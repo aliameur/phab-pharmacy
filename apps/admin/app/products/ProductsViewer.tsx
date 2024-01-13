@@ -17,6 +17,7 @@ export default function ProductsViewer({
   productsByCategory,
   categories,
 }: Props) {
+  const CategoryNames = categories.map((category) => category.handle);
   return (
     <div>
       {productsByCategory.map((products, index) =>
@@ -25,6 +26,7 @@ export default function ProductsViewer({
             key={categories[index].id}
             products={products}
             category={categories[index]}
+            allCategories={CategoryNames}
           />
         ) : null,
       )}
