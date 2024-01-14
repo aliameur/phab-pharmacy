@@ -109,12 +109,23 @@ function ChatScreen({ navigation }) {
         }),
       });
       const jsonData = await response.json();
-      const newResponse = {
-        id: messages.length + 2,
-        content: jsonData.message,
-        fromUser: false,
-        location: jsonData.location,
-      };
+      if (jsonData.location === 'None' ){
+        newResponse = {
+          id: messages.length + 2,
+          content: jsonData.message,
+          fromUser: false,
+          location: jsonData.location,
+        };
+      } else{
+        console.log('Product', jsonData.product)
+        newResponse = {
+          id: messages.length + 2,
+          content: jsonData.message,
+          fromUser: false,
+          location: jsonData.location,
+          product: jsonData.product
+        };
+      }
       setMessages((prevMessages) => [...prevMessages, newResponse]);
     } catch (error) {
       console.log('Error posting data: ', error);
@@ -239,13 +250,16 @@ function ChatScreen({ navigation }) {
                         ) : null}
                       </View>
                     </TouchableOpacity>
-                    <View style={styles.responseBlock}>
-                      <Image
-                        style={styles.image}
-                        source={{
-                          uri: 'https://i.ibb.co/4P5w20Z/paddington.jpg',
-                        }}
-                      />
+                    <View style={{flexDirection: 'row', marginRight: '25%', justifyContent: 'center', alignItems:'center'}}>
+                      <View style={[styles.addToCartBlock, {flex: 5}]}>
+                        <Text style={{textAlign: 'center'}}>Click to see more details about {item.product}. </Text>
+                      </View>
+                      <TouchableOpacity style={[styles.addToCartBlock, {flex: 1, justifyContent: 'center', alignItems:'center'}]}>
+                        <FontAwesome name="shopping-cart" size={35}/>
+                      </TouchableOpacity>
+                    </View> 
+                    <View style={[styles.responseBlock, {backgroundColor: colours.TailWindColors.norway[200]}]}>
+                      <Text>For in store details please click here.</Text>
                     </View>
                   </View>
                 );
@@ -330,8 +344,8 @@ const styles = StyleSheet.create({
     backgroundColor: colours.LogoColours.cream,
   },
   image: {
-    width: 260,
-    height: 200,
+    width: 150,
+    height: 150,
   },
   message: {
     color: colours.LogoColours.cream,
@@ -363,6 +377,14 @@ const styles = StyleSheet.create({
     backgroundColor: colours.LogoColours.logo_cream,
     borderRadius: 15,
     marginRight: '25%',
+  },
+  addToCartBlock: {
+    padding: 10,
+    borderColor: 'black',
+    borderWidth: 2,
+    margin: 10,
+    backgroundColor: colours.TailWindColors['mineral-green'][200],
+    borderRadius: 15,
   },
   messageContainer: {
     flex: 1,
