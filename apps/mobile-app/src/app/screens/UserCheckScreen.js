@@ -12,21 +12,23 @@ import { ShopContext } from '../contexts/ShopContext';
 import { checkKeychain } from '../scripts/AuthScript';
 
 function UserCheckScreen({ navigation }) {
-  const { loadNumberCart } = useContext(ShopContext);
-  useEffect(() => {
-    const performCheck = async () => {
-      const output = await checkKeychain();
-      if (output[0] === 'good') {
-        console.log('Remembered user');
-        try {
-          await loadNumberCart();
-          navigation.replace('Shop');
-        } catch (error) {}
-      } else {
-        console.log('User forgotten');
-        navigation.replace('Login');
-      }
-    };
+    const { loadNumberCart, loadCartData } = useContext(ShopContext);
+    useEffect(() => {
+        const performCheck = async () => {
+            const output = await checkKeychain();
+            if (output[0] === 'good') {
+                console.log('Remembered user')
+                try {
+                    await loadNumberCart();
+                    await loadCartData();
+                    navigation.replace('Shop');
+                } catch (error){
+                }
+            } else {
+                console.log('User forgotten')
+                navigation.replace('Login');
+            }
+        };
 
     performCheck();
   }, [navigation]);

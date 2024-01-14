@@ -1,35 +1,31 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import { Platform } from 'react-native';
+import { removeCartLineItem, updateCartLineItem } from '@phab/data-react-native';
 
 const BASE_URL = 'https://phab-pharmacy-backend-ab775283aa48.herokuapp.com';
 
 const createCart = async (creds) => {
-  try {
-    const cartResponse = await axios.post(`${BASE_URL}/store/carts`);
-    const cart_id = cartResponse.data.cart.id;
-    await AsyncStorage.setItem('cartID', cart_id);
-    console.log('Cart created with', cart_id);
-
-    const customerResponse = await axios.get(`${BASE_URL}/store/customers/me`, {
-      headers: {
-        Authorization: `Bearer ${creds.password}`,
-      },
-    });
-    const customer_id = customerResponse.data.id;
-
-    const updateResponse = await axios.post(
-      `${BASE_URL}/store/carts/${cart_id}`,
-      {
+    try {
+      const cartResponse = await axios.post(`${BASE_URL}/store/carts`);
+      const cart_id = cartResponse.data.cart.id;
+      await AsyncStorage.setItem('cartID', cart_id);
+      console.log('Cart created with', cart_id);
+  
+      const customerResponse = await axios.get(`${BASE_URL}/store/customers/me`, {
+        headers: {
+          'Authorization': `Bearer ${creds.password}` 
+        }
+      });
+      const customer_id = customerResponse.data.id; 
+      const updateResponse = await axios.post(`${BASE_URL}/store/carts/${cart_id}`, {
         customer_id: customer_id,
-        email: creds.username,
-      },
-    );
-    console.log('Added user to cart');
-  } catch (error) {
-    console.error('Error in createCart function', error);
-  }
-};
+        email: creds.username
+      });
+      console.log('Added user to cart');
+    } catch (error) {
+      console.error('Error in createCart function', error);
+    }
+  };
 
 const addToCart = async (varient_id, quantity) => {
   try {
@@ -49,6 +45,26 @@ const addToCart = async (varient_id, quantity) => {
   }
 };
 
+const addAnotherItemToCart = async (item) => {
+  const cart_id = await AsyncStorage.getItem('cartID');
+  try { 
+    response = await updateCartLineItem({cartId: cart_id, lineId: item.id, quantity: item.quantity+1});
+  }
+  catch (error) {
+    console.log('Error removing from cart: ', error)
+  }
+}
+
+const minusFromCart = async (item) => {
+  const cart_id = await AsyncStorage.getItem('cartID');
+  try { 
+    response = await updateCartLineItem({cartId: cart_id, lineId: item.id, quantity: item.quantity-1});
+  }
+  catch (error) {
+    console.log('Error removing from cart: ', error)
+  }
+}
+
 const getCartItemNumber = async () => {
   try {
     const cart_id = await AsyncStorage.getItem('cartID');
@@ -60,7 +76,7 @@ const getCartItemNumber = async () => {
     }
     return count;
   } catch (error) {
-    console.error('Error getting number of cart items:', error);
+      console.error('Error getting number of cart items:')
   }
 };
 
@@ -87,4 +103,4 @@ const getCartItems = async () => {
   }
 };
 
-export { createCart, addToCart, getCartItems, getCartItemNumber };
+export { createCart, addToCart, getCartItems, getCartItemNumber, minusFromCart, addAnotherItemToCart };

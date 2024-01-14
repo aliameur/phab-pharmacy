@@ -27,114 +27,91 @@ function LoginScreen({ navigation }) {
   const [errorMessage, setErrorMessage] = useState('');
   const { loadNumberCart } = useContext(ShopContext);
 
-  const loginAccount = async () => {
-    try {
-      const output = await login(email, password);
-      if (output[0] === 'good') {
-        service = 'JWToken';
-        creds = await Keychain.getGenericPassword({ service });
-        console.log(creds.password);
-        await loadNumberCart();
-        navigation.replace('Shop');
-      } else {
-        console.log('Login Error:', output[1]);
-        setErrorMessage(output[1]);
-      }
-    } catch (error) {
-      console.log('Login Exception:', error);
-    }
-  };
-
-  return (
-    <KeyboardAvoidingView
-      style={styles.mainView}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? -100 : -100}
-    >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <View style={{ alignItems: 'center', flex: 1.5 }}>
-          <Image
-            source={require('../assets/PhabPharmaLogo.png')}
-            style={styles.imageStyle}
-            resizeMode="contain"
-          ></Image>
-          <Text style={styles.loginText}>Welcome back!</Text>
-          <Text style={styles.welcomeText}>Log into your existing account</Text>
-        </View>
-      </TouchableWithoutFeedback>
-      <View style={styles.TextInputStyleView}>
-        <FontAwesome
-          name="user"
-          size={25}
-          color={colours.LogoColours.cream}
-          style={styles.TextInputIcon}
-        />
-        <TextInput
-          value={email}
-          style={styles.TextInputStyle}
-          placeholder="Email"
-          placeholderTextColor={colours.LogoColours.cream}
-          onChangeText={(text) => setEmail(text)}
-        ></TextInput>
-      </View>
-      <View style={styles.TextInputStyleView}>
-        <FontAwesome
-          name="lock"
-          size={25}
-          color={colours.LogoColours.cream}
-          style={styles.TextInputIcon}
-        />
-        <TextInput
-          testID="password-input"
-          value={password}
-          secureTextEntry={seePassword}
-          style={styles.TextInputStyle}
-          placeholder="Password"
-          placeholderTextColor={colours.LogoColours.cream}
-          onChangeText={(text) => setPassword(text)}
-        ></TextInput>
-        <TouchableOpacity
-          testID="eye-icon"
-          onPress={() => setSeePassword(!seePassword)}
-          style={{ flex: 0.7, marginRight: 10 }}
-        >
-          <FontAwesome
-            name={seePassword ? 'eye-slash' : 'eye'}
-            size={25}
-            color={colours.LogoColours.cream}
-          />
-        </TouchableOpacity>
-      </View>
-      {errorMessage && (
-        <View style={styles.errorView}>
-          <Text style={styles.errorMessage}>{errorMessage}</Text>
-        </View>
-      )}
-      <TouchableOpacity
-        style={styles.loginButton}
-        onPress={() => loginAccount()}
-      >
-        <Text
-          style={{
-            fontSize: 20,
-            fontWeight: '800',
-            color: colours.LogoColours.green,
-          }}
-        >
-          Login
-        </Text>
-      </TouchableOpacity>
-      <View style={styles.signUpText}>
-        <Text>No Account?</Text>
-        <TouchableOpacity
-          style={{ marginLeft: 2 }}
-          onPress={() => navigation.navigate('Sign Up')}
-        >
-          <Text>Sign Up</Text>
-        </TouchableOpacity>
-      </View>
-    </KeyboardAvoidingView>
-  );
+    const loginAccount = async () => {
+        try {
+            const output = await login(email, password); 
+            if (output[0] === 'good') {
+                service = 'JWToken'
+                creds = await Keychain.getGenericPassword( { service } );
+                await loadNumberCart();
+                navigation.replace('Shop'); 
+            } else {
+                console.log('Login Error:', output[1]); 
+                setErrorMessage(output[1]);
+            }
+        } catch (error) {
+            console.log('Login Exception:', error); 
+        }
+    };
+    
+    return(
+        <KeyboardAvoidingView
+        style={styles.mainView}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? -100 : -100}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+                <View style={{alignItems: 'center', flex: 1.5}}>
+                    <Image
+                    source={require('../assets/PhabPharmaLogo.png')}
+                    style={styles.imageStyle}
+                    resizeMode="contain"
+                    >
+                    </Image>
+                    <Text
+                    style={styles.loginText}
+                    >Welcome back!</Text>
+                    <Text
+                    style={styles.welcomeText}>
+                        Log into your existing account
+                    </Text>
+                </View>
+            </TouchableWithoutFeedback>
+            <View style={styles.TextInputStyleView}>
+                <FontAwesome name="user" size={25} color={colours.LogoColours.cream} style={styles.TextInputIcon} />
+                <TextInput 
+                value={email}
+                style={styles.TextInputStyle}
+                placeholder="Email"
+                placeholderTextColor={colours.LogoColours.cream}
+                onChangeText={text => setEmail(text)}>
+                </TextInput>
+            </View>
+            <View style={styles.TextInputStyleView}>
+                <FontAwesome name="lock" size={25} color={colours.LogoColours.cream} style={styles.TextInputIcon}/>
+                <TextInput
+                testID="password-input"
+                value={password}
+                secureTextEntry={seePassword}
+                style={styles.TextInputStyle}
+                placeholder="Password"
+                placeholderTextColor={colours.LogoColours.cream}
+                onChangeText={text => setPassword(text)}>
+                </TextInput>
+                <TouchableOpacity
+                testID = 'eye-icon'
+                onPress={() => setSeePassword(!seePassword)}
+                style={{flex: 0.7, marginRight: 10}}>
+                    <FontAwesome name={seePassword ? "eye-slash" : "eye"} size={25}  color={colours.LogoColours.cream}/>
+                </TouchableOpacity>
+            </View>
+            {errorMessage && <View
+            style={styles.errorView}> 
+                <Text style={styles.errorMessage}>{errorMessage}</Text>
+            </View>}
+            <TouchableOpacity 
+            style={styles.loginButton}
+            onPress={() => loginAccount()}
+            >
+                <Text style={{fontSize: 20, fontWeight: '800', color: colours.LogoColours.green}}>Login</Text>
+            </TouchableOpacity>
+            <View style={styles.signUpText}>
+                <Text>No Account?</Text>
+                <TouchableOpacity style={{marginLeft: 2}} onPress={() => navigation.navigate('Sign Up')}>
+                        <Text>Sign Up</Text>
+                </TouchableOpacity>
+            </View>
+        </KeyboardAvoidingView>
+    );
 }
 
 const styles = StyleSheet.create({

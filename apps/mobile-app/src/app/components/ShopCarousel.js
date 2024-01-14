@@ -23,17 +23,24 @@ function ShopCarousel({ navigation, handle }) {
   const [data, setData] = useState(null);
   const [addItemWaiting, setWaiting] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await getStoreProducts(handle);
-        setData(result);
-      } catch (error) {
-        console.error('Failed to fetch data:', error);
-      }
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const result = await getStoreProducts(handle);
+                setData(result);
+            } catch (error) {
+                console.error('Failed to fetch data:', error);
+            }
+        };
+        fetchData();
+    }, [handle]);
+
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('en-GB', {
+            style: 'currency',
+            currency: 'GBP',
+        }).format(price / 100); 
     };
-    fetchData();
-  }, [handle]);
 
   const addItemToCart = async (variant_id, quantity) => {
     setWaiting(true);
@@ -49,94 +56,38 @@ function ShopCarousel({ navigation, handle }) {
     setWaiting(false);
   };
 
-  const renderItem = ({ item, index }) => {
-    return (
-      <View
-        style={{
-          backgroundColor: colours.TailWindColors.norway[200],
-          borderRadius: 5,
-          flex: 1,
-          height: Dimensions.get('screen').height * 0.5,
-          justifyContent: 'center',
-        }}
-      >
-        <Text
-          style={{
-            flex: 0.7,
-            color: colours.LogoColours.green,
-            fontSize: 25,
-            fontWeight: '800',
-            alignSelf: 'center',
-            marginTop: 10,
-          }}
-        >
-          {item.title}
-        </Text>
-        <Image
-          source={{ uri: item.image }}
-          style={{ flex: 4 }}
-          resizeMode="contain"
-        />
-        <View
-          style={{
-            alignItems: 'center',
-            alignSelf: 'center',
-            flexDirection: 'row',
-            marginTop: 10,
-          }}
-        >
-          <Text style={{ fontWeight: '700', fontSize: 20 }}>Price: </Text>
-          <Text style={{ fontSize: 20 }}>
-            £{item.price.toString().slice(0, 2)}.
-            {item.price.toString().slice(2, 4)}
-          </Text>
-        </View>
-        <View
-          style={{
-            flex: 0.8,
-            flexDirection: 'row',
-            margin: 20,
-            width: '70%',
-            justifyContent: 'center',
-            alignSelf: 'center',
-          }}
-        >
-          <TouchableOpacity
-            style={styles.detailsButtons}
-            onPress={() => navigation.navigate('Product', { data: item })}
-          >
-            <Text style={{ fontSize: 25, color: colours.LogoColours.cream }}>
-              Buy Now
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              marginLeft: 20,
-              flex: 1.2,
-              backgroundColor: colours.TailWindColors['mineral-green'][600],
-              borderRadius: 10,
-              alignItems: 'center',
-              alignSelf: 'center',
-              justifyContent: 'center',
-              height: '100%',
-            }}
-            onPress={() => addItemToCart(item.variant_id, 1)}
-          >
-            {!addItemWaiting && (
-              <FontAwesome
-                name="shopping-cart"
-                size={30}
-                color={colours.LogoColours.cream}
-              />
-            )}
-            {addItemWaiting && (
-              <ActivityIndicator color={colours.LogoColours.cream} />
-            )}
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
-  };
+    const renderItem = ({ item, index }) => {
+        return (
+            <View style={{
+                backgroundColor: colours.TailWindColors.norway[200],
+                borderRadius: 5,
+                flex: 1,
+                height: Dimensions.get('screen').height * 0.5,
+                justifyContent: 'center' }}>
+                <Text style={{flex: 0.7, color: colours.LogoColours.green, fontSize: 25, fontWeight: '800', alignSelf:'center', marginTop: 10}}>{item.title}</Text>
+                <Image 
+                    source={{uri: item.image}}
+                    style={{flex: 4}}
+                    resizeMode="contain"
+                />
+                <View style={{alignItems: 'center', alignSelf: 'center', flexDirection: 'row', marginTop: 10}}> 
+                    <Text style={{fontWeight: '700', fontSize: 20}}>Price: </Text>
+                    <Text style={{fontSize: 20}}>{formatPrice(item.price)}</Text>
+                </View>
+                    <View style={{flex: 0.8, flexDirection: 'row', margin: 20, width: '70%', justifyContent: 'center', alignSelf: 'center'}}>
+                        <TouchableOpacity style={styles.detailsButtons} onPress={() => navigation.navigate('Product', {data: item})}>
+                            <Text style={{fontSize: 25, color: colours.LogoColours.cream}}>See Details</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{marginLeft: 20, flex: 1.2, backgroundColor: colours.TailWindColors['mineral-green'][600], borderRadius: 10, alignItems: 'center', alignSelf: 'center', justifyContent: 'center', height: '100%'}}
+                            onPress={() => addItemToCart(item.variant_id, 1)}
+                        >
+                            {!addItemWaiting && <FontAwesome name="shopping-cart" size={30} color={colours.LogoColours.cream}/>}
+                            {addItemWaiting && <ActivityIndicator color={colours.LogoColours.cream}/>}
+                        </TouchableOpacity>
+                    </View>
+            </View>
+        );
+    };
 
   if (!data) {
     const fake = [
@@ -292,7 +243,7 @@ function ShopCarousel({ navigation, handle }) {
 
 const styles = StyleSheet.create({
   collectionView: {
-    backgroundColor: colours.TailWindColors['mineral-green'][600],
+    backgroundColor: colours.TailWindColors['mineral-green'][500],
     marginVertical: 20,
   },
   carouselView: {

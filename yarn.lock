@@ -5106,6 +5106,7 @@ __metadata:
     "@react-native/metro-config": ^0.72.11
     "@react-navigation/native": ^6.1.9
     "@react-navigation/stack": ^6.3.20
+    "@stripe/stripe-react-native": ^0.35.0
     "@swc-node/register": ~1.6.7
     "@swc/cli": ~0.1.62
     "@swc/core": ~1.3.85
@@ -6092,6 +6093,20 @@ __metadata:
   version: 1.2.5
   resolution: "@sqltools/formatter@npm:1.2.5"
   checksum: 9b8354e715467d660daa5afe044860b5686bbb1a5cb67a60866b932effafbf5e8b429f19a8ae67cd412065a4f067161f227e182f3664a0245339d5eb1e26e355
+  languageName: node
+  linkType: hard
+
+"@stripe/stripe-react-native@npm:^0.35.0":
+  version: 0.35.0
+  resolution: "@stripe/stripe-react-native@npm:0.35.0"
+  peerDependencies:
+    expo: ">=46.0.9"
+    react: "*"
+    react-native: "*"
+  peerDependenciesMeta:
+    expo:
+      optional: true
+  checksum: f7fa1573b99caefbc2a40a9307178f71a822c9b1a6f1ce3f3d6381b80ef624adaef8982980d038a266a7f2c33a8566efdcc6363af9c383202522538bd50218f8
   languageName: node
   linkType: hard
 

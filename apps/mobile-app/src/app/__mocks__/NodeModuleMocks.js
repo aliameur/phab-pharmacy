@@ -1,16 +1,16 @@
 jest.mock('@react-navigation/native', () => {
-  return {
-    useNavigation: jest.fn(),
-    useRoute: jest.fn(),
-    NavigationContainer: ({ children }) => <div>{children}</div>,
-  };
-});
-
+    return {
+      useNavigation: jest.fn(),
+      useRoute: jest.fn(),
+      NavigationContainer: ({ children }) => <div>{children}</div>, 
+    };
+  });
+  
 jest.mock('@react-navigation/stack', () => {
   return {
     createStackNavigator: jest.fn(() => ({
-      Navigator: ({ children }) => <div>{children}</div>,
-      Screen: ({ children }) => <div>{children}</div>,
+      Navigator: ({ children }) => <div>{children}</div>, 
+      Screen: ({ children }) => <div>{children}</div>, 
     })),
   };
 });
@@ -40,6 +40,12 @@ jest.mock('react-native-keychain', () => {
   };
 });
 
+jest.mock('@stripe/stripe-react-native', () => {
+  return {
+    StripeProvider: jest.fn().mockReturnValue(null),
+  };
+});
+  
 jest.mock('react-native-vector-icons/FontAwesome', () => 'FontAwesome');
 
 jest.mock('@react-native-async-storage/async-storage', () => ({

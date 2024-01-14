@@ -25,129 +25,100 @@ export default function SignUpScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const signUpUser = async () => {
-    try {
-      const signUpResult = await createUser(
-        firstName,
-        lastName,
-        email,
-        password,
-      );
-      console.log('Finished');
-      if (signUpResult[0] === 'good') {
-        const loginResult = await login(email, password);
-        if (loginResult[0] === 'good') {
-          navigation.reset({
-            index: 0,
-            routes: [{ name: 'Chat' }],
-          });
-        } else {
-          console.log('Login failed:', loginResult[1]);
+    const signUpUser = async () => {
+        try {
+            const signUpResult = await createUser(firstName, lastName, email, password);
+            console.log('Finished')
+            if (signUpResult[0] === 'good') {
+                const loginResult = await login(email, password);
+                if (loginResult[0] === 'good') {
+                    navigation.reset({
+                        index: 0,
+                        routes: [{ name: 'Shop' }],
+                    });
+                } else {
+                    console.log('Login failed:', loginResult[1]);
+                }
+            } else {
+                console.log('Signup failed:', signUpResult);
+            }
+        } catch (error) {
+            console.error('Signup error:', error);
         }
-      } else {
-        console.log('Signup failed:', signUpResult);
-      }
-    } catch (error) {
-      console.error('Signup error:', error);
-    }
-  };
+    };
+     
 
-  return (
-    <KeyboardAwareScrollView extraHeight={1000}>
-      <View style={{ alignItems: 'center' }}>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-          <View style={{ alignItems: 'center', marginBottom: -10 }}>
-            <Image
-              source={require('../assets/PhabPharmaLogo.png')}
-              style={styles.imageStyle}
-              resizeMode="contain"
-            ></Image>
-            <Text style={styles.signUpText}>
-              Hey it would be great to have you!
-            </Text>
-            <Text style={styles.signUpMessageText}>Please sign up below</Text>
-          </View>
-        </TouchableWithoutFeedback>
-        <View style={styles.TextInputStyleView}>
-          <FontAwesome
-            name="user"
-            size={25}
-            color={colours.LogoColours.cream}
-            style={styles.TextInputIcon}
-          />
-          <TextInput
-            value={firstName}
-            style={styles.TextInputStyle}
-            placeholder="First Name"
-            placeholderTextColor={colours.LogoColours.cream}
-            onChangeText={setFirstName}
-          ></TextInput>
-        </View>
-        <View style={styles.TextInputStyleView}>
-          <FontAwesome
-            name="user"
-            size={25}
-            color={colours.LogoColours.cream}
-            style={styles.TextInputIcon}
-          />
-          <TextInput
-            value={lastName}
-            style={styles.TextInputStyle}
-            placeholder="Last Name"
-            placeholderTextColor={colours.LogoColours.cream}
-            onChangeText={setLastName}
-          ></TextInput>
-        </View>
-        <View style={styles.TextInputStyleView}>
-          <FontAwesome
-            name="envelope"
-            size={25}
-            color={colours.LogoColours.cream}
-            style={styles.TextInputIcon}
-          />
-          <TextInput
-            value={email}
-            style={styles.TextInputStyle}
-            placeholder="Email"
-            placeholderTextColor={colours.LogoColours.cream}
-            onChangeText={setEmail}
-          ></TextInput>
-        </View>
-        <View style={styles.TextInputStyleView}>
-          <FontAwesome
-            name="lock"
-            size={25}
-            color={colours.LogoColours.cream}
-            style={styles.TextInputIcon}
-          />
-          <TextInput
-            value={password}
-            style={styles.TextInputStyle}
-            onEndEditing={() => signUpUser()}
-            placeholder="Password"
-            placeholderTextColor={colours.LogoColours.cream}
-            onChangeText={setPassword}
-          ></TextInput>
-        </View>
-        <TouchableOpacity
-          style={styles.signUpButton}
-          onPress={() => {
-            signUpUser();
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: '800',
-              color: colours.LogoColours.green,
-            }}
-          >
-            Sign Up
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </KeyboardAwareScrollView>
-  );
+    return(
+        <KeyboardAwareScrollView
+        extraHeight={1000}>
+            <View style={{alignItems: 'center'}}>
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+                    <View style={{alignItems: 'center', marginBottom: -10}}>
+                        <Image
+                        source={require('../assets/PhabPharmaLogo.png')}
+                        style={styles.imageStyle}
+                        resizeMode="contain"
+                        >
+                        </Image>
+                        <Text
+                        style={styles.signUpText}
+                        >Hey it would be great to have you!</Text>
+                        <Text
+                        style={styles.signUpMessageText}>
+                            Please sign up below
+                        </Text>
+                    </View>
+                </TouchableWithoutFeedback>
+                <View style={styles.TextInputStyleView}>
+                    <FontAwesome name="user" size={25} color={colours.LogoColours.cream} style={styles.TextInputIcon}/>
+                        <TextInput
+                        value={firstName}
+                        style={styles.TextInputStyle}
+                        placeholder="First Name"
+                        placeholderTextColor={colours.LogoColours.cream}
+                        onChangeText={setFirstName}>
+                    </TextInput>
+                </View>
+                <View style={styles.TextInputStyleView}>
+                    <FontAwesome name="user" size={25} color={colours.LogoColours.cream} style={styles.TextInputIcon}/>
+                        <TextInput
+                        value={lastName}
+                        style={styles.TextInputStyle}
+                        placeholder="Last Name"
+                        placeholderTextColor={colours.LogoColours.cream}
+                        onChangeText={setLastName}>
+                    </TextInput>
+                </View>
+                <View style={styles.TextInputStyleView}>
+                    <FontAwesome name="envelope" size={25} color={colours.LogoColours.cream} style={styles.TextInputIcon}/>
+                        <TextInput
+                        value={email}
+                        style={styles.TextInputStyle}
+                        placeholder="Email"
+                        placeholderTextColor={colours.LogoColours.cream}
+                        onChangeText={setEmail}>
+                    </TextInput>
+                </View>
+                <View style={styles.TextInputStyleView}>
+                    <FontAwesome name="lock" size={25} color={colours.LogoColours.cream} style={styles.TextInputIcon}/>
+                        <TextInput
+                        value={password}
+                        style={styles.TextInputStyle}
+                        onEndEditing={() => signUpUser()}
+                        placeholder="Password"
+                        placeholderTextColor={colours.LogoColours.cream}
+                        onChangeText={setPassword}>
+                    </TextInput>
+                </View>
+                <TouchableOpacity 
+                    style={styles.signUpButton}
+                    onPress={() => {signUpUser()}}
+                >
+                    <Text style={{fontSize: 20, fontWeight: '800', color: colours.LogoColours.green}}>Sign Up</Text>
+                </TouchableOpacity>
+            </View>
+        </KeyboardAwareScrollView>
+    );
 }
 
 const styles = StyleSheet.create({
