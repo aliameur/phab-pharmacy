@@ -11,7 +11,7 @@ import {
   useState,
 } from 'react';
 
-import { cn } from '../utils';
+import { cn } from '@phab/utils';
 
 type TSidebar = {
   side: 'left' | 'right';
