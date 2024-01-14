@@ -20,6 +20,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import colours from '../colours';
 import ActionSheet from '../components/ActionSheet';
 import UserMenuSheet from '../components/UserMenuSheet';
+import  MapSheet  from '../components/MapSheet';
 
 function ChatScreen({ navigation }) {
   const [messages, setMessages] = useState([]);
@@ -29,6 +30,9 @@ function ChatScreen({ navigation }) {
   const [recording, setRecording] = useState();
   const [isMenuModalVisible, setMenuModalVisible] = useState(false);
   const [isActionSheetNum, setIsActionSheetNum] = useState(0);
+  const [isMapSheetVisible, setMapSheetVisbile] = useState(false);
+  const [location, setLocation] = useState('');
+  const [product, setProduct] = useState('');
 
   const scrollToBottom = () => {
     if (flatListRef.current) {
@@ -118,6 +122,8 @@ function ChatScreen({ navigation }) {
         };
       } else{
         console.log('Product', jsonData.product)
+        setLocation(jsonData.location);
+        setProduct(jsonData.product);
         newResponse = {
           id: messages.length + 2,
           content: jsonData.message,
@@ -157,6 +163,14 @@ function ChatScreen({ navigation }) {
     setMenuModalVisible(false);
   };
 
+  const showMapSheet = () => {
+    setMapSheetVisbile(true);
+  }
+
+  const hideMapSheet = () => {
+    setMapSheetVisbile(false);
+  }
+
   async function startRecording() {
     Voice.start('en-US');
     setRecording(true);
@@ -187,6 +201,16 @@ function ChatScreen({ navigation }) {
           navigation={navigation}
         />
       ) : null}
+      {isMapSheetVisible ? (
+        <MapSheet 
+          visible={isMapSheetVisible}
+          onClose={hideMapSheet}
+          location={location}
+          product={product}
+        />
+      ) : (
+        null
+      )}
       <View style={styles.messagesView}>
         <FlatList
           ref={flatListRef}
@@ -258,9 +282,11 @@ function ChatScreen({ navigation }) {
                         <FontAwesome name="shopping-cart" size={35}/>
                       </TouchableOpacity>
                     </View> 
-                    <View style={[styles.responseBlock, {backgroundColor: colours.TailWindColors.norway[200]}]}>
+                    <TouchableOpacity style={[styles.responseBlock, {backgroundColor: colours.TailWindColors.norway[200]}]}
+                      onPress={() => showMapSheet()}
+                    >
                       <Text>For in store details please click here.</Text>
-                    </View>
+                    </TouchableOpacity>
                   </View>
                 );
               }
@@ -342,10 +368,6 @@ const styles = StyleSheet.create({
     flex: 10,
     marginBottom: 3,
     backgroundColor: colours.LogoColours.cream,
-  },
-  image: {
-    width: 150,
-    height: 150,
   },
   message: {
     color: colours.LogoColours.cream,
