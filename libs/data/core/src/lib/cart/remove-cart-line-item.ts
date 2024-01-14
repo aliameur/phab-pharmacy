@@ -12,7 +12,7 @@ export const removeCartLineItem =
     const res = await requestFn<MedusaCartOperation>({
       path: `/carts/${cartId}/line-items/${lineId}`,
       method: 'DELETE',
-      cache: 'no-cache',
+      cache: 'no-store',
     });
 
     if (isMedusaError(res.body))
