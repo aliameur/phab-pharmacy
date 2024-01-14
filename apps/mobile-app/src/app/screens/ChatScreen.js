@@ -20,6 +20,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import colours from '../colours';
 import ActionSheet from '../components/ActionSheet';
 import UserMenuSheet from '../components/UserMenuSheet';
+import  MapSheet  from '../components/MapSheet';
 
 function ChatScreen({ navigation }) {
   const [messages, setMessages] = useState([]);
@@ -29,6 +30,9 @@ function ChatScreen({ navigation }) {
   const [recording, setRecording] = useState();
   const [isMenuModalVisible, setMenuModalVisible] = useState(false);
   const [isActionSheetNum, setIsActionSheetNum] = useState(0);
+  const [isMapSheetVisible, setMapSheetVisbile] = useState(false);
+  const [location, setLocation] = useState('');
+  const [product, setProduct] = useState('');
 
   const scrollToBottom = () => {
     if (flatListRef.current) {
@@ -109,12 +113,25 @@ function ChatScreen({ navigation }) {
         }),
       });
       const jsonData = await response.json();
-      const newResponse = {
-        id: messages.length + 2,
-        content: jsonData.message,
-        fromUser: false,
-        location: jsonData.location,
-      };
+      if (jsonData.location === 'None' ){
+        newResponse = {
+          id: messages.length + 2,
+          content: jsonData.message,
+          fromUser: false,
+          location: jsonData.location,
+        };
+      } else{
+        console.log('Product', jsonData.product)
+        setLocation(jsonData.location);
+        setProduct(jsonData.product);
+        newResponse = {
+          id: messages.length + 2,
+          content: jsonData.message,
+          fromUser: false,
+          location: jsonData.location,
+          product: jsonData.product
+        };
+      }
       setMessages((prevMessages) => [...prevMessages, newResponse]);
     } catch (error) {
       console.log('Error posting data: ', error);
@@ -146,6 +163,14 @@ function ChatScreen({ navigation }) {
     setMenuModalVisible(false);
   };
 
+  const showMapSheet = () => {
+    setMapSheetVisbile(true);
+  }
+
+  const hideMapSheet = () => {
+    setMapSheetVisbile(false);
+  }
+
   async function startRecording() {
     Voice.start('en-US');
     setRecording(true);
@@ -176,6 +201,16 @@ function ChatScreen({ navigation }) {
           navigation={navigation}
         />
       ) : null}
+      {isMapSheetVisible ? (
+        <MapSheet 
+          visible={isMapSheetVisible}
+          onClose={hideMapSheet}
+          location={location}
+          product={product}
+        />
+      ) : (
+        null
+      )}
       <View style={styles.messagesView}>
         <FlatList
           ref={flatListRef}
@@ -239,14 +274,19 @@ function ChatScreen({ navigation }) {
                         ) : null}
                       </View>
                     </TouchableOpacity>
-                    <View style={styles.responseBlock}>
-                      <Image
-                        style={styles.image}
-                        source={{
-                          uri: 'https://i.ibb.co/4P5w20Z/paddington.jpg',
-                        }}
-                      />
-                    </View>
+                    <View style={{flexDirection: 'row', marginRight: '25%', justifyContent: 'center', alignItems:'center'}}>
+                      <View style={[styles.addToCartBlock, {flex: 5}]}>
+                        <Text style={{textAlign: 'center'}}>Click to see more details about {item.product}. </Text>
+                      </View>
+                      <TouchableOpacity style={[styles.addToCartBlock, {flex: 1, justifyContent: 'center', alignItems:'center'}]}>
+                        <FontAwesome name="shopping-cart" size={35}/>
+                      </TouchableOpacity>
+                    </View> 
+                    <TouchableOpacity style={[styles.responseBlock, {backgroundColor: colours.TailWindColors.norway[200]}]}
+                      onPress={() => showMapSheet()}
+                    >
+                      <Text>For in store details please click here.</Text>
+                    </TouchableOpacity>
                   </View>
                 );
               }
@@ -329,10 +369,6 @@ const styles = StyleSheet.create({
     marginBottom: 3,
     backgroundColor: colours.LogoColours.cream,
   },
-  image: {
-    width: 260,
-    height: 200,
-  },
   message: {
     color: colours.LogoColours.cream,
     textAlign: 'center',
@@ -363,6 +399,14 @@ const styles = StyleSheet.create({
     backgroundColor: colours.LogoColours.logo_cream,
     borderRadius: 15,
     marginRight: '25%',
+  },
+  addToCartBlock: {
+    padding: 10,
+    borderColor: 'black',
+    borderWidth: 2,
+    margin: 10,
+    backgroundColor: colours.TailWindColors['mineral-green'][200],
+    borderRadius: 15,
   },
   messageContainer: {
     flex: 1,

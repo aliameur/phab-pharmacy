@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as Keychain from 'react-native-keychain';
-import {getProductsByCategoryHandle, getCategories } from '@phab/data-react-native';
+import {getProductsByCategoryHandle, getCategories, getProductByHandle } from '@phab/data-react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 service = 'JWToken';
@@ -38,13 +38,16 @@ const getStoreProducts = async (handle) => {
   return products;
 };
 
+const getProductByHandler = async (handle) => {
+    response = await getProductByHandle(handle)
+    return response
+}
 const searchProducts = async (searchText) => {
     try {
         response = await axios.post(`${BASE_URL}/store/products/search`, {
             q: searchText
         });
-        console.log(response.data.hits)
-        return response;
+        return response.data.hits;
     } catch (error) {
         console.log('Error: ', error)
         return [];
@@ -118,4 +121,4 @@ const addShippingAddressToOrder = async (address) => {
 
 
 
-export { getStoreCategories, getStoreProducts, searchProducts, getShippingAddress, addShippingAddress, addShippingAddressToOrder };
+export { getStoreCategories, getStoreProducts, searchProducts, getShippingAddress, addShippingAddress, addShippingAddressToOrder, getProductByHandler };
