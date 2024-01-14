@@ -35,9 +35,9 @@ type SearchBoxProps = {
   placeholder?: string;
 } & UseSearchBoxProps;
 
-const SearchBoxWrapper = ({
+export const SearchBoxWrapper = ({
   children,
-  placeholder = 'Search products...',
+  placeholder = 'What are you looking for...',
   ...rest
 }: SearchBoxProps) => {
   const { query, refine, isSearchStalled } = useSearchBox(rest);
@@ -96,5 +96,3 @@ const SearchBoxWrapper = ({
 
   return children(state) as ReactElement;
 };
-
-export default SearchBoxWrapper;

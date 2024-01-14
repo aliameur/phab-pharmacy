@@ -1,20 +1,24 @@
 'use client';
 
 import * as Dialog from '@radix-ui/react-dialog';
+import { SearchClient } from 'algoliasearch/dist/algoliasearch-lite';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Search as SearchIcon } from 'lucide-react';
 import { useState } from 'react';
 import { InstantSearch } from 'react-instantsearch';
 
-import { SEARCH_INDEX_NAME, searchClient } from '../../lib/medusa';
 import { ControlledSearchBox } from './controlled-search-box';
-import SearchBoxWrapper from './search-box-wrapper';
-import Hits from "./hits";
+import { Hits } from './hits';
+import { SearchBoxWrapper } from './search-box-wrapper';
 
-export const SearchModal = () => {
+type TSearchModal = {
+  searchClient: SearchClient;
+  searchIndex: string;
+};
+export const SearchModal = ({ searchClient, searchIndex }: TSearchModal) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const close = () => setIsOpen(false)
+  const close = () => setIsOpen(false);
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger aria-label="Open Search Modal" className="p-2">
@@ -42,17 +46,14 @@ export const SearchModal = () => {
               >
                 <InstantSearch
                   searchClient={searchClient}
-                  indexName={SEARCH_INDEX_NAME}
+                  indexName={searchIndex}
                 >
                   <SearchBoxWrapper>
                     {(props) => (
-                      <ControlledSearchBox
-                        close={close}
-                        {...props}
-                      />
+                      <ControlledSearchBox close={close} {...props} />
                     )}
                   </SearchBoxWrapper>
-                  <div className="mx-auto w-[50vw] mt-6 min-h-full flex-1">
+                  <div className="mx-auto mt-6 min-h-full w-[50vw] flex-1">
                     <Hits close={close} />
                   </div>
                 </InstantSearch>

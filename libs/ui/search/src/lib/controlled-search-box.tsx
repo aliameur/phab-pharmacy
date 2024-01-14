@@ -5,7 +5,6 @@ import { ControlledSearchBoxProps } from './search-box-wrapper';
 
 export const ControlledSearchBox = ({
   inputRef,
-  isSearchStalled,
   onChange,
   onReset,
   onSubmit,
