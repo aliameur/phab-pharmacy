@@ -2,29 +2,29 @@
 
 import React, { useState } from 'react';
 
-interface Product {
-  id: number;
-  name: string;
-  quantity: number;
-  max_quantity: number;
-}
+import { Item, Location } from './types';
 
-interface PlaceOrderFormProps {
-  selectedItems: number[];
-  products: Product[];
+interface Props {
+  selectedItems: string[];
+  items: Item[];
+  location: Location;
   onClose: () => void;
 }
 
 export default function PlaceOrderForm({
   selectedItems,
-  products,
+  items,
+  location,
   onClose,
-}: PlaceOrderFormProps) {
-  const selectedProducts = products.filter((product) =>
-    selectedItems.includes(product.id),
+}: Props) {
+  const selectedProducts = items.filter((item) =>
+    selectedItems.includes(item.id),
   );
   const [orderQuantities, setOrderQuantities] = useState(
-    selectedProducts.map((product) => product.max_quantity - product.quantity),
+    // replace with item.max_quantity after implementing
+    selectedProducts.map(
+      (item) => item.stocked_quantity - item.stocked_quantity,
+    ),
   );
   const [bankNumber, setBankNumber] = useState('');
 
@@ -46,6 +46,7 @@ export default function PlaceOrderForm({
             Edit Order Details
           </h2>
         </div>
+
         <form className="space-y-4">
           <div className="flex flex-col">
             <label className="text-gray-700 dark:text-gray-300">
@@ -61,11 +62,23 @@ export default function PlaceOrderForm({
 
           <div className="flex flex-col">
             <label className="text-gray-700 dark:text-gray-300">
+              Delivery Location:
+            </label>
+            <input
+              type="text"
+              className="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+              value={location.name ? location.name : 'N/A'}
+              readOnly
+            />
+          </div>
+
+          <div className="flex flex-col">
+            <label className="text-gray-700 dark:text-gray-300">
               Order Quantities:
             </label>
-            {selectedProducts.map((product, index) => (
-              <div className="flex items-center" key={product.id}>
-                <div className="w-1/2">{product.name}</div>
+            {selectedProducts.map((item, index) => (
+              <div className="flex items-center" key={item.id}>
+                <div className="w-1/2">{item.id}</div>
                 <div className="w-1/2">
                   <input
                     type="number"

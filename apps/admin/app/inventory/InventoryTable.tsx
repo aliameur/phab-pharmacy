@@ -132,11 +132,14 @@ export default function InventoryTable({
       </table>
 
       <div className="mt-4 flex justify-end">
-        <button className="btn btn-secondary m-2" onClick={selectLowAndMedium}>
+        <button
+          className="btn m-2 bg-sky-900 text-white"
+          onClick={selectLowAndMedium}
+        >
           Select Low & Medium Items
         </button>
         <button
-          className="btn btn-primary m-2"
+          className="btn m-2 bg-amber-900 text-white"
           onClick={placeOrder}
           disabled={selectedItems.length === 0}
         >
