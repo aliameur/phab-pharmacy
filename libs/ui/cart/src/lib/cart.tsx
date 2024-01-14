@@ -11,7 +11,8 @@ export const Cart = async () => {
   if (cartId) {
     cart = await getCart(cartId);
   }
-  console.log(JSON.stringify(cart))
+  // console.log(cart?.items[0].quantity)
+  console.log(cartId)
 
   return <CartSidebar cart={cart} />;
 };
