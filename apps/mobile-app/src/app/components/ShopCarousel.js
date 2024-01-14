@@ -243,7 +243,7 @@ function ShopCarousel({ navigation, handle }) {
 
 const styles = StyleSheet.create({
   collectionView: {
-    backgroundColor: colours.TailWindColors['mineral-green'][600],
+    backgroundColor: colours.TailWindColors['mineral-green'][500],
     marginVertical: 20,
   },
   carouselView: {
