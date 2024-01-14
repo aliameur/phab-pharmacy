@@ -49,7 +49,7 @@ function MapSheet ({ visible, onClose, location, product}) {
                             <FontAwesome name="chevron-left" size={30} color={colours.LogoColours.green}/>
                         </TouchableOpacity>
                     </View>
-                    <Text style={{flex: 1}}>Please find the {product} at {location}</Text>
+                    <Text style={{flex: 1, marginTop: '5%', alignSelf: 'center'}}>Please find the {product} at {location}</Text>
                     <View style={{flex: 8}}>
                         <Video 
                             source={videoPath}

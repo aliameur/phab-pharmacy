@@ -23,6 +23,8 @@ function UserCheckScreen({ navigation }) {
                     await loadCartData();
                     navigation.replace('Shop');
                 } catch (error){
+                  navigation.replace('Login');
+                  console.log(error)
                 }
             } else {
                 console.log('User forgotten')
