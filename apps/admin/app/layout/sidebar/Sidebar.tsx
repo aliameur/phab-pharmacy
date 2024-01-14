@@ -14,6 +14,7 @@ export default function Sidebar() {
           width={64}
           height={64}
           className="z-50"
+          style={{ width: '64px', height: 'auto' }}
         />
       </div>
       <ul

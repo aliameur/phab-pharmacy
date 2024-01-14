@@ -11,9 +11,10 @@ export default function Navbar() {
           <Image
             src="logo.svg"
             alt="PhabPharmacy Logo"
-            className="z-50"
             width={32}
             height={32}
+            className="z-50"
+            style={{ width: 'auto', height: '32px' }}
           />
         </div>
         <SidebarToggle />
