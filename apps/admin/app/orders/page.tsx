@@ -1,29 +1,57 @@
-import React from 'react';
+'use client';
 
-import OrdersTable from './OrdersTable';
+import { useAdminOrders } from 'medusa-react';
+import React, { useState } from 'react';
+
+import EditOrderForm from './EditOrderForm';
+import OrderRow from './OrderRow';
+import { Order } from './types';
 
 export default function ProductsPage() {
-  // fetch orders
-  const orders = [
-    {
-      id: 1,
-      name: 'Order A',
-      quantity: 2,
-      address: '123 Main St.',
-      status: 'Pending',
-    },
-    {
-      id: 2,
-      name: 'Order B',
-      quantity: 1,
-      address: '456 Main St.',
-      status: 'Sent',
-    },
-  ];
+  const [editOrder, setEditOrder] = useState<Order | null>(null);
+  const { orders, isLoading } = useAdminOrders({
+    expand: 'shipping_address',
+    offset: 0,
+    limit: 50,
+  });
 
   return (
-    <div className="container mx-auto my-8">
-      <OrdersTable orders={orders} />
+    <div className="flex items-center justify-center">
+      {isLoading ? (
+        <div className="">
+          <h2 className="fixed text-2xl font-semibold">Customer Orders</h2>
+          <div className="">
+            <table className="mt-8 table w-full px-8 py-16">
+              <thead>
+                <tr>
+                  <th>Email</th>
+                  <th>Creation Date</th>
+                  <th>Postcode</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody className="overflow-y-auto">
+                {orders?.map((order) => (
+                  <OrderRow
+                    key={order.id}
+                    order={order}
+                    setEditOrder={setEditOrder}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {editOrder && (
+            <EditOrderForm
+              orderBase={editOrder}
+              onClose={() => setEditOrder(null)}
+            />
+          )}
+        </div>
+      ) : (
+        <div className="text-2xl font-semibold">Loading orders...</div>
+      )}
     </div>
   );
 }

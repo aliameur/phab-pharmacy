@@ -1,30 +1,28 @@
 'use client';
 
+import { useAdminOrder } from 'medusa-react';
 import React, { useState } from 'react';
 
-interface Order {
-  id: number;
-  name: string;
-  quantity: number;
-  address: string;
-  status: string;
-}
+import { Order } from './types';
 
-interface EditOrderProps {
-  order: Order;
-  onSave: (updatedOrder: Order) => void;
+interface Props {
+  orderBase: Order | null;
   onClose: () => void;
 }
 
-export default function EditOrderForm({
-  order,
-  onSave,
-  onClose,
-}: EditOrderProps) {
-  const [status, setStatus] = useState(order.status);
+export default function EditOrderForm({ orderBase, onClose }: Props) {
+  const defaultStatus = orderBase ? orderBase.status || 'pending' : 'pending';
+  const orderId = orderBase ? orderBase.id : '';
+
+  const [status, setStatus] = useState(defaultStatus);
+  const { order } = useAdminOrder(orderId, {
+    expand: 'items',
+  });
+
+  console.log(order);
 
   const handleSave = () => {
-    onSave({ ...order, status });
+    console.log(status); // medusa post to update status
     onClose();
   };
 
@@ -50,10 +48,9 @@ export default function EditOrderForm({
               value={status}
               onChange={(e) => setStatus(e.target.value)}
             >
-              <option value="Pending">Pending</option>
-              <option value="Completed">Completed</option>
-              <option value="Cancelled">Cancelled</option>
-              {/* Add other statuses as needed */}
+              <option value="Pending">pending</option>
+              <option value="Completed">completed</option>
+              <option value="Cancelled">cancelled</option>
             </select>
           </div>
 
