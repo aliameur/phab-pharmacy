@@ -22,11 +22,12 @@ function ShopScreen({ navigation }) {
   const [isMenuModalVisible, setMenuModalVisible] = useState(false);
   const [collectionsData, setCollectionsData] = useState([]);
   const [searchText, setSearchText] = useState('');
-  const { cartCount } = useContext(ShopContext);
+  const { cartCount, loadNumberCart } = useContext(ShopContext);
 
   useEffect(() => {
     const getData = async () => {
       const category_data = await getStoreCategories();
+      await loadNumberCart();
       setCollectionsData(category_data);
     };
     getData();

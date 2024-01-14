@@ -1,4 +1,4 @@
-import {MoneyAmount} from "@medusajs/medusa";
+import { MoneyAmount } from '@medusajs/medusa';
 
 export const getPriceIn = (prices: MoneyAmount[], currencyCode: string) => {
   return prices.find(
