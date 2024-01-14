@@ -1,20 +1,17 @@
-import React from 'react';
+'use client';
 
-import { getCategories, getProductsByCategoryHandle } from '@phab/data-next';
+import { useRouter } from 'next/navigation';
+import React, { useEffect } from 'react';
 
-import ProductsViewer from './ProductsViewer';
+import FetchProducts from './FetchProducts';
 
-export default async function ProductsPage() {
-  const categories = await getCategories();
-  const productsPromises = categories.map((category) =>
-    getProductsByCategoryHandle(category.handle),
-  );
-  const productsByCategory = await Promise.all(productsPromises);
+export default function ProductsPage() {
+  const router = useRouter();
+  useEffect(() => {
+    if (!localStorage.getItem('apiToken')) {
+      router.push('/login');
+    }
+  });
 
-  return (
-    <ProductsViewer
-      productsByCategory={productsByCategory}
-      categories={categories}
-    />
-  );
+  return <FetchProducts />;
 }

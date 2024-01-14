@@ -1,11 +1,18 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
 import InventoryTable from './InventoryTable';
 
 export default function ProductsPage() {
-  // fetch locations
+  const router = useRouter();
+  useEffect(() => {
+    if (!localStorage.getItem('apiToken')) {
+      router.push('/login');
+    }
+  });
+
   const storeLocations = ['Location 1', 'Location 2', 'Location 3'];
 
   const [selectedLocation, setSelectedLocation] = useState(storeLocations[0]);

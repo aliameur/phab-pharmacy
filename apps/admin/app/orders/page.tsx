@@ -1,38 +1,46 @@
 'use client';
 
 import { useAdminOrders } from 'medusa-react';
-import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
 import EditOrderForm from './EditOrderForm';
 import OrderRow from './OrderRow';
 import { Order } from './types';
 
 export default function ProductsPage() {
+  const router = useRouter();
+  useEffect(() => {
+    if (!localStorage.getItem('apiToken')) {
+      router.push('/login');
+    }
+  });
+
   const [editOrder, setEditOrder] = useState<Order | null>(null);
-  const { orders, isLoading } = useAdminOrders({
+  const { orders } = useAdminOrders({
     expand: 'shipping_address',
     offset: 0,
     limit: 50,
   });
 
   return (
-    <div className="flex items-center justify-center">
-      {isLoading ? (
-        <div className="">
-          <h2 className="fixed text-2xl font-semibold">Customer Orders</h2>
-          <div className="">
-            <table className="mt-8 table w-full px-8 py-16">
+    <div className="w-full p-16">
+      {orders ? (
+        <div className="my-8">
+          <h2 className="text-2xl font-semibold">Customer Orders</h2>
+          <div className="my-20">
+            <table className="mb-64 table w-full">
               <thead>
                 <tr>
-                  <th>Email</th>
-                  <th>Creation Date</th>
-                  <th>Postcode</th>
+                  <th className="pr-32">Email</th>
+                  <th className="pr-16">Creation Date</th>
+                  <th className="pr-16">Postcode</th>
                   <th>Status</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody className="overflow-y-auto">
-                {orders?.map((order) => (
+                {orders?.map((order: Order) => (
                   <OrderRow
                     key={order.id}
                     order={order}
