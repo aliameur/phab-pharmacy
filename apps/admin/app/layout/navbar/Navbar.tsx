@@ -14,7 +14,6 @@ export default function Navbar() {
             width={32}
             height={32}
             className="z-50"
-            style={{ width: 'auto', height: '32px' }}
           />
         </div>
         <SidebarToggle />
