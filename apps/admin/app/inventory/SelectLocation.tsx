@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import PatchDeleteLocations from './PatchDeleteLocations';
 import ViewInventory from './ViewInventory';
 import { Location } from './types';
 
@@ -39,7 +40,11 @@ export default function SelectLocation({ stock_locations }: Props) {
           ))}
         </select>
       </div>
-
+      {/* 
+      {stock_locations.map((loc) => (
+        <PatchDeleteLocations key={loc.id} stockLocationId={loc.id} />
+      ))}
+      */}
       {location ? (
         <ViewInventory location={location} />
       ) : (
