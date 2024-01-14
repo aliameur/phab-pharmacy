@@ -1,10 +1,10 @@
-import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
+import { TProduct } from '@phab/types';
 
 import NewProduct from './NewProduct';
 import ProductItem from './ProductItem';
 
 interface Props {
-  products: PricedProduct[];
+  products: TProduct[];
   category: {
     id: string;
     handle: string;

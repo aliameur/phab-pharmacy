@@ -2,6 +2,7 @@ import { ProductCategory as MedusaProductCategory } from '@medusajs/medusa';
 import { LineItem } from '@medusajs/medusa';
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import { CartDTO } from '@medusajs/types/dist/cart/common';
+import {TTestimonial} from "@phab/types";
 
 export type TRequestFn = <T>(options: {
   cache?: RequestCache;
@@ -58,4 +59,8 @@ export type MedusaCartOperation = {
 export type MedusaError = {
   type: string;
   message: string;
+};
+
+export type MedusaTestimonialOperation = {
+  testimonials: TTestimonial[];
 };

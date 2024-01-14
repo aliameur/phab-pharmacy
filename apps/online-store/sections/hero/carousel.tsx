@@ -1,17 +1,17 @@
 'use client';
 
-import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { TProduct } from '@phab/types';
 import { cn } from '@phab/utils';
 
 type TCarousel = {
   direction: 'up' | 'down' | 'left';
   offset?: number;
   className?: string;
-  products: PricedProduct[];
+  products: TProduct[];
 };
 export const Carousel = ({
   direction,

@@ -19,18 +19,20 @@
         }
       }
     },
-    "build": {
+    "build-base": {
       "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/apps/backend",
         "main": "apps/backend/index.js",
         "tsConfig": "apps/backend/tsconfig.app.json",
         "assets": [
-          "apps/backend/src/assets",
+          "apps/backend/index.js",
           "apps/backend/medusa-config.js",
-          "apps/backend/index.js"
+          "apps/backend/datasource.js"
         ],
         "rootDir": "apps/backend/src",
         "generatePackageJson": true
@@ -41,6 +43,12 @@
           "generateLockfile": true
         }
       }
+    },
+    "build": {
+      "command": "nx run backend:build-base && bash tools/prepare-backend.sh",
+      "outputs": [
+        "{options.outputPath}"
+      ]
     },
     "start": {
       "executor": "nx:run-commands",
@@ -60,7 +68,9 @@
     "migrate": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["medusa migrations run"],
+        "commands": [
+          "medusa migrations run"
+        ],
         "cwd": "{projectRoot}"
       }
     },
@@ -93,7 +103,10 @@
           "command": "docker-compose down"
         },
         "reset": {
-          "commands": ["docker-compose down", "docker-compose up -d"],
+          "commands": [
+            "docker-compose down",
+            "docker-compose up -d"
+          ],
           "parallel": false
         }
       }

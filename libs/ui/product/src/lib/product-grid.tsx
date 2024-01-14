@@ -1,11 +1,10 @@
-import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
-
+import { TProduct } from '@phab/types';
 import { getCheapestVariantPriceInCurrency } from '@phab/utils';
 
 import { ProductCard } from './product-card';
 
 type TProductGrid = {
-  products: PricedProduct[];
+  products: TProduct[];
 };
 
 export const ProductGrid = ({ products }: TProductGrid) => {
