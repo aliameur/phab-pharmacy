@@ -1,6 +1,6 @@
 # Define the base source and destination directories
-SOURCE_DIR="../dist/apps/backend"
-DEST_DIR="../dist/apps/backend/dist"
+SOURCE_DIR="dist/apps/backend"
+DEST_DIR="dist/apps/backend/dist"
 
 # Function to move a directory
 move_directory() {
@@ -26,3 +26,5 @@ move_directory "models"
 move_directory "repositories"
 move_directory "services"
 move_directory "types"
+
+pwd
