@@ -10,20 +10,11 @@ import { EditItemQuantityButton } from './edit-item-quantity-button';
 
 type TCartLine = ComponentProps<typeof Image> & {
   item: LineItem;
-  quantity: number;
-  id: string;
-  title: string;
-  src: string;
-  alt: string;
   currencyCode: string;
   onClick: () => void;
 };
 
 export const CartLine = ({
-  quantity,
-  id,
-  src,
-  alt,
   item,
   currencyCode,
   onClick,
