@@ -19,6 +19,7 @@
       "@phab/data-next": ["libs/data/next/src/index.ts"],
       "@phab/data-react-native": ["libs/data/react-native/src/index.ts"],
       "@phab/data/admin": ["libs/data/admin/src/index.ts"],
+      "@phab/types": ["libs/types/src/index.ts"],
       "@phab/ui/cart": ["libs/ui/cart/src/index.ts"],
       "@phab/ui/cart/server": ["libs/ui/cart/src/server.ts"],
       "@phab/ui/core": ["libs/ui/core/src/index.ts"],
