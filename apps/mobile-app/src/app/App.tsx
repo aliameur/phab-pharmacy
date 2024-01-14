@@ -1,12 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StripeProvider } from '@stripe/stripe-react-native';
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Dimensions,
   Image,
   Platform,
-  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -29,6 +28,7 @@ import PaymentSuccessScreen from './screens/PaymentSuccessScreen';
 const Stack = createStackNavigator();
 
 export default function App() {
+
   const headerHeight = Platform.OS === 'ios' ? 44 : 56; // Default header heights
 
   return (
@@ -122,7 +122,8 @@ export default function App() {
                 {  
                 headerLeft: () => (
                   <TouchableOpacity
-                    onPress={() => navigation.goBack()}
+                    onPress={ () => {
+                      navigation.goBack()}}
                     style={{ marginLeft: Dimensions.get('window').width*0.03, alignItems: 'center' }}
                   >
                     <FontAwesome name="chevron-left" size={30} color={colours.LogoColours.green}/>
