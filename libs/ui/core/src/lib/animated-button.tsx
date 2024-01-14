@@ -1,7 +1,7 @@
 import { Slot } from '@radix-ui/react-slot';
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
 
-import { cn } from '../utils';
+import { cn } from '@phab/utils';
 
 type TAnimatedButton = ComponentPropsWithoutRef<'button'> & {
   asChild?: boolean;

@@ -14,11 +14,7 @@ type TCartLine = ComponentProps<typeof Image> & {
   onClick: () => void;
 };
 
-export const CartLine = ({
-  item,
-  currencyCode,
-  onClick,
-}: TCartLine) => {
+export const CartLine = ({ item, currencyCode, onClick }: TCartLine) => {
   return (
     <div className="flex w-full flex-col border-b border-pampas-100">
       <div className="relative flex w-full flex-row justify-between px-1 py-4">
