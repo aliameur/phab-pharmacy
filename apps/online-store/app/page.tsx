@@ -1,28 +1,122 @@
-import { Carousel } from '../components/carousel';
-import { Search } from '../components/search';
+import { Suspense } from 'react';
+
+import { getCategories, getProductsByCategoryHandle } from '@phab/data-next';
+import { filterHiddenCategories } from '@phab/utils';
+
+import { FAQs, FeaturedCategory, Hero, Team, Testimonials } from '../sections';
+
+export const metadata = {
+  title: 'Home | Phab Pharmacy',
+};
 
 export default async function Index() {
+  const categories = await getCategories();
+  const data = await Promise.all(
+    filterHiddenCategories(categories).map(async (category) => ({
+      category,
+      products: await getProductsByCategoryHandle(category.handle),
+    })),
+  );
+
   return (
     <main>
-      <header className="flex h-[calc(100svh-96px)]">
-        <div className="text-mineral-green-600 flex w-1/2 flex-col justify-center gap-8 px-16 pb-[72px]">
-          <h1 className="font-merriweather text-5xl">
-            Your One-Stop Online Wellness Shop
-          </h1>
-          <p className="text-xl">
-            Find all your healthcare needs with ease. Just type and search
-            below.
-          </p>
-          <Search />
-        </div>
-        <div className="h-full flex w-1/2 flex-col">
-          <div className="flex h-[calc(100%-72px)] grow gap-4 bg-red-500">
-            <Carousel direction="up" offset={-50} />
-            <Carousel direction="down" />
-          </div>
-          <div className="bg-mineral-green-600 shrink-0 h-[72px]" />
-        </div>
-      </header>
+      <Suspense>
+        <Hero />
+      </Suspense>
+      {data.map(({ category, products }, i) => (
+        <FeaturedCategory
+          key={category.id}
+          title={category.name}
+          side={i % 2 === 0 ? 'left' : 'right'}
+          products={products}
+          href={`/categories/${category.handle}`}
+        />
+      ))}
+      <Testimonials
+        testimonials={[
+          {
+            handle: 'ali_ameur',
+            content:
+              'Lorem ipsum dolor sit amet consectetur. Sodales sed est fames aliquam sed iaculis. Ultrices elit eu amet donec aliquam quam duis aenean.',
+          },
+          {
+            handle: 'ali_ameur',
+            content:
+              'Lorem ipsum dolor sit amet consectetur. Sodales sed est fames aliquam sed iaculis. Ultrices elit eu amet donec aliquam quam duis aenean.',
+          },
+          {
+            handle: 'ali_ameur',
+            content:
+              'Lorem ipsum dolor sit amet consectetur. Sodales sed est fames aliquam sed iaculis. Ultrices elit eu amet donec aliquam quam duis aenean.',
+          },
+        ]}
+      />
+      <FAQs
+        questions={[
+          {
+            question: 'Question One',
+            answer:
+              'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur blanditiis cum cupiditate distinctio earum eius fugiat, iusto nostrum pariatur quam quas quia quis, repellendus saepe ullam, velit. Sint, voluptate.',
+          },
+          {
+            question: 'Question Two',
+            answer:
+              'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur blanditiis cum cupiditate distinctio earum eius fugiat, iusto nostrum pariatur quam quas quia quis, repellendus saepe ullam, velit. Sint, voluptate.',
+          },
+          {
+            question: 'Question Three',
+            answer:
+              'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur blanditiis cum cupiditate distinctio earum eius fugiat, iusto nostrum pariatur quam quas quia quis, repellendus saepe ullam, velit. Sint, voluptate.',
+          },
+          {
+            question: 'Question Four',
+            answer:
+              'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur blanditiis cum cupiditate distinctio earum eius fugiat, iusto nostrum pariatur quam quas quia quis, repellendus saepe ullam, velit. Sint, voluptate.',
+          },
+          {
+            question: 'Question Five',
+            answer:
+              'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur blanditiis cum cupiditate distinctio earum eius fugiat, iusto nostrum pariatur quam quas quia quis, repellendus saepe ullam, velit. Sint, voluptate.',
+          },
+        ]}
+      />
+      <Team
+        members={[
+          {
+            name: 'John Doe',
+            title: 'CEO',
+            description:
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
+            links: {
+              linkedin: '#',
+              twitter: '#',
+              dribbble: '#',
+            },
+          },
+          {
+            name: 'John Smith',
+            title: 'CTO',
+            description:
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
+            links: {
+              linkedin: '#',
+              twitter: '#',
+              dribbble: '#',
+            },
+          },
+          {
+            name: 'John Appleseed',
+            title: 'CFO',
+            description:
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
+            links: {
+              linkedin: '#',
+              twitter: '#',
+              dribbble: '#',
+            },
+          },
+        ]}
+      />
     </main>
   );
 }

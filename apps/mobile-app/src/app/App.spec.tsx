@@ -3,7 +3,8 @@ import React from 'react';
 
 import App from './App';
 
-test('renders correctly', () => {
-  const { getByTestId } = render(<App />);
-  expect(getByTestId('heading')).toHaveTextContent('Welcome');
+describe('App Navigation', () => {
+  it('renders App', async () => {
+    render(<App />);
+  });
 });

@@ -1,0 +1,29 @@
+name: ❗General CI❗
+on: [ pull_request ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4.0.1
+        with:
+          node-version: 18
+      - run: npm i -g yarn
+      - name: Restore cached dependencies
+        uses: actions/cache/restore@v3
+        with:
+          path: |
+            node_modules
+            ~/.cache
+          key: dependencies-${{ hashFiles('yarn.lock') }}
+      - run: yarn install --immutable
+      - name: Cache dependencies
+        uses: actions/cache/save@v3
+        with:
+          path: |
+            node_modules
+            ~/.cache
+          key: dependencies-${{ hashFiles('yarn.lock') }}
+
+      - run: yarn nx affected -t format,lint,test

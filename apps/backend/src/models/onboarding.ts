@@ -1,5 +1,5 @@
-import { BaseEntity } from "@medusajs/medusa";
-import { Column, Entity } from "typeorm";
+import { BaseEntity } from '@medusajs/medusa';
+import { Column, Entity } from 'typeorm';
 
 @Entity()
 export class OnboardingState extends BaseEntity {

@@ -11,6 +11,12 @@
         "^production"
       ]
     },
+    "format": {
+      "cache": true,
+      "inputs": [
+        "default"
+      ]
+    },
     "lint": {
       "cache": true,
       "inputs": [
@@ -63,14 +69,18 @@
       "!{projectRoot}/**/*.cy.[jt]s?(x)",
       "!{projectRoot}/cypress.config.[jt]s"
     ],
-    "sharedGlobals": []
+    "sharedGlobals": [
+      "{workspaceRoot}/.prettierrc.json",
+      "{workspaceRoot}/.eslintrc.json"
+    ]
   },
   "nxCloudAccessToken": "NzljNTNhNDktNGJhOC00ODUzLWJmYTAtNTgwOTI3OWMxZjI5fHJlYWQtd3JpdGU=",
   "generators": {
     "@nx/react": {
       "application": {
         "babel": true
-      }
+      },
+      "library": {}
     },
     "@nx/next": {
       "application": {
@@ -82,15 +92,18 @@
   "plugins": [
     "@nxlv/python"
   ],
-  "implicitDependencies": {
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
-    ".eslintrc.json": "*",
-    ".prettierrc.json": "*"
-  },
   "affected": {
-    "defaultBase": "main"
+    "defaultBase": "origin/dev"
+  },
+  "cli": {
+    "packageManager": "yarn"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx-cloud",
+      "options": {
+        "accessToken": "MzYwZDk2MGQtMWQ5Ni00MmIyLWJlNmYtOTQxNzQ0NDFmMWRifHJlYWQtd3JpdGU="
+      }
+    }
   }
 }
