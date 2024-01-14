@@ -41,42 +41,36 @@ export default function EditProductForm({
       onClick={(e) => e.currentTarget === e.target && onClose()}
     >
       <div
-        className="mx-auto max-w-md rounded-lg bg-white p-6 dark:bg-gray-800"
+        className="mx-auto max-w-md rounded-lg bg-gray-800 p-6"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
-            Edit Product
-          </h2>
+          <h2 className="text-lg font-semibold text-white">Edit Product</h2>
         </div>
         <form className="space-y-4">
           <div className="flex flex-col">
-            <label className="text-gray-700 dark:text-gray-300">Name:</label>
+            <label className="text-gray-300">Name:</label>
             <input
               type="text"
-              className="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+              className="form-input mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </div>
 
           <div className="flex flex-col">
-            <label className="text-gray-700 dark:text-gray-300">
-              Description:
-            </label>
+            <label className="text-gray-300">Description:</label>
             <textarea
-              className="form-textarea mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+              className="form-textarea mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               value={description?.toString()}
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
 
           <div className="flex flex-col">
-            <label className="text-gray-700 dark:text-gray-300">
-              Category:
-            </label>
+            <label className="text-gray-300">Category:</label>
             <select
-              className="form-select mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+              className="form-select mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
             >
@@ -89,24 +83,24 @@ export default function EditProductForm({
           </div>
 
           <div className="flex flex-col">
-            <label className="text-gray-700 dark:text-gray-300">Price:</label>
+            <label className="text-gray-300">Price:</label>
             <input
               type="number"
-              className="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+              className="form-input mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               value={price / 100}
               onChange={(e) => setPrice(parseFloat(e.target.value) * 100)}
             />
           </div>
 
           <div className="flex flex-col">
-            <label className="text-gray-700 dark:text-gray-300">Image:</label>
+            <label className="text-gray-300">Image:</label>
             <div>
               {image && (
                 <Image src={image} alt="Product" width={100} height={100} />
               )}
               <input
                 type="file"
-                className="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                className="form-input mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 onChange={handleImageChange}
               />
             </div>
