@@ -26,5 +26,6 @@ move_directory "models"
 move_directory "repositories"
 move_directory "services"
 move_directory "types"
+move_directory "common"
 
 pwd
