@@ -11,7 +11,7 @@ export async function medusaFetch<T>({
   query,
   body,
   headers,
-  tags = ['medusa_request'],
+  tags,
   revalidate = REVALIDATE_WINDOW,
 }: {
   cache?: RequestCache;
@@ -45,8 +45,8 @@ export async function medusaFetch<T>({
         ...headers,
       },
       body: JSON.stringify(body),
-      ...(cache && !revalidate && { cache }),
-      ...((tags || revalidate) && { next: { tags, revalidate } }),
+      cache,
+      ...((tags || (revalidate && !cache)) && { next: { tags, revalidate } }),
     });
 
     const data = await result.json();
