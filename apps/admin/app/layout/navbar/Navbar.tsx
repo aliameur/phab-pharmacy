@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import SidebarToggle from './SidebarToggle';
-import ThemeButton from './ThemeButton';
+import SignOut from './SignOut';
 
 export default function Navbar() {
   return (
@@ -18,12 +18,9 @@ export default function Navbar() {
         </div>
         <SidebarToggle />
       </div>
-      <div className="w-96">
-        <input type="text" placeholder="Search..." className="input w-full" />
-      </div>
       <div className="flex items-center">
         <p className="px-2 text-sm">Admin Dashboard</p>
-        <ThemeButton />
+        <SignOut />
       </div>
     </div>
   );
