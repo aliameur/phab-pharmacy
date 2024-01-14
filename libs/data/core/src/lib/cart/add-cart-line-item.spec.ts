@@ -20,6 +20,7 @@ describe('addCartLineItem', () => {
     expect(mockRequestFn).toHaveBeenCalledWith({
       method: 'POST',
       path: '/carts/cart_123/line-items',
+      cache: 'no-cache',
       body: {
         variant_id: 'variant_123',
         quantity: 1,

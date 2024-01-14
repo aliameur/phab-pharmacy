@@ -19,6 +19,7 @@ describe('removeCartLineItem', () => {
     expect(mockRequestFn).toHaveBeenCalledWith({
       method: 'DELETE',
       path: '/carts/cart_123/line-items/line_123',
+      cache: 'no-cache',
     });
     expect(result).toEqual({ id: 'cart_123' });
   });
