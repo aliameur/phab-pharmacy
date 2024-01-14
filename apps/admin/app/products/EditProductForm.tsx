@@ -1,28 +1,38 @@
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
+import { useAdminUpdateProduct } from 'medusa-react';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
 interface Props {
   product: PricedProduct;
-  currentCategory: string;
-  allCategories: string[];
   onClose: () => void;
 }
 
-export default function EditProductForm({
-  product,
-  currentCategory,
-  allCategories,
-  onClose,
-}: Props) {
-  const [name, setName] = useState(product.title);
-  const [description, setDescription] = useState(product.description);
-  const [category, setCategory] = useState(currentCategory || allCategories[0]);
+export default function EditProductForm({ product, onClose }: Props) {
+  const [title, setTitle] = useState(product.title);
+  const [description, setDescription] = useState(
+    product.description ? product.description : '',
+  );
   const [price, setPrice] = useState(product.variants[0].prices[0].amount);
-  const [image, setImage] = useState(product.thumbnail);
+  const [image, setImage] = useState(
+    product.thumbnail ? product.thumbnail : '',
+  );
+
+  const updateProduct = useAdminUpdateProduct(product.id ? product.id : '');
 
   const handleSave = () => {
-    // make api calls to medusa to update each field
+    updateProduct.mutate(
+      {
+        title: title,
+        description: description,
+        thumbnail: image,
+      },
+      {
+        onSuccess: () => {
+          onClose();
+        },
+      },
+    );
 
     onClose();
   };
@@ -52,41 +62,26 @@ export default function EditProductForm({
             <label className="text-gray-300">Name:</label>
             <input
               type="text"
-              className="form-input mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              className="form-input mt-1 block w-full rounded-md border-gray-600 bg-gray-700 px-2 text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </div>
 
           <div className="flex flex-col">
             <label className="text-gray-300">Description:</label>
             <textarea
-              className="form-textarea mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              className="form-textarea mt-1 block w-full rounded-md border-gray-600 bg-gray-700 px-2 text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               value={description?.toString()}
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
 
           <div className="flex flex-col">
-            <label className="text-gray-300">Category:</label>
-            <select
-              className="form-select mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              {allCategories.map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="flex flex-col">
             <label className="text-gray-300">Price:</label>
             <input
               type="number"
-              className="form-input mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              className="form-input mt-1 block w-full rounded-md border-gray-600 bg-gray-700 px-2 text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               value={price / 100}
               onChange={(e) => setPrice(parseFloat(e.target.value) * 100)}
             />

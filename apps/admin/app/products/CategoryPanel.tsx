@@ -1,6 +1,5 @@
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 
-import NewProduct from './NewProduct';
 import ProductItem from './ProductItem';
 
 interface Props {
@@ -31,7 +30,6 @@ export default function CategoryPanel({
             allCategories={allCategories}
           />
         ))}
-        <NewProduct />
       </div>
     </div>
   );
