@@ -26,9 +26,9 @@ function ChatScreen({ navigation }) {
   const [currentMessage, setCurrentMessage] = useState('');
   const flatListRef = useRef();
   const textInputref = useRef();
-  const [isActionSheetNum, setIsActionSheetNum] = useState(0);
   const [recording, setRecording] = useState();
   const [isMenuModalVisible, setMenuModalVisible] = useState(false);
+  const [isActionSheetNum, setIsActionSheetNum] = useState(0);
 
   const scrollToBottom = () => {
     if (flatListRef.current) {
@@ -83,7 +83,7 @@ function ChatScreen({ navigation }) {
       return;
     }
     const newMessage = {
-      id: messages.length + 2,
+      id: messages.length + 1,
       content: currentMessage,
       fromUser: true,
     };
@@ -94,8 +94,8 @@ function ChatScreen({ navigation }) {
 
   const handlePostRequest = async (messageToSubmit) => {
     try {
-      //const response = await fetch('https://llmdoctor-af19c5c44aab.herokuapp.com/api/sendText', {
-      const response = await fetch('http://127.0.0.1:8000/api/sendText', {
+      const response = await fetch('https://llmdoctor-af19c5c44aab.herokuapp.com/api/sendText', {
+      //const response = await fetch('http://127.0.0.1:8000/api/sendText', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -108,7 +108,6 @@ function ChatScreen({ navigation }) {
               : messages.content,
         }),
       });
-
       const jsonData = await response.json();
       const newResponse = {
         id: messages.length + 2,
@@ -228,16 +227,16 @@ function ChatScreen({ navigation }) {
               } else {
                 return (
                   <View style={styles.responseContainer}>
-                    <TouchableOpacity onPress={showMessageActionSheet}>
+                    <TouchableOpacity onPress={() => showMessageActionSheet(item.id)}>
                       <View style={styles.responseBlock}>
                         <Text style={styles.response}>{item.content}</Text>
-                        {isActionSheetNum && (
+                        {item.id === isActionSheetNum ? (
                           <ActionSheet
-                            visible={isActionSheetNum}
+                            visible={item.id === isActionSheetNum}
                             message={item.content}
                             onClose={hideMessageActionSheet}
                           />
-                        )}
+                        ) : null}
                       </View>
                     </TouchableOpacity>
                     <View style={styles.responseBlock}>

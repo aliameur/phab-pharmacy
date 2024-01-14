@@ -17,7 +17,7 @@ function ShopScreen({ navigation, route }) {
   useEffect(() => {
     const getData = async () => {
       const search = route.params?.search;
-      console.log(await searchProducts(search));
+      response = await searchProducts(search);
     };
 
     if (route.params?.search) {
