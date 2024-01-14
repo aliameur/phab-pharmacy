@@ -1,14 +1,11 @@
-'use client';
+import React from 'react';
 
-import { useRouter } from 'next/navigation';
-import React, { useEffect } from 'react';
+import RedirectLogin from '../login/Redirect';
 
 export default function ProductsPage() {
-  const router = useRouter();
-  useEffect(() => {
-    if (!localStorage.getItem('apiToken')) {
-      router.push('/login');
-    }
-  });
-  return <></>;
+  return (
+    <div>
+      <RedirectLogin />
+    </div>
+  );
 }

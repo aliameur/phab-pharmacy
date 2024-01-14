@@ -13,7 +13,6 @@ export default function NewProduct() {
   return (
     <div className="carousel-item" onClick={handleAddProductClick}>
       <div className="rounded-lg border-2 border-dotted border-slate-700 p-0 hover:bg-slate-700 hover:shadow-lg">
-        {/* Apply flex utilities here */}
         <div className="flex h-52 w-56 items-center justify-center text-gray-600">
           <p className="text-center hover:text-gray-600">New Product</p>
         </div>

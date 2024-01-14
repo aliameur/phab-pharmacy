@@ -1,18 +1,11 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
+import RedirectLogin from '../login/Redirect';
 import InventoryTable from './InventoryTable';
 
 export default function ProductsPage() {
-  const router = useRouter();
-  useEffect(() => {
-    if (!localStorage.getItem('apiToken')) {
-      router.push('/login');
-    }
-  });
-
   const storeLocations = ['Location 1', 'Location 2', 'Location 3'];
 
   const [selectedLocation, setSelectedLocation] = useState(storeLocations[0]);
@@ -44,6 +37,7 @@ export default function ProductsPage() {
 
   return (
     <div className="container mx-auto px-4 py-4">
+      <RedirectLogin />
       <InventoryTable
         products={products}
         storeLocations={storeLocations}
