@@ -1,9 +1,14 @@
 'use client';
 
-import { useAdminOrder } from 'medusa-react';
-import React, { useState } from 'react';
+import {
+  useAdminArchiveOrder,
+  useAdminCancelOrder,
+  useAdminCompleteOrder,
+  useAdminOrder,
+} from 'medusa-react';
+import React, { useEffect, useState } from 'react';
 
-import { Order } from './types';
+import { AddressData, Item, Order } from './types';
 
 interface Props {
   orderBase: Order | null;
@@ -18,12 +23,113 @@ export default function EditOrderForm({ orderBase, onClose }: Props) {
   const { order } = useAdminOrder(orderId, {
     expand: 'items',
   });
+  const archiveOrder = useAdminArchiveOrder(orderId);
+  const cancelOrder = useAdminCancelOrder(orderId);
+  const completeOrder = useAdminCompleteOrder(orderId);
 
-  console.log(order);
+  useEffect(() => {
+    setStatus(order?.status || 'pending');
+  }, [order]);
+
+  if (!order) {
+    return null;
+  }
 
   const handleSave = () => {
-    console.log(status); // medusa post to update status
-    onClose();
+    if (status === 'pending') {
+      onClose();
+      return;
+    }
+
+    if (status === 'archived') {
+      archiveOrder.mutate(void 0, {
+        onSuccess: ({ order }) => {
+          onClose();
+        },
+        onError: (err) => {
+          console.error(err);
+        },
+      });
+    }
+    if (status === 'cancelled') {
+      cancelOrder.mutate(void 0, {
+        onSuccess: ({ order }) => {
+          onClose();
+        },
+        onError: (err) => {
+          console.error(err);
+        },
+      });
+    }
+    if (status === 'completed') {
+      completeOrder.mutate(void 0, {
+        onSuccess: ({ order }) => {
+          onClose();
+        },
+        onError: (err) => {
+          console.error(err);
+        },
+      });
+    }
+  };
+
+  const formatDateTime = (datetime: Date | null) => {
+    if (!datetime) return '';
+
+    const date = new Date(datetime);
+    return date.toLocaleString();
+  };
+
+  const renderAddress = (address: AddressData | null) => {
+    if (!address) return <span>Not provided</span>;
+
+    return (
+      <div>
+        {address.first_name} {address.last_name}
+        <br />
+        {address.address_1}
+        <br />
+        {address.address_2 && (
+          <>
+            {address.address_2}
+            <br />
+          </>
+        )}
+        {address.city}, {address.province} {address.postal_code}
+        <br />
+        {address.country_code}
+        <br />
+        {address.phone && (
+          <>
+            {address.phone}
+            <br />
+          </>
+        )}
+      </div>
+    );
+  };
+
+  const renderItems = (items: Item[] | null) => {
+    if (!items || items.length === 0) return <span>No items</span>;
+
+    return (
+      <table className="table w-full">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {items.map((item: Item) => (
+            <tr key={item.id}>
+              <td>{item.title}</td>
+              <td>{item.quantity}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
   };
 
   return (
@@ -42,15 +148,49 @@ export default function EditOrderForm({ orderBase, onClose }: Props) {
         </div>
         <form className="space-y-4">
           <div className="flex flex-col">
+            <label className="text-gray-700 dark:text-gray-300">
+              Order ID:
+            </label>
+            <span className="mt-1">{order?.id}</span>
+          </div>
+
+          <div className="flex flex-col">
+            <label className="text-gray-700 dark:text-gray-300">
+              Created At:
+            </label>
+            <span className="mt-1">{formatDateTime(order?.created_at)}</span>
+          </div>
+
+          <div className="flex flex-col">
+            <label className="text-gray-700 dark:text-gray-300">
+              Customer Email:
+            </label>
+            <span className="mt-1">{order?.email}</span>
+          </div>
+
+          <div className="flex flex-col">
+            <label className="text-gray-700 dark:text-gray-300">Items:</label>
+            {renderItems(order?.items)}
+          </div>
+
+          <div className="flex flex-col">
+            <label className="text-gray-700 dark:text-gray-300">
+              Delivery Address:
+            </label>
+            {renderAddress(order?.shipping_address)}
+          </div>
+
+          <div className="flex flex-col">
             <label className="text-gray-700 dark:text-gray-300">Status:</label>
             <select
               className="form-select mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
               value={status}
               onChange={(e) => setStatus(e.target.value)}
             >
-              <option value="Pending">pending</option>
-              <option value="Completed">completed</option>
-              <option value="Cancelled">cancelled</option>
+              <option value="pending">pending</option>
+              <option value="completed">completed</option>
+              <option value="archived">archived</option>
+              <option value="cancelled">cancelled</option>
             </select>
           </div>
 
