@@ -46,7 +46,8 @@ const plugins = [
   {
     resolve: `@medusajs/file-local`,
     options: {
-      upload_dir: 'uploads',
+      upload_dir: 'uploads/images',
+      backend_url: 'https://phab-pharmacy-backend-ab775283aa48.herokuapp.com'
     },
   },
   {
