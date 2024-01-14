@@ -14,6 +14,7 @@ function UserMenuSheet({ navigation, visible, onClose }) {
         onClose(); 
     };
     const handleCancelPress = () => {
+
         onClose(); 
     };
     return (
@@ -49,50 +50,49 @@ function UserMenuSheet({ navigation, visible, onClose }) {
     );
 }
 
-  
-  const styles = StyleSheet.create({
-    overlay: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Transparent background overlay
-    },
-    text: {
-        color: colours.LogoColours.green,
-        fontSize: 20
-    },
-    container: {
-      flex: 1,
-      justifyContent: 'flex-end',
-      alignItems: 'center',
-      backgroundColor: 'rgba(0, 0, 0, 0)',
-    },
-    sheet: {
-      backgroundColor: 'white',
-      width: '100%',
-      borderTopLeftRadius: 10,
-      borderTopRightRadius: 10,
-      padding: 16,
-    },
-    title: {
-      fontSize: 18,
-      fontWeight: 'bold',
-      color: colours.LogoColours.green,
-      marginBottom: 16,
-    },
-    button: {
-      padding: 12,
-      borderBottomWidth: 1,
-      borderBottomColor: '#ccc',
-    },
-    cancelButton: {
-      marginTop: 16,
-      backgroundColor: colours.LogoColours.green,
-      borderColor: colours.LogoColours.green,
-      color: 'white',
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderRadius: 10,
-    },
-  });
-  
-  export default UserMenuSheet;
+const styles = StyleSheet.create({
+  overlay: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Transparent background overlay
+  },
+  text: {
+    color: colours.LogoColours.green,
+    fontSize: 20,
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+  },
+  sheet: {
+    backgroundColor: 'white',
+    width: '100%',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    padding: 16,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: colours.LogoColours.green,
+    marginBottom: 16,
+  },
+  button: {
+    padding: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+  cancelButton: {
+    marginTop: 16,
+    backgroundColor: colours.LogoColours.green,
+    borderColor: colours.LogoColours.green,
+    color: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
+});
+
+export default UserMenuSheet;

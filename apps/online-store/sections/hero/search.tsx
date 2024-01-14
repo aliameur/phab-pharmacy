@@ -5,7 +5,7 @@ import { Search as SearchIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { cn } from '../../lib/utils';
+import { cn } from '@phab/utils';
 
 const schema = z.object({ search: z.string().min(1) });
 type TSchema = z.infer<typeof schema>;

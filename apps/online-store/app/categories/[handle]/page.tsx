@@ -5,8 +5,7 @@ import {
   getCategoryByHandle,
   getProductsByCategoryHandle,
 } from '@phab/data-next';
-
-import { ProductGrid } from '../../../components/product-grid';
+import { ProductGrid } from '@phab/ui/product';
 
 type Props = {
   params: { handle: string };

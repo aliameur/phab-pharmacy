@@ -2,9 +2,9 @@
 
 import * as Accordion from '@radix-ui/react-accordion';
 import { ChevronDown } from 'lucide-react';
-import * as React from 'react';
 
-import { Button } from '../../components/button';
+import { AnimatedButton } from '@phab/ui/core';
+
 import { SectionHeading } from '../common';
 
 type TFAQs = {
@@ -54,7 +54,7 @@ export const FAQs = ({ questions }: TFAQs) => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </p>
         </div>
-        <Button>Contact</Button>
+        <AnimatedButton>Contact</AnimatedButton>
       </div>
     </div>
   );
