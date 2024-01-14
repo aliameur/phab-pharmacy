@@ -21,12 +21,14 @@ move_directory() {
 
 # Move specific directories
 move_directory "api"
+move_directory "common"
+move_directory "jobs"
+move_directory "loaders"
 move_directory "migrations"
 move_directory "models"
 move_directory "repositories"
 move_directory "services"
+move_directory "subscribers"
 move_directory "types"
-move_directory "loaders"
-move_directory "common"
 
 pwd
