@@ -39,11 +39,9 @@ export default function Login() {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center">
-      <div className="mx-auto max-w-md rounded-lg bg-white p-6 dark:bg-gray-800">
+      <div className="max-w-md rounded-lg bg-gray-800 px-4 py-8">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
-            Login
-          </h2>
+          <h2 className="text-lg font-semibold text-white">Login</h2>
         </div>
         {error && <div style={{ color: 'red' }}>{error}</div>}
         <form className="space-y-4">
@@ -52,7 +50,7 @@ export default function Login() {
               type="email"
               placeholder="Email"
               value={email}
-              className="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+              className="form-input mt-1 block w-full rounded-md border-gray-600 bg-gray-700 px-2 text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -61,7 +59,7 @@ export default function Login() {
               type="password"
               placeholder="Password"
               value={password}
-              className="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+              className="form-input mt-1 block w-full rounded-md border-gray-600 bg-gray-700 px-2 text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
