@@ -6,6 +6,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
+  SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
@@ -45,6 +46,7 @@ function LoginScreen({ navigation }) {
     };
     
     return(
+      <SafeAreaView style={{flex: 1, backgroundColor: colours.LogoColours.cream}}>
         <KeyboardAvoidingView
         style={styles.mainView}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -111,6 +113,7 @@ function LoginScreen({ navigation }) {
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>
+      </SafeAreaView>
     );
 }
 

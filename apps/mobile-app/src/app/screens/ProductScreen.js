@@ -57,13 +57,13 @@ function ProductScreen({ route }) {
                 />
             </View>
             <View style={{flex: 2, alignSelf: 'center', justifyContent: 'flex-start'}}> 
-                <Text style={{fontSize: 20, fontWeight: '600', marginHorizontal: 10}}>{data.description}</Text>
+                <Text style={{fontSize: 16, fontWeight: '600', marginHorizontal: 10}}>{data.description}</Text>
                 <View style={{alignItems: 'center', alignSelf: 'center', flexDirection: 'row', marginTop: 5}}> 
                     <Text style={{fontWeight: '700', fontSize: 20, color: colours.TailWindColors.pampas[900]}}>Price: </Text>
                     <Text style={{fontSize: 20, color: colours.TailWindColors.pampas[900]}}>{formatPrice(data.price.toString())}</Text>
                 </View>
             </View>
-            <View style={{flex: 1, marginBottom: 10}}>
+            <View style={{flex: 0.8, marginBottom: 10}}>
                 <TouchableOpacity style={{backgroundColor: colours.LogoColours.green, width: '40%', height: '70%', alignSelf: 'center', justifyContent: 'center', borderRadius: 10}}
                     onPress={() => addItemToCart(data.variant_id, 1)}
                 >
