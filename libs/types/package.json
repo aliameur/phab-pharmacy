@@ -2,7 +2,8 @@
   "name": "@phab/types",
   "version": "0.0.1",
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "@medusajs/medusa": "^1.19.0"
   },
   "type": "commonjs",
   "main": "./src/index.js",
