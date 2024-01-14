@@ -2,6 +2,7 @@ import { X } from 'lucide-react';
 import { FormEvent } from 'react';
 
 import { ControlledSearchBoxProps } from './search-box-wrapper';
+import { SearchInputField } from './search-input-field';
 
 export const ControlledSearchBox = ({
   inputRef,
@@ -19,7 +20,7 @@ export const ControlledSearchBox = ({
 
     if (onSubmit) {
       onSubmit(event);
-      close();
+      if (close) close();
     }
 
     if (inputRef.current) {
@@ -47,7 +48,7 @@ export const ControlledSearchBox = ({
         onSubmit={handleSubmit}
         onReset={handleReset}
       >
-        <input
+        <SearchInputField
           ref={inputRef}
           autoComplete="off"
           autoCorrect="off"
@@ -57,7 +58,6 @@ export const ControlledSearchBox = ({
           // type="search"
           value={value}
           onChange={onChange}
-          className="h-full w-full bg-[#F8F6F4] px-6 py-6 text-xl text-mineral-green-600 caret-mineral-green-600 placeholder:text-mineral-green-400 focus:outline-none"
         />
         {value && (
           <button

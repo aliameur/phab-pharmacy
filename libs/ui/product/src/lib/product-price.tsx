@@ -3,9 +3,12 @@
 import { ProductOption } from '@medusajs/medusa';
 import { PricedVariant } from '@medusajs/medusa/dist/types/pricing';
 import { useSearchParams } from 'next/navigation';
+import { useMemo } from 'react';
 
 import { Price } from '@phab/ui/core';
 import { getOptionTitle } from '@phab/utils';
+
+import { hasNoOptionsOrJustOneOption } from './utils';
 
 type TProductPrice = {
   variants: PricedVariant[];
@@ -14,9 +17,10 @@ type TProductPrice = {
 export const ProductPrice = ({ variants, options }: TProductPrice) => {
   const searchParams = useSearchParams();
 
-  const hasNoOptionsOrJustOneOption =
-    !options?.length ||
-    (options?.length === 1 && options[0]?.values.length === 1);
+  const noOptions = useMemo(
+    () => hasNoOptionsOrJustOneOption(options),
+    [options],
+  );
 
   const activeOptions = Object.fromEntries(searchParams.entries());
 
@@ -34,9 +38,7 @@ export const ProductPrice = ({ variants, options }: TProductPrice) => {
 
   return (
     <div className="flex gap-2">
-      {!selectedVariant && !hasNoOptionsOrJustOneOption ? (
-        <span>From</span>
-      ) : null}
+      {!selectedVariant && !noOptions ? <span>From</span> : null}
       <Price
         className="text-lg font-medium"
         amount={selectedPrice.amount / 100}

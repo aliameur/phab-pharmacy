@@ -46,7 +46,10 @@ export default async function Page({ params: { handle } }: Props) {
             />
           </div>
           <Rating value={2.5} />
-          <VariantSelector product={product} />
+          <VariantSelector
+            variants={product.variants}
+            options={product.options}
+          />
           <div className="flex flex-col gap-4 text-sm text-mineral-green-600">
             <p>{product.description}</p>
           </div>

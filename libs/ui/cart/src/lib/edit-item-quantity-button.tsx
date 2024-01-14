@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 
 import { removeCartLineItem, updateCartLineItem } from '@phab/data-next';
-import { cn } from '@phab/ui/core';
+import { cn } from '@phab/utils';
 
 export const EditItemQuantityButton = ({
   item,

@@ -61,9 +61,6 @@ export const CartSidebar = ({ cart }: TCartSidebar) => {
               currencyCode={cart.region.currency_code}
               item={item}
               key={item.id}
-              quantity={item.quantity}
-              id={item.variant_id || item.product_id || ''}
-              title={item.title}
               src={item.thumbnail || ''}
               alt={item.title}
             />

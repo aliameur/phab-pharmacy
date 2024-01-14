@@ -10,24 +10,11 @@ import { EditItemQuantityButton } from './edit-item-quantity-button';
 
 type TCartLine = ComponentProps<typeof Image> & {
   item: LineItem;
-  quantity: number;
-  id: string;
-  title: string;
-  src: string;
-  alt: string;
   currencyCode: string;
   onClick: () => void;
 };
 
-export const CartLine = ({
-  quantity,
-  id,
-  src,
-  alt,
-  item,
-  currencyCode,
-  onClick,
-}: TCartLine) => {
+export const CartLine = ({ item, currencyCode, onClick }: TCartLine) => {
   return (
     <div className="flex w-full flex-col border-b border-pampas-100">
       <div className="relative flex w-full flex-row justify-between px-1 py-4">
