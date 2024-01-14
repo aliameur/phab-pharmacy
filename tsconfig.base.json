@@ -25,6 +25,8 @@
       "@phab/ui/core/server": ["libs/ui/core/src/server.ts"],
       "@phab/ui/product": ["libs/ui/product/src/index.ts"],
       "@phab/ui/product/server": ["libs/ui/product/src/server.ts"],
+      "@phab/ui/search": ["libs/ui/search/src/index.ts"],
+      "@phab/ui/search/server": ["libs/ui/search/src/server.ts"],
       "@phab/utils": ["libs/utils/src/index.ts"]
     }
   },

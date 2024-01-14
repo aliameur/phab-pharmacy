@@ -1,3 +1,5 @@
+'use server';
+
 import Medusa from '@medusajs/medusa-js';
 import { QueryClient } from '@tanstack/react-query';
 

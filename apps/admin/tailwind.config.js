@@ -11,6 +11,6 @@ module.exports = {
     ),
     ...createGlobPatternsForDependencies(__dirname),
   ],
-  plugins: [require("daisyui")],
-  darkMode: "class",
+  plugins: [require('daisyui')],
+  darkMode: 'class',
 };

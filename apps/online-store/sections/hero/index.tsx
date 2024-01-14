@@ -1,6 +1,6 @@
 import { getProductsByCategoryHandle } from '@phab/data-next';
+import { splitArrayInHalf } from '@phab/utils';
 
-import { splitArrayInHalf } from '../../lib/utils';
 import { Carousel } from './carousel';
 import { Search } from './search';
 

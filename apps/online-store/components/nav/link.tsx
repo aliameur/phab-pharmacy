@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ComponentProps, ReactNode } from 'react';
 
-import { cn } from '../../lib/utils';
+import { cn } from '@phab/utils';
 
 type TNavLink = ComponentProps<typeof Link> & {
   children: ReactNode;

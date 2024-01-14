@@ -1,8 +1,6 @@
 {
   "store": {
-    "currencies": [
-      "gbp"
-    ]
+    "currencies": ["gbp"]
   },
   "users": [
     {
@@ -16,15 +14,9 @@
       "name": "UK",
       "currency_code": "gbp",
       "tax_rate": 20,
-      "payment_providers": [
-        "manual"
-      ],
-      "fulfillment_providers": [
-        "manual"
-      ],
-      "countries": [
-        "gb"
-      ]
+      "payment_providers": ["manual"],
+      "fulfillment_providers": ["manual"],
+      "countries": ["gb"]
     }
   ],
   "shipping_options": [
