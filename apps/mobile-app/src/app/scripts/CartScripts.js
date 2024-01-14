@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import { Platform } from 'react-native';
+import { removeCartLineItem, updateCartLineItem } from '@phab/data-react-native';
 
 const BASE_URL = 'https://phab-pharmacy-backend-ab775283aa48.herokuapp.com';
 
@@ -45,6 +45,26 @@ const addToCart = async (varient_id, quantity) => {
   }
 };
 
+const addAnotherItemToCart = async (item) => {
+  const cart_id = await AsyncStorage.getItem('cartID');
+  try { 
+    response = await updateCartLineItem({cartId: cart_id, lineId: item.id, quantity: item.quantity+1});
+  }
+  catch (error) {
+    console.log('Error removing from cart: ', error)
+  }
+}
+
+const minusFromCart = async (item) => {
+  const cart_id = await AsyncStorage.getItem('cartID');
+  try { 
+    response = await updateCartLineItem({cartId: cart_id, lineId: item.id, quantity: item.quantity-1});
+  }
+  catch (error) {
+    console.log('Error removing from cart: ', error)
+  }
+}
+
 const getCartItemNumber = async () => {
   try {
     const cart_id = await AsyncStorage.getItem('cartID');
@@ -83,4 +103,4 @@ const getCartItems = async () => {
   }
 };
 
-export { createCart, addToCart, getCartItems, getCartItemNumber };
+export { createCart, addToCart, getCartItems, getCartItemNumber, minusFromCart, addAnotherItemToCart };
