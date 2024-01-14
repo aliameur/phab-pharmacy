@@ -11,6 +11,7 @@ function ActionSheet({ visible, onClose, message }) {
     onClose();
   };
   const copyToClipboard = () => {
+    console.log('Copying: ', message);
     Clipboard.setString(message);
     onClose();
   };

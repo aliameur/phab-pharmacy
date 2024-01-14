@@ -43,7 +43,7 @@ const searchProducts = async (searchText) => {
         response = await axios.post(`${BASE_URL}/store/products/search`, {
             q: searchText
         });
-        console.log(response)
+        console.log(response.data.hits)
         return response;
     } catch (error) {
         console.log('Error: ', error)
