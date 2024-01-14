@@ -18,7 +18,16 @@ export const ShopProvider = ({ children }) => {
 
   const loadCartData = async () => {
     const items = await getCartItems();
-    setCartData(items[0]);
+    const sortedData = items[0].sort((a, b) => {
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (a.title > b.title) {
+        return 1;
+      }
+      return 0;
+    });
+    setCartData(sortedData);
     setCartTotal(items[1]);
   }
   
