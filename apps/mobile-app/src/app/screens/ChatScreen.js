@@ -8,6 +8,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
+  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
@@ -189,65 +190,46 @@ function ChatScreen({ navigation }) {
   }
 
   return (
-    <KeyboardAvoidingView
-      style={{ flex: 1, backgroundColor: colours.LogoColours.cream }}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 65 : -200}
-    >
-      {isMenuModalVisible ? (
-        <UserMenuSheet
-          onClose={hideUserSheet}
-          visible={isMenuModalVisible}
-          navigation={navigation}
-        />
-      ) : null}
-      {isMapSheetVisible ? (
-        <MapSheet 
-          visible={isMapSheetVisible}
-          onClose={hideMapSheet}
-          location={location}
-          product={product}
-        />
-      ) : (
-        null
-      )}
-      <View style={styles.messagesView}>
-        <FlatList
-          ref={flatListRef}
-          style={styles.messagesView}
-          data={messages}
-          keyExtractor={(item, index) => index.toString()}
-          inverted={false}
-          onContentSizeChange={scrollToBottom}
-          renderItem={({ item }) => {
-            if (item.fromUser) {
-              return (
-                <View style={styles.messageContainer}>
-                  <TouchableOpacity
-                    onPress={() => showMessageActionSheet(item.id)}
-                  >
-                    <View style={styles.messageBlock}>
-                      <Text style={styles.message}>{item.content}</Text>
-                      {item.id === isActionSheetNum ? (
-                        <ActionSheet
-                          visible={item.id === isActionSheetNum}
-                          message={item.content}
-                          onClose={hideMessageActionSheet}
-                        />
-                      ) : null}
-                    </View>
-                  </TouchableOpacity>
-                </View>
-              );
-            } else {
-              if (item.location === 'None') {
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+      <KeyboardAvoidingView
+        style={{ flex: 1, backgroundColor: colours.LogoColours.cream }}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : -200}
+      >
+        {isMenuModalVisible ? (
+          <UserMenuSheet
+            onClose={hideUserSheet}
+            visible={isMenuModalVisible}
+            navigation={navigation}
+          />
+        ) : null}
+        {isMapSheetVisible ? (
+          <MapSheet 
+            visible={isMapSheetVisible}
+            onClose={hideMapSheet}
+            location={location}
+            product={product}
+          />
+        ) : (
+          null
+        )}
+        <View style={styles.messagesView}>
+          <FlatList
+            ref={flatListRef}
+            style={styles.messagesView}
+            data={messages}
+            keyExtractor={(item, index) => index.toString()}
+            inverted={false}
+            onContentSizeChange={scrollToBottom}
+            renderItem={({ item }) => {
+              if (item.fromUser) {
                 return (
-                  <View style={styles.responseContainer}>
+                  <View style={styles.messageContainer}>
                     <TouchableOpacity
                       onPress={() => showMessageActionSheet(item.id)}
                     >
-                      <View style={styles.responseBlock}>
-                        <Text style={styles.response}>{item.content}</Text>
+                      <View style={styles.messageBlock}>
+                        <Text style={styles.message}>{item.content}</Text>
                         {item.id === isActionSheetNum ? (
                           <ActionSheet
                             visible={item.id === isActionSheetNum}
@@ -260,103 +242,124 @@ function ChatScreen({ navigation }) {
                   </View>
                 );
               } else {
-                return (
-                  <View style={styles.responseContainer}>
-                    <TouchableOpacity onPress={() => showMessageActionSheet(item.id)}>
-                      <View style={styles.responseBlock}>
-                        <Text style={styles.response}>{item.content}</Text>
-                        {item.id === isActionSheetNum ? (
-                          <ActionSheet
-                            visible={item.id === isActionSheetNum}
-                            message={item.content}
-                            onClose={hideMessageActionSheet}
-                          />
-                        ) : null}
-                      </View>
-                    </TouchableOpacity>
-                    <View style={{flexDirection: 'row', marginRight: '25%', justifyContent: 'center', alignItems:'center'}}>
-                      <View style={[styles.addToCartBlock, {flex: 5}]}>
-                        <Text style={{textAlign: 'center'}}>Click to see more details about {item.product}. </Text>
-                      </View>
-                      <TouchableOpacity style={[styles.addToCartBlock, {flex: 1, justifyContent: 'center', alignItems:'center'}]}>
-                        <FontAwesome name="shopping-cart" size={35}/>
+                if (item.location === 'None') {
+                  return (
+                    <View style={styles.responseContainer}>
+                      <TouchableOpacity
+                        onPress={() => showMessageActionSheet(item.id)}
+                      >
+                        <View style={styles.responseBlock}>
+                          <Text style={styles.response}>{item.content}</Text>
+                          {item.id === isActionSheetNum ? (
+                            <ActionSheet
+                              visible={item.id === isActionSheetNum}
+                              message={item.content}
+                              onClose={hideMessageActionSheet}
+                            />
+                          ) : null}
+                        </View>
                       </TouchableOpacity>
-                    </View> 
-                    <TouchableOpacity style={[styles.responseBlock, {backgroundColor: colours.TailWindColors.norway[200]}]}
-                      onPress={() => showMapSheet()}
-                    >
-                      <Text>For in store details please click here.</Text>
-                    </TouchableOpacity>
-                  </View>
-                );
+                    </View>
+                  );
+                } else {
+                  return (
+                    <View style={styles.responseContainer}>
+                      <TouchableOpacity onPress={() => showMessageActionSheet(item.id)}>
+                        <View style={styles.responseBlock}>
+                          <Text style={styles.response}>{item.content}</Text>
+                          {item.id === isActionSheetNum ? (
+                            <ActionSheet
+                              visible={item.id === isActionSheetNum}
+                              message={item.content}
+                              onClose={hideMessageActionSheet}
+                            />
+                          ) : null}
+                        </View>
+                      </TouchableOpacity>
+                      <View style={{flexDirection: 'row', marginRight: '25%', justifyContent: 'center', alignItems:'center'}}>
+                        <View style={[styles.addToCartBlock, {flex: 5}]}>
+                          <Text style={{textAlign: 'center'}}>Click to see more details about {item.product}. </Text>
+                        </View>
+                        <TouchableOpacity style={[styles.addToCartBlock, {flex: 1, justifyContent: 'center', alignItems:'center'}]}>
+                          <FontAwesome name="shopping-cart" size={35}/>
+                        </TouchableOpacity>
+                      </View> 
+                      <TouchableOpacity style={[styles.responseBlock, {backgroundColor: colours.TailWindColors.norway[200]}]}
+                        onPress={() => showMapSheet()}
+                      >
+                        <Text>For in store details please click here.</Text>
+                      </TouchableOpacity>
+                    </View>
+                  );
+                }
               }
-            }
-          }}
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <TextInput
-          ref={textInputref}
-          style={styles.input}
-          value={currentMessage}
-          clearButtonMode="while-editing"
-          multiline
-          returnKeyType="done"
-          onChangeText={(text) => {
-            if (text.endsWith('\n')) {
-              setCurrentMessage(text.slice(0, -1));
-              Keyboard.dismiss();
-            } else {
-              setCurrentMessage(text);
-              scrollToBottom();
-            }
-          }}
-          placeholder="Type a message"
-        />
-        {(currentMessage != '') & !recording ? (
-          <TouchableOpacity
-            onPress={() => {
-              Keyboard.dismiss();
-              setTimeout(() => {
-                sendMessage();
-              }, 100);
             }}
-            style={styles.sendButton}
-          >
-            <Text
-              style={{
-                fontSize: 0.05 * Dimensions.get('window').width,
-                color: colours.LogoColours.green,
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            ref={textInputref}
+            style={styles.input}
+            value={currentMessage}
+            clearButtonMode="while-editing"
+            multiline
+            returnKeyType="done"
+            onChangeText={(text) => {
+              if (text.endsWith('\n')) {
+                setCurrentMessage(text.slice(0, -1));
+                Keyboard.dismiss();
+              } else {
+                setCurrentMessage(text);
+                scrollToBottom();
+              }
+            }}
+            placeholder="Type a message"
+          />
+          {(currentMessage != '') & !recording ? (
+            <TouchableOpacity
+              onPress={() => {
+                Keyboard.dismiss();
+                setTimeout(() => {
+                  sendMessage();
+                }, 100);
               }}
+              style={styles.sendButton}
             >
-              Send
-            </Text>
-          </TouchableOpacity>
-        ) : recording ? (
-          <TouchableOpacity
-            style={styles.iconMicButton}
-            onPress={stopRecording}
-          >
-            <FontAwesome
-              name="stop-circle"
-              size={30}
-              color={colours.LogoColours.green}
-            />
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity
-            style={styles.iconMicButton}
-            onPress={startRecording}
-          >
-            <FontAwesome
-              name="microphone"
-              size={30}
-              color={colours.LogoColours.green}
-            />
-          </TouchableOpacity>
-        )}
-      </View>
-    </KeyboardAvoidingView>
+              <Text
+                style={{
+                  fontSize: 0.05 * Dimensions.get('window').width,
+                  color: colours.LogoColours.green,
+                }}
+              >
+                Send
+              </Text>
+            </TouchableOpacity>
+          ) : recording ? (
+            <TouchableOpacity
+              style={styles.iconMicButton}
+              onPress={stopRecording}
+            >
+              <FontAwesome
+                name="stop-circle"
+                size={30}
+                color={colours.LogoColours.green}
+              />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              style={styles.iconMicButton}
+              onPress={startRecording}
+            >
+              <FontAwesome
+                name="microphone"
+                size={30}
+                color={colours.LogoColours.green}
+              />
+            </TouchableOpacity>
+          )}
+        </View>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 
