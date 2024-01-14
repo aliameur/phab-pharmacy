@@ -40,6 +40,8 @@ jest.mock('react-native-keychain', () => {
   };
 });
 
+jest.mock('react-native-video', () => 'Video');
+
 jest.mock('@stripe/stripe-react-native', () => {
   return {
     StripeProvider: jest.fn().mockReturnValue(null),

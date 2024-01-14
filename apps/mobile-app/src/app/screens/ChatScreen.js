@@ -31,6 +31,7 @@ function ChatScreen({ navigation }) {
   const [recording, setRecording] = useState();
   const [isMenuModalVisible, setMenuModalVisible] = useState(false);
   const [isActionSheetNum, setIsActionSheetNum] = useState(0);
+  const [isMapSheetNum, setMapSheetNum] = useState(0);
   const [isMapSheetVisible, setMapSheetVisbile] = useState(false);
   const [location, setLocation] = useState('');
   const [product, setProduct] = useState('');
@@ -160,6 +161,14 @@ function ChatScreen({ navigation }) {
     setIsActionSheetNum(0);
   };
 
+  const showMessageMapSheet = (id) => {
+    setMapSheetNum(id);
+  };
+
+  const hideMessageMapSheet = () => {
+    setMapSheetNum(0);
+  };
+
   const hideUserSheet = () => {
     setMenuModalVisible(false);
   };
@@ -285,10 +294,18 @@ function ChatScreen({ navigation }) {
                         </TouchableOpacity>
                       </View> 
                       <TouchableOpacity style={[styles.responseBlock, {backgroundColor: colours.TailWindColors.norway[200]}]}
-                        onPress={() => showMapSheet()}
+                        onPress={() => showMessageMapSheet(item.id)}
                       >
                         <Text>For in store details please click here.</Text>
                       </TouchableOpacity>
+                      {item.id === isMapSheetNum ? (
+                          <MapSheet
+                            visible={item.id === isMapSheetNum}
+                            location={item.location}
+                            product={item.product}
+                            onClose={hideMessageMapSheet}
+                          />
+                        ) : null}
                     </View>
                   );
                 }

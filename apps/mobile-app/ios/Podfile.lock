@@ -377,6 +377,11 @@ PODS:
     - glog
   - react-native-safe-area-context (4.8.2):
     - React-Core
+  - react-native-video (5.2.1):
+    - React-Core
+    - react-native-video/Video (= 5.2.1)
+  - react-native-video/Video (5.2.1):
+    - React-Core
   - react-native-voice (3.2.4):
     - React-Core
   - React-NativeModulesApple (0.72.6):
@@ -600,6 +605,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-video (from `../node_modules/react-native-video`)
   - "react-native-voice (from `../node_modules/@react-native-voice/voice`)"
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -701,6 +707,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-video:
+    :path: "../node_modules/react-native-video"
   react-native-voice:
     :path: "../node_modules/@react-native-voice/voice"
   React-NativeModulesApple:
@@ -795,6 +803,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 194e32c6aab382d88713ad3dd0025c5f5c4ee072
   React-logger: cebf22b6cf43434e471dc561e5911b40ac01d289
   react-native-safe-area-context: 0ee144a6170530ccc37a0fd9388e28d06f516a89
+  react-native-video: c26780b224543c62d5e1b2a7244a5cd1b50e8253
   react-native-voice: f5e8eec2278451d0017eb6a30a6ccc726aca34e0
   React-NativeModulesApple: 02e35e9a51e10c6422f04f5e4076a7c02243fff2
   React-perflogger: e3596db7e753f51766bceadc061936ef1472edc3

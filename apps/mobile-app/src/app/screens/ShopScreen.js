@@ -137,6 +137,11 @@ function ShopScreen({ navigation }) {
             </View>
           </View>
         }
+        ListFooterComponent={
+          <View style={{padding: 20 }}>
+            <Text style>That's all we got!, stay tuned for more items soon!</Text>
+          </View>
+        }
         data={collectionsData}
         renderItem={({ item }) => {
           return (
