@@ -6,8 +6,8 @@ const AppDataSource = new DataSource({
   username: 'yourusername',
   password: 'yourpassword',
   database: 'medusa_db',
-  entities: ['src/models/*.ts'],
-  migrations: ['src/migrations/*.js'],
+  entities: ['dist/models/*.js'],
+  migrations: ['dist/migrations/*.js'],
 });
 
 module.exports = {
