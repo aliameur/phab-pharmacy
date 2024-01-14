@@ -49,7 +49,7 @@ export default function OrderRow({ order, setEditOrder }: Props) {
       </td>
       <td className="text-right">
         <button
-          className="opacity-0 group-hover:opacity-100"
+          className="text-xl font-bold opacity-0 group-hover:opacity-100"
           onClick={() => handleEdit(order)}
         >
           &#8942;

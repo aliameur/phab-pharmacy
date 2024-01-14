@@ -15,12 +15,13 @@ export interface Order {
   id: string;
   status: string;
   fulfillment_status: string;
+  payment_status: string;
   cart_id: string;
   customer_id: string;
   email: string;
   created_at: Date;
-  shipping_address: AddressData | null;
-  items: Item[] | null;
+  shipping_address: AddressData;
+  items: Item[];
 }
 
 export interface Item {

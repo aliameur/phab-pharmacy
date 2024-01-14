@@ -21,7 +21,7 @@ export default function ProductsPage() {
       <RedirectLogin />
       <div className="w-full p-16">
         {orders ? (
-          <div className="my-8">
+          <div className="mx-4 my-8">
             <h2 className="text-2xl font-semibold">Customer Orders</h2>
             <div className="my-20">
               <table className="mb-64 table w-full">
@@ -35,7 +35,7 @@ export default function ProductsPage() {
                   </tr>
                 </thead>
                 <tbody className="overflow-y-auto">
-                  {orders?.map((order: Order) => (
+                  {orders?.map((order) => (
                     <OrderRow
                       key={order.id}
                       order={order}
