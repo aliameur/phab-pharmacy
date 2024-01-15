@@ -16,7 +16,7 @@ describe('createCart', () => {
     expect(mockRequestFn).toHaveBeenCalledWith({
       method: 'POST',
       path: '/carts',
-      cache: 'no-cache',
+      cache: 'no-store',
     });
     expect(result).toEqual({ id: 'cart_123' });
   });

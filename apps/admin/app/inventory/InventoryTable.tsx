@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 
+import PlaceOrderForm from './PlaceOrderForm';
 import StockStatusTag from './StockStatusTag';
 
 interface Product {
@@ -11,14 +12,43 @@ interface Product {
   max_quantity: number;
 }
 
+interface Order {
+  orderid: number;
+  products: Product[];
+}
+
 interface Props {
   products: Product[];
   storeLocations: string[];
+  pendingOrders: Order[];
+  location: string;
+  setLocation: (location: string) => void;
 }
 
-export default function InventoryTable({ products, storeLocations }: Props) {
+export default function InventoryTable({
+  products,
+  storeLocations,
+  pendingOrders,
+  location,
+  setLocation,
+}: Props) {
+  const [isOrderFormVisible, setOrderFormVisible] = useState(false);
+
   const [selectedItems, setSelectedItems] = useState([] as number[]);
-  const [location, setLocation] = useState(storeLocations[0]);
+
+  const calculatePendingQuantity = (product: Product) => {
+    const pendingQuantity = pendingOrders.reduce((accumulator, order) => {
+      const productInOrder = order.products.find(
+        (item) => item.id === product.id,
+      );
+      if (productInOrder) {
+        return accumulator + productInOrder.quantity;
+      }
+      return accumulator;
+    }, 0);
+
+    return pendingQuantity;
+  };
 
   const calculateLevel = (product: Product) => {
     const percentage = (product.quantity / product.max_quantity) * 100;
@@ -38,7 +68,7 @@ export default function InventoryTable({ products, storeLocations }: Props) {
   };
 
   const placeOrder = () => {
-    console.log('Order placed for items:', selectedItems);
+    setOrderFormVisible(true);
   };
 
   const handleCheckboxChange = (productId: number) => {
@@ -74,6 +104,7 @@ export default function InventoryTable({ products, storeLocations }: Props) {
             <th></th>
             <th>Name</th>
             <th>Quantity</th>
+            <th>Pending Quantity</th> {/* New column for pending quantity */}
             <th>Level</th>
           </tr>
         </thead>
@@ -90,6 +121,8 @@ export default function InventoryTable({ products, storeLocations }: Props) {
               </td>
               <td>{product.name}</td>
               <td>{product.quantity}</td>
+              <td>{calculatePendingQuantity(product)}</td>{' '}
+              {/* Display pending quantity */}
               <td>
                 <StockStatusTag level={calculateLevel(product)} />
               </td>
@@ -99,17 +132,27 @@ export default function InventoryTable({ products, storeLocations }: Props) {
       </table>
 
       <div className="mt-4 flex justify-end">
-        <button className="btn btn-secondary m-2" onClick={selectLowAndMedium}>
+        <button
+          className="btn m-2 bg-sky-900 text-white"
+          onClick={selectLowAndMedium}
+        >
           Select Low & Medium Items
         </button>
         <button
-          className="btn btn-primary m-2"
+          className="btn m-2 bg-amber-900 text-white"
           onClick={placeOrder}
           disabled={selectedItems.length === 0}
         >
           Place Order
         </button>
       </div>
+      {isOrderFormVisible && (
+        <PlaceOrderForm
+          selectedItems={selectedItems}
+          products={products}
+          onClose={() => setOrderFormVisible(false)}
+        />
+      )}
     </div>
   );
 }

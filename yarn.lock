@@ -4212,6 +4212,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@medusajs/medusa-js@npm:*":
+  version: 6.1.5
+  resolution: "@medusajs/medusa-js@npm:6.1.5"
+  dependencies:
+    axios: ^0.24.0
+    cross-env: ^5.2.1
+    qs: ^6.10.3
+    retry-axios: ^2.6.0
+    uuid: ^9.0.0
+  peerDependencies:
+    "@medusajs/medusa": ^1.17.2
+  checksum: 414068a2783ace07014e0978fd91cc48d63f5b91eb01654f2c4d30baef7ace0b19be47ab0069e662396aaccd3a19649aaacc3d483c46b84a6c08cd8945aaac73
+  languageName: node
+  linkType: hard
+
 "@medusajs/medusa-js@npm:^6.1.4":
   version: 6.1.4
   resolution: "@medusajs/medusa-js@npm:6.1.4"
@@ -6039,6 +6054,7 @@ __metadata:
     medusa-payment-manual: ^1.0.24
     medusa-payment-stripe: ^6.0.7
     medusa-plugin-algolia: ^0.2.20
+    medusa-react: ^9.0.13
     metro: 0.76.8
     metro-babel-register: 0.76.8
     metro-config: 0.76.8
@@ -18757,6 +18773,20 @@ __metadata:
     "@medusajs/utils": ^1.9.4
     algoliasearch: ^4.15.0
   checksum: 8c9de907ba3ef52b29b60baad28436adea47f0fbb57762b5cb2a68d13f8a1f201556b76cba0f2bce461019561100d20c9204a890cf56349bcd808b2f7497ce54
+  languageName: node
+  linkType: hard
+
+"medusa-react@npm:^9.0.13":
+  version: 9.0.13
+  resolution: "medusa-react@npm:9.0.13"
+  dependencies:
+    "@medusajs/medusa-js": "*"
+  peerDependencies:
+    "@medusajs/medusa": ^1.17.2
+    "@tanstack/react-query": ^4.22.0
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  checksum: a9ec5aeacce12fcfc34e4372293bceb945acc86dcec16576116fd4c9cbe4c35d76a205337cc2e8d04b487dda1d87bd746048e9cc4f5a1bdba6a171eb585f9b39
   languageName: node
   linkType: hard
 

@@ -3,10 +3,10 @@ import Link from 'next/link';
 
 export default function Sidebar() {
   return (
-    <div className="sidebar bg-base-200 flex h-screen w-0 flex-col justify-between overflow-x-hidden shadow-2xl transition-all duration-300 ease-in-out">
+    <div className="sidebar bg-base-200 flex h-screen w-0 flex-col justify-between overflow-x-hidden transition-all duration-300 ease-in-out">
       <div
         id="sidebarLogo"
-        className="logo sidebar-logo flex h-48 w-64 items-center justify-center pt-8"
+        className="logo sidebar-logo flex h-48 w-full items-center justify-center pt-8"
       >
         <Image
           src="logo.svg"
@@ -17,7 +17,7 @@ export default function Sidebar() {
         />
       </div>
       <ul
-        className="menu text-base-content invisible h-screen p-4 transition-opacity duration-300"
+        className="menu text-base-content invisible mt-8 h-screen p-4 transition-opacity duration-300"
         style={{ minWidth: '20rem' }}
       >
         <li key="products">
