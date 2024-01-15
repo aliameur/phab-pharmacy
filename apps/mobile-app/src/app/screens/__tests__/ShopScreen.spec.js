@@ -61,4 +61,17 @@ describe('ShopScreen', () => {
 
     expect(navigationMock.navigate).toHaveBeenCalledWith('Chat');
   });
+
+  it('navigates to the Checkout screen when the chat button is pressed', () => {
+    const navigationMock = {
+      setOptions: jest.fn(),
+      navigate: jest.fn(),
+    };
+    const { getByTestId } = render(<ShopScreen navigation={navigationMock} />);
+    const chatButton = getByTestId('cart-button');
+
+    fireEvent.press(chatButton);
+
+    expect(navigationMock.navigate).toHaveBeenCalledWith('Cart');
+  });
 });

@@ -11,6 +11,8 @@ import colours from '../colours';
 import { ShopContext } from '../contexts/ShopContext';
 import { checkKeychain } from '../scripts/AuthScript';
 
+//UserCheckScreen.js performs checks before loading the user into the app. 
+
 function UserCheckScreen({ navigation }) {
     const { loadNumberCart, loadCartData } = useContext(ShopContext);
     useEffect(() => {

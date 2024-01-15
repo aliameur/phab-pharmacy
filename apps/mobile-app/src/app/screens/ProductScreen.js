@@ -20,6 +20,8 @@ import { ShopContext } from '../contexts/ShopContext';
 import { addToCart } from '../scripts/CartScripts';
 import { searchProducts } from '../scripts/ShopScript';
 
+//ProductScreen.js is the screen shown for a more detailed look at products
+
 function ProductScreen({ route }) {
     const { data } = route.params;
     const { loadNumberCart, loadCartData } = useContext(ShopContext);

@@ -21,6 +21,8 @@ import colours from '../colours';
 import { ShopContext } from '../contexts/ShopContext';
 import { login } from '../scripts/AuthScript';
 
+//LoginScreen.js USER auth using AuthScripts.js
+
 function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

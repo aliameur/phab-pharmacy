@@ -9,6 +9,7 @@ import {
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import colours from '../colours';
 
+//PaymentSuccessScreen.js is the screen displayed on success of stripe payment
 
 function PaymentSuccessScreen({ navigation }) {
 

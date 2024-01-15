@@ -26,6 +26,9 @@ import { searchProducts, getProductByHandler } from '../scripts/ShopScript';
 import { addToCart } from '../scripts/CartScripts';
 import { ShopContext } from '../contexts/ShopContext';
 
+//ChatScreen.js gives LLM chatbot inference for user alongisde product selection engine integrated
+//CITATIONS: https://docs.medusajs.com, https://www.npmjs.com/package/react-native-video, https://reactnative.dev/docs/t
+
 function ChatScreen({ navigation }) {
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState('');
@@ -155,6 +158,7 @@ function ChatScreen({ navigation }) {
 
   const addLLMProductToCart = async (product) => {
       response = await searchProducts(product);
+      console.log(response);
       product = await getProductByHandler(response[0].handle);
       console.log(product['variants'][0]['id'])
       await addToCart(product['variants'][0]['id'], 1);
