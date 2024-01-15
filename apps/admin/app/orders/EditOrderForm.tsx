@@ -74,18 +74,11 @@ export default function EditOrderForm({ orderBase, onClose }: Props) {
     }
   };
 
-  const formatDateTime = (datetime: Date | undefined) => {
-    if (!datetime) return '';
-
-    const date = new Date(datetime);
-    return date.toLocaleString();
-  };
-
   const renderAddress = (address: AddressData | undefined) => {
     if (!address) return <span>Not provided</span>;
 
     return (
-      <div className="p-4">
+      <div className="max-h-40 overflow-y-auto p-4">
         {address.first_name} {address.last_name}
         <br />
         {address.address_1}
@@ -114,22 +107,24 @@ export default function EditOrderForm({ orderBase, onClose }: Props) {
     if (!items || items.length === 0) return <span>No items</span>;
 
     return (
-      <table className="table w-full">
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th>Quantity</th>
-          </tr>
-        </thead>
-        <tbody>
-          {items.map((item: Item) => (
-            <tr key={item.id}>
-              <td>{item.title}</td>
-              <td>{item.quantity}</td>
+      <div className="max-h-40 overflow-y-auto">
+        <table className="table w-full">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Quantity</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {items.map((item: Item) => (
+              <tr key={item.id}>
+                <td>{item.title}</td>
+                <td>{item.quantity}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     );
   };
 
@@ -139,7 +134,7 @@ export default function EditOrderForm({ orderBase, onClose }: Props) {
       onClick={(e) => e.currentTarget === e.target && onClose()}
     >
       <div
-        className="mx-auto max-w-md rounded-lg bg-gray-800 p-6"
+        className="max-h-128 mx-auto overflow-y-auto rounded-lg bg-gray-800 p-6"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mb-4 flex items-center justify-between">
@@ -151,11 +146,6 @@ export default function EditOrderForm({ orderBase, onClose }: Props) {
           <div className="flex flex-col">
             <label className="text-gray-300">Order ID:</label>
             <span className="mt-1">{order?.id}</span>
-          </div>
-
-          <div className="flex flex-col">
-            <label className="text-gray-300">Created At:</label>
-            <span className="mt-1">{formatDateTime(order?.created_at)}</span>
           </div>
 
           <div className="flex flex-col">
@@ -174,7 +164,7 @@ export default function EditOrderForm({ orderBase, onClose }: Props) {
           </div>
 
           <div className="flex flex-col">
-            <label className=" text-gray-300">
+            <label className="text-gray-300">
               Payment Status: <span>{order?.payment_status}</span>
             </label>
           </div>
