@@ -11,6 +11,7 @@ export const env = createEnv({
     NEXT_PUBLIC_SEARCH_APP_ID: z.string().min(1),
     NEXT_PUBLIC_SEARCH_API_KEY: z.string().min(1),
     NEXT_PUBLIC_INDEX_NAME: z.string().min(1),
+    NEXT_PUBLIC_STRIPE_KEY: z.string().min(1),
   },
   // For Next.js >= 13.4.4, you only need to destructure client variables:
   experimental__runtimeEnv: {
@@ -18,5 +19,6 @@ export const env = createEnv({
     NEXT_PUBLIC_SEARCH_APP_ID: process.env.NEXT_PUBLIC_SEARCH_APP_ID,
     NEXT_PUBLIC_SEARCH_API_KEY: process.env.NEXT_PUBLIC_SEARCH_API_KEY,
     NEXT_PUBLIC_INDEX_NAME: process.env.NEXT_PUBLIC_INDEX_NAME,
+    NEXT_PUBLIC_STRIPE_KEY: process.env.NEXT_PUBLIC_STRIPE_KEY,
   },
 });

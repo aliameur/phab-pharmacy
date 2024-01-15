@@ -23,7 +23,7 @@ describe('updateCartLineItem', () => {
       body: {
         quantity: 3,
       },
-      cache: 'no-cache',
+      cache: 'no-store',
     });
     expect(result).toEqual({ id: 'cart_123' });
   });
