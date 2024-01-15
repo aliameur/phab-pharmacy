@@ -6,8 +6,19 @@ export interface Location {
   updated_at: string | Date;
 }
 
+export interface ItemMetadata {
+  MaxStock: number;
+}
+
+export interface Variant {
+  id: string;
+  title: string;
+  inventory_quantity: number;
+  metadata: ItemMetadata;
+}
+
 export interface Item {
   sku: string | null;
   id: string;
-  stocked_quantity: number;
+  variants: Variant[];
 }
