@@ -31,7 +31,9 @@ export const Carousel = ({
     <div
       className={cn(
         'flex grow overflow-hidden',
-        { 'flex-col': direction !== 'left' },
+        {
+          'flex-col': direction !== 'left',
+        },
         className,
       )}
     >
@@ -45,7 +47,7 @@ export const Carousel = ({
             repeat: Infinity,
             ease: 'linear',
           }}
-          className={cn('', {
+          className={cn('flex', {
             'flex-col': direction !== 'left',
           })}
         >

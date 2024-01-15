@@ -15,7 +15,7 @@ export const Hero = async () => {
           Your One-Stop Online Wellness Shop
         </h1>
         <p className="text-center text-xl lg:text-left">
-          Find all your healthcare needs with ease. Just type and search below.
+          Find all your healthcare needs with ease. Discover categories below or press on search at the top.
         </p>
       </div>
       <div className="hidden flex-col sm:flex lg:h-full lg:w-1/2">
