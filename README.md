@@ -9,6 +9,7 @@ Phab Pharmacy
 
 This repo contains the source code for the following projects:
 
+- [admin-dashboard](https://github.com/aliameur/phab-pharmacy/tree/main/apps/admin)
 - [online-store](https://github.com/aliameur/phab-pharmacy/tree/main/apps/online-store)
 - [mobile-app](https://github.com/aliameur/phab-pharmacy/tree/main/apps/mobile-app)
 - [backend](https://github.com/aliameur/phab-pharmacy/tree/main/apps/backend)
@@ -39,11 +40,10 @@ We recommend installing the NX CLI globally. This is not required, but it will m
 
 We also recommend installing the [Nx Console extensions](https://nx.dev/nx-console). It provides autocomplete and UI for running tasks and generators (available for both VS Code and Jetbrains).
 
-
 ### Set up the workspace
 
-
 1. Clone the repo:
+
 ```bash
 # Using the official GitHub CLI
 $ gh repo clone aliameur/phab-pharmacy
@@ -53,12 +53,14 @@ $ git clone https://github.com/aliameur/phab-pharmacy.git
 ```
 
 2. Install the dependencies:
+
 ```bash
 $ cd phab-pharmacy
 $ yarn
 ```
 
 3. Populate environment variables
+
 ```bash
 $ cp apps/backend/.env.template apps/backend/.env
 $ cp apps/online-store/.env.template apps/online-store/.env
@@ -67,28 +69,30 @@ $ cp apps/online-store/.env.template apps/online-store/.env
 ### Start the backend
 
 ```bash
-$ nx serve backend 
+$ nx serve backend
 ```
-The backend should be running at http://localhost:9000  
+
+The backend should be running at http://localhost:9000
 
 ### Start the online-store
 
 ```bash
-$ nx serve online-store 
+$ nx serve online-store
 ```
+
 The online store should be running at http://localhost:4200.
 
 ### Start the mobile-app
 
 ```bash
 $ nx run-ios mobile-app # for ios
-$ nx run-android mobile-app # for android 
+$ nx run-android mobile-app # for android
 ```
 
 ### Start the admin
 
 ```bash
-$ nx serve admin 
+$ nx serve admin
 ```
 
 The admin panel should be running at http://localhost:4300.
@@ -99,10 +103,9 @@ The admin panel should be running at http://localhost:4300.
 
 ## Set up Nx Cloud
 
-Run `nx connect` to benefit from remote caching and task distribution. 
+Run `nx connect` to benefit from remote caching and task distribution.
 
 ✨ **Nx saved over 4hrs of compute time as of Jan 6.** ✨
-
 
 ## 📚 Docs
 
