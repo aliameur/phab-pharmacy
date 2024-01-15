@@ -4,7 +4,7 @@ import { BeforeInsert, Column, Entity, OneToMany } from 'typeorm';
 
 import { RestockOrderDetail } from './restock-order-detail';
 
-enum OrderStatus {
+export enum OrderStatus {
   PENDING = 'PENDING',
   DELIVERED = 'DELIVERED',
 }
@@ -16,8 +16,8 @@ export class RestockOrder extends BaseEntity {
     this.id = generateEntityId(this.id, 'restock_order');
   }
 
-  @Column({ type: 'timestamp with time zone' })
-  order_time: Date;
+  @Column({ type: 'int' })
+  wholesaler_order_id: number;
 
   @Column({
     type: 'enum',
