@@ -17,6 +17,11 @@ const nextConfig = {
         hostname: 'medusa-public-images.s3.eu-west-1.amazonaws.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'phab-server1.s3.eu-north-1.amazonaws.com',
+        pathname: '/**',
+      },
     ],
   },
 };
