@@ -60,9 +60,11 @@ export default function CheckoutScreen({ navigation }) {
         if (shippingData) {
             setPaymenetLoading(true);
             response = await addShippingAddressToOrder(shippingData);
-            if (response) {
+            if (response[0]) {
+                cart = response[1]
                 const billingDetails = {
-                    email: 'jenny.rosen@example.com',
+                    email: cart.email,
+                    customer_id: cart.customer_id,
                 };
                 const clientSecret = await setStripePaymentSession();
                 const {paymentIntent, error} = await confirmPayment(clientSecret, {

@@ -158,6 +158,7 @@ function ChatScreen({ navigation }) {
 
   const addLLMProductToCart = async (product) => {
       response = await searchProducts(product);
+      console.log(response);
       product = await getProductByHandler(response[0].handle);
       console.log(product['variants'][0]['id'])
       await addToCart(product['variants'][0]['id'], 1);

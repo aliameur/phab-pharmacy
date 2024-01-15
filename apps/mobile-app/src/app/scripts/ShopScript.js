@@ -48,6 +48,7 @@ const searchProducts = async (searchText) => {
         response = await axios.post(`${BASE_URL}/store/products/search`, {
             q: searchText
         });
+        console.log('Response: ', response.data.hits)
         return response.data.hits;
     } catch (error) {
         console.log('Error: ', error)
@@ -114,10 +115,10 @@ const addShippingAddressToOrder = async (address) => {
         })
     } catch (error){
         console.log('Error Adding Shipping to Order', error.response.data.message)
-        return false
+        return [false, response]
     }
     console.log('Shipping Address added to Cart');
-    return true
+    return [true, response]
 }
 
 

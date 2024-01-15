@@ -42,7 +42,7 @@ const completeCart = async () => {
         const response = await axios.post(`${BASE_URL}/store/carts/${cart_id}/complete`);
         console.log(response.data.type)
         if (response.data.type === 'order'){
-            console.log('Sucessful Order', response.data)
+            console.log('Sucessful Order')
             const creds = await Keychain.getGenericPassword({ service });
             await createCart(creds);
             return true;

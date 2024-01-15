@@ -10,6 +10,9 @@ This section contains the source code for the following projects:
 
 - [mobile-app](https://github.com/aliameur/phab-pharmacy/tree/main/apps/mobile-app)
 
+# Demo
+[Click here to watch the video](https://phab-server1.s3.eu-north-1.amazonaws.com/RPReplay_Final1705303068.MP4)
+
 ## Getting Started
 
 ### Requirements
