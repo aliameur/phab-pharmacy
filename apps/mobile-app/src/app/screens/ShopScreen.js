@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import {
   Button,
   Dimensions,
@@ -17,6 +18,10 @@ import ShopCarousel from '../components/ShopCarousel';
 import UserMenuSheet from '../components/UserMenuSheet';
 import { ShopContext } from '../contexts/ShopContext';
 import { getStoreCategories } from '../scripts/ShopScript';
+
+//ShopScreen.js is the home and main page of the app containing 
+//   navigation points to all most all screens and displaying all products
+//CITATIONS: https://www.npmjs.com/package/react-native-reanimated-carousel, OPENAI CHATGPT
 
 function ShopScreen({ navigation }) {
   const [isMenuModalVisible, setMenuModalVisible] = useState(false);
@@ -134,6 +139,11 @@ function ShopScreen({ navigation }) {
                 />
               </TouchableOpacity>
             </View>
+          </View>
+        }
+        ListFooterComponent={
+          <View style={{padding: 20 }}>
+            <Text style>That's all we got!, stay tuned for more items soon!</Text>
           </View>
         }
         data={collectionsData}

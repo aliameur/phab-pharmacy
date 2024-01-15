@@ -1,17 +1,17 @@
 'use client';
 
-import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { TProduct } from '@phab/types';
 import { cn } from '@phab/utils';
 
 type TCarousel = {
   direction: 'up' | 'down' | 'left';
   offset?: number;
   className?: string;
-  products: PricedProduct[];
+  products: TProduct[];
 };
 export const Carousel = ({
   direction,
@@ -31,28 +31,36 @@ export const Carousel = ({
     <div
       className={cn(
         'flex grow overflow-hidden',
-        { 'flex-col': direction !== 'left' },
+        {
+          'flex-col': direction !== 'left',
+        },
         className,
       )}
     >
-      {[...products, ...products, ...products, ...products].map(
-        (product, idx) =>
-          product.thumbnail ? (
-            <motion.div
-              key={idx}
-              initial={{ y: yInitial, x: xInitial }}
-              animate={{ y: yAnimate, x: xAnimate }}
-              transition={{
-                duration: 10,
-                repeat: Infinity,
-                ease: 'linear',
-              }}
-              className={direction === 'left' ? 'pr-4' : 'pb-4'}
-            >
-              <Link href={`/products/${product.handle}`}>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <motion.div
+          key={i}
+          initial={{ y: yInitial, x: xInitial }}
+          animate={{ y: yAnimate, x: xAnimate }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: 'linear',
+          }}
+          className={cn('flex', {
+            'flex-col': direction !== 'left',
+          })}
+        >
+          {products.map((product) =>
+            product.thumbnail ? (
+              <Link
+                key={product.id}
+                href={`/products/${product.handle}`}
+                className={direction === 'left' ? 'pr-4' : 'pb-4'}
+              >
                 <div
                   style={{ transform: `translateY(${offset}px)` }}
-                  className={cn('relative aspect-[10/11] bg-norway-300', {
+                  className={cn('relative aspect-[10/11]', {
                     'h-64': direction === 'left',
                   })}
                 >
@@ -64,9 +72,10 @@ export const Carousel = ({
                   />
                 </div>
               </Link>
-            </motion.div>
-          ) : null,
-      )}
+            ) : null,
+          )}
+        </motion.div>
+      ))}
     </div>
   );
 };

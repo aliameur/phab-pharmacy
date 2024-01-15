@@ -1,3 +1,4 @@
+"use client"
 import { useRouter } from 'next/navigation';
 import {
   ChangeEvent,
@@ -18,7 +19,7 @@ export type ControlledSearchBoxProps = ComponentProps<'div'> & {
   onChange(event: ChangeEvent): void;
   onReset(event: FormEvent): void;
   onSubmit?(event: FormEvent): void;
-  close: () => void;
+  close?: () => void;
   placeholder?: string;
   value: string;
 };

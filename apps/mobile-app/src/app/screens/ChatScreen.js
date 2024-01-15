@@ -1,5 +1,5 @@
 import Voice from '@react-native-voice/voice';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import {
   ActivityIndicator,
   Dimensions,
@@ -8,6 +8,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
+  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
@@ -20,6 +21,13 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import colours from '../colours';
 import ActionSheet from '../components/ActionSheet';
 import UserMenuSheet from '../components/UserMenuSheet';
+import  MapSheet  from '../components/MapSheet';
+import { searchProducts, getProductByHandler } from '../scripts/ShopScript';
+import { addToCart } from '../scripts/CartScripts';
+import { ShopContext } from '../contexts/ShopContext';
+
+//ChatScreen.js gives LLM chatbot inference for user alongisde product selection engine integrated
+//CITATIONS: https://docs.medusajs.com, https://www.npmjs.com/package/react-native-video, https://reactnative.dev/docs/t
 
 function ChatScreen({ navigation }) {
   const [messages, setMessages] = useState([]);
@@ -29,6 +37,11 @@ function ChatScreen({ navigation }) {
   const [recording, setRecording] = useState();
   const [isMenuModalVisible, setMenuModalVisible] = useState(false);
   const [isActionSheetNum, setIsActionSheetNum] = useState(0);
+  const [isMapSheetNum, setMapSheetNum] = useState(0);
+  const [isMapSheetVisible, setMapSheetVisbile] = useState(false);
+  const [location, setLocation] = useState('');
+  const [product, setProduct] = useState('');
+  const { loadCartData, loadNumberCart } = useContext(ShopContext);
 
   const scrollToBottom = () => {
     if (flatListRef.current) {
@@ -109,12 +122,25 @@ function ChatScreen({ navigation }) {
         }),
       });
       const jsonData = await response.json();
-      const newResponse = {
-        id: messages.length + 2,
-        content: jsonData.message,
-        fromUser: false,
-        location: jsonData.location,
-      };
+      if (jsonData.location === 'None' ){
+        newResponse = {
+          id: messages.length + 2,
+          content: jsonData.message,
+          fromUser: false,
+          location: jsonData.location,
+        };
+      } else{
+        console.log('Product', jsonData.product)
+        setLocation(jsonData.location);
+        setProduct(jsonData.product);
+        newResponse = {
+          id: messages.length + 2,
+          content: jsonData.message,
+          fromUser: false,
+          location: jsonData.location,
+          product: jsonData.product
+        };
+      }
       setMessages((prevMessages) => [...prevMessages, newResponse]);
     } catch (error) {
       console.log('Error posting data: ', error);
@@ -130,6 +156,17 @@ function ChatScreen({ navigation }) {
     }
   };
 
+  const addLLMProductToCart = async (product) => {
+      response = await searchProducts(product);
+      console.log(response);
+      product = await getProductByHandler(response[0].handle);
+      console.log(product['variants'][0]['id'])
+      await addToCart(product['variants'][0]['id'], 1);
+      await loadNumberCart();
+      await loadCartData();
+      console.log('Added', product.title);
+  }
+
   const sendMessage = () => {
     handleMessageCreation();
   };
@@ -142,9 +179,25 @@ function ChatScreen({ navigation }) {
     setIsActionSheetNum(0);
   };
 
+  const showMessageMapSheet = (id) => {
+    setMapSheetNum(id);
+  };
+
+  const hideMessageMapSheet = () => {
+    setMapSheetNum(0);
+  };
+
   const hideUserSheet = () => {
     setMenuModalVisible(false);
   };
+
+  const showMapSheet = () => {
+    setMapSheetVisbile(true);
+  }
+
+  const hideMapSheet = () => {
+    setMapSheetVisbile(false);
+  }
 
   async function startRecording() {
     Voice.start('en-US');
@@ -164,55 +217,46 @@ function ChatScreen({ navigation }) {
   }
 
   return (
-    <KeyboardAvoidingView
-      style={{ flex: 1, backgroundColor: colours.LogoColours.cream }}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 65 : -200}
-    >
-      {isMenuModalVisible ? (
-        <UserMenuSheet
-          onClose={hideUserSheet}
-          visible={isMenuModalVisible}
-          navigation={navigation}
-        />
-      ) : null}
-      <View style={styles.messagesView}>
-        <FlatList
-          ref={flatListRef}
-          style={styles.messagesView}
-          data={messages}
-          keyExtractor={(item, index) => index.toString()}
-          inverted={false}
-          onContentSizeChange={scrollToBottom}
-          renderItem={({ item }) => {
-            if (item.fromUser) {
-              return (
-                <View style={styles.messageContainer}>
-                  <TouchableOpacity
-                    onPress={() => showMessageActionSheet(item.id)}
-                  >
-                    <View style={styles.messageBlock}>
-                      <Text style={styles.message}>{item.content}</Text>
-                      {item.id === isActionSheetNum ? (
-                        <ActionSheet
-                          visible={item.id === isActionSheetNum}
-                          message={item.content}
-                          onClose={hideMessageActionSheet}
-                        />
-                      ) : null}
-                    </View>
-                  </TouchableOpacity>
-                </View>
-              );
-            } else {
-              if (item.location === 'None') {
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+      <KeyboardAvoidingView
+        style={{ flex: 1, backgroundColor: colours.LogoColours.cream }}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : -200}
+      >
+        {isMenuModalVisible ? (
+          <UserMenuSheet
+            onClose={hideUserSheet}
+            visible={isMenuModalVisible}
+            navigation={navigation}
+          />
+        ) : null}
+        {isMapSheetVisible ? (
+          <MapSheet 
+            visible={isMapSheetVisible}
+            onClose={hideMapSheet}
+            location={location}
+            product={product}
+          />
+        ) : (
+          null
+        )}
+        <View style={styles.messagesView}>
+          <FlatList
+            ref={flatListRef}
+            style={styles.messagesView}
+            data={messages}
+            keyExtractor={(item, index) => index.toString()}
+            inverted={false}
+            onContentSizeChange={scrollToBottom}
+            renderItem={({ item }) => {
+              if (item.fromUser) {
                 return (
-                  <View style={styles.responseContainer}>
+                  <View style={styles.messageContainer}>
                     <TouchableOpacity
                       onPress={() => showMessageActionSheet(item.id)}
                     >
-                      <View style={styles.responseBlock}>
-                        <Text style={styles.response}>{item.content}</Text>
+                      <View style={styles.messageBlock}>
+                        <Text style={styles.message}>{item.content}</Text>
                         {item.id === isActionSheetNum ? (
                           <ActionSheet
                             visible={item.id === isActionSheetNum}
@@ -225,98 +269,134 @@ function ChatScreen({ navigation }) {
                   </View>
                 );
               } else {
-                return (
-                  <View style={styles.responseContainer}>
-                    <TouchableOpacity onPress={() => showMessageActionSheet(item.id)}>
-                      <View style={styles.responseBlock}>
-                        <Text style={styles.response}>{item.content}</Text>
-                        {item.id === isActionSheetNum ? (
-                          <ActionSheet
-                            visible={item.id === isActionSheetNum}
-                            message={item.content}
-                            onClose={hideMessageActionSheet}
+                if (item.location === 'None') {
+                  return (
+                    <View style={styles.responseContainer}>
+                      <TouchableOpacity
+                        onPress={() => showMessageActionSheet(item.id)}
+                      >
+                        <View style={styles.responseBlock}>
+                          <Text style={styles.response}>{item.content}</Text>
+                          {item.id === isActionSheetNum ? (
+                            <ActionSheet
+                              visible={item.id === isActionSheetNum}
+                              message={item.content}
+                              onClose={hideMessageActionSheet}
+                            />
+                          ) : null}
+                        </View>
+                      </TouchableOpacity>
+                    </View>
+                  );
+                } else {
+                  return (
+                    <View style={styles.responseContainer}>
+                      <TouchableOpacity onPress={() => showMessageActionSheet(item.id)}>
+                        <View style={styles.responseBlock}>
+                          <Text style={styles.response}>{item.content}</Text>
+                          {item.id === isActionSheetNum ? (
+                            <ActionSheet
+                              visible={item.id === isActionSheetNum}
+                              message={item.content}
+                              onClose={hideMessageActionSheet}
+                            />
+                          ) : null}
+                        </View>
+                      </TouchableOpacity>
+                      <View style={{flexDirection: 'row', marginRight: '25%', justifyContent: 'center', alignItems:'center'}}>
+                        <View style={[styles.addToCartBlock, {flex: 5}]}>
+                          <Text style={{textAlign: 'center'}}>Click to see more details about {item.product}. </Text>
+                        </View>
+                        <TouchableOpacity style={[styles.addToCartBlock, {flex: 1, justifyContent: 'center', alignItems:'center'}]} 
+                          onPress={() => addLLMProductToCart(item.product)}
+                        >
+                          <FontAwesome name="shopping-cart" size={35} />
+                        </TouchableOpacity>
+                      </View> 
+                      <TouchableOpacity style={[styles.responseBlock, {backgroundColor: colours.TailWindColors.norway[200]}]}
+                        onPress={() => showMessageMapSheet(item.id)}
+                      >
+                        <Text>For in store details please click here.</Text>
+                      </TouchableOpacity>
+                      {item.id === isMapSheetNum ? (
+                          <MapSheet
+                            visible={item.id === isMapSheetNum}
+                            location={item.location}
+                            product={item.product}
+                            onClose={hideMessageMapSheet}
                           />
                         ) : null}
-                      </View>
-                    </TouchableOpacity>
-                    <View style={styles.responseBlock}>
-                      <Image
-                        style={styles.image}
-                        source={{
-                          uri: 'https://i.ibb.co/4P5w20Z/paddington.jpg',
-                        }}
-                      />
                     </View>
-                  </View>
-                );
+                  );
+                }
               }
-            }
-          }}
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <TextInput
-          ref={textInputref}
-          style={styles.input}
-          value={currentMessage}
-          clearButtonMode="while-editing"
-          multiline
-          returnKeyType="done"
-          onChangeText={(text) => {
-            if (text.endsWith('\n')) {
-              setCurrentMessage(text.slice(0, -1));
-              Keyboard.dismiss();
-            } else {
-              setCurrentMessage(text);
-              scrollToBottom();
-            }
-          }}
-          placeholder="Type a message"
-        />
-        {(currentMessage != '') & !recording ? (
-          <TouchableOpacity
-            onPress={() => {
-              Keyboard.dismiss();
-              setTimeout(() => {
-                sendMessage();
-              }, 100);
             }}
-            style={styles.sendButton}
-          >
-            <Text
-              style={{
-                fontSize: 0.05 * Dimensions.get('window').width,
-                color: colours.LogoColours.green,
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            ref={textInputref}
+            style={styles.input}
+            value={currentMessage}
+            clearButtonMode="while-editing"
+            multiline
+            returnKeyType="done"
+            onChangeText={(text) => {
+              if (text.endsWith('\n')) {
+                setCurrentMessage(text.slice(0, -1));
+                Keyboard.dismiss();
+              } else {
+                setCurrentMessage(text);
+                scrollToBottom();
+              }
+            }}
+            placeholder="Type a message"
+          />
+          {(currentMessage != '') & !recording ? (
+            <TouchableOpacity
+              onPress={() => {
+                Keyboard.dismiss();
+                setTimeout(() => {
+                  sendMessage();
+                }, 100);
               }}
+              style={styles.sendButton}
             >
-              Send
-            </Text>
-          </TouchableOpacity>
-        ) : recording ? (
-          <TouchableOpacity
-            style={styles.iconMicButton}
-            onPress={stopRecording}
-          >
-            <FontAwesome
-              name="stop-circle"
-              size={30}
-              color={colours.LogoColours.green}
-            />
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity
-            style={styles.iconMicButton}
-            onPress={startRecording}
-          >
-            <FontAwesome
-              name="microphone"
-              size={30}
-              color={colours.LogoColours.green}
-            />
-          </TouchableOpacity>
-        )}
-      </View>
-    </KeyboardAvoidingView>
+              <Text
+                style={{
+                  fontSize: 0.05 * Dimensions.get('window').width,
+                  color: colours.LogoColours.green,
+                }}
+              >
+                Send
+              </Text>
+            </TouchableOpacity>
+          ) : recording ? (
+            <TouchableOpacity
+              style={styles.iconMicButton}
+              onPress={stopRecording}
+            >
+              <FontAwesome
+                name="stop-circle"
+                size={30}
+                color={colours.LogoColours.green}
+              />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              style={styles.iconMicButton}
+              onPress={startRecording}
+            >
+              <FontAwesome
+                name="microphone"
+                size={30}
+                color={colours.LogoColours.green}
+              />
+            </TouchableOpacity>
+          )}
+        </View>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 
@@ -328,10 +408,6 @@ const styles = StyleSheet.create({
     flex: 10,
     marginBottom: 3,
     backgroundColor: colours.LogoColours.cream,
-  },
-  image: {
-    width: 260,
-    height: 200,
   },
   message: {
     color: colours.LogoColours.cream,
@@ -363,6 +439,14 @@ const styles = StyleSheet.create({
     backgroundColor: colours.LogoColours.logo_cream,
     borderRadius: 15,
     marginRight: '25%',
+  },
+  addToCartBlock: {
+    padding: 10,
+    borderColor: 'black',
+    borderWidth: 2,
+    margin: 10,
+    backgroundColor: colours.TailWindColors['mineral-green'][200],
+    borderRadius: 15,
   },
   messageContainer: {
     flex: 1,

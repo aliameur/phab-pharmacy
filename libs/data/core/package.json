@@ -4,7 +4,8 @@
   "dependencies": {
     "tslib": "^2.3.0",
     "@medusajs/medusa": "^1.19.0",
-    "@medusajs/types": "^1.11.9"
+    "@medusajs/types": "^1.11.9",
+    "@phab/types": "*"
   },
   "type": "commonjs",
   "main": "./src/index.js",

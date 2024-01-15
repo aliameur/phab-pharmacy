@@ -13,9 +13,9 @@ import { NavLink } from './link';
 import { Menubar } from './menubar';
 
 const featuredLinks = [
-  { name: 'Cold and Flu', href: '/categories/cold-and-flu' },
-  { name: 'Skin Care', href: '/categories/skin-care' },
-  { name: 'Headaches and Pain Relief', href: '/categories/cold-and-flu' },
+  { name: 'Cold and Flu', href: '/categories/pcat_cold_flu' },
+  { name: 'Skin Care', href: '/categories/pcat_skincare' },
+  { name: 'Headaches and Pain Relief', href: '/categories/pcat_headaches_pain_relief' },
   { name: 'All Products', href: '/store' },
 ];
 

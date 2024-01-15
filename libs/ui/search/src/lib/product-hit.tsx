@@ -7,7 +7,6 @@ export type TProductHit = {
   thumbnail: string;
 };
 export const ProductHit = ({
-  description,
   handle,
   title,
   thumbnail,
@@ -17,7 +16,7 @@ export const ProductHit = ({
       variant="small"
       title={title}
       alt={title}
-      src={thumbnail}
+      src={thumbnail || ''}
       href={`/products/${handle}`}
     />
   );

@@ -3,7 +3,7 @@
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import { Ban, Minus, MoreHorizontal, Plus } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState, useTransition } from 'react';
+import { useMemo, useState, useTransition } from 'react';
 
 import { AnimatedButton } from '@phab/ui/core';
 
@@ -20,18 +20,24 @@ export const AddToCart = ({ product }: TAddToCart) => {
   const [isPending, startTransition] = useTransition();
   const defaultVariantId =
     product.variants.length === 1 ? product.variants[0]?.id : undefined;
-  const variant = product.variants.find(
-    (variant) =>
-      variant.options?.every(
-        (option) =>
-          option.value ===
-          searchParams.get(
-            product.options
-              ?.find((opt) => opt.values.some((v) => v.id === option.id))
-              ?.title.toLowerCase() || '',
+
+  const variant = useMemo(
+    () =>
+      product.variants.find(
+        (variant) =>
+          variant.options?.every(
+            (option) =>
+              option.value ===
+              searchParams.get(
+                product.options
+                  ?.find((opt) => opt.values.some((v) => v.id === option.id))
+                  ?.title.toLowerCase() || '',
+              ),
           ),
       ),
+    [product.variants, product.options, searchParams],
   );
+
   const selectedVariantId = variant?.id || defaultVariantId;
   const title = !variant?.purchasable
     ? 'Out of stock'
@@ -71,14 +77,14 @@ export const AddToCart = ({ product }: TAddToCart) => {
       <AnimatedButton
         aria-label="Add item to cart"
         title={title}
-        disabled={isPending || !variant?.purchasable || !selectedVariantId}
+        disabled={isPending || !selectedVariantId}
         onClick={() => {
           // Safeguard in case someone messes with `disabled` in devtools.
-          if (!variant?.purchasable || !selectedVariantId) return;
+          if (!selectedVariantId) return;
 
           startTransition(async () => {
             await addItem({
-              variantId: variant.id || defaultVariantId,
+              variantId: variant?.id || defaultVariantId,
               quantity: count,
             });
 
@@ -87,7 +93,7 @@ export const AddToCart = ({ product }: TAddToCart) => {
         }}
         className="w-full font-bold uppercase tracking-wider md:max-w-96"
         icon={
-          variant?.purchasable ? (
+          selectedVariantId ? (
             isPending ? (
               <MoreHorizontal className="h-6 w-6 text-pampas-100" />
             ) : (
@@ -98,11 +104,7 @@ export const AddToCart = ({ product }: TAddToCart) => {
           )
         }
       >
-        {variant?.purchasable
-          ? selectedVariantId
-            ? 'Add to Cart'
-            : 'Select a variant'
-          : 'Out Of Stock'}
+        {selectedVariantId ? 'Add to Cart' : 'Select a variant'}
       </AnimatedButton>
     </div>
   );

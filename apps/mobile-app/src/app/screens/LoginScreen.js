@@ -6,6 +6,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
+  SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
@@ -19,6 +20,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import colours from '../colours';
 import { ShopContext } from '../contexts/ShopContext';
 import { login } from '../scripts/AuthScript';
+
+//LoginScreen.js USER auth using AuthScripts.js
 
 function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
@@ -45,6 +48,7 @@ function LoginScreen({ navigation }) {
     };
     
     return(
+      <SafeAreaView style={{flex: 1, backgroundColor: colours.LogoColours.cream}}>
         <KeyboardAvoidingView
         style={styles.mainView}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -111,6 +115,7 @@ function LoginScreen({ navigation }) {
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>
+      </SafeAreaView>
     );
 }
 

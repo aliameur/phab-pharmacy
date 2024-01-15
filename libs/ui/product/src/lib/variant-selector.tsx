@@ -1,9 +1,13 @@
 'use client';
 
-import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
+import { ProductOption } from '@medusajs/medusa';
+import { PricedVariant } from '@medusajs/medusa/dist/types/pricing';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useMemo } from 'react';
 
 import { cn, createUrl } from '@phab/utils';
+
+import { hasNoOptionsOrJustOneOption } from './utils';
 
 type Combination = {
   id: string;
@@ -12,40 +16,47 @@ type Combination = {
 };
 
 type TVariantSelector = {
-  product: PricedProduct;
+  options?: ProductOption[];
+  variants: PricedVariant[];
 };
 
 // inspired from vercel shopify integration
-export const VariantSelector = ({ product }: TVariantSelector) => {
+export const VariantSelector = ({ options, variants }: TVariantSelector) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
 
-  const hasNoOptionsOrJustOneOption =
-    !product.options?.length ||
-    (product.options?.length === 1 && product.options[0]?.values.length === 1);
+  // memoize to prevent recalculating on every render
+  const noOptions = useMemo(
+    () => hasNoOptionsOrJustOneOption(options),
+    [options],
+  );
 
-  if (hasNoOptionsOrJustOneOption) return null;
+  const combinations: Combination[] = useMemo(
+    () =>
+      variants.map((variant) => ({
+        id: variant.id || '',
+        purchasable: variant.purchasable || false,
+        // Adds key / value pairs for each variant (ie. "color": "Black" and "size": 'M").
+        ...(variant.options || []).reduce(
+          (accumulator, option, a, v) => ({
+            ...accumulator,
+            [options
+              ?.find((o) => o.values.some((v) => v.id === option.id))
+              ?.title.toLowerCase() || '']: option.value,
+          }),
+          {},
+        ),
+      })),
+    [options, variants],
+  );
 
-  const combinations: Combination[] = product.variants.map((variant) => ({
-    id: variant.id || '',
-    purchasable: variant.purchasable || false,
-    // Adds key / value pairs for each variant (ie. "color": "Black" and "size": 'M").
-    ...(variant.options || []).reduce(
-      (accumulator, option, a, v) => ({
-        ...accumulator,
-        [product.options
-          ?.find((o) => o.values.some((v) => v.id === option.id))
-          ?.title.toLowerCase() || '']: option.value,
-      }),
-      {},
-    ),
-  }));
+  if (noOptions) return null;
 
   return (
     <div className="flex flex-col gap-4">
-      {product.variants.length > 1 &&
-        (product.options || []).map((option, i) => (
+      {variants.length > 1 &&
+        (options || []).map((option, i) => (
           <div key={option.id}>
             <h4 className="mb-2 font-merriweather text-lg text-mineral-green-600">
               {option.title}
@@ -77,7 +88,7 @@ export const VariantSelector = ({ product }: TVariantSelector) => {
                   optionSearchParams.entries(),
                 ).filter(
                   ([key, val]) =>
-                    product.options?.find(
+                    options?.find(
                       (opt) =>
                         opt.title.toLowerCase() === key &&
                         opt.values.map((v) => v.value).includes(val),

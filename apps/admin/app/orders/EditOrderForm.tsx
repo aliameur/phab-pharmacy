@@ -1,31 +1,131 @@
 'use client';
 
-import React, { useState } from 'react';
+import {
+  useAdminArchiveOrder,
+  useAdminCancelOrder,
+  useAdminCompleteOrder,
+  useAdminOrder,
+} from 'medusa-react';
+import React, { useEffect, useState } from 'react';
 
-interface Order {
-  id: number;
-  name: string;
-  quantity: number;
-  address: string;
-  status: string;
-}
+import CapturePayment from './CapturePayment';
+import { AddressData, Item, Order } from './types';
 
-interface EditOrderProps {
-  order: Order;
-  onSave: (updatedOrder: Order) => void;
+interface Props {
+  orderBase: Order | null;
   onClose: () => void;
 }
 
-export default function EditOrderForm({
-  order,
-  onSave,
-  onClose,
-}: EditOrderProps) {
-  const [status, setStatus] = useState(order.status);
+export default function EditOrderForm({ orderBase, onClose }: Props) {
+  const defaultStatus = orderBase ? orderBase.status || 'pending' : 'pending';
+  const orderId = orderBase ? orderBase.id : '';
+
+  const [status, setStatus] = useState(defaultStatus);
+  const { order } = useAdminOrder(orderId, {
+    expand: 'items',
+  });
+  const archiveOrder = useAdminArchiveOrder(orderId);
+  const cancelOrder = useAdminCancelOrder(orderId);
+  const completeOrder = useAdminCompleteOrder(orderId);
+
+  useEffect(() => {
+    setStatus(order?.status || 'pending');
+  }, [order]);
+
+  if (!order) {
+    return null;
+  }
 
   const handleSave = () => {
-    onSave({ ...order, status });
-    onClose();
+    if (status === 'pending') {
+      onClose();
+      return;
+    }
+
+    if (status === 'archived') {
+      archiveOrder.mutate(void 0, {
+        onSuccess: ({ order }) => {
+          onClose();
+        },
+        onError: (err) => {
+          console.error(err);
+        },
+      });
+    }
+    if (status === 'cancelled') {
+      cancelOrder.mutate(void 0, {
+        onSuccess: ({ order }) => {
+          onClose();
+        },
+        onError: (err) => {
+          console.error(err);
+        },
+      });
+    }
+    if (status === 'completed') {
+      completeOrder.mutate(void 0, {
+        onSuccess: ({ order }) => {
+          onClose();
+        },
+        onError: (err) => {
+          console.error(err);
+        },
+      });
+    }
+  };
+
+  const renderAddress = (address: AddressData | undefined) => {
+    if (!address) return <span>Not provided</span>;
+
+    return (
+      <div className="max-h-40 overflow-y-auto p-4">
+        {address.first_name} {address.last_name}
+        <br />
+        {address.address_1}
+        <br />
+        {address.address_2 && (
+          <>
+            {address.address_2}
+            <br />
+          </>
+        )}
+        {address.city}, {address.province} {address.postal_code}
+        <br />
+        {address.country_code}
+        <br />
+        {address.phone && (
+          <>
+            {address.phone}
+            <br />
+          </>
+        )}
+      </div>
+    );
+  };
+
+  const renderItems = (items: Item[] | undefined) => {
+    if (!items || items.length === 0) return <span>No items</span>;
+
+    return (
+      <div className="max-h-40 overflow-y-auto">
+        <table className="table w-full">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {items.map((item: Item) => (
+              <tr key={item.id}>
+                <td>{item.title}</td>
+                <td>{item.quantity}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
   };
 
   return (
@@ -34,26 +134,58 @@ export default function EditOrderForm({
       onClick={(e) => e.currentTarget === e.target && onClose()}
     >
       <div
-        className="mx-auto max-w-md rounded-lg bg-white p-6 dark:bg-gray-800"
+        className="max-h-128 mx-auto overflow-y-auto rounded-lg bg-gray-800 p-6"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <h2 className="text-lg font-semibold text-white">
             Edit Order Status
           </h2>
         </div>
         <form className="space-y-4">
           <div className="flex flex-col">
-            <label className="text-gray-700 dark:text-gray-300">Status:</label>
+            <label className="text-gray-300">Order ID:</label>
+            <span className="mt-1">{order?.id}</span>
+          </div>
+
+          <div className="flex flex-col">
+            <label className="text-gray-300">Customer Email:</label>
+            <span className="mt-1">{order?.email}</span>
+          </div>
+
+          <div className="flex flex-col">
+            <label className=" text-gray-300">Items:</label>
+            {renderItems(order?.items)}
+          </div>
+
+          <div className="flex flex-col">
+            <label className=" text-gray-300">Delivery Address:</label>
+            {renderAddress(orderBase?.shipping_address)}
+          </div>
+
+          <div className="flex flex-col">
+            <label className="text-gray-300">
+              Payment Status: <span>{order?.payment_status}</span>
+            </label>
+          </div>
+
+          <div className="flex flex-col">
+            {order?.payment_status === 'awaiting' && (
+              <CapturePayment orderId={order?.id} />
+            )}
+          </div>
+
+          <div className="flex flex-col">
+            <label className=" text-gray-300">Status:</label>
             <select
-              className="form-select mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+              className="form-select mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               value={status}
               onChange={(e) => setStatus(e.target.value)}
             >
-              <option value="Pending">Pending</option>
-              <option value="Completed">Completed</option>
-              <option value="Cancelled">Cancelled</option>
-              {/* Add other statuses as needed */}
+              <option value="pending">pending</option>
+              <option value="completed">completed</option>
+              <option value="archived">archived</option>
+              <option value="cancelled">cancelled</option>
             </select>
           </div>
 

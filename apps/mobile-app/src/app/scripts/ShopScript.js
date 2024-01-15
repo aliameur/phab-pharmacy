@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as Keychain from 'react-native-keychain';
-import {getProductsByCategoryHandle, getCategories } from '@phab/data-react-native';
+import {getProductsByCategoryHandle, getCategories, getProductByHandle } from '@phab/data-react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 service = 'JWToken';
@@ -11,11 +11,13 @@ const getStoreCategories = async () => {
   var categories = [];
   num = data.length;
   for (let i = 0; i < num; i++) {
-    categories.push({
-      id: data[i]['id'],
-      handle: data[i]['handle'],
-      title: data[i]['name'],
-    });
+    if (!data[i]['handle'].includes('hidden')){
+      categories.push({
+        id: data[i]['id'],
+        handle: data[i]['handle'],
+        title: data[i]['name'],
+      });
+    }
   }
   return categories;
 };
@@ -30,7 +32,6 @@ const getStoreProducts = async (handle) => {
       title: data[i]['title'],
       description: data[i]['description'],
       image: data[i]['thumbnail'],
-      //Note this price is hard coded changes to the backend will cause a breaking bug for pricing
       price: data[i]['variants'][0]['prices'][0]['amount'],
       variant_id: data[i]['variants'][0]['id'],
     });
@@ -38,13 +39,17 @@ const getStoreProducts = async (handle) => {
   return products;
 };
 
+const getProductByHandler = async (handle) => {
+    response = await getProductByHandle(handle)
+    return response
+}
 const searchProducts = async (searchText) => {
     try {
         response = await axios.post(`${BASE_URL}/store/products/search`, {
             q: searchText
         });
-        console.log(response.data.hits)
-        return response;
+        console.log('Response: ', response.data.hits)
+        return response.data.hits;
     } catch (error) {
         console.log('Error: ', error)
         return [];
@@ -110,12 +115,12 @@ const addShippingAddressToOrder = async (address) => {
         })
     } catch (error){
         console.log('Error Adding Shipping to Order', error.response.data.message)
-        return false
+        return [false, response]
     }
     console.log('Shipping Address added to Cart');
-    return true
+    return [true, response]
 }
 
 
 
-export { getStoreCategories, getStoreProducts, searchProducts, getShippingAddress, addShippingAddress, addShippingAddressToOrder };
+export { getStoreCategories, getStoreProducts, searchProducts, getShippingAddress, addShippingAddress, addShippingAddressToOrder, getProductByHandler };

@@ -13,6 +13,7 @@ export const updateCartLineItem =
     const res = await requestFn<MedusaCartOperation>({
       path: `/carts/${cartId}/line-items/${lineId}`,
       method: 'POST',
+      cache: 'no-store',
       body: {
         quantity,
       },

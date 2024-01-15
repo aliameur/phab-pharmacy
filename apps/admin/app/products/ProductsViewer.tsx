@@ -1,35 +1,18 @@
-import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import React from 'react';
 
 import CategoryPanel from './CategoryPanel';
-
-interface CategoryTemporary {
-  id: string;
-  handle: string;
-}
+import { Category } from './types';
 
 interface Props {
-  productsByCategory: PricedProduct[][];
-  categories: CategoryTemporary[];
+  categories: Category[];
 }
 
-export default function ProductsViewer({
-  productsByCategory,
-  categories,
-}: Props) {
-  const CategoryNames = categories.map((category) => category.handle);
+export default function ProductsViewer({ categories }: Props) {
   return (
     <div>
-      {productsByCategory.map((products, index) =>
-        products.length > 0 && !categories[index].handle.includes('hidden') ? (
-          <CategoryPanel
-            key={categories[index].id}
-            products={products}
-            category={categories[index]}
-            allCategories={CategoryNames}
-          />
-        ) : null,
-      )}
+      {categories.map((category) => (
+        <CategoryPanel key={category.id} category={category} />
+      ))}
     </div>
   );
 }

@@ -11,6 +11,8 @@ import colours from '../colours';
 import { ShopContext } from '../contexts/ShopContext';
 import { checkKeychain } from '../scripts/AuthScript';
 
+//UserCheckScreen.js performs checks before loading the user into the app. 
+
 function UserCheckScreen({ navigation }) {
     const { loadNumberCart, loadCartData } = useContext(ShopContext);
     useEffect(() => {
@@ -23,6 +25,8 @@ function UserCheckScreen({ navigation }) {
                     await loadCartData();
                     navigation.replace('Shop');
                 } catch (error){
+                  navigation.replace('Login');
+                  console.log(error)
                 }
             } else {
                 console.log('User forgotten')
