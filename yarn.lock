@@ -6259,6 +6259,7 @@ __metadata:
     medusa-payment-stripe: ^6.0.7
     medusa-plugin-algolia: ^0.2.20
     medusa-react: 9.0.0
+    medusa-react: ^9.0.13
     metro: 0.76.8
     metro-babel-register: 0.76.8
     metro-config: 0.76.8
@@ -19937,7 +19938,6 @@ __metadata:
   checksum: 8c9de907ba3ef52b29b60baad28436adea47f0fbb57762b5cb2a68d13f8a1f201556b76cba0f2bce461019561100d20c9204a890cf56349bcd808b2f7497ce54
   languageName: node
   linkType: hard
-
 "medusa-react@npm:9.0.0":
   version: 9.0.0
   resolution: "medusa-react@npm:9.0.0"
@@ -19949,6 +19949,17 @@ __metadata:
     react: ^16.8 || ^17.0 || ^18.0
     react-dom: ^16.8 || ^17.0 || ^18.0
   checksum: b181943bf07bf961b2536a32b10fac065794f4d4a986f93928f10672532e2155be26a13ff29db8ef6bce9e3b7344f0f96b366428b0974734d78d2efeae3f0c72
+"medusa-react@npm:^9.0.13":
+  version: 9.0.13
+  resolution: "medusa-react@npm:9.0.13"
+  dependencies:
+    "@medusajs/medusa-js": "*"
+  peerDependencies:
+    "@medusajs/medusa": ^1.17.2
+    "@tanstack/react-query": ^4.22.0
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  checksum: a9ec5aeacce12fcfc34e4372293bceb945acc86dcec16576116fd4c9cbe4c35d76a205337cc2e8d04b487dda1d87bd746048e9cc4f5a1bdba6a171eb585f9b39
   languageName: node
   linkType: hard
 

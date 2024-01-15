@@ -19,6 +19,10 @@ import UserMenuSheet from '../components/UserMenuSheet';
 import { ShopContext } from '../contexts/ShopContext';
 import { getStoreCategories } from '../scripts/ShopScript';
 
+//ShopScreen.js is the home and main page of the app containing 
+//   navigation points to all most all screens and displaying all products
+//CITATIONS: https://www.npmjs.com/package/react-native-reanimated-carousel, OPENAI CHATGPT
+
 function ShopScreen({ navigation }) {
   const [isMenuModalVisible, setMenuModalVisible] = useState(false);
   const [collectionsData, setCollectionsData] = useState([]);

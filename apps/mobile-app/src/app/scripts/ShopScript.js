@@ -11,11 +11,13 @@ const getStoreCategories = async () => {
   var categories = [];
   num = data.length;
   for (let i = 0; i < num; i++) {
-    categories.push({
-      id: data[i]['id'],
-      handle: data[i]['handle'],
-      title: data[i]['name'],
-    });
+    if (!data[i]['handle'].includes('hidden')){
+      categories.push({
+        id: data[i]['id'],
+        handle: data[i]['handle'],
+        title: data[i]['name'],
+      });
+    }
   }
   return categories;
 };
@@ -46,6 +48,7 @@ const searchProducts = async (searchText) => {
         response = await axios.post(`${BASE_URL}/store/products/search`, {
             q: searchText
         });
+        console.log('Response: ', response.data.hits)
         return response.data.hits;
     } catch (error) {
         console.log('Error: ', error)
@@ -112,10 +115,10 @@ const addShippingAddressToOrder = async (address) => {
         })
     } catch (error){
         console.log('Error Adding Shipping to Order', error.response.data.message)
-        return false
+        return [false, response]
     }
     console.log('Shipping Address added to Cart');
-    return true
+    return [true, response]
 }
 
 
