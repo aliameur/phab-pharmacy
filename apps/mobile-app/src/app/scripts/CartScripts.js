@@ -40,7 +40,7 @@ const addToCart = async (varient_id, quantity) => {
     console.log('Item added to cart');
     return true;
   } catch (error) {
-    console.error('Adding error', error.message);
+    console.error('Adding error', error);
     return false;
   }
 };

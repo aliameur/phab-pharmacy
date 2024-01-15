@@ -22,6 +22,8 @@ import colours from '../colours';
 import ActionSheet from '../components/ActionSheet';
 import UserMenuSheet from '../components/UserMenuSheet';
 import  MapSheet  from '../components/MapSheet';
+import { searchProducts } from '../scripts/ShopScript';
+import { addToCart } from '../scripts/CartScripts';
 
 function ChatScreen({ navigation }) {
   const [messages, setMessages] = useState([]);
@@ -148,6 +150,11 @@ function ChatScreen({ navigation }) {
       ]);
     }
   };
+
+  const addLLMProductToCart = async (product) => {
+      response = await searchProducts(product)
+      await addToCart(response[0])
+  }
 
   const sendMessage = () => {
     handleMessageCreation();
@@ -289,8 +296,10 @@ function ChatScreen({ navigation }) {
                         <View style={[styles.addToCartBlock, {flex: 5}]}>
                           <Text style={{textAlign: 'center'}}>Click to see more details about {item.product}. </Text>
                         </View>
-                        <TouchableOpacity style={[styles.addToCartBlock, {flex: 1, justifyContent: 'center', alignItems:'center'}]}>
-                          <FontAwesome name="shopping-cart" size={35}/>
+                        <TouchableOpacity style={[styles.addToCartBlock, {flex: 1, justifyContent: 'center', alignItems:'center'}]} 
+                          onPress={addLLMProductToCart()}
+                        >
+                          <FontAwesome name="shopping-cart" size={35} />
                         </TouchableOpacity>
                       </View> 
                       <TouchableOpacity style={[styles.responseBlock, {backgroundColor: colours.TailWindColors.norway[200]}]}

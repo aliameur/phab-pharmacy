@@ -62,7 +62,7 @@ function ShopScreen({ navigation, route }) {
                   onError={(e) => { console.log(e.nativeEvent.error); }}
               />
               <Text style={{textAlign: 'center', marginBottom: 10}}>{item.description}</Text>
-              <TouchableOpacity style={{height: '20%', width: '70%', borderRadius: 15, backgroundColor: colours.LogoColours.green, alignItems:'center', justifyContent:'center'}}
+              <TouchableOpacity style={{height: '20%', width: '70%', borderRadius: 15, backgroundColor: colours.LogoColours.green, alignItems:'center', justifyContent:'center', marginBottom: 100}}
                 onPress={() => addItemToCart(item.handle)}
               >
                 <View style={{alignItems: 'center', alignSelf: 'center', flexDirection: 'row'}}>
