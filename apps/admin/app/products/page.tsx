@@ -1,24 +1,21 @@
-import { getCategories, getProductsByCategoryHandle } from '@phab/data-next';
+'use client';
+
+import { useAdminProductCategories } from 'medusa-react';
+import React from 'react';
 
 import RedirectLogin from '../login/Redirect';
 import ProductsViewer from './ProductsViewer';
+import { Category } from './types';
 
-export default async function ProductsPage() {
-  const categories = await getCategories();
-  const productsPromises = categories.map((category) =>
-    getProductsByCategoryHandle(category.handle),
-  );
-  const productsByCategory = await Promise.all(productsPromises);
-
-  console.log(productsByCategory);
+export default function ProductsPage() {
+  const { product_categories } = useAdminProductCategories();
 
   return (
     <div>
       <RedirectLogin />
-      <ProductsViewer
-        productsByCategory={productsByCategory}
-        categories={categories}
-      />
+      {product_categories && (
+        <ProductsViewer categories={product_categories as Category[]} />
+      )}
     </div>
   );
 }

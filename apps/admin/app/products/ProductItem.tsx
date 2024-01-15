@@ -1,26 +1,17 @@
 'use client';
 
-import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 import Image from 'next/image';
 import React from 'react';
 import { useState } from 'react';
 
 import EditProductForm from './EditProductForm';
+import { Product } from './types';
 
 interface Props {
-  product: PricedProduct;
-  category: {
-    id: string;
-    handle: string;
-  };
-  allCategories: string[];
+  product: Product;
 }
 
-export default function ProductsViewer({
-  product,
-  category,
-  allCategories,
-}: Props) {
+export default function ProductItem({ product }: Props) {
   const [isFormOpen, setFormOpen] = useState(false);
 
   const toggleForm = () => {
@@ -49,14 +40,7 @@ export default function ProductsViewer({
           </div>
         </div>
       </div>
-      {isFormOpen && (
-        <EditProductForm
-          product={product}
-          currentCategory={category.handle}
-          allCategories={allCategories}
-          onClose={toggleForm}
-        />
-      )}
+      {isFormOpen && <EditProductForm product={product} onClose={toggleForm} />}
     </div>
   );
 }
