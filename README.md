@@ -13,7 +13,6 @@ This repo contains the source code for the following projects:
 - [mobile-app](https://github.com/aliameur/phab-pharmacy/tree/main/apps/mobile-app)
 - [backend](https://github.com/aliameur/phab-pharmacy/tree/main/apps/backend)
 - [assistant-api](https://github.com/aliameur/phab-pharmacy/tree/main/apps/assistant)
-- [point of sale (TODO)]
 
 ## Getting Started
 
@@ -35,7 +34,7 @@ $ docker -v # Docker version 24.0.6, build ed223bc
 $ yarn -v # 3.6.4
 ```
 
-We recommend installing the NX CLI globally. This is not required, but it will make it easier to run commands. (if you don't install preface all nx commands with `yarn`)
+We recommend installing the NX CLI globally. This is not required, but it will make it easier to run commands. (if you don't install preface all nx commands with yarn)
 
 We also recommend installing the [Nx Console extensions](https://nx.dev/nx-console). It provides autocomplete and UI for running tasks and generators (available for both VS Code and Jetbrains).
 
@@ -95,13 +94,16 @@ The admin panel should be running at http://localhost:4300.
 
 > ### Start the assistant-api
 
-> TODO
+```bash
+$ nx build assistant-api
+$ nx serve assistant-api
+```
 
 ## Set up Nx Cloud
 
-Run `nx connect` to benefit from remote caching and task distribution. 
+Run nx connect to benefit from remote caching and task distribution. 
 
-✨ **Nx saved over 4hrs of compute time as of Jan 6.** ✨
+✨ *Nx saved over 4hrs of compute time as of Jan 6.* ✨
 
 
 ## 📚 Docs
