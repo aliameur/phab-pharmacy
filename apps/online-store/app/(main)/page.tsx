@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import { getCategories, getProductsByCategoryHandle } from '@phab/data-next';
 import { filterHiddenCategories } from '@phab/utils';
 
-import { FAQs, FeaturedCategory, Hero, Team, Testimonials } from '../sections';
+import { FAQs, FeaturedCategory, Hero, Team, Testimonials } from '../../sections';
 
 export const metadata = {
   title: 'Home | Phab Pharmacy',

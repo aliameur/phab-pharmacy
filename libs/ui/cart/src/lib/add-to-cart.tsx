@@ -77,14 +77,14 @@ export const AddToCart = ({ product }: TAddToCart) => {
       <AnimatedButton
         aria-label="Add item to cart"
         title={title}
-        disabled={isPending || !variant?.purchasable || !selectedVariantId}
+        disabled={isPending || !selectedVariantId}
         onClick={() => {
           // Safeguard in case someone messes with `disabled` in devtools.
-          if (!variant?.purchasable || !selectedVariantId) return;
+          if (!selectedVariantId) return;
 
           startTransition(async () => {
             await addItem({
-              variantId: variant.id || defaultVariantId,
+              variantId: variant?.id || defaultVariantId,
               quantity: count,
             });
 
@@ -93,7 +93,7 @@ export const AddToCart = ({ product }: TAddToCart) => {
         }}
         className="w-full font-bold uppercase tracking-wider md:max-w-96"
         icon={
-          variant?.purchasable ? (
+          selectedVariantId ? (
             isPending ? (
               <MoreHorizontal className="h-6 w-6 text-pampas-100" />
             ) : (
@@ -104,11 +104,7 @@ export const AddToCart = ({ product }: TAddToCart) => {
           )
         }
       >
-        {!variant || variant?.purchasable
-          ? selectedVariantId
-            ? 'Add to Cart'
-            : 'Select a variant'
-          : 'Out Of Stock'}
+        {selectedVariantId ? 'Add to Cart' : 'Select a variant'}
       </AnimatedButton>
     </div>
   );

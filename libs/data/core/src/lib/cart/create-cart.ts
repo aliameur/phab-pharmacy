@@ -5,6 +5,9 @@ export const createCart = (requestFn: TRequestFn) => async () => {
     path: '/carts',
     method: 'POST',
     cache: 'no-store',
+    body: {
+      sales_channel_id: 'sc_01HM54EQ2MEYDC0SF09624FJVW',
+    },
   });
 
   return res.body.cart;

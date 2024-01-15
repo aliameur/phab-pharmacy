@@ -11,7 +11,6 @@ export const Cart = async () => {
   if (cartId) {
     cart = await getCart(cartId);
   }
-  console.log(cartId)
 
   return <CartSidebar cart={cart} />;
 };
