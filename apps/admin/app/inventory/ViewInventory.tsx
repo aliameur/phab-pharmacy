@@ -27,8 +27,6 @@ export default function ViewInventory({ location }: Props) {
     }
   };
 
-  console.log(inventory_items);
-
   return (
     <div>
       <table className="table w-full">
@@ -45,7 +43,7 @@ export default function ViewInventory({ location }: Props) {
           {inventory_items?.map((item) => (
             <ItemRow
               key={item.id}
-              item={item as Item}
+              item={item as unknown as Item}
               handleCheckboxChange={handleCheckboxChange}
               selectedItems={selectedItems}
             />
@@ -55,7 +53,7 @@ export default function ViewInventory({ location }: Props) {
       {isOrderFormVisible && (
         <PlaceOrderForm
           selectedItems={selectedItems}
-          items={inventory_items as Item[]}
+          items={inventory_items as unknown as Item[]}
           location={location as Location}
           onClose={() => setOrderFormVisible(false)}
         />
