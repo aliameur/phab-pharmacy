@@ -14,8 +14,9 @@ import { searchProducts, getProductByHandler } from '../scripts/ShopScript';
 import colours from '../colours';
 import { ShopContext } from '../contexts/ShopContext';
 
+//SearchScreen.js is the screen for search functionality in app using ShopScripts.js
 
-function ShopScreen({ navigation, route }) {
+function SearchScreen({ navigation, route }) {
   const { loadNumberCart, loadCartData } = useContext(ShopContext);
   const [products, setProducts] = useState([]);
 
@@ -82,4 +83,4 @@ function ShopScreen({ navigation, route }) {
   );
 }
 
-export default ShopScreen;
+export default SearchScreen;

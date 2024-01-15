@@ -16,8 +16,9 @@ export default function CheckoutScreen({ navigation }) {
     const [isShippingMenuVisbile, setShippingMeuVisible] = useState(false);
     const [checkedID, setCheckedID] = useState(null);
     const [shippingData, setShippingData] = useState(null);
-    const [paymentFail, setPaymentFail] = useState(false);
+    const [paymentFailMessage, setPaymentMessage] = useState(null);
     const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+    const [cardComplete, setCardComplete] = useState(false);
 
     useEffect(() => {
         const keyboardDidShowListener = Keyboard.addListener(
@@ -72,7 +73,9 @@ export default function CheckoutScreen({ navigation }) {
                 });
             
                 if (error) {
-                    console.log('Payment confirmation error', error);
+                    console.log('Payment confirmation error', error.message);
+                    setPaymenetLoading(false);
+                    setPaymentMessage(error.message);
                 } else if (paymentIntent) {
                     response = await completeCart();
                     if (response){
@@ -104,12 +107,12 @@ export default function CheckoutScreen({ navigation }) {
         style={{flex: 1, marginTop: 20, marginHorizontal: 20}}>
             <View>
                 <View>
-                    <Text>Total price</Text>
-                    <Text style={{fontSize: 30, color: colours.LogoColours.green, fontWeight: '700', marginBottom: 0}}>{formatPrice(cartTotal)}</Text>  
+                    <Text style={{fontSize: 20}}>Total price:</Text>
+                    <Text style={{fontSize: 40, color: colours.LogoColours.green, fontWeight: '700', marginBottom: 10}}>{formatPrice(cartTotal)}</Text>  
                     <Text style={{fontSize: 20, fontWeight: '400'}}>Choose a Shipping Address: </Text>
                 </View>
             </View>
-            <View style={{height: '40%'}}>
+            <View style={{height: '30%'}}>
                 <View style={{flex: 1}}>
                     {shipping_addresses.length != 0 ? (
                         null
@@ -130,13 +133,13 @@ export default function CheckoutScreen({ navigation }) {
                                         <Text>{item.postal_code}</Text>
                                     </View>
                                         {(index === checkedID) ? (
-                                            <TouchableOpacity style={{flex: 1, alignSelf: 'center', borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: colours.TailWindColors['mineral-green'][200]}}
+                                            <TouchableOpacity style={{ flex: 1, alignSelf: 'center', borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: colours.TailWindColors['mineral-green'][200]}}
                                             onPress={() => {
                                                 setShippingData(item)
                                                 setCheckedID(index)
                                             }}
                                             >
-                                            <FontAwesome size={30} color={colours.LogoColours.green} name='check'/>
+                                                <FontAwesome size={40} color={colours.LogoColours.green} name='check'/>
                                             </TouchableOpacity>
                                         ) : (
                                             <TouchableOpacity style={{flex: 1, alignSelf: 'center', borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: colours.TailWindColors['mineral-green'][200]}}
@@ -145,7 +148,7 @@ export default function CheckoutScreen({ navigation }) {
                                                 setCheckedID(index)
                                             }}
                                             >
-                                            <FontAwesome size={30} color={colours.LogoColours.green} name='plus'/>
+                                            <FontAwesome size={40} color={colours.LogoColours.green} name='plus'/>
                                             </TouchableOpacity>
                                         )}
                                 </View>
@@ -159,7 +162,7 @@ export default function CheckoutScreen({ navigation }) {
                     {isShippingMenuVisbile ? (<ShippingSheet onClose={hideShippingSheet} visible={isShippingMenuVisbile}/>) : null}
                 </View>
             </View>
-            <Text style={{marginTop: '5%'}}>Add Card Details: </Text>
+            <Text style={{fontSize: 25, fontWeight: '500', marginTop: 10}}>Add Card Details: </Text>
             <CardField
                 postalCodeEnabled={false}
                 placeholders={{
@@ -174,15 +177,23 @@ export default function CheckoutScreen({ navigation }) {
                     alignSelf: 'center',
                     width: '100%',
                     marginVertical: 10,
+                    flex: 0.5,
                 }}
+                onCardChange={(details) => setCardComplete(details.complete)}
             />
-            <View style={{justifyContent: 'flex-start'}}>
-                <TouchableOpacity
-                    style={{justifyContent: 'center', alignItems: 'center', backgroundColor: colours.TailWindColors['mineral-green'][600], height: '30%', borderRadius: 15}}
+            <View style={{justifyContent: 'flex-start', flex: 1}}>
+                {cardComplete && <TouchableOpacity
+                    style={{flex: 2, marginBottom: 10, justifyContent: 'center', alignItems: 'center', backgroundColor: colours.TailWindColors['mineral-green'][600], height: '30%', borderRadius: 15}}
                     onPress={() => handlePayPress()}>
-                    <Text style={{color: colours.LogoColours.cream, fontSize: 20}}>Pay {formatPrice(cartTotal)}</Text>
-                </TouchableOpacity>
-                { loadingPayment && <ActivityIndicator size={'large'}/>}
+                    <Text style={{color: colours.LogoColours.cream, fontSize: 25, fontWeight: '600'}}>Pay {formatPrice(cartTotal)}</Text>
+                </TouchableOpacity>}
+                { loadingPayment ? (<ActivityIndicator style={{flex: 3}} size={'large'}/>) : 
+                (<View style={{flex: 3}} >
+                    {paymentFailMessage && <Text style={{alignSelf: 'center', color: 'red', fontSize: 17, fontWeight: '600'}}>{paymentFailMessage}</Text>}
+                    {cardComplete && !shippingData &&
+                    <Text style={{alignSelf: 'center', color: 'red'}}>Please add Shipping Address</Text>}
+                </View>)}
+                
             </View>
     </KeyboardAvoidingView>
   );

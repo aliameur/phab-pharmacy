@@ -27,6 +27,9 @@ import PaymentSuccessScreen from './screens/PaymentSuccessScreen';
 
 const Stack = createStackNavigator();
 
+//App.tsx with various ScreenSetups wrapped in Context and Strip 
+//CITATIONS: https://reactnavigation.org/docs/drawer-layout/, https://stripe.com/docs/libraries/react-native
+
 export default function App() {
 
   const headerHeight = Platform.OS === 'ios' ? 44 : 56; // Default header heights

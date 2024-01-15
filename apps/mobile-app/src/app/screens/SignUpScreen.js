@@ -19,6 +19,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import colours from '../colours';
 import { createUser, login } from '../scripts/AuthScript';
 
+//SignUpScreen.js allows the user to sign up 
+
 export default function SignUpScreen({ navigation }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');

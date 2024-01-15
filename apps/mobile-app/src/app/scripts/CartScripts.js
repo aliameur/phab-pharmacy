@@ -12,7 +12,6 @@ const createCart = async (creds) => {
       const cart_id = cartResponse.data.cart.id;
       await AsyncStorage.setItem('cartID', cart_id);
       console.log('Cart created with', cart_id);
-  
       const customerResponse = await axios.get(`${BASE_URL}/store/customers/me`, {
         headers: {
           'Authorization': `Bearer ${creds.password}` 

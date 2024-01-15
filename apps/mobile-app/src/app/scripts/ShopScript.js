@@ -11,11 +11,13 @@ const getStoreCategories = async () => {
   var categories = [];
   num = data.length;
   for (let i = 0; i < num; i++) {
-    categories.push({
-      id: data[i]['id'],
-      handle: data[i]['handle'],
-      title: data[i]['name'],
-    });
+    if (!data[i]['handle'].includes('hidden')){
+      categories.push({
+        id: data[i]['id'],
+        handle: data[i]['handle'],
+        title: data[i]['name'],
+      });
+    }
   }
   return categories;
 };
