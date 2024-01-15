@@ -19,12 +19,17 @@ export default function ViewInventory({ location }: Props) {
   const [selectedItems, setSelectedItems] = useState([] as string[]);
   const [isOrderFormVisible, setOrderFormVisible] = useState(false);
 
-  const handleCheckboxChange = (productId: string) => {
+  const handleCheckboxChange = (product: Item) => {
+    const productId = product.variants[0].title;
     if (selectedItems.includes(productId)) {
       setSelectedItems(selectedItems.filter((id) => id !== productId));
     } else {
       setSelectedItems([...selectedItems, productId]);
     }
+  };
+
+  const placeOrder = () => {
+    setOrderFormVisible(true);
   };
 
   return (
@@ -35,8 +40,8 @@ export default function ViewInventory({ location }: Props) {
             <th></th>
             <th>Name</th>
             <th>Quantity</th>
-            <th>Pending Quantity</th>
             <th>Level</th>
+            <th>Pending Quantity</th>
           </tr>
         </thead>
         <tbody>
@@ -50,6 +55,16 @@ export default function ViewInventory({ location }: Props) {
           ))}
         </tbody>
       </table>
+      <div className="mt-4 flex justify-end">
+        <button
+          className="btn m-2 bg-amber-900 text-white"
+          onClick={placeOrder}
+          disabled={selectedItems.length === 0}
+        >
+          Place Order
+        </button>
+      </div>
+
       {isOrderFormVisible && (
         <PlaceOrderForm
           selectedItems={selectedItems}

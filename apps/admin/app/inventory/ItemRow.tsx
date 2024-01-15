@@ -5,7 +5,7 @@ import { Item } from './types';
 
 interface Props {
   item: Item | null;
-  handleCheckboxChange: (productId: string) => void;
+  handleCheckboxChange: (item: Item) => void;
   selectedItems: string[];
 }
 
@@ -34,16 +34,17 @@ export default function ItemRow({
         <input
           type="checkbox"
           className="checkbox"
-          checked={selectedItems.includes(item.id)}
-          onChange={() => handleCheckboxChange(item.id)}
+          checked={selectedItems.includes(item.variants[0].title)}
+          onChange={() => handleCheckboxChange(item)}
         />
       </td>
       <td>{item.variants[0].title}</td>
       <td>{inventory_quantity}</td>
-      <td>{pending_quantity}</td>
+
       <td>
         <StockStatusTag level={calculateLevel(item)} />
       </td>
+      <td>{pending_quantity}</td>
     </tr>
   );
 }

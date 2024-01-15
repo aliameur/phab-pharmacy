@@ -18,12 +18,13 @@ export default function PlaceOrderForm({
   onClose,
 }: Props) {
   const selectedProducts = items.filter((item) =>
-    selectedItems.includes(item.id),
+    selectedItems.includes(item.variants[0].title),
   );
   const [orderQuantities, setOrderQuantities] = useState(
-    // replace with item.max_quantity after implementing
     selectedProducts.map(
-      (item) => item.stocked_quantity - item.stocked_quantity,
+      (item) =>
+        item.variants[0].metadata.MaxStock -
+        item.variants[0].inventory_quantity,
     ),
   );
   const [bankNumber, setBankNumber] = useState('');
@@ -38,61 +39,57 @@ export default function PlaceOrderForm({
       onClick={(e) => e.currentTarget === e.target && onClose()}
     >
       <div
-        className="mx-auto max-w-md rounded-lg bg-white p-6 dark:bg-gray-800"
+        className="mx-auto max-w-md rounded-lg bg-gray-800 px-4 py-8"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <h2 className="text-lg font-semibold text-white">
             Edit Order Details
           </h2>
         </div>
 
         <form className="space-y-4">
           <div className="flex flex-col">
-            <label className="text-gray-700 dark:text-gray-300">
-              Bank Account Number:
-            </label>
+            <label className="text-gray-300">Bank Account Number:</label>
             <input
               type="text"
-              className="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+              className="form-input mt-1 block w-full rounded-md border-gray-600 bg-gray-700 px-2 text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               value={bankNumber}
               onChange={(e) => setBankNumber(e.target.value)}
             />
           </div>
 
           <div className="flex flex-col">
-            <label className="text-gray-700 dark:text-gray-300">
-              Delivery Location:
-            </label>
+            <label className="text-gray-300">Delivery Location:</label>
             <input
               type="text"
-              className="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+              className="form-input mt-1 block w-full rounded-md border-gray-600 bg-gray-700 px-2 text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               value={location.name ? location.name : 'N/A'}
               readOnly
             />
           </div>
 
-          <div className="flex flex-col">
-            <label className="text-gray-700 dark:text-gray-300">
-              Order Quantities:
-            </label>
-            {selectedProducts.map((item, index) => (
-              <div className="flex items-center" key={item.id}>
-                <div className="w-1/2">{item.id}</div>
-                <div className="w-1/2">
-                  <input
-                    type="number"
-                    className="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-                    value={orderQuantities[index]}
-                    onChange={(e) => {
-                      const newOrderQuantities = [...orderQuantities];
-                      newOrderQuantities[index] = Number(e.target.value);
-                      setOrderQuantities(newOrderQuantities);
-                    }}
-                  />
+          <div className="flex flex-col ">
+            <label className="text-gray-300">Order Quantities:</label>
+            <div className="max-h-64 overflow-y-auto">
+              {selectedProducts.map((item, index) => (
+                <div className="flex items-center" key={item.variants[0].id}>
+                  <div className="w-1/2">{item.variants[0].title}</div>
+                  <div className="w-1/2">
+                    <input
+                      type="number"
+                      className="form-input mt-1 block w-full rounded-md border-gray-600 bg-gray-700 px-2 text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                      value={orderQuantities[index]}
+                      onChange={(e) => {
+                        const newOrderQuantities = [...orderQuantities];
+                        newOrderQuantities[index] = Number(e.target.value);
+                        setOrderQuantities(newOrderQuantities);
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </form>
         <button
