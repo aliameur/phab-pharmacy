@@ -12,8 +12,12 @@ export const ShopProvider = ({ children }) => {
   const [shipping_addresses, setShipping] = useState([]);
   
   const loadNumberCart = async () => {
-    count = await getCartItemNumber();
-    setCartCount(count);
+    try {
+      count = await getCartItemNumber();
+      setCartCount(count);
+    } catch (error) {
+      console.log('Error getting cart number', error)
+    }
   };
 
   const loadCartData = async () => {

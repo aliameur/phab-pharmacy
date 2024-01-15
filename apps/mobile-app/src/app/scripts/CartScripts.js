@@ -6,7 +6,9 @@ const BASE_URL = 'https://phab-pharmacy-backend-ab775283aa48.herokuapp.com';
 
 const createCart = async (creds) => {
     try {
-      const cartResponse = await axios.post(`${BASE_URL}/store/carts`);
+      const cartResponse = await axios.post(`${BASE_URL}/store/carts`, {
+          sales_channel_id: 'sc_01HM54EQ2MEYDC0SF09624FJVW'
+      });
       const cart_id = cartResponse.data.cart.id;
       await AsyncStorage.setItem('cartID', cart_id);
       console.log('Cart created with', cart_id);
@@ -29,7 +31,9 @@ const createCart = async (creds) => {
 
 const addToCart = async (varient_id, quantity) => {
   try {
+    console.log(varient_id, quantity)
     const cart_id = await AsyncStorage.getItem('cartID');
+    console.log(cart_id)
     response = await axios.post(
       `${BASE_URL}/store/carts/${cart_id}/line-items`,
       {
@@ -40,7 +44,7 @@ const addToCart = async (varient_id, quantity) => {
     console.log('Item added to cart');
     return true;
   } catch (error) {
-    console.error('Adding error', error.message);
+    console.error('Adding error', error);
     return false;
   }
 };

@@ -75,8 +75,8 @@ function CartScreen({navigation, route }) {
                 <View style={{flex: 1, flexDirection: 'row', marginHorizontal: 20, margin: 10, backgroundColor: colours.TailWindColors["mineral-green"][100], height: Dimensions.get('window').height * 0.15, alignItems: 'center', borderRadius: 15}}>
                     <Image 
                         source={{ uri: item.image }}
-                        style={{ height: '70%', width: '70%', flex: 1.5, margin: 10 }}
-                        resizeMode="cover"
+                        style={{ height: '90%', width: '90%', flex: 1.5, margin: 10 }}
+                        resizeMode="contain"
                     />
                     <View style={{flex: 3, marginLeft: 5}}>
                         <View style={{flex: 1, justifyContent: 'center'}}>

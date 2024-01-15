@@ -27,6 +27,10 @@ jest.mock('@react-native-clipboard/clipboard', () => ({
   getString: jest.fn(() => Promise.resolve('mocked clipboard content')),
 }));
 
+jest.mock('@react-native-async-storage/async-storage', () => ({
+  getItem: jest.fn().mockResolvedValue(true)
+}));
+
 jest.mock('react-native-tts', () => {
   return {
     speak: jest.fn(),
@@ -34,11 +38,13 @@ jest.mock('react-native-tts', () => {
   };
 });
 
-jest.mock('react-native-keychain', () => {
-  return {
+jest.mock('react-native-keychain', () => ({
     getGenericPassword: jest.fn(),
-  };
-});
+    setGenericPassword: jest.fn().mockResolvedValue(true),
+    resetGenericPassword: jest.fn().mockResolvedValue(null),
+}));
+
+jest.mock('react-native-video', () => 'Video');
 
 jest.mock('@stripe/stripe-react-native', () => {
   return {
@@ -61,10 +67,10 @@ jest.mock('react-native-keyboard-aware-scroll-view', () => ({
   ),
 }));
 
+
 jest.mock('react-native-reanimated-carousel', () => {
   const React = require('react');
 
-  // Mock the Carousel component with a placeholder component
   const Carousel = ({ children }) => {
     return <div data-testid="carousel-mock">{children}</div>;
   };

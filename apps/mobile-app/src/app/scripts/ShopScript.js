@@ -30,7 +30,6 @@ const getStoreProducts = async (handle) => {
       title: data[i]['title'],
       description: data[i]['description'],
       image: data[i]['thumbnail'],
-      //Note this price is hard coded changes to the backend will cause a breaking bug for pricing
       price: data[i]['variants'][0]['prices'][0]['amount'],
       variant_id: data[i]['variants'][0]['id'],
     });

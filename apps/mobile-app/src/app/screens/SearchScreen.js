@@ -53,7 +53,7 @@ function ShopScreen({ navigation, route }) {
         data={products}
         renderItem={({ item }) => {
           return (
-            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 10, margin: 10}}>
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', margin: 10, marginTop: '10%'}}>
               <Text style={{flex: 1, fontSize: 20, fontWeight: '400', color: colours.LogoColours.green}}>{item.title}</Text>
               <Image 
                   source={{ uri: item.thumbnail }}

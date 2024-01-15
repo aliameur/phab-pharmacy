@@ -74,6 +74,7 @@
     "react-native-snap-carousel": "^3.9.1",
     "react-native-tts": "^4.1.0",
     "react-native-vector-icons": "^10.0.3",
+    "react-native-video": "^5.2.1",
     "swiper": "^11.0.5",
     "tailwind-merge": "^2.2.0",
     "tslib": "^2.3.0",
