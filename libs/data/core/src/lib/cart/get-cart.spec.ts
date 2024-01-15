@@ -30,7 +30,7 @@ describe('getCart', () => {
 
     expect(mockRequestFn).toHaveBeenCalledWith({
       path: '/carts/not_cart_123',
-      cache: 'no-cache',
+      cache: 'no-store',
     });
     expect(result).toEqual(undefined);
   });
