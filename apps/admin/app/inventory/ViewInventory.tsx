@@ -3,6 +3,7 @@
 import { useAdminInventoryItems } from 'medusa-react';
 import React, { useState } from 'react';
 
+import EditItemForm from './EditItemForm';
 import ItemRow from './ItemRow';
 import PlaceOrderForm from './PlaceOrderForm';
 import { Item, Location } from './types';
@@ -12,12 +13,14 @@ interface Props {
 }
 
 export default function ViewInventory({ location }: Props) {
-  const { inventory_items } = useAdminInventoryItems({
+  const { inventory_items, refetch } = useAdminInventoryItems({
     location_id: location.id,
   });
 
   const [selectedItems, setSelectedItems] = useState([] as string[]);
   const [isOrderFormVisible, setOrderFormVisible] = useState(false);
+  const [isEditFormVisible, setEditFormVisible] = useState(false);
+  const [editItem, setEditItem] = useState(null as Item | null);
 
   const handleCheckboxChange = (product: Item) => {
     const productId = product.variants[0].title;
@@ -26,6 +29,11 @@ export default function ViewInventory({ location }: Props) {
     } else {
       setSelectedItems([...selectedItems, productId]);
     }
+  };
+
+  const handleEdit = (item: Item) => {
+    setEditItem(item);
+    setEditFormVisible(true);
   };
 
   const placeOrder = () => {
@@ -42,6 +50,7 @@ export default function ViewInventory({ location }: Props) {
             <th>Quantity</th>
             <th>Level</th>
             <th>Pending Quantity</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -51,6 +60,7 @@ export default function ViewInventory({ location }: Props) {
               item={item as unknown as Item}
               handleCheckboxChange={handleCheckboxChange}
               selectedItems={selectedItems}
+              handleEdit={handleEdit}
             />
           ))}
         </tbody>
@@ -71,6 +81,16 @@ export default function ViewInventory({ location }: Props) {
           items={inventory_items as unknown as Item[]}
           location={location as Location}
           onClose={() => setOrderFormVisible(false)}
+        />
+      )}
+      {isEditFormVisible && (
+        <EditItemForm
+          item={editItem}
+          onClose={() => {
+            setEditFormVisible(false);
+            setEditItem(null);
+            refetch({});
+          }}
         />
       )}
     </div>

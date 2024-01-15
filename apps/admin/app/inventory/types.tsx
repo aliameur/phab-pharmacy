@@ -10,15 +10,23 @@ export interface ItemMetadata {
   MaxStock: number;
 }
 
+export interface ItemLocation {
+  stocked_quantity: number;
+  location_id: string;
+  inventory_item_id: string;
+}
+
 export interface Variant {
   id: string;
   title: string;
-  inventory_quantity: number;
   metadata: ItemMetadata;
+  product_id: string;
 }
 
 export interface Item {
   sku: string | null;
   id: string;
   variants: Variant[];
+  stocked_quantity: number;
+  location_levels: ItemLocation[];
 }
