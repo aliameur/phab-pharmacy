@@ -23,12 +23,12 @@ describe('medsusaFetch', () => {
       'http://localhost:9000/store/test', // Default URL
       {
         method: 'GET', // Default method
+        cache: 'force-cache', // Default method
         headers: {
           'Content-Type': 'application/json',
           'x-publishable-key': '', // Default API key
         },
         body: undefined, // Default body
-        next: { tags: ['medusa_request'], revalidate: 1800 }, // Default tags and revalidate
       },
     );
   });

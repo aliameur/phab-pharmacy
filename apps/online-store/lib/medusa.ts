@@ -3,6 +3,8 @@
 import Medusa from '@medusajs/medusa-js';
 import { QueryClient } from '@tanstack/react-query';
 
+import { env } from '../env.mjs';
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -15,7 +17,7 @@ const queryClient = new QueryClient({
 
 // TODO to replace with backend url when deployed
 const medusaClient = new Medusa({
-  baseUrl: 'http://localhost:9000',
+  baseUrl: env.NEXT_PUBLIC_MEDUSA_BACKEND_URL,
   maxRetries: 3,
 });
 

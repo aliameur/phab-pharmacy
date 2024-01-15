@@ -2,9 +2,12 @@
 
 import { LineItem } from '@medusajs/medusa';
 import { ShoppingCart, X } from 'lucide-react';
+import { useCart } from 'medusa-react';
+import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
 import { TCart } from '@phab/data-core';
+import { checkoutCart } from '@phab/data-next';
 import { AnimatedButton, Price, Sidebar } from '@phab/ui/core';
 
 import { CartButton } from './cart-button';
@@ -15,6 +18,8 @@ type TCartSidebar = {
 };
 
 export const CartSidebar = ({ cart }: TCartSidebar) => {
+  const { setCart } = useCart();
+  const router = useRouter();
   const lineItems = cart?.items || [];
   const cartTotal = lineItems.reduce((total, item) => {
     return total + item.quantity;
@@ -82,7 +87,16 @@ export const CartSidebar = ({ cart }: TCartSidebar) => {
                   className="text-xl"
                 />
               </div>
-              <AnimatedButton className="w-full" variant="light">
+              <AnimatedButton
+                onClick={async () => {
+                  if (!cart.id) return;
+                  const c = await checkoutCart({ cartId: cart.id });
+                  router.push('/checkout');
+                  setCart(c);
+                }}
+                className="w-full"
+                variant="light"
+              >
                 Proceed to Checkout
               </AnimatedButton>
             </div>

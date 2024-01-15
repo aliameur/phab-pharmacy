@@ -7,3 +7,7 @@ export * from './lib/logo';
 export * from './lib/rating';
 export * from './lib/review';
 export * from './lib/detail-section';
+export * from './lib/button';
+export * from './lib/divider';
+export * from './lib/input';
+export * from './lib/checkbox';

@@ -71,7 +71,7 @@ export default class Restock extends TransactionBaseService {
           return restockDetail;
         });
 
-        this.check()
+        this.check();
         return await restockRepo.save(restock);
       } catch (e) {
         throw new MedusaError(
@@ -91,18 +91,21 @@ export default class Restock extends TransactionBaseService {
     console.log(`checking ${pendingRestocks.length} restocks...`);
 
     let count = 0;
-    const promises = pendingRestocks.map(async (restock) => {
-      const res = await axios.get(
-        `https://phabservice-129311a14694.herokuapp.com/wholesaler/delivery/${restock.wholesaler_order_id}`,
-      );
-      if (res.data === 'DELIVERED') {
-        restock.status = OrderStatus.DELIVERED;
-        await restockRepo.save(restock);
-        count++;
-      }
-    });
+    const results = await Promise.all(
+      pendingRestocks.map(async (restock) => {
+        const res = await axios.get(
+          `https://phabservice-129311a14694.herokuapp.com/wholesaler/delivery/${restock.wholesaler_order_id}`,
+        );
+        if (res.data === 'DELIVERED') {
+          restock.status = OrderStatus.DELIVERED;
+          await restockRepo.save(restock);
+          return true;
+        }
+        return false;
+      }),
+    );
 
-    console.log(`${count} new restocks delivered...`);
+    console.log(`${results.filter(Boolean).length} new restocks delivered...`);
 
     setTimeout(() => {
       if (pendingRestocks.length > 0) this.check();

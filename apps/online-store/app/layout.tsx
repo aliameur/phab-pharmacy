@@ -1,8 +1,7 @@
 import { Inter, Merriweather } from 'next/font/google';
 import { ReactNode } from 'react';
 
-import { Footer } from '../components/footer';
-import { Nav } from '../components/nav';
+import { Provider } from '../lib/provider';
 import './global.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -26,9 +25,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={`${inter.variable} ${merriweather.variable} bg-pampas-100 font-inter`}
       >
-        <Nav />
-        {children}
-        <Footer />
+        <Provider>{children}</Provider>
       </body>
     </html>
   );
