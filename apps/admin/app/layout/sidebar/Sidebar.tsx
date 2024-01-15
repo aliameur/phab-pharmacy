@@ -29,9 +29,6 @@ export default function Sidebar() {
         <li key="inventory">
           <Link href="/inventory">Inventory</Link>
         </li>
-        <li key="sales">
-          <Link href="/sales">Sales Data</Link>
-        </li>
       </ul>
     </div>
   );

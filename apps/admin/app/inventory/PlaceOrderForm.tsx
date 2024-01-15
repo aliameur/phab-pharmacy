@@ -22,9 +22,7 @@ export default function PlaceOrderForm({
   );
   const [orderQuantities, setOrderQuantities] = useState(
     selectedProducts.map(
-      (item) =>
-        item.variants[0].metadata.MaxStock -
-        item.variants[0].inventory_quantity,
+      (item) => item.variants[0].metadata.MaxStock - item.stocked_quantity,
     ),
   );
   const [bankNumber, setBankNumber] = useState('');

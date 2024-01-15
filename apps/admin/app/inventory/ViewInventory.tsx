@@ -17,6 +17,8 @@ export default function ViewInventory({ location }: Props) {
     location_id: location.id,
   });
 
+  console.log(inventory_items);
+
   const [selectedItems, setSelectedItems] = useState([] as string[]);
   const [isOrderFormVisible, setOrderFormVisible] = useState(false);
   const [isEditFormVisible, setEditFormVisible] = useState(false);

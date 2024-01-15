@@ -6,14 +6,13 @@ Admin Dashboard
 
 <h3 align="center">A simple inventory management webpage for administrators. </h3>
 
-This project is an admin dashboard built using Next.js. It provides a comprehensive interface for managing Products, Orders, Inventory, and Sales Data. The application is styled using Tailwind CSS and leverages DaisyUI for various React components.
+This project is an admin dashboard built using Next.js. It provides a comprehensive interface for managing Products, Orders, and Inventory. The application is styled using Tailwind CSS and leverages DaisyUI for various React components.
 
 ## Features
 
 - **Products Page:** Manage and view all products in the store.
 - **Orders Page:** Keep track of orders, including details like order status, customer information, and shipping details.
 - **Inventory Page:** Monitor stock levels and place orders.
-- **Sales Data Page:** (TODO): Analyze sales data through various metrics and charts.
 
 ## Products Page
 
