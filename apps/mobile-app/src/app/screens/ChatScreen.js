@@ -1,5 +1,5 @@
 import Voice from '@react-native-voice/voice';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import {
   ActivityIndicator,
   Dimensions,
@@ -22,8 +22,9 @@ import colours from '../colours';
 import ActionSheet from '../components/ActionSheet';
 import UserMenuSheet from '../components/UserMenuSheet';
 import  MapSheet  from '../components/MapSheet';
-import { searchProducts } from '../scripts/ShopScript';
+import { searchProducts, getProductByHandler } from '../scripts/ShopScript';
 import { addToCart } from '../scripts/CartScripts';
+import { ShopContext } from '../contexts/ShopContext';
 
 function ChatScreen({ navigation }) {
   const [messages, setMessages] = useState([]);
@@ -37,6 +38,7 @@ function ChatScreen({ navigation }) {
   const [isMapSheetVisible, setMapSheetVisbile] = useState(false);
   const [location, setLocation] = useState('');
   const [product, setProduct] = useState('');
+  const { loadCartData, loadNumberCart } = useContext(ShopContext);
 
   const scrollToBottom = () => {
     if (flatListRef.current) {
@@ -152,8 +154,13 @@ function ChatScreen({ navigation }) {
   };
 
   const addLLMProductToCart = async (product) => {
-      response = await searchProducts(product)
-      await addToCart(response[0])
+      response = await searchProducts(product);
+      product = await getProductByHandler(response[0].handle);
+      console.log(product['variants'][0]['id'])
+      await addToCart(product['variants'][0]['id'], 1);
+      await loadNumberCart();
+      await loadCartData();
+      console.log('Added', product.title);
   }
 
   const sendMessage = () => {
@@ -297,7 +304,7 @@ function ChatScreen({ navigation }) {
                           <Text style={{textAlign: 'center'}}>Click to see more details about {item.product}. </Text>
                         </View>
                         <TouchableOpacity style={[styles.addToCartBlock, {flex: 1, justifyContent: 'center', alignItems:'center'}]} 
-                          onPress={addLLMProductToCart()}
+                          onPress={() => addLLMProductToCart(item.product)}
                         >
                           <FontAwesome name="shopping-cart" size={35} />
                         </TouchableOpacity>

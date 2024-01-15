@@ -53,7 +53,7 @@ function ShopScreen({ navigation, route }) {
         data={products}
         renderItem={({ item }) => {
           return (
-            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 10, margin: 10}}>
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', margin: 10, marginTop: '10%'}}>
               <Text style={{flex: 1, fontSize: 20, fontWeight: '400', color: colours.LogoColours.green}}>{item.title}</Text>
               <Image 
                   source={{ uri: item.thumbnail }}
@@ -62,7 +62,7 @@ function ShopScreen({ navigation, route }) {
                   onError={(e) => { console.log(e.nativeEvent.error); }}
               />
               <Text style={{textAlign: 'center', marginBottom: 10}}>{item.description}</Text>
-              <TouchableOpacity style={{height: '20%', width: '70%', borderRadius: 15, backgroundColor: colours.LogoColours.green, alignItems:'center', justifyContent:'center', marginBottom: 100}}
+              <TouchableOpacity style={{height: '20%', width: '70%', borderRadius: 15, backgroundColor: colours.LogoColours.green, alignItems:'center', justifyContent:'center'}}
                 onPress={() => addItemToCart(item.handle)}
               >
                 <View style={{alignItems: 'center', alignSelf: 'center', flexDirection: 'row'}}>
