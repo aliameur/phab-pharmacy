@@ -46,7 +46,8 @@ const plugins = [
   {
     resolve: `@medusajs/file-local`,
     options: {
-      upload_dir: 'uploads',
+      upload_dir: 'uploads/images',
+      backend_url: 'https://phab-pharmacy-backend-ab775283aa48.herokuapp.com'
     },
   },
   {
@@ -54,6 +55,51 @@ const plugins = [
     options: {
       api_key: STRIPE_API_KEY,
       webhook_secret: process.env.STRIPE_WEBHOOK_SECRET,
+    },
+  },
+  {
+    resolve: `medusa-plugin-algolia`,
+    options: {
+      applicationId: process.env.ALGOLIA_APP_ID,
+      adminApiKey: process.env.ALGOLIA_ADMIN_API_KEY,
+      settings: {
+        products: {
+          indexSettings: {
+            searchableAttributes: ['title', 'description', 'handle'],
+            attributesToRetrieve: [
+              'id',
+              'title',
+              'description',
+              'handle',
+              'thumbnail',
+              'variants',
+              'variant_sku',
+              'options',
+              'collection_title',
+              'collection_handle',
+              'images',
+            ],
+          },
+          transformer: (product) => ({
+            objectID: product.id,
+            title: product.title,
+            description: product.description,
+            handle: product.handle,
+            thumbnail: product.thumbnail,
+          }),
+        },
+      },
+    },
+  },
+  {
+    resolve: `medusa-file-s3`,
+    options: {
+      s3_url: process.env.S3_URL,
+      bucket: process.env.S3_BUCKET,
+      region: process.env.S3_REGION,
+      access_key_id: process.env.S3_ACCESS_KEY_ID,
+      secret_access_key: process.env.S3_SECRET_ACCESS_KEY,
+      cache_control: process.env.S3_CACHE_CONTROL,
     },
   },
 ];

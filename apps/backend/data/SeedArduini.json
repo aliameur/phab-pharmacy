@@ -514,8 +514,10 @@
           "options": [],
           "inventory_quantity": 20,
           "manage_inventory": true
-        },
-  {
+        }
+      ]
+    },
+    {
       "title": "Dermalex Eczema Cream (100g)",
       "categories": [
         {

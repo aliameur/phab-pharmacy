@@ -2,12 +2,9 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { getProductByHandle } from '@phab/data-next';
-
-import { AddToCart } from '../../../components/add-to-cart';
-import { DetailSection } from '../../../components/detail-section';
-import { Gallery } from '../../../components/gallery';
-import { Rating } from '../../../components/rating';
-import { Review } from '../../../components/review';
+import { AddToCart } from '@phab/ui/cart';
+import { DetailSection, Rating, Review } from '@phab/ui/core';
+import { Gallery, ProductPrice, VariantSelector } from '@phab/ui/product';
 
 export async function generateMetadata({
   params: { handle },
@@ -28,22 +25,31 @@ export default async function Page({ params: { handle } }: Props) {
     notFound();
   });
   return (
-    <main className="px-16">
-      <div className="flex pb-16 pt-12">
-        <Gallery className="sticky top-32 h-full w-1/2 pr-10" />
-        <div className="flex w-1/2 flex-col gap-8 pl-10">
+    <main className="px-4 sm:px-12 md:px-16">
+      <div className="flex flex-col gap-8 pb-16 pt-12 lg:flex-row lg:gap-0">
+        <Gallery
+          className="mx-auto h-full w-full max-w-screen-md lg:sticky lg:top-32 lg:w-1/2 lg:pr-10 "
+          images={product.images || []}
+        />
+
+        <div className="flex w-full flex-col gap-8 lg:w-1/2 lg:pl-10">
           <div className="flex flex-col gap-2 text-mineral-green-600">
             <h2 className="font-merriweather text-3xl font-bold">
               {product.title}
             </h2>
-            <h3 className="text-xl">{product.subtitle}</h3>
+            {product.subtitle && (
+              <h3 className="text-xl">{product.subtitle}</h3>
+            )}
+            <ProductPrice
+              options={product.options}
+              variants={product.variants}
+            />
           </div>
           <Rating value={2.5} />
-          <div className="flex gap-5">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="h-24 w-24 bg-neutral-300" />
-            ))}
-          </div>
+          <VariantSelector
+            variants={product.variants}
+            options={product.options}
+          />
           <div className="flex flex-col gap-4 text-sm text-mineral-green-600">
             <p>{product.description}</p>
           </div>
@@ -65,6 +71,11 @@ export default async function Page({ params: { handle } }: Props) {
               maxime omnis perspiciatis suscipit.
             </DetailSection>
             <DetailSection title="Usage">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. At
+              doloribus exercitationem nostrum pariatur? Amet, aperiam deserunt
+              maxime omnis perspiciatis suscipit.
+            </DetailSection>
+            <DetailSection title="Delivery Policy">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. At
               doloribus exercitationem nostrum pariatur? Amet, aperiam deserunt
               maxime omnis perspiciatis suscipit.

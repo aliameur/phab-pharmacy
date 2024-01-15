@@ -1,36 +1,48 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text, StyleSheet,  KeyboardAvoidingView, Keyboard, ActivityIndicator, Image, Dimensions, TouchableWithoutFeedback, SafeAreaView } from 'react-native';
-import colours from '../colours';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { login } from '../scripts/AuthScript';
+import {
+  ActivityIndicator,
+  Dimensions,
+  Image,
+  Keyboard,
+  KeyboardAvoidingView,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import * as Keychain from 'react-native-keychain';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-function TestScreen ({ navigation }) {
-    const [inputText, setInputText] = useState('');
+import colours from '../colours';
+import { login } from '../scripts/AuthScript';
 
-    return (
-        <SafeAreaView style={{flex: 1}}>
-            <KeyboardAvoidingView 
-            style={styles.container}
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-            keyboardVerticalOffset={Platform.OS === "ios" ? 65 : 0}
-            >
-            {/* Content View */}
-            <View style={styles.contentView}>
-                {/* Your content goes here */}
-            </View>
+function TestScreen({ navigation }) {
+  const [inputText, setInputText] = useState('');
 
-            {/* Text Input */}
-            <TextInput
-                style={styles.input}
-                value={inputText}
-                onChangeText={setInputText}
-                placeholder="Type here..."
-            />
-            </KeyboardAvoidingView>
-        </SafeAreaView>
-    );
-};
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 65 : 0}
+      >
+        {/* Content View */}
+        <View style={styles.contentView}>{/* Your content goes here */}</View>
+
+        {/* Text Input */}
+        <TextInput
+          style={styles.input}
+          value={inputText}
+          onChangeText={setInputText}
+          placeholder="Type here..."
+        />
+      </KeyboardAvoidingView>
+    </SafeAreaView>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {

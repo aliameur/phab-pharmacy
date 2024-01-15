@@ -1,4 +1,7 @@
+import { Suspense } from 'react';
+
 import { getCategories, getProductsByCategoryHandle } from '@phab/data-next';
+import { filterHiddenCategories } from '@phab/utils';
 
 import { FAQs, FeaturedCategory, Hero, Team, Testimonials } from '../sections';
 
@@ -9,7 +12,7 @@ export const metadata = {
 export default async function Index() {
   const categories = await getCategories();
   const data = await Promise.all(
-    categories.map(async (category) => ({
+    filterHiddenCategories(categories).map(async (category) => ({
       category,
       products: await getProductsByCategoryHandle(category.handle),
     })),
@@ -17,7 +20,9 @@ export default async function Index() {
 
   return (
     <main>
-      <Hero />
+      <Suspense>
+        <Hero />
+      </Suspense>
       {data.map(({ category, products }, i) => (
         <FeaturedCategory
           key={category.id}
